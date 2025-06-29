@@ -29,9 +29,9 @@ export default function KenrozWebsite() {
 
   useEffect(() => {
     // Smooth scrolling for navigation links
-    const handleClick = (e: any) => {
-      const target = e.target
-      if (target.hash) {
+    const handleClick = (e: Event) => {
+      const target = e.currentTarget as HTMLAnchorElement
+      if (target && target.hash) {
         e.preventDefault()
         const element = document.querySelector(target.hash)
         if (element) {
@@ -270,7 +270,7 @@ export default function KenrozWebsite() {
                 </span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We're not just developers – we're digital architects crafting innovative solutions that drive real
+                We&apos;re not just developers - we&apos;re digital architects crafting innovative solutions that drive real
                 business growth
               </p>
             </motion.div>
@@ -465,7 +465,7 @@ export default function KenrozWebsite() {
               <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-10 text-white shadow-2xl border border-purple-500/20">
                 <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Business?</h3>
                 <p className="text-base text-purple-100 mb-6 max-w-2xl mx-auto">
-                  Let's discuss how we can help you achieve your digital goals with our expert solutions.
+                  Let&apos;s discuss how we can help you achieve your digital goals with our expert solutions.
                 </p>
                 <motion.a
                   href="#contact"
@@ -622,7 +622,7 @@ export default function KenrozWebsite() {
                 </span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Ready to transform your vision into reality? Let's create something extraordinary together.
+                Ready to transform your vision into reality? Let&apos;s create something extraordinary together.
               </p>
             </motion.div>
 
