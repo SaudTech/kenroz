@@ -31,11 +31,11 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-blue-400" />
-                <span className="text-gray-300 text-sm">+1 (555) 123-4567</span>
+                <span className="text-gray-300 text-sm">+91 (810) 624-9040</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-blue-400" />
-                <span className="text-gray-300 text-sm">hello@kenroz.com</span>
+                <span className="text-gray-300 text-sm">contact@kenroz.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-blue-400" />

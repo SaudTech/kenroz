@@ -14,7 +14,7 @@ const faqs = [
   {
     question: 'What technologies do you specialize in?',
     answer:
-      'We work with modern technologies including React, Node.js, Python, cloud platforms (AWS, Azure), mobile development (React Native, Flutter), and emerging technologies like AI/ML integration.',
+      'We work with modern technologies including React, Node.js, Python, cloud platforms (AWS, Azure), mobile development (React Native, Flutter), and emerging technologies like AI integration.',
   },
   {
     question: 'How do you ensure project quality?',

@@ -5,8 +5,8 @@ import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react'
 
 export default function Contact() {
   const contacts = [
-    { icon: Phone, title: 'Phone', value: '+91 (770) 273-5203', subtitle: 'Available 9 AM - 6 PM EST' },
-    { icon: Mail, title: 'Email', value: 'hello@kenroz.com', subtitle: 'We respond within 24 hours' },
+    { icon: Phone, title: 'Phone', value: '+91 (810) 624-9040', subtitle: 'Available 9 AM - 9 PM IST' },
+    { icon: Mail, title: 'Email', value: 'contact@kenroz.com', subtitle: 'We respond within 24 hours' },
     { icon: MapPin, title: 'Office', value: 'Hyderabad, India', subtitle: 'Serving clients worldwide' },
   ]
 
