@@ -1,0 +1,119 @@
+'use client'
+import { Phone, Mail, MapPin, Instagram, Facebook, Twitter, Linkedin, ArrowUp } from 'lucide-react'
+
+export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  const quickLinks = ['About Us', 'Services', 'Portfolio', 'Contact', 'Blog']
+  const services = ['Web Development', 'Mobile Apps', 'Cloud Solutions', 'AI Integration', 'Consulting']
+  const legalLinks = ['Privacy Policy', 'Terms of Service', 'Cookie Policy']
+  const socials = [
+    { icon: Instagram, href: '#' },
+    { icon: Facebook, href: '#' },
+    { icon: Twitter, href: '#' },
+    { icon: Linkedin, href: '#' },
+  ]
+
+  return (
+    <footer className="bg-black text-white py-16 relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+            <div className="flex items-center mb-6">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl shadow-lg border border-blue-500">
+                TechFlow
+              </div>
+            </div>
+            <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm">
+              Transforming businesses through innovative technology solutions. We create digital experiences that drive growth and deliver exceptional results for companies worldwide.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <Phone className="w-4 h-4 text-blue-400" />
+                <span className="text-gray-300 text-sm">+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-4 h-4 text-blue-400" />
+                <span className="text-gray-300 text-sm">hello@techflow.com</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <MapPin className="w-4 h-4 text-blue-400" />
+                <span className="text-gray-300 text-sm">San Francisco, CA</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-bold text-white mb-4 text-base">Quick Links</h3>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link}>
+                  <a
+                    href={`#${link.toLowerCase().replace(' ', '')}`}
+                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      const element = document.getElementById(link.toLowerCase().replace(' ', ''))
+                      if (element) element.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold text-white mb-4 text-base">Services</h3>
+            <ul className="space-y-2">
+              {services.map((service) => (
+                <li key={service}>
+                  <a
+                    href="#services"
+                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                  >
+                    {service}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} TechFlow. All rights reserved. Made with ❤️ in San Francisco</p>
+            <div className="flex space-x-4">
+              {legalLinks.map((legal) => (
+                <a key={legal} href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-xs" onClick={(e) => e.preventDefault()}>
+                  {legal}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            {socials.map(({ icon: Icon, href }, index) => (
+              <a
+                key={index}
+                href={href}
+                className="p-2 bg-gray-800 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 text-gray-400 hover:text-white rounded-lg transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-blue-500"
+                onClick={(e) => e.preventDefault()}
+              >
+                <Icon className="w-4 h-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <button
+        onClick={scrollToTop}
+        className="absolute bottom-8 right-8 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-blue-500/50"
+      >
+        <ArrowUp className="w-5 h-5" />
+      </button>
+    </footer>
+  )
+}
