@@ -20,7 +20,6 @@ export default function HomePage() {
       <Portfolio />
       <Contact />
       <Newsletter />
-      <Stats />
       <Testimonials />
       <FAQ />
       <Footer />

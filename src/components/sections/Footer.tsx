@@ -35,11 +35,11 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-blue-400" />
-                <span className="text-gray-300 text-sm">hello@techflow.com</span>
+                <span className="text-gray-300 text-sm">hello@kenroz.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-blue-400" />
-                <span className="text-gray-300 text-sm">San Francisco, CA</span>
+                <span className="text-gray-300 text-sm">Hyderabad, India</span>
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Kenroz. All rights reserved. Made with ❤️ in San Francisco</p>
+            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Kenroz. All rights reserved. Made with ❤️ in Hyderabad</p>
             <div className="flex space-x-4">
               {legalLinks.map((legal) => (
                 <a key={legal} href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-xs" onClick={(e) => e.preventDefault()}>
