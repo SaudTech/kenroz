@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import {
   Instagram,
@@ -50,10 +50,9 @@ const KenrozWebsite = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  };
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -138,7 +137,7 @@ const KenrozWebsite = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Dark Background */}
       <section
         id="home"
         className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black"
@@ -232,8 +231,8 @@ const KenrozWebsite = () => {
                 </span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We&apos;re passionate technologists creating innovative solutions
-                that transform businesses and empower growth
+                We&apos;re passionate technologists creating innovative
+                solutions that transform businesses and empower growth
               </p>
             </div>
 
@@ -870,8 +869,8 @@ const KenrozWebsite = () => {
                 </span>
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Real feedback from real clients who&apos;ve experienced the TechFlow
-                difference
+                Real feedback from real clients who&apos;ve experienced the
+                TechFlow difference
               </p>
             </div>
 
@@ -915,7 +914,7 @@ const KenrozWebsite = () => {
                     ))}
                   </div>
                   <p className="text-gray-700 mb-4 italic leading-relaxed">
-                  &quot;{testimonial.content}&quot;
+                    &quot;{testimonial.content}&quot;
                   </p>
                   <div>
                     <p className="font-semibold text-gray-900">
@@ -1006,4 +1005,4 @@ const KenrozWebsite = () => {
   );
 };
 
-export default KenrozWebsite
+export default KenrozWebsite;
