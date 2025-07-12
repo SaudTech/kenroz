@@ -1,7 +1,5 @@
 "use client"
-
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import React, { useEffect, useState } from "react";
 import {
   Instagram,
   Facebook,
@@ -11,7 +9,6 @@ import {
   Code,
   Smartphone,
   Database,
-  Settings,
   ArrowRight,
   Shield,
   Rocket,
@@ -19,64 +16,82 @@ import {
   Menu,
   X,
   Users,
-} from "lucide-react"
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+  Globe,
+  Zap,
+  Target,
+  Award,
+  CheckCircle,
+  Twitter,
+  Linkedin,
+  ArrowUp,
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function KenrozWebsite() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+const KenrozWebsite = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    // Smooth scrolling for navigation links
-    const handleClick = (e) => {
-      const target = e.target
-      if (target.hash) {
-        e.preventDefault()
-        const element = document.querySelector(target.hash)
+    const handleScroll = () => {
+      const sections = ["home", "about", "services", "portfolio", "contact"];
+      const current = sections.find((section) => {
+        const element = document.getElementById(section);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" })
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
         }
-      }
-    }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
 
-    const links = document.querySelectorAll('a[href^="#"]')
-    links.forEach((link) => link.addEventListener("click", handleClick))
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    return () => {
-      links.forEach((link) => link.removeEventListener("click", handleClick))
-    }
-  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Fixed Navigation */}
-      <motion.nav 
-        className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 z-50 shadow-sm"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 z-50 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                Kenroz
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-bold text-lg shadow-lg">
+                TechFlow
               </div>
             </div>
 
             {/* Desktop Menu */}
             <div className="hidden lg:block">
               <div className="ml-10 flex items-baseline space-x-6">
-                {["Home", "About", "Services", "Portfolio", "Contact"].map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-purple-50 rounded-lg relative group"
-                  >
-                    {item}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300"></span>
-                  </a>
-                ))}
+                {["Home", "About", "Services", "Portfolio", "Contact"].map(
+                  (item) => (
+                    <a
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      className={`px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-blue-50 rounded-lg relative group ${
+                        activeSection === item.toLowerCase()
+                          ? "text-blue-600"
+                          : "text-gray-700 hover:text-blue-600"
+                      }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document
+                          .getElementById(item.toLowerCase())
+                          ?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                    >
+                      {item}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                  )
+                )}
               </div>
             </div>
 
@@ -84,278 +99,219 @@ export default function KenrozWebsite() {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-lg bg-purple-600 text-white shadow-lg"
+                className="p-2 rounded-lg bg-blue-600 text-white shadow-lg"
               >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {isMenuOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
               </button>
             </div>
           </div>
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <motion.div 
-              className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-xl"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
+            <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-xl">
               <div className="px-4 py-4 space-y-2">
-                {["Home", "About", "Services", "Portfolio", "Contact"].map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="block text-gray-700 hover:text-purple-600 px-3 py-2 text-base font-medium transition-colors duration-300 hover:bg-purple-50 rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item}
-                  </a>
-                ))}
+                {["Home", "About", "Services", "Portfolio", "Contact"].map(
+                  (item) => (
+                    <a
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium transition-colors duration-300 hover:bg-blue-50 rounded-lg"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsMenuOpen(false);
+                        document
+                          .getElementById(item.toLowerCase())
+                          ?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                    >
+                      {item}
+                    </a>
+                  )
+                )}
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Hero Section */}
       <section
         id="home"
-        className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 to-purple-50"
+        className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black"
       >
-        {/* Subtle Background Elements */}
+        {/* Background Effects */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div 
-            className="absolute -top-40 -right-40 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-30"
-            animate={{ 
-              scale: [1, 1.1, 1],
-              rotate: [0, 90, 0]
-            }}
-            transition={{ 
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          ></motion.div>
-          <motion.div 
-            className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-20"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              rotate: [0, -90, 0]
-            }}
-            transition={{ 
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          ></motion.div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fillRule=evenodd%3E%3Cg fill=%23ffffff fillOpacity=0.03%3E%3Ccircle cx=30 cy=30 r=1/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="max-w-5xl mx-auto">
             {/* Logo Component */}
-            <motion.div 
-              className="mb-12"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.div 
-                className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-2xl text-2xl font-bold mb-6 shadow-2xl"
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                transition={{ duration: 0.3 }}
-              >
-                K
-              </motion.div>
-              <motion.div 
-                className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-3"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
-                Kenroz
-              </motion.div>
-              <motion.p 
-                className="text-base text-gray-600 font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              >
-                Your Digital Innovation Partner
-              </motion.p>
-            </motion.div>
+            <div className="mb-12">
+              <div className="inline-flex items-center justify-center rounded-2xl text-2xl font-bold mb-6">
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-2xl font-bold text-3xl shadow-2xl border border-blue-500/30 hover:scale-105 transition-transform duration-300">
+                  TechFlow
+                </div>
+              </div>
+              <p className="text-base text-gray-300 font-medium">
+                Innovative Solutions for Tomorrow
+              </p>
+            </div>
 
-            <motion.div 
-              className="space-y-6 mb-12"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-            >
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                Build, Manage, and{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                  Grow
+            <div className="space-y-6 mb-12">
+              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+                Transform Ideas Into{" "}
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Digital Reality
                 </span>
-                <br />
-                with Kenroz
               </h1>
-
-              <p className="text-lg md:text-xl text-purple-600 font-bold mb-4">
-                Take a lead, get Notified!
+              <p className="text-xl md:text-2xl text-blue-400 font-bold mb-4">
+                Innovation Meets Excellence
               </p>
-
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Transforming ambitious ideas into powerful digital realities. From concept to deployment, 
-                we deliver excellence in every line of code.
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Empowering businesses through cutting-edge technology solutions.
+                From web development to mobile apps, we craft digital
+                experiences that drive growth and success.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8 }}
-            >
-              <motion.a
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <a
                 href="#contact"
-                className="bg-gradient-to-r flex items-center from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r flex items-center from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 group border border-blue-500/30 hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
               >
                 Get Started
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.a>
-            </motion.div>
+              </a>
+              <a
+                href="#portfolio"
+                className="border-2 border-gray-600 hover:border-blue-500 text-gray-300 hover:text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 hover:bg-blue-600/10 hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("portfolio")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                View Our Work
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown className="w-6 h-6 text-gray-400" />
-        </motion.div>
+        </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <motion.div 
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Badge className="bg-purple-100 text-purple-600 px-4 py-2 text-base font-semibold mb-4 border border-purple-200">
-                About Kenroz
+            <div className="text-center mb-16">
+              <Badge className="bg-blue-100 text-blue-600 px-4 py-2 text-base font-semibold mb-4 border border-blue-200">
+                About TechFlow
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Meet the{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Building the{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Future
                 </span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We're not just developers – we're digital architects crafting innovative solutions that drive real business growth
+                We&apos;re passionate technologists creating innovative solutions
+                that transform businesses and empower growth
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Content */}
-              <motion.div 
-                className="space-y-6"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 shadow-lg border border-purple-100/50">
+              <div className="space-y-6">
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 shadow-lg border border-blue-100/50">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center mr-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mr-3">
                       <Rocket className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900">Our Mission</h3>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Our Vision
+                    </h3>
                   </div>
                   <p className="text-base text-gray-700 leading-relaxed mb-4">
-                    We are Kenroz, a dynamic technology company based in India, dedicated to transforming 
-                    businesses through innovative digital solutions. We specialize in developing fully 
-                    functioning applications including cutting-edge websites and mobile apps.
+                    At TechFlow, we believe technology should be accessible,
+                    powerful, and transformative. We specialize in creating
+                    digital solutions that not only meet today&apos;s needs but
+                    anticipate tomorrow&apos;s challenges.
                   </p>
                   <p className="text-base text-gray-700 leading-relaxed">
-                    Our comprehensive services span from initial app development to ongoing management 
-                    of websites and mobile applications. We also excel in social media management, 
-                    guaranteeing increased customer engagement and business growth.
+                    From startups to enterprise clients, we deliver scalable
+                    solutions that drive real business results. Our expertise
+                    spans web development, mobile applications, cloud solutions,
+                    and digital transformation.
                   </p>
                 </div>
 
                 {/* Key Features */}
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <motion.div 
-                    className="bg-white rounded-xl p-5 shadow-lg border border-gray-100 hover:shadow-xl hover:border-purple-200 transition-all duration-300"
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
-                      <Code className="w-5 h-5 text-purple-600" />
-                    </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Expert Development</h4>
-                    <p className="text-gray-600 text-sm">Cutting-edge solutions using latest technologies</p>
-                  </motion.div>
-
-                  <motion.div 
-                    className="bg-white rounded-xl p-5 shadow-lg border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300"
-                    whileHover={{ scale: 1.02 }}
-                  >
+                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:scale-102">
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                      <Users className="w-5 h-5 text-blue-600" />
+                      <Code className="w-5 h-5 text-blue-600" />
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Client-Focused</h4>
-                    <p className="text-gray-600 text-sm">Dedicated to delivering exceptional results</p>
-                  </motion.div>
+                    <h4 className="font-semibold text-gray-900 mb-2">
+                      Modern Stack
+                    </h4>
+                    <p className="text-gray-600 text-sm">
+                      Latest technologies for optimal performance
+                    </p>
+                  </div>
+                  <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100 hover:shadow-xl hover:border-purple-200 transition-all duration-300 hover:scale-102">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                      <Users className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">
+                      Client Success
+                    </h4>
+                    <p className="text-gray-600 text-sm">
+                      Dedicated to exceeding expectations
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Visual Element */}
-              <motion.div 
-                className="relative"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <motion.div 
-                  className="bg-gradient-to-br from-gray-900 to-purple-900 rounded-2xl p-8 text-white shadow-2xl border border-gray-800"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
+              <div className="relative">
+                <div className="bg-gradient-to-br from-gray-900 to-blue-900 rounded-2xl p-8 text-white shadow-2xl border border-gray-800 hover:scale-102 transition-transform duration-300">
                   <h3 className="text-xl font-bold mb-6 flex items-center">
                     <Shield className="w-6 h-6 mr-3 text-blue-400" />
-                    Why Choose Kenroz?
+                    Why Choose TechFlow?
                   </h3>
                   <div className="space-y-3">
                     {[
-                      "India-based expertise with global standards",
-                      "Full-stack development capabilities", 
-                      "Guaranteed customer acquisition",
-                      "End-to-end project management"
+                      "Cutting-edge technology expertise",
+                      "Agile development methodology",
+                      "24/7 support and maintenance",
+                      "Scalable and secure solutions",
                     ].map((item, index) => (
-                      <motion.div 
-                        key={index} 
-                        className="flex items-center space-x-3"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                      <div key={index} className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                         <span className="text-base">{item}</span>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -365,101 +321,96 @@ export default function KenrozWebsite() {
       <section id="services" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <motion.div 
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Badge className="bg-purple-100 text-purple-600 px-4 py-2 text-base font-semibold mb-4 border border-purple-200">
+            <div className="text-center mb-16">
+              <Badge className="bg-blue-100 text-blue-600 px-4 py-2 text-base font-semibold mb-4 border border-blue-200">
                 Our Services
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 What We{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Deliver
                 </span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Comprehensive digital solutions tailored to accelerate your business growth
+                Comprehensive technology solutions designed to accelerate your
+                digital transformation
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               {[
                 {
-                  icon: Database,
-                  title: "Database Architecture",
-                  description: "Robust, scalable database solutions designed for optimal performance and security. We architect data systems that grow with your business.",
+                  icon: Globe,
+                  title: "Web Development",
+                  description:
+                    "Modern, responsive websites and web applications built with the latest frameworks and best practices for optimal performance and user experience.",
                 },
                 {
                   icon: Smartphone,
-                  title: "Mobile App Development",
-                  description: "Native and cross-platform mobile applications with complete App Store & Play Store deployment following all guidelines and best practices.",
+                  title: "Mobile Applications",
+                  description:
+                    "Native and cross-platform mobile apps that deliver seamless user experiences across iOS and Android platforms with robust functionality.",
                 },
                 {
-                  icon: Settings,
-                  title: "Software Management",
-                  description: "Comprehensive management and optimization of existing software systems. We ensure your applications run smoothly and efficiently.",
+                  icon: Database,
+                  title: "Cloud Solutions",
+                  description:
+                    "Scalable cloud infrastructure and services that ensure your applications perform reliably while reducing operational costs and complexity.",
                 },
                 {
-                  icon: Code,
-                  title: "Web Development",
-                  description: "Full-stack development of modern web applications using cutting-edge technologies and frameworks for optimal performance.",
+                  icon: Zap,
+                  title: "Digital Transformation",
+                  description:
+                    "Complete digital transformation services that modernize your business processes and integrate cutting-edge technologies seamlessly.",
                 },
               ].map((service, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
+                  className="transform transition-all duration-300 hover:scale-105"
                 >
-                  <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-200 transition-all duration-300 bg-white h-full">
+                  <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-300 bg-white h-full">
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
-                        <motion.div 
-                          className="w-12 h-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 border border-purple-200"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <service.icon className="w-6 h-6 text-purple-600" />
-                        </motion.div>
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0 border border-blue-200 hover:scale-110 transition-transform duration-300">
+                          <service.icon className="w-6 h-6 text-blue-600" />
+                        </div>
                         <div>
-                          <h3 className="text-lg font-bold text-gray-900 mb-2">{service.title}</h3>
-                          <p className="text-gray-600 leading-relaxed text-sm">{service.description}</p>
+                          <h3 className="text-lg font-bold text-gray-900 mb-2">
+                            {service.title}
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed text-sm">
+                            {service.description}
+                          </p>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* CTA Section */}
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-10 text-white shadow-2xl border border-purple-500/20">
-                <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Business?</h3>
-                <p className="text-base text-purple-100 mb-6 max-w-2xl mx-auto">
-                  Let's discuss how we can help you achieve your digital goals with our expert solutions.
+            <div className="text-center">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-10 text-white shadow-2xl border border-blue-500/20">
+                <h3 className="text-2xl font-bold mb-4">Ready to Innovate?</h3>
+                <p className="text-base text-blue-100 mb-6 max-w-2xl mx-auto">
+                  Let&apos;s discuss how we can help transform your ideas into
+                  powerful digital solutions.
                 </p>
-                <motion.button
-                  className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <a
+                  href="#contact"
+                  className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 inline-block hover:scale-105"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById("contact")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
                 >
                   Start Your Project
-                </motion.button>
+                </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -468,101 +419,118 @@ export default function KenrozWebsite() {
       <section id="portfolio" className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <motion.div 
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Badge className="bg-purple-100 text-purple-600 px-4 py-2 text-base font-semibold mb-4 border border-purple-200">
+            <div className="text-center mb-16">
+              <Badge className="bg-blue-100 text-blue-600 px-4 py-2 text-base font-semibold mb-4 border border-blue-200">
                 Our Work
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Success{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Stories
                 </span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Witness the transformation of ambitious visions into market-leading digital realities
+                Discover how we&apos;ve helped businesses achieve their digital
+                transformation goals
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-              {[  
+              {[
                 {
-                  title: "Emvive - ZATCA E-Invoicing Platform",
-                  description: "ZATCA-compliant e-invoicing SaaS platform that significantly reduced invoice rejections and streamlined tax approval workflows for Saudi businesses.",
-                  technologies: ["React", "ZATCA SDK", "AWS"],
-                  achievements: ["90% cost savings", "Zero invoice rejections", "Drag-and-drop form builder"],
+                  title: "E-Commerce Platform",
+                  description:
+                    "Complete e-commerce solution with payment integration, inventory management, and real-time analytics that increased sales by 300%.",
+                  technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+                  achievements: [
+                    "300% sales increase",
+                    "99.9% uptime",
+                    "Mobile-first design",
+                  ],
+                  icon: Target,
+                },
+                {
+                  title: "Healthcare Management",
+                  description:
+                    "Digital healthcare platform connecting patients and doctors with telemedicine capabilities, appointment scheduling, and health records.",
+                  technologies: ["Vue.js", "Express", "PostgreSQL", "WebRTC"],
+                  achievements: [
+                    "10,000+ users",
+                    "HIPAA compliant",
+                    "Real-time consultations",
+                  ],
+                  icon: Shield,
+                },
+                {
+                  title: "Financial Dashboard",
+                  description:
+                    "Advanced financial analytics dashboard with real-time data visualization, portfolio management, and automated reporting features.",
+                  technologies: ["Angular", "Python", "Redis", "Chart.js"],
+                  achievements: [
+                    "Real-time analytics",
+                    "Automated reports",
+                    "99.5% accuracy",
+                  ],
                   icon: Database,
                 },
                 {
-                  title: "Wellyfe - Healthcare Portal",
-                  description: "Patient-doctor portal with real-time video conferencing via Twilio, data visualization using ReCharts, and automated SMS reminders.",
-                  technologies: ["React", "Twilio", "ReCharts", "Firebase"],
-                  achievements: ["Real-time video calls", "Automated SMS reminders", "Data visualization"],
-                  icon: Smartphone,
-                },
-                {
-                  title: "Vizzhy - Healthcare Web App",
-                  description: "Healthcare web application with Azure AI integration, automated speech recognition, and Firebase-based real-time chat for enhanced doctor-patient communication.",
-                  technologies: ["React", "Redux", "Azure AI", "Firebase"],
-                  achievements: ["Speech recognition", "Real-time chat", "Cross-browser compatibility"],
-                  icon: Code,
-                },
-                {
-                  title: "Dynamic Form Builder",
-                  description: "Comprehensive drag-and-drop form builder with 15+ reusable components, reducing development time by 80% and eliminating manual form coding.",
-                  technologies: ["React", "dnd-kit", "Context API"],
-                  achievements: ["80% faster development", "15+ components", "Enterprise-level forms"],
-                  icon: Settings,
+                  title: "Learning Management System",
+                  description:
+                    "Comprehensive LMS platform with video streaming, progress tracking, interactive assessments, and certification management.",
+                  technologies: ["React Native", "Django", "AWS", "Socket.io"],
+                  achievements: [
+                    "50,000+ students",
+                    "Interactive learning",
+                    "Certificate tracking",
+                  ],
+                  icon: Award,
                 },
               ].map((project, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
+                  className="transform transition-all duration-300 hover:scale-105"
                 >
-                  <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-200 transition-all duration-300 group overflow-hidden bg-white h-full">
+                  <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-300 group overflow-hidden bg-white h-full">
                     <div className="p-6">
                       <div className="flex items-center mb-4">
-                        <motion.div 
-                          className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center mr-3 border border-purple-300"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ duration: 0.3 }}
-                        >
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-3 border border-blue-300 hover:scale-110 transition-transform duration-300">
                           <project.icon className="w-6 h-6 text-white" />
-                        </motion.div>
+                        </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors duration-300">
+                          <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-300">
                             {project.title}
                           </h3>
                         </div>
                       </div>
-                      
-                      <p className="text-gray-600 leading-relaxed mb-4 text-sm">{project.description}</p>
-                      
+                      <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+                        {project.description}
+                      </p>
                       <div className="mb-3">
-                        <h4 className="text-xs font-semibold text-gray-800 mb-2">Technologies Used:</h4>
+                        <h4 className="text-xs font-semibold text-gray-800 mb-2">
+                          Technologies Used:
+                        </h4>
                         <div className="flex flex-wrap gap-1">
                           {project.technologies.map((tech, techIndex) => (
-                            <Badge key={techIndex} className="bg-purple-100 text-purple-600 hover:bg-purple-200 transition-colors duration-200 text-xs border border-purple-200">
+                            <Badge
+                              key={techIndex}
+                              className="bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 text-xs border border-blue-200"
+                            >
                               {tech}
                             </Badge>
                           ))}
                         </div>
                       </div>
-                      
                       <div>
-                        <h4 className="text-xs font-semibold text-gray-800 mb-2">Key Achievements:</h4>
+                        <h4 className="text-xs font-semibold text-gray-800 mb-2">
+                          Key Results:
+                        </h4>
                         <div className="space-y-1">
                           {project.achievements.map((achievement, achIndex) => (
-                            <div key={achIndex} className="flex items-center text-xs text-gray-600">
-                              <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2 flex-shrink-0"></div>
+                            <div
+                              key={achIndex}
+                              className="flex items-center text-xs text-gray-600"
+                            >
+                              <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
                               {achievement}
                             </div>
                           ))}
@@ -570,7 +538,7 @@ export default function KenrozWebsite() {
                       </div>
                     </div>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -578,173 +546,187 @@ export default function KenrozWebsite() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <motion.div 
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Badge className="bg-purple-100 text-purple-600 px-4 py-2 text-base font-semibold mb-4 border border-purple-200">
+            <div className="text-center mb-16">
+              <Badge className="bg-blue-100 text-blue-600 px-4 py-2 text-base font-semibold mb-4 border border-blue-200">
                 Get In Touch
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Start Your{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                  Journey
+                Let&apos;s Build{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Together
                 </span>
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Ready to transform your vision into reality? Let's create something extraordinary together.
+                Ready to turn your vision into reality? Contact us today and
+                let&apos;s start building something amazing.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {[
                 {
                   icon: Phone,
                   title: "Phone",
-                  value: "+91 770-273-5203",
-                  subtitle: "Available 24/7 for urgent inquiries"
+                  value: "+1 (555) 123-4567",
+                  subtitle: "Available 9 AM - 6 PM EST",
                 },
                 {
                   icon: Mail,
                   title: "Email",
-                  value: "help@kenroz.com",
-                  subtitle: "Quick response within 24 hours"
+                  value: "hello@techflow.com",
+                  subtitle: "We respond within 24 hours",
                 },
                 {
                   icon: MapPin,
-                  title: "Location",
-                  value: "India",
-                  subtitle: "Serving clients globally"
-                }
+                  title: "Office",
+                  value: "San Francisco, CA",
+                  subtitle: "Serving clients worldwide",
+                },
               ].map((contact, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
+                  className="transform transition-all duration-300 hover:scale-105"
                 >
-                  <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-200 transition-all duration-300 bg-white h-full">
+                  <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-300 bg-white h-full">
                     <CardContent className="p-8 text-center">
-                      <motion.div 
-                        className="w-12 h-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4 border border-purple-200"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <contact.icon className="w-6 h-6 text-purple-600" />
-                      </motion.div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{contact.title}</h3>
-                      <p className="text-purple-600 text-base font-semibold mb-2">{contact.value}</p>
-                      <p className="text-xs text-gray-500">{contact.subtitle}</p>
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4 border border-blue-200 hover:scale-110 transition-transform duration-300">
+                        <contact.icon className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">
+                        {contact.title}
+                      </h3>
+                      <p className="text-blue-600 text-base font-semibold mb-2">
+                        {contact.value}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {contact.subtitle}
+                      </p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Social Media */}
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Follow Our Journey</h3>
+            <div className="text-center">
+              <h3 className="text-xl font-bold text-gray-900 mb-6">
+                Connect With Us
+              </h3>
               <div className="flex justify-center space-x-4">
-                <motion.a
+                <a
                   href="#"
-                  className="p-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 group border border-purple-500"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 group border border-blue-500 hover:scale-110"
+                  onClick={(e) => e.preventDefault()}
                 >
                   <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </motion.a>
-                <motion.a
+                </a>
+                <a
                   href="#"
-                  className="p-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 group border border-purple-500"
-                  whileHover={{ scale: 1.1, rotate: -5 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 group border border-blue-500 hover:scale-110"
+                  onClick={(e) => e.preventDefault()}
                 >
                   <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </motion.a>
+                </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <motion.footer 
-        className="bg-black text-white py-16"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
+      <footer className="bg-black text-white py-16 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-8">
             {/* Logo and Description */}
             <div className="md:col-span-2">
-              <div className="flex items-center mb-4">
-                <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-2 rounded-lg font-bold text-lg mr-3 shadow-lg border border-purple-500">
-                  Kenroz
+              <div className="flex items-center mb-6">
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl shadow-lg border border-blue-500">
+                  TechFlow
                 </div>
               </div>
               <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm">
-                Building the future of software development and management. We transform ideas into 
-                powerful digital solutions that drive business growth.
+                Transforming businesses through innovative technology solutions.
+                We create digital experiences that drive growth and deliver
+                exceptional results for companies worldwide.
               </p>
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-4 h-4 text-purple-400" />
-                  <span className="text-gray-300 text-sm">7748596585</span>
+                  <Phone className="w-4 h-4 text-blue-400" />
+                  <span className="text-gray-300 text-sm">
+                    +1 (555) 123-4567
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="w-4 h-4 text-purple-400" />
-                  <span className="text-gray-300 text-sm">help@kenroz.com</span>
+                  <Mail className="w-4 h-4 text-blue-400" />
+                  <span className="text-gray-300 text-sm">
+                    hello@techflow.com
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <MapPin className="w-4 h-4 text-purple-400" />
-                  <span className="text-gray-300 text-sm">India</span>
+                  <MapPin className="w-4 h-4 text-blue-400" />
+                  <span className="text-gray-300 text-sm">
+                    San Francisco, CA
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h3 className="font-bold text-white mb-4 text-base">Quick Links</h3>
+              <h3 className="font-bold text-white mb-4 text-base">
+                Quick Links
+              </h3>
               <ul className="space-y-2">
-                {["About Us", "Services", "Portfolio", "Contact"].map((link) => (
-                  <li key={link}>
-                    <a
-                      href={`#${link.toLowerCase().replace(" ", "")}`}
-                      className="text-gray-400 hover:text-purple-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {["About Us", "Services", "Portfolio", "Contact", "Blog"].map(
+                  (link) => (
+                    <li key={link}>
+                      <a
+                        href={`#${link.toLowerCase().replace(" ", "")}`}
+                        className="text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById(
+                            link.toLowerCase().replace(" ", "")
+                          );
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
 
-            {/* Legal */}
+            {/* Services */}
             <div>
-              <h3 className="font-bold text-white mb-4 text-base">Legal</h3>
+              <h3 className="font-bold text-white mb-4 text-base">Services</h3>
               <ul className="space-y-2">
-                {["Terms of Service", "Privacy Policy", "Cookie Policy"].map((link) => (
-                  <li key={link}>
+                {[
+                  "Web Development",
+                  "Mobile Apps",
+                  "Cloud Solutions",
+                  "AI Integration",
+                  "Consulting",
+                ].map((service) => (
+                  <li key={service}>
                     <a
-                      href="#"
-                      className="text-gray-400 hover:text-purple-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                      href="#services"
+                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document
+                          .getElementById("services")
+                          ?.scrollIntoView({ behavior: "smooth" });
+                      }}
                     >
-                      {link}
+                      {service}
                     </a>
                   </li>
                 ))}
@@ -752,29 +734,276 @@ export default function KenrozWebsite() {
             </div>
           </div>
 
-          <div className="border-t border-gray-700 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Kenroz. All rights reserved. Made with ❤️ in India
-            </p>
-            <div className="flex space-x-3 mt-3 md:mt-0">
-              <motion.a
-                href="#"
-                className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-              >
-                <Instagram className="w-4 h-4" />
-              </motion.a>
-              <motion.a
-                href="#"
-                className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-              >
-                <Facebook className="w-4 h-4" />
-              </motion.a>
+          {/* Social Media and Copyright */}
+          <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+              <p className="text-gray-400 text-sm">
+                © {new Date().getFullYear()} TechFlow. All rights reserved. Made
+                with ❤️ in San Francisco
+              </p>
+
+              {/* Legal Links */}
+              <div className="flex space-x-4">
+                {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
+                  (legal) => (
+                    <a
+                      key={legal}
+                      href="#"
+                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-xs"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      {legal}
+                    </a>
+                  )
+                )}
+              </div>
+            </div>
+
+            {/* Social Media Icons */}
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              {[
+                { icon: Instagram, href: "#" },
+                { icon: Facebook, href: "#" },
+                { icon: Twitter, href: "#" },
+                { icon: Linkedin, href: "#" },
+              ].map(({ icon: Icon, href }, index) => (
+                <a
+                  key={index}
+                  href={href}
+                  className="p-2 bg-gray-800 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 text-gray-400 hover:text-white rounded-lg transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-blue-500"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
-      </motion.footer>
+
+        {/* Back to Top Button */}
+        <button
+          onClick={scrollToTop}
+          className="absolute bottom-8 right-8 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-blue-500/50"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </button>
+      </footer>
+
+      {/* Newsletter Section (Optional - can be placed before footer) */}
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Stay Updated with TechFlow
+            </h2>
+            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+              Get the latest insights on technology trends, development tips,
+              and exclusive updates delivered straight to your inbox.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="w-full px-4 py-3 rounded-lg border border-white/20 bg-white/10 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm"
+              />
+              <button className="w-full sm:w-auto bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                Subscribe
+              </button>
+            </div>
+
+            <p className="text-blue-200 text-sm mt-4">
+              No spam, ever. Unsubscribe at any time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Indicators Section */}
+      <section className="bg-gray-50 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Trusted by Industry Leaders
+              </h3>
+              <p className="text-gray-600 text-sm">
+                We&apos;ve helped hundreds of companies transform their digital
+                presence
+              </p>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              {[
+                { number: "500+", label: "Projects Completed" },
+                { number: "98%", label: "Client Satisfaction" },
+                { number: "50+", label: "Team Members" },
+                { number: "24/7", label: "Support Available" },
+              ].map((stat, index) => (
+                <div key={index} className="p-4">
+                  <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-gray-600 text-sm font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="bg-white py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="bg-blue-100 text-blue-600 px-4 py-2 text-sm font-semibold rounded-full border border-blue-200">
+                Testimonials
+              </span>
+              <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
+                What Our{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Clients Say
+                </span>
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Real feedback from real clients who&apos;ve experienced the TechFlow
+                difference
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Sarah Johnson",
+                  role: "CEO, StartupCo",
+                  content:
+                    "TechFlow transformed our startup vision into a market-ready platform. Their expertise and dedication are unmatched.",
+                  rating: 5,
+                },
+                {
+                  name: "Michael Chen",
+                  role: "CTO, FinanceHub",
+                  content:
+                    "The team's technical prowess and ability to deliver on time exceeded our expectations. Highly recommended!",
+                  rating: 5,
+                },
+                {
+                  name: "Emily Rodriguez",
+                  role: "Founder, HealthTech",
+                  content:
+                    "Working with TechFlow was a game-changer. They understood our needs and delivered a solution that scaled beautifully.",
+                  rating: 5,
+                },
+              ].map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-4 h-4 text-yellow-400 fill-current"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-4 italic leading-relaxed">
+                  &quot;{testimonial.content}&quot;
+                  </p>
+                  <div>
+                    <p className="font-semibold text-gray-900">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-blue-600 text-sm">{testimonial.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="bg-blue-100 text-blue-600 px-4 py-2 text-sm font-semibold rounded-full border border-blue-200">
+                FAQ
+              </span>
+              <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
+                Frequently Asked{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Questions
+                </span>
+              </h2>
+              <p className="text-gray-600">
+                Get answers to common questions about our services and process
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {[
+                {
+                  question: "How long does a typical project take?",
+                  answer:
+                    "Project timelines vary based on complexity and requirements. Simple websites typically take 2-4 weeks, while complex applications can take 3-6 months. We provide detailed timelines during our initial consultation.",
+                },
+                {
+                  question: "Do you provide ongoing support and maintenance?",
+                  answer:
+                    "Yes! We offer comprehensive support and maintenance packages to keep your applications running smoothly. This includes security updates, performance optimization, and feature enhancements.",
+                },
+                {
+                  question: "What technologies do you specialize in?",
+                  answer:
+                    "We work with modern technologies including React, Node.js, Python, cloud platforms (AWS, Azure), mobile development (React Native, Flutter), and emerging technologies like AI/ML integration.",
+                },
+                {
+                  question: "How do you ensure project quality?",
+                  answer:
+                    "We follow industry best practices including code reviews, automated testing, continuous integration, and regular client updates. Quality assurance is integrated throughout our development process.",
+                },
+              ].map((faq, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300"
+                >
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    {faq.question}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-8">
+              <p className="text-gray-600 mb-4">Still have questions?</p>
+              <a
+                href="#contact"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 inline-block hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
+
+export default KenrozWebsite
