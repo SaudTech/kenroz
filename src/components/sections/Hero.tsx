@@ -17,7 +17,7 @@ export default function Hero() {
           <div className="mb-12">
             <div className="inline-flex items-center justify-center rounded-2xl text-2xl font-bold mb-6">
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-2xl font-bold text-3xl shadow-2xl border border-blue-500/30 hover:scale-105 transition-transform duration-300">
-                TechFlow
+                Kenroz
               </div>
             </div>
             <p className="text-base text-gray-300 font-medium">Innovative Solutions for Tomorrow</p>

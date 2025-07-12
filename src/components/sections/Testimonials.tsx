@@ -4,7 +4,7 @@ const testimonials = [
   {
     name: 'Sarah Johnson',
     role: 'CEO, StartupCo',
-    content: 'TechFlow transformed our startup vision into a market-ready platform. Their expertise and dedication are unmatched.',
+    content: 'Kenroz transformed our startup vision into a market-ready platform. Their expertise and dedication are unmatched.',
     rating: 5,
   },
   {
@@ -16,7 +16,7 @@ const testimonials = [
   {
     name: 'Emily Rodriguez',
     role: 'Founder, HealthTech',
-    content: 'Working with TechFlow was a game-changer. They understood our needs and delivered a solution that scaled beautifully.',
+    content: 'Working with Kenroz was a game-changer. They understood our needs and delivered a solution that scaled beautifully.',
     rating: 5,
   },
 ]
@@ -32,7 +32,7 @@ export default function Testimonials() {
               What Our{' '}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Clients Say</span>
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Real feedback from real clients who&apos;ve experienced the TechFlow difference</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">Real feedback from real clients who&apos;ve experienced the Kenroz difference</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (

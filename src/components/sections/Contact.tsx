@@ -6,7 +6,7 @@ import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react'
 export default function Contact() {
   const contacts = [
     { icon: Phone, title: 'Phone', value: '+1 (555) 123-4567', subtitle: 'Available 9 AM - 6 PM EST' },
-    { icon: Mail, title: 'Email', value: 'hello@techflow.com', subtitle: 'We respond within 24 hours' },
+    { icon: Mail, title: 'Email', value: 'hello@kenroz.com', subtitle: 'We respond within 24 hours' },
     { icon: MapPin, title: 'Office', value: 'San Francisco, CA', subtitle: 'Serving clients worldwide' },
   ]
 

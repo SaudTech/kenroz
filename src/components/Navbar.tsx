@@ -31,7 +31,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-bold text-lg shadow-lg">
-              TechFlow
+              Kenroz
             </div>
           </div>
           <div className="hidden lg:block">

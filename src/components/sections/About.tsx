@@ -9,7 +9,7 @@ export default function About() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <Badge className="bg-blue-100 text-blue-600 px-4 py-2 text-base font-semibold mb-4 border border-blue-200">
-              About TechFlow
+              About Kenroz
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Building the{' '}
@@ -29,7 +29,7 @@ export default function About() {
                   <h3 className="text-xl font-bold text-gray-900">Our Vision</h3>
                 </div>
                 <p className="text-base text-gray-700 leading-relaxed mb-4">
-                  At TechFlow, we believe technology should be accessible, powerful, and transformative. We specialize in creating digital solutions that not only meet today&apos;s needs but anticipate tomorrow&apos;s challenges.
+                  At Kenroz, we believe technology should be accessible, powerful, and transformative. We specialize in creating digital solutions that not only meet today&apos;s needs but anticipate tomorrow&apos;s challenges.
                 </p>
                 <p className="text-base text-gray-700 leading-relaxed">
                   From startups to enterprise clients, we deliver scalable solutions that drive real business results. Our expertise spans web development, mobile applications, cloud solutions, and digital transformation.
@@ -56,7 +56,7 @@ export default function About() {
               <div className="bg-gradient-to-br from-gray-900 to-blue-900 rounded-2xl p-8 text-white shadow-2xl border border-gray-800 hover:scale-102 transition-transform duration-300">
                 <h3 className="text-xl font-bold mb-6 flex items-center">
                   <Shield className="w-6 h-6 mr-3 text-blue-400" />
-                  Why Choose TechFlow?
+                  Why Choose Kenroz?
                 </h3>
                 <div className="space-y-3">
                   {[

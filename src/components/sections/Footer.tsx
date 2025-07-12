@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center mb-6">
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl shadow-lg border border-blue-500">
-                TechFlow
+                Kenroz
               </div>
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm">
@@ -85,7 +85,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} TechFlow. All rights reserved. Made with ❤️ in San Francisco</p>
+            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Kenroz. All rights reserved. Made with ❤️ in San Francisco</p>
             <div className="flex space-x-4">
               {legalLinks.map((legal) => (
                 <a key={legal} href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-xs" onClick={(e) => e.preventDefault()}>
