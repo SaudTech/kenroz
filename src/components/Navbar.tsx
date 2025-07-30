@@ -47,8 +47,8 @@ export default function Navbar() {
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-blue-50 rounded-lg relative group ${
-                    activeSection === item.toLowerCase() ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+                  className={`px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-primary-50 rounded-lg relative group ${
+                    activeSection === item.toLowerCase() ? 'text-primary-600' : 'text-gray-700 hover:text-primary-600'
                   }`}
                   onClick={(e) => {
                     e.preventDefault()
@@ -56,13 +56,13 @@ export default function Navbar() {
                   }}
                 >
                   {item}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300" />
                 </a>
               ))}
             </div>
           </div>
           <div className="lg:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-lg bg-blue-600 text-white shadow-lg">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-lg bg-primary-600 text-white shadow-lg">
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
@@ -74,7 +74,7 @@ export default function Navbar() {
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="block text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium transition-colors duration-300 hover:bg-blue-50 rounded-lg"
+                  className="block text-gray-700 hover:text-primary-600 px-3 py-2 text-base font-medium transition-colors duration-300 hover:bg-primary-50 rounded-lg"
                   onClick={(e) => {
                     e.preventDefault()
                     setIsMenuOpen(false)
