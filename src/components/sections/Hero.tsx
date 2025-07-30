@@ -32,7 +32,7 @@ export default function Hero() {
           <div className="space-y-6 mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
               Transform Ideas Into{' '}
-              <span className="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Digital Reality</span>
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Digital Reality</span>
             </h1>
             <p className="text-xl md:text-2xl text-primary-400 font-bold mb-4">Innovation Meets Excellence</p>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
