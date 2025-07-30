@@ -1,19 +1,36 @@
-'use client'
-import { Phone, Mail, MapPin, Instagram, Facebook, Twitter, Linkedin, ArrowUp } from 'lucide-react'
+"use client";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
+  Facebook,
+  Twitter,
+  Linkedin,
+  ArrowUp,
+} from "lucide-react";
+import logo from "@/../public/logo.png";
+import Image from "next/image";
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-  const quickLinks = ['About Us', 'Services', 'Portfolio', 'Contact', 'Blog']
-  const services = ['Web Development', 'Mobile Apps', 'Cloud Solutions', 'AI Integration', 'Consulting']
-  const legalLinks = ['Privacy Policy', 'Terms of Service', 'Cookie Policy']
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const quickLinks = ["About Us", "Services", "Portfolio", "Contact", "Blog"];
+  const services = [
+    "Web Development",
+    "Mobile Apps",
+    "Cloud Solutions",
+    "AI Integration",
+    "Consulting",
+  ];
+  const legalLinks = ["Privacy Policy", "Terms of Service", "Cookie Policy"];
   const socials = [
-    { icon: Instagram, href: '#' },
-    { icon: Facebook, href: '#' },
-    { icon: Twitter, href: '#' },
-    { icon: Linkedin, href: '#' },
-  ]
+    { icon: Instagram, href: "#" },
+    { icon: Facebook, href: "#" },
+    { icon: Twitter, href: "#" },
+    { icon: Linkedin, href: "#" },
+  ];
 
   return (
     <footer className="bg-black text-white py-16 relative">
@@ -21,21 +38,31 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center mb-6">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-xl shadow-lg border border-blue-500">
-                Kenroz
-              </div>
+              <Image
+                src={logo}
+                alt="Kenroz Logo"
+                width={200}
+                height={40}
+                className="inline-block mr-2"
+              />
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed text-sm">
-              Transforming businesses through innovative technology solutions. We create digital experiences that drive growth and deliver exceptional results for companies worldwide.
+              Transforming businesses through innovative technology solutions.
+              We create digital experiences that drive growth and deliver
+              exceptional results for companies worldwide.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-blue-400" />
-                <span className="text-gray-300 text-sm">+91 (810) 624-9040</span>
+                <span className="text-gray-300 text-sm">
+                  +91 (810) 624-9040
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-blue-400" />
-                <span className="text-gray-300 text-sm">contact@kenroz.com</span>
+                <span className="text-gray-300 text-sm">
+                  contact@kenroz.com
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-blue-400" />
@@ -49,12 +76,15 @@ export default function Footer() {
               {quickLinks.map((link) => (
                 <li key={link}>
                   <a
-                    href={`#${link.toLowerCase().replace(' ', '')}`}
+                    href={`#${link.toLowerCase().replace(" ", "")}`}
                     className="text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
                     onClick={(e) => {
-                      e.preventDefault()
-                      const element = document.getElementById(link.toLowerCase().replace(' ', ''))
-                      if (element) element.scrollIntoView({ behavior: 'smooth' })
+                      e.preventDefault();
+                      const element = document.getElementById(
+                        link.toLowerCase().replace(" ", "")
+                      );
+                      if (element)
+                        element.scrollIntoView({ behavior: "smooth" });
                     }}
                   >
                     {link}
@@ -72,8 +102,10 @@ export default function Footer() {
                     href="#services"
                     className="text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
                     onClick={(e) => {
-                      e.preventDefault()
-                      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })
+                      e.preventDefault();
+                      document
+                        .getElementById("services")
+                        ?.scrollIntoView({ behavior: "smooth" });
                     }}
                   >
                     {service}
@@ -85,10 +117,18 @@ export default function Footer() {
         </div>
         <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Kenroz. All rights reserved. Made with ❤️ in Hyderabad</p>
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} Kenroz. All rights reserved. Made
+              with ❤️ in Hyderabad
+            </p>
             <div className="flex space-x-4">
               {legalLinks.map((legal) => (
-                <a key={legal} href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-xs" onClick={(e) => e.preventDefault()}>
+                <a
+                  key={legal}
+                  href="#"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-xs"
+                  onClick={(e) => e.preventDefault()}
+                >
                   {legal}
                 </a>
               ))}
@@ -115,5 +155,5 @@ export default function Footer() {
         <ArrowUp className="w-5 h-5" />
       </button>
     </footer>
-  )
+  );
 }

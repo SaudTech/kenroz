@@ -1,5 +1,8 @@
 'use client'
 import { ArrowRight, ChevronDown } from 'lucide-react'
+import Image from 'next/image'
+import logo from "@/../public/logo.png"
+
 
 export default function Hero() {
   return (
@@ -16,9 +19,13 @@ export default function Hero() {
         <div className="max-w-5xl mx-auto">
           <div className="mb-12">
             <div className="inline-flex items-center justify-center rounded-2xl text-2xl font-bold mb-6">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-2xl font-bold text-3xl shadow-2xl border border-blue-500/30 hover:scale-105 transition-transform duration-300">
-                Kenroz
-              </div>
+              <Image
+                src={logo}
+                alt="Kenroz Logo"
+                width={200}
+                height={40}
+                className="inline-block mr-2"
+              />
             </div>
             <p className="text-base text-gray-300 font-medium">Innovative Solutions for Tomorrow</p>
           </div>

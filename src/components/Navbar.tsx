@@ -1,6 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import logo from "@/../public/logo.png"
+import Image from 'next/image'
 
 const sections = ['home', 'about', 'services', 'portfolio', 'contact']
 
@@ -30,9 +32,14 @@ export default function Navbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-bold text-lg shadow-lg">
-              Kenroz
-            </div>
+              {/* Kenroz */}
+              <Image 
+                src={logo}
+                alt="Kenroz Logo"
+                width={200}
+                height={40}
+                className="inline-block mr-2"
+              />
           </div>
           <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-6">
