@@ -29,10 +29,10 @@ export default function FAQ() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <span className="bg-blue-100 text-blue-600 px-4 py-2 text-sm font-semibold rounded-full border border-blue-200">FAQ</span>
+            <span className="bg-yellow-100 text-[#e31b25] px-4 py-2 text-sm font-semibold rounded-full border border-yellow-200">FAQ</span>
             <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
               Frequently Asked{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Questions</span>
+              <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Questions</span>
             </h2>
             <p className="text-gray-600">Get answers to common questions about our services and process</p>
           </div>
@@ -48,7 +48,7 @@ export default function FAQ() {
             <p className="text-gray-600 mb-4">Still have questions?</p>
             <a
               href="#contact"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 inline-block hover:scale-105"
+              className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 inline-block hover:scale-105"
               onClick={(e) => {
                 e.preventDefault()
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })

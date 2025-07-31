@@ -44,12 +44,12 @@ export default function Portfolio() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="bg-blue-100 text-blue-600 px-4 py-2 text-base font-semibold mb-4 border border-blue-200">
+            <Badge className="bg-yellow-100 text-[#e31b25] px-4 py-2 text-base font-semibold mb-4 border border-yellow-200">
               Our Work
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Success{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Stories</span>
+              <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Stories</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Discover how we&apos;ve helped businesses achieve their digital transformation goals
@@ -58,14 +58,14 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
             {projects.map((project, index) => (
               <div key={index} className="transform transition-all duration-300 hover:scale-105">
-                <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-300 group overflow-hidden bg-white h-full">
+                <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-yellow-200 transition-all duration-300 group overflow-hidden bg-white h-full">
                   <div className="p-6">
                     <div className="flex items-center mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-3 border border-blue-300 hover:scale-110 transition-transform duration-300">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#7e141c] to-[#e31b25] rounded-xl flex items-center justify-center mr-3 border border-[#7e141c] hover:scale-110 transition-transform duration-300">
                         <project.icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-300">
+                        <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-[#e31b25] transition-colors duration-300">
                           {project.title}
                         </h3>
                       </div>
@@ -75,7 +75,7 @@ export default function Portfolio() {
                       <h4 className="text-xs font-semibold text-gray-800 mb-2">Technologies Used:</h4>
                       <div className="flex flex-wrap gap-1">
                         {project.technologies.map((tech, techIndex) => (
-                          <Badge key={techIndex} className="bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 text-xs border border-blue-200">
+                          <Badge key={techIndex} className="bg-yellow-100 text-[#e31b25] hover:bg-yellow-200 transition-colors duration-200 text-xs border border-yellow-200">
                             {tech}
                           </Badge>
                         ))}
