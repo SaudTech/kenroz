@@ -5,13 +5,12 @@ import Services from '@/components/sections/Services'
 import Portfolio from '@/components/sections/Portfolio'
 import Contact from '@/components/sections/Contact'
 import Newsletter from '@/components/sections/Newsletter'
-import Testimonials from '@/components/sections/Testimonials'
 import FAQ from '@/components/sections/FAQ'
 import Footer from '@/components/sections/Footer'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-yellow-50 overflow-x-hidden">
+    <div className="min-h-screen bg-yellow-500 overflow-x-hidden">
       <Navbar />
       <Hero />
       <About />
@@ -19,7 +18,6 @@ export default function HomePage() {
       <Portfolio />
       <Contact />
       <Newsletter />
-      <Testimonials />
       <FAQ />
       <Footer />
     </div>

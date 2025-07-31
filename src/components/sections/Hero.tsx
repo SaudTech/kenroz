@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden bg-yellow-100"
+      className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden bg-yellow-300 text-black"
     >
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#e31b25]/20 rounded-full blur-3xl animate-pulse" />
@@ -27,7 +27,7 @@ export default function Hero() {
                 className="inline-block mr-2"
               />
             </div>
-            <p className="text-base text-gray-300 font-medium">Innovative Solutions for Tomorrow</p>
+            <p className="text-base font-medium">Innovative Solutions for Tomorrow</p>
           </div>
           <div className="space-y-6 mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
@@ -35,7 +35,7 @@ export default function Hero() {
               <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Digital Reality</span>
             </h1>
             <p className="text-xl md:text-2xl text-[#e31b25] font-bold mb-4">Innovation Meets Excellence</p>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg max-w-3xl mx-auto leading-relaxed">
               Empowering businesses through cutting-edge technology solutions. From web development to mobile apps, we craft digital experiences that drive growth and success.
             </p>
           </div>

@@ -32,18 +32,18 @@ export default function Services() {
   ]
 
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section id="services" className="relative py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <Badge className="bg-yellow-100 text-[#e31b25] px-4 py-2 text-base font-semibold mb-4 border border-yellow-200">
               Our Services
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               What We{' '}
               <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Deliver</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
               Comprehensive technology solutions designed to accelerate your digital transformation
             </p>
           </div>
