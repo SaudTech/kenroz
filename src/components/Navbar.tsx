@@ -102,7 +102,7 @@ export default function Navbar() {
               Products
             </Link>
             <Link
-              href="/#contact"
+              href="/contact-us"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]"
             >
               Contact Us
@@ -110,7 +110,7 @@ export default function Navbar() {
           </div>
           <div className="hidden lg:block">
             <Link
-              href="/#contact"
+              href="/hire-an-expert"
               className="bg-[#e31b25] text-white px-4 py-2 rounded-lg shadow-lg hover:bg-[#c3151e]"
             >
               Hire an expert

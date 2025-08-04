@@ -1,5 +1,4 @@
 'use client'
-import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Globe, Smartphone, Database, Zap } from 'lucide-react'
 
@@ -36,9 +35,6 @@ export default function Services() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="bg-yellow-100 text-[#e31b25] px-4 py-2 text-base font-semibold mb-4 border border-yellow-200">
-              Our Services
-            </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               What We{' '}
               <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Deliver</span>

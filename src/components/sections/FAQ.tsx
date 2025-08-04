@@ -1,5 +1,12 @@
 'use client'
 
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent
+} from '@/components/ui/accordion' // adjust the import path as needed
+
 const faqs = [
   {
     question: 'How long does a typical project take?',
@@ -29,33 +36,37 @@ export default function FAQ() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <span className="bg-yellow-100 text-[#e31b25] px-4 py-2 text-sm font-semibold rounded-full border border-yellow-200">FAQ</span>
             <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
               Frequently Asked{' '}
               <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Questions</span>
             </h2>
             <p className="text-gray-600">Get answers to common questions about our services and process</p>
           </div>
-          <div className="space-y-6">
+
+          <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
-                <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-              </div>
+              <AccordionItem key={index} value={`faq-${index}`} className="rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md">
+                <AccordionTrigger className="px-6 py-4 text-base font-semibold text-gray-900">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6 text-gray-600">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
+
           <div className="text-center mt-8">
             <p className="text-gray-600 mb-4">Still have questions?</p>
-            <a
-              href="#contact"
+            <div
               className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 inline-block hover:scale-105"
               onClick={(e) => {
                 e.preventDefault()
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
               }}
             >
-              Contact Us
-            </a>
+              Contact Us below
+            </div>
           </div>
         </div>
       </div>
