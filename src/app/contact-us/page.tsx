@@ -10,8 +10,8 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Ready to take the next step? We're here to help you succeed. Reach
-            out and let's discuss how we can work together.
+            Ready to take the next step? We&apos;re here to help you succeed. Reach
+            out and let&apos;s discuss how we can work together.
           </p>
         </div>
 

@@ -1,16 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import DescriptionToggle from "@/components/DescriptionToggle";
-import FlipCard from "@/components/FlipCard";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Activity } from "lucide-react";
 export const metadata = { title: "Microsoft Dynamics 365" };
 
-let d = `
+const d = `
 Microsoft Dynamics 365 offers a unified solution to manage every facet of your business, from sales and customer service to finance and operations. Our team specializes in customizing and implementing Dynamics 365 to fit your unique business processes and goals. Whether you're looking to improve customer engagement or optimize internal operations, we ensure a smooth, scalable transformation.
 
 We understand that every organization operates differently, which is why we take a tailored approach, analyzing your workflow, integrating existing systems, and configuring modules to support your business strategy. Our experts guide you from planning through deployment, ensuring you're maximizing the capabilities of the Dynamics platform.
@@ -61,13 +53,7 @@ export default function MicrosoftDynamic365Page() {
         </div>
 
         <div className="mt-12 flex flex-col items-center">
-          <div className="text-center">
-            <FlipCard
-              icon={<Activity />}
-              title="Consultation"
-              description="We offer expert consultation to help you understand how Dynamics 365 can be tailored to your business needs."
-            />
-          </div>
+          
         </div>
       </section>
     </main>

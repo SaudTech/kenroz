@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import DescriptionToggle from "@/components/DescriptionToggle";
 import Image from "next/image";
 
@@ -194,7 +193,7 @@ export default function CloudSolutionsPage() {
               Future-proof your infrastructure
             </h2>
             <p className="mb-6">
-              Whether you're migrating legacy systems or building greenfield
+              Whether you&apos;re migrating legacy systems or building greenfield
               apps, we tailor cloud and DevOps strategy to your business goals
               and compliance needs.
             </p>

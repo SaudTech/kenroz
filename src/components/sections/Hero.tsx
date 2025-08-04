@@ -1,7 +1,5 @@
 "use client";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import Image from "next/image";
-import logo from "@/../public/logo.png";
 
 export default function Hero() {
   return (
