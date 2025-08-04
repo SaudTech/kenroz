@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Services from '@/components/sections/Services'
-import Portfolio from '@/components/sections/Portfolio'
+import Products from '@/components/sections/Products'
 import Contact from '@/components/sections/Contact'
 import Newsletter from '@/components/sections/Newsletter'
 import FAQ from '@/components/sections/FAQ'
@@ -15,7 +15,7 @@ export default function HomePage() {
       <Hero />
       <About />
       <Services />
-      <Portfolio />
+      <Products />
       <Contact />
       <Newsletter />
       <FAQ />

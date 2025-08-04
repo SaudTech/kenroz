@@ -3,8 +3,8 @@ import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { Target, Shield, Database, Award, CheckCircle } from 'lucide-react'
 
-export default function Portfolio() {
-  const projects = [
+export default function Products() {
+  const products = [
     {
       title: 'E-Commerce Platform',
       description:
@@ -40,41 +40,41 @@ export default function Portfolio() {
   ]
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
+    <section id="products" className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <Badge className="bg-yellow-100 text-[#e31b25] px-4 py-2 text-base font-semibold mb-4 border border-yellow-200">
-              Our Work
+              Our Products
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Success{' '}
-              <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Stories</span>
+              What We{' '}
+              <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Offer</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover how we&apos;ve helped businesses achieve their digital transformation goals
+              Discover how our solutions drive digital transformation for businesses
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-            {projects.map((project, index) => (
+            {products.map((product, index) => (
               <div key={index} className="transform transition-all duration-300 hover:scale-105">
                 <Card className="border border-gray-200 shadow-lg hover:shadow-xl hover:border-yellow-200 transition-all duration-300 group overflow-hidden bg-white h-full">
                   <div className="p-6">
                     <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-[#7e141c] to-[#e31b25] rounded-xl flex items-center justify-center mr-3 border border-[#7e141c] hover:scale-110 transition-transform duration-300">
-                        <project.icon className="w-6 h-6 text-white" />
+                        <product.icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-[#e31b25] transition-colors duration-300">
-                          {project.title}
+                          {product.title}
                         </h3>
                       </div>
                     </div>
-                    <p className="text-gray-600 leading-relaxed mb-4 text-sm">{project.description}</p>
+                    <p className="text-gray-600 leading-relaxed mb-4 text-sm">{product.description}</p>
                     <div className="mb-3">
                       <h4 className="text-xs font-semibold text-gray-800 mb-2">Technologies Used:</h4>
                       <div className="flex flex-wrap gap-1">
-                        {project.technologies.map((tech, techIndex) => (
+                        {product.technologies.map((tech, techIndex) => (
                           <Badge key={techIndex} className="bg-yellow-100 text-[#e31b25] hover:bg-yellow-200 transition-colors duration-200 text-xs border border-yellow-200">
                             {tech}
                           </Badge>
@@ -84,7 +84,7 @@ export default function Portfolio() {
                     <div>
                       <h4 className="text-xs font-semibold text-gray-800 mb-2">Key Results:</h4>
                       <div className="space-y-1">
-                        {project.achievements.map((achievement, achIndex) => (
+                        {product.achievements.map((achievement, achIndex) => (
                           <div key={achIndex} className="flex items-center text-xs text-gray-600">
                             <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
                             {achievement}
