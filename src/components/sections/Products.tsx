@@ -50,51 +50,7 @@ export default function ProductsPage() {
     },
   }
 
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 60,
-      scale: 0.95,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.25, 0, 1],
-      },
-    },
-  }
 
-  const imageVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      rotate: -5,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.25, 0, 1],
-      },
-    },
-  }
-
-  const headerVariants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.25, 0, 1],
-      },
-    },
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-x-hidden">
@@ -103,7 +59,6 @@ export default function ProductsPage() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <motion.header
           className="text-center max-w-5xl mx-auto mb-24"
-          variants={headerVariants}
           initial="hidden"
           animate="visible"
         >
@@ -143,14 +98,12 @@ export default function ProductsPage() {
           {products.map((product, index) => (
             <motion.div
               key={product.name}
-              variants={itemVariants}
               className={`flex flex-col lg:flex-row ${
                 index % 2 === 0 ? "lg:flex-row-reverse" : ""
               } items-center gap-12 lg:gap-20 group`}
             >
               <motion.div
                 className="lg:w-1/2 flex justify-center"
-                variants={imageVariants}
                 whileHover={{
                   scale: 1.05,
                   rotate: index % 2 === 0 ? 2 : -2,
