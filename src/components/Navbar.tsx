@@ -96,7 +96,7 @@ export default function Navbar() {
               </div>
             </div>
             <Link
-              href="/#products"
+              href="/products"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]"
             >
               Products
@@ -166,7 +166,7 @@ export default function Navbar() {
               )}
             </div>
             <Link
-              href="/#products"
+              href="/products"
               className="block text-gray-700 hover:text-[#e31b25] px-3 py-2 text-base font-medium hover:bg-yellow-50 rounded-lg"
             >
               Products
