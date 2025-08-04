@@ -1,22 +1,36 @@
-'use client'
-import { useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { Menu, X, ChevronDown } from 'lucide-react'
-import logo from '@/../public/logo.png'
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, X, ChevronDown } from "lucide-react";
+import logo from "@/../public/logo.png";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
 
 const serviceLinks = [
-  { name: 'Microsoft Dynamic 365', href: '/services/microsoft-dynamic-365' },
-  { name: 'Cloud Solutions', href: '/services/cloud-solutions' },
-  { name: 'Web Application Development', href: '/services/web-application-development' },
-  { name: 'Mobile Application Development', href: '/services/mobile-application-development' },
-  { name: 'Digital Marketing', href: '/services/digital-marketing' },
-  { name: 'Outsourcing', href: '/services/outsourcing' },
-]
+  { name: "Microsoft Dynamic 365", href: "/services/microsoft-dynamic-365" },
+  { name: "Cloud Solutions", href: "/services/cloud-solutions" },
+  {
+    name: "Web Application Development",
+    href: "/services/web-application-development",
+  },
+  {
+    name: "Mobile Application Development",
+    href: "/services/mobile-application-development",
+  },
+  { name: "Digital Marketing", href: "/services/digital-marketing" },
+  { name: "Outsourcing", href: "/services/outsourcing" },
+];
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 z-50 shadow-sm">
@@ -32,12 +46,38 @@ export default function Navbar() {
             />
           </Link>
           <div className="hidden lg:flex items-center space-x-6">
-            <Link href="/" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]">
+            <Link
+              href="/"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]"
+            >
               Home
             </Link>
-            <Link href="/#about" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]">
+            <Link
+              href="/#about"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]"
+            >
               About
             </Link>
+
+            <Menubar>
+              <MenubarMenu>
+                <MenubarTrigger>Services</MenubarTrigger>
+                <MenubarContent>
+                  {serviceLinks.map((service) => (
+                    <>
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
+                      >
+                        <MenubarItem>{service.name}</MenubarItem>
+                      </Link>
+                      <MenubarSeparator />
+                    </>
+                  ))}
+                </MenubarContent>
+              </MenubarMenu>
+            </Menubar>
             <div className="relative group">
               <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25] flex items-center">
                 Services
@@ -55,10 +95,16 @@ export default function Navbar() {
                 ))}
               </div>
             </div>
-            <Link href="/#products" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]">
+            <Link
+              href="/#products"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]"
+            >
               Products
             </Link>
-            <Link href="/#contact" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]">
+            <Link
+              href="/#contact"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]"
+            >
               Contact Us
             </Link>
           </div>
@@ -75,7 +121,11 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 rounded-lg bg-[#e31b25] text-white shadow-lg"
             >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -137,6 +187,5 @@ export default function Navbar() {
         )}
       </div>
     </nav>
-  )
+  );
 }
-
