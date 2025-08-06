@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import Image from "next/image";
+import HeroBackground from "@/components/sections/HeroBackground";
 
 export default function ProductsPage() {
   const products = [
@@ -80,38 +81,70 @@ export default function ProductsPage() {
     },
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const featureListVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const featureItemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-red-50 overflow-x-hidden">
       <Navbar />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
-        <motion.header
-          className="text-center max-w-5xl mx-auto mb-24"
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.h1
-            className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent mb-8 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+        <section className="relative mb-24 rounded-3xl overflow-hidden">
+          <HeroBackground />
+          <motion.header
+            className="relative z-10 text-center max-w-5xl mx-auto py-24"
+            initial="hidden"
+            animate="visible"
           >
-            Powerful Products for Modern Business
-          </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="inline-block mb-6"
+            >
+              <span className="inline-block px-4 py-2 bg-red-100 text-red-800 text-sm font-semibold rounded-full mb-4">
+                Our Solutions
+              </span>
+            </motion.div>
 
-          <motion.p
-            className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            We offer powerful, flexible, and scalable software products that
-            help businesses optimize operations, enhance employee experiences,
-            and ensure compliance. Our solutions are designed to meet real-world
-            business challenges with intuitive interfaces and reliable
-            performance.
-          </motion.p>
-        </motion.header>
+            <motion.h1
+              className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-700 bg-clip-text text-transparent mb-8 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Powerful Products for Modern Business
+            </motion.h1>
+
+            <motion.p
+              className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              We offer powerful, flexible, and scalable software products that help businesses optimize operations,
+              enhance employee experiences, and ensure compliance. Our solutions are designed to meet real-world business
+              challenges with intuitive interfaces and reliable performance.
+            </motion.p>
+          </motion.header>
+        </section>
 
         <motion.section
           className="space-y-32"
@@ -122,6 +155,7 @@ export default function ProductsPage() {
           {products.map((product, index) => (
             <motion.div
               key={product.name}
+              variants={itemVariants}
               className={`flex flex-col lg:flex-row ${
                 index % 2 === 0 ? "lg:flex-row-reverse" : ""
               } items-center gap-12 lg:gap-20 group`}
@@ -135,13 +169,13 @@ export default function ProductsPage() {
                 }}
               >
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                   <Image
                     src={product.imageName}
                     alt={`${product.name} illustration`}
                     width={400}
                     height={400}
-                    className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-2xl shadow-2xl border border-gray-200/50 group-hover:shadow-3xl transition-all duration-500"
+                    className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-2xl shadow-2xl border border-red-200/50 group-hover:shadow-3xl transition-all duration-500"
                   />
                 </div>
               </motion.div>
@@ -162,7 +196,7 @@ export default function ProductsPage() {
                   </motion.h2>
 
                   <motion.p
-                    className="text-gray-600 leading-relaxed text-lg mb-6"
+                    className="text-gray-700 leading-relaxed text-lg mb-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
@@ -170,6 +204,54 @@ export default function ProductsPage() {
                     {product.description}
                   </motion.p>
                 </div>
+
+                <motion.div
+                  className="grid grid-cols-2 gap-3"
+                  variants={featureListVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {product.features.map((feature) => (
+                    <motion.div
+                      key={feature}
+                      variants={featureItemVariants}
+                      className="flex items-center space-x-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-red-200/50"
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "rgba(252,165,165,0.2)",
+                        transition: { duration: 0.2 },
+                      }}
+                    >
+                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                      <span className="font-medium">{feature}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                >
+                  <motion.button
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0 20px 40px rgba(220, 38, 38, 0.3)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Learn More
+                    <motion.svg
+                      className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </motion.svg>
+                  </motion.button>
+                </motion.div>
               </motion.div>
             </motion.div>
           ))}

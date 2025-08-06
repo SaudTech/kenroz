@@ -1,8 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/sections/Footer"
 import Image from "next/image"
 
 export default function ProductsPage() {
