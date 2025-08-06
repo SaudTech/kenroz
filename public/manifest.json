@@ -1,0 +1,27 @@
+{
+  "name": "Kenroz - IT Solutions & Software Development",
+  "short_name": "Kenroz",
+  "description": "Leading IT solutions and software development company specializing in Microsoft Dynamics 365, Cloud Solutions, and custom software products.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e31b25",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["business", "productivity", "technology"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

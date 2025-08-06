@@ -45,8 +45,10 @@ export default function DescriptionToggle({ description }: { description: string
 
       <div className="mt-2">
         <button
-          onClick={() => setExpanded((e) => !e)}
-          className="text-blue-600 font-medium inline-flex items-center text-sm"
+          onClick={() => {
+            setExpanded((e) => !e)
+          }}
+          className="font-medium text-primary inline-flex items-center text-sm"
           aria-label={
             expanded
               ? "Hide more description"

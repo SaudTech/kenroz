@@ -170,31 +170,6 @@ export default function ProductsPage() {
                     </motion.div>
                   ))}
                 </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                >
-                  <motion.button
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
-                    whileHover={{
-                      scale: 1.05,
-                      boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Learn More
-                    <motion.svg
-                      className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </motion.svg>
-                  </motion.button>
-                </motion.div>
               </motion.div>
             </motion.div>
           ))}

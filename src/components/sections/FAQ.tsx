@@ -57,16 +57,7 @@ export default function FAQ() {
           </Accordion>
 
           <div className="text-center mt-8">
-            <p className="text-gray-600 mb-4">Still have questions?</p>
-            <div
-              className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 inline-block hover:scale-105"
-              onClick={(e) => {
-                e.preventDefault()
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-            >
-              Contact Us below
-            </div>
+            <p className="text-gray-600 mb-4">Still have questions? Contact us below</p>
           </div>
         </div>
       </div>
