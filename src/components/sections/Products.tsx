@@ -54,8 +54,6 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-x-hidden">
-      <Navbar />
-
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <motion.header
           className="text-center max-w-5xl mx-auto mb-24"
@@ -204,8 +202,6 @@ export default function ProductsPage() {
           ))}
         </motion.section>
       </main>
-
-      <Footer />
     </div>
   )
 }

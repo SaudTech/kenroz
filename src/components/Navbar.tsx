@@ -59,9 +59,9 @@ export default function Navbar() {
               About
             </Link>
 
-            <Menubar>
+            <Menubar className="bg-transparent border-none shadow-none focus:bg-transparent">
               <MenubarMenu>
-                <MenubarTrigger>Services</MenubarTrigger>
+                <MenubarTrigger className="bg-transparent">Services <ChevronDown /></MenubarTrigger>
                 <MenubarContent>
                   {serviceLinks.map((service) => (
                     <>
@@ -78,23 +78,6 @@ export default function Navbar() {
                 </MenubarContent>
               </MenubarMenu>
             </Menubar>
-            <div className="relative group">
-              <button className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25] flex items-center">
-                Services
-                <ChevronDown className="w-4 h-4 ml-1" />
-              </button>
-              <div className="absolute left-0 mt-2 hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-lg w-64">
-                {serviceLinks.map((service) => (
-                  <Link
-                    key={service.href}
-                    href={service.href}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50"
-                  >
-                    {service.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
             <Link
               href="/products"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#e31b25]"
@@ -116,18 +99,6 @@ export default function Navbar() {
               Hire an expert
             </Link>
           </div>
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg bg-[#e31b25] text-white shadow-lg"
-            >
-              {isMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
         </div>
         {isMenuOpen && (
           <div className="lg:hidden mt-2 space-y-2 pb-4">
@@ -143,28 +114,6 @@ export default function Navbar() {
             >
               About
             </Link>
-            <div>
-              <button
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="w-full text-left text-gray-700 hover:text-[#e31b25] px-3 py-2 text-base font-medium hover:bg-yellow-50 rounded-lg flex items-center justify-between"
-              >
-                Services
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              {isServicesOpen && (
-                <div className="mt-1 ml-4 space-y-1">
-                  {serviceLinks.map((service) => (
-                    <Link
-                      key={service.href}
-                      href={service.href}
-                      className="block px-3 py-2 text-sm text-gray-700 hover:bg-yellow-50 rounded-lg"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
             <Link
               href="/products"
               className="block text-gray-700 hover:text-[#e31b25] px-3 py-2 text-base font-medium hover:bg-yellow-50 rounded-lg"

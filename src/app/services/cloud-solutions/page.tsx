@@ -72,6 +72,13 @@ const features = [
   },
 ];
 
+const d = `
+Embrace the power of the cloud combined with modern DevOps practices to accelerate your business transformation. Our Cloud and DevOps Solutions help you migrate, build, and manage scalable, secure cloud infrastructure while streamlining development through automation and continuous integration. Whether you’re moving legacy systems to the cloud or deploying new applications, we ensure reliability and performance.
+  
+We specialize in implementing DevOps methodologies that automate your software delivery lifecycle, enabling faster releases, improved quality, and reduced downtime. From infrastructure as code and container orchestration to monitoring and incident management, our team builds a seamless pipeline that supports your business agility and innovation goals.
+
+By integrating cloud platforms like Microsoft Azure, AWS, or Google Cloud with DevOps best practices, we help you reduce operational costs, enhance collaboration between development and operations teams, and maintain robust security and compliance. Partner with us to future-proof your IT environment and accelerate growth with confidence.`;
+
 export default function CloudSolutionsPage() {
   return (
     <main className="min-h-screen bg-gray-50">
@@ -84,7 +91,7 @@ export default function CloudSolutionsPage() {
 
           {/* Interactive description (client) */}
           <div className="mb-6 max-w-2xl">
-            <DescriptionToggle />
+            <DescriptionToggle description={d} />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">

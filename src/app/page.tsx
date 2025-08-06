@@ -10,6 +10,9 @@ export default function HomePage() {
     <div className="min-h-screen overflow-x-hidden">
       <Hero />
       <About />
+      <div>
+        hello
+      </div>
       <Services />
       <Newsletter />
       <FAQ />
