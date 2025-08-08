@@ -242,7 +242,7 @@ function HireExperts({ mobile = false }: HireExpertsProps): JSX.Element {
   return (
     <Link
       href="/contact-us?p=hire"
-      className={`inline-flex items-center font-semibold text-sm whitespace-nowrap px-3 py-2 
+      className={`inline-flex items-center font-semibold text-sm whitespace-nowrap px-10 py-3 
          border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-lg
         ${mobile ? "w-full justify-center" : ""} transition-all duration-200`}
       role="button"
