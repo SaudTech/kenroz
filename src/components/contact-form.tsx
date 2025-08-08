@@ -1,8 +1,8 @@
 "use client";
 
 import type React from "react";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -35,6 +35,20 @@ export default function ContactForm({
     message: "",
   });
 
+  const searchParams = useSearchParams();
+  const [displayTitle, setDisplayTitle] = useState(title);
+  const [displayDescription, setDisplayDescription] = useState(description);
+
+  useEffect(() => {
+    if (searchParams.get("p")?.toLowerCase() === "hire") {
+      setDisplayTitle("Hire Us for Your Project");
+      console.log("Is hire")
+      setDisplayDescription(
+        "Looking to bring us on board? Tell us about your project and let's start building something amazing together."
+      );
+    }
+  }, [searchParams]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -42,11 +56,9 @@ export default function ContactForm({
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // Reset form
     setFormData({ name: "", email: "", phone: "", message: "" });
     setIsSubmitting(false);
 
-    // You would typically send the data to your backend here
     console.log("Form submitted:", formData);
   };
 
@@ -67,23 +79,20 @@ export default function ContactForm({
             <MessageSquare className="w-8 h-8 text-[#7e141c]" />
           </div>
           <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">
-            {title}
+            {displayTitle}
           </CardTitle>
-          {description != "" && (
+          {displayDescription && (
             <CardDescription className="text-lg text-gray-600 max-w-md mx-auto">
-              {description}
+              {displayDescription}
             </CardDescription>
           )}
         </CardHeader>
 
         <CardContent className="space-y-6">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name Field */}
+            {/* Name */}
             <div className="space-y-2">
-              <Label
-                htmlFor="name"
-                className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-              >
+              <Label htmlFor="name" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                 <User className="w-4 h-4 text-[#7e141c]" />
                 Full Name *
               </Label>
@@ -99,12 +108,9 @@ export default function ContactForm({
               />
             </div>
 
-            {/* Email Field */}
+            {/* Email */}
             <div className="space-y-2">
-              <Label
-                htmlFor="email"
-                className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-              >
+              <Label htmlFor="email" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#7e141c]" />
                 Email Address *
               </Label>
@@ -120,12 +126,9 @@ export default function ContactForm({
               />
             </div>
 
-            {/* Phone Field */}
+            {/* Phone */}
             <div className="space-y-2">
-              <Label
-                htmlFor="phone"
-                className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-              >
+              <Label htmlFor="phone" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#7e141c]" />
                 Phone Number *
               </Label>
@@ -141,12 +144,9 @@ export default function ContactForm({
               />
             </div>
 
-            {/* Message Field */}
+            {/* Message */}
             <div className="space-y-2">
-              <Label
-                htmlFor="message"
-                className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-              >
+              <Label htmlFor="message" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
                 <MessageSquare className="w-4 h-4 text-[#7e141c]" />
                 Message (Optional)
               </Label>
@@ -160,7 +160,7 @@ export default function ContactForm({
               />
             </div>
 
-            {/* Submit Button */}
+            {/* Submit */}
             <Button
               type="submit"
               disabled={isSubmitting}

@@ -57,7 +57,7 @@ export default function DescriptionToggle({ description }: { description: string
           aria-expanded={expanded}
           type="button"
         >
-          {expanded ? "Hide more" : "Read more"}
+          {expanded ? "Hide" : "Read more"}
         </button>
       </div>
     </div>

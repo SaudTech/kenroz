@@ -2,35 +2,23 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Phone, 
-  Mail, 
-  User, 
-  MessageSquare, 
-  Send, 
-  CheckCircle, 
+import {
+  Phone,
+  Mail,
+  Send,
+  CheckCircle,
   AlertCircle,
   MapPin,
-  Clock,
-  Building
 } from "lucide-react";
 
 interface FormData {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone: string;
   company: string;
-  subject: string;
   message: string;
 }
 
@@ -47,30 +35,43 @@ interface EnhancedContactFormProps {
 
 export default function EnhancedContactForm({
   title = "Get in Touch",
-  description = "Fill out the form below and we'll get back to you as soon as possible.",
+  description = "Have questions? We'd love to hear from you. Send us a message and we'll response as soon as possible.",
   className = "",
-  showContactInfo = true
+  showContactInfo = true,
 }: EnhancedContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [formData, setFormData] = useState<FormData>({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    phone: "",
     company: "",
-    subject: "",
     message: "",
   });
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Name validation
-    if (!formData.name.trim()) {
-      newErrors.name = "Full name is required";
-    } else if (formData.name.trim().length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
+    // First name validation
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required";
+    } else if (formData.firstName.trim().length < 2) {
+      newErrors.firstName = "Name must be at least 2 characters";
+    }
+
+    // Last name validation
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required";
+    } else if (formData.lastName.trim().length < 2) {
+      newErrors.lastName = "Name must be at least 2 characters";
+    }
+
+    // Company validation
+    if (!formData.company.trim()) {
+      newErrors.company = "Company name is required";
+    } else if (formData.company.trim().length < 2) {
+      newErrors.company = "Company name must be at least 2 characters";
     }
 
     // Email validation
@@ -79,19 +80,6 @@ export default function EnhancedContactForm({
       newErrors.email = "Email address is required";
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
-    }
-
-    // Phone validation
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    } else if (!phoneRegex.test(formData.phone.replace(/[\s\-\(\)]/g, ''))) {
-      newErrors.phone = "Please enter a valid phone number";
-    }
-
-    // Subject validation
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required";
     }
 
     // Message validation
@@ -107,7 +95,7 @@ export default function EnhancedContactForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -117,17 +105,16 @@ export default function EnhancedContactForm({
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      
+
       // Here you would typically send the data to your backend
       console.log("Form submitted:", formData);
-      
+
       setIsSubmitted(true);
       setFormData({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
-        phone: "",
         company: "",
-        subject: "",
         message: "",
       });
       setErrors({});
@@ -161,27 +148,21 @@ export default function EnhancedContactForm({
     {
       icon: Mail,
       label: "Email",
-      value: "info@kenroz.com",
-      href: "mailto:info@kenroz.com"
+      value: "inquiry@kenroz.com",
+      href: "mailto:inquiry@kenroz.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+966 12 345 6789",
-      href: "tel:+966123456789"
+      value: "+971 12 345 6789",
+      href: "tel:+971123456789",
     },
     {
       icon: MapPin,
-      label: "Address",
-      value: "Dammam, Saudi Arabia",
-      href: "#"
+      label: "Location",
+      value: "Dubai, United Arab Emirates",
+      href: "#",
     },
-    {
-      icon: Clock,
-      label: "Business Hours",
-      value: "Sun-Thu: 9AM-6PM",
-      href: "#"
-    }
   ];
 
   if (isSubmitted) {
@@ -190,9 +171,12 @@ export default function EnhancedContactForm({
         <Card className="border-0 shadow-2xl bg-gradient-to-br from-green-50 to-white">
           <CardContent className="text-center py-12">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              Message Sent Successfully!
+            </h3>
             <p className="text-gray-600 mb-6">
-              Thank you for contacting us. We&apos;ll get back to you within 24 hours.
+              Thank you for contacting us. We&apos;ll get back to you within 24
+              hours.
             </p>
             <Button
               onClick={() => setIsSubmitted(false)}
@@ -209,22 +193,14 @@ export default function EnhancedContactForm({
 
   return (
     <div className={`w-full mx-auto ${className}`}>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
         {/* Contact Form */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-3">
           <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50">
-            <CardHeader className="text-center space-y-4 pb-8">
-              <div className="mx-auto w-16 h-16 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center">
-                <MessageSquare className="w-8 h-8 text-[#7e141c]" />
-              </div>
+            <CardHeader className="space-y-4">
               <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">
-                {title}
+                Send us a message
               </CardTitle>
-              {description && (
-                <CardDescription className="text-lg text-gray-600 max-w-md mx-auto">
-                  {description}
-                </CardDescription>
-              )}
             </CardHeader>
 
             <CardContent className="space-y-6">
@@ -232,64 +208,49 @@ export default function EnhancedContactForm({
                 {/* Name and Company Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="name"
-                      className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-                    >
-                      <User className="w-4 h-4 text-[#7e141c]" />
-                      Full Name *
-                    </Label>
                     <Input
-                      id="name"
-                      name="name"
+                      id="firstName"
+                      name="firstName"
                       type="text"
-                      value={formData.name}
+                      value={formData.firstName}
                       onChange={handleChange}
-                      placeholder="Enter your full name"
+                      placeholder="Enter your first name"
                       className={`h-12 border-2 transition-all duration-200 ${
-                        errors.name 
-                          ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                          : 'border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20'
+                        errors.firstName
+                          ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                          : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
                       }`}
                     />
-                    {errors.name && (
+                    {errors.firstName && (
                       <p className="text-sm text-red-600 flex items-center gap-1">
                         <AlertCircle className="w-4 h-4" />
-                        {errors.name}
+                        {errors.firstName}
                       </p>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="company"
-                      className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-                    >
-                      <Building className="w-4 h-4 text-[#7e141c]" />
-                      Company
-                    </Label>
                     <Input
-                      id="company"
-                      name="company"
+                      id="lastName"
+                      name="lastName"
                       type="text"
-                      value={formData.company}
+                      value={formData.lastName}
                       onChange={handleChange}
-                      placeholder="Your company name"
+                      placeholder="Your last name"
                       className="h-12 border-2 border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20 transition-all duration-200"
                     />
+                    {errors.lastName && (
+                      <p className="text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.lastName}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 {/* Email and Phone Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="email"
-                      className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-                    >
-                      <Mail className="w-4 h-4 text-[#7e141c]" />
-                      Email Address *
-                    </Label>
                     <Input
                       id="email"
                       name="email"
@@ -298,9 +259,9 @@ export default function EnhancedContactForm({
                       onChange={handleChange}
                       placeholder="Enter your email address"
                       className={`h-12 border-2 transition-all duration-200 ${
-                        errors.email 
-                          ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                          : 'border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20'
+                        errors.email
+                          ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                          : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
                       }`}
                     />
                     {errors.email && (
@@ -312,74 +273,29 @@ export default function EnhancedContactForm({
                   </div>
 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="phone"
-                      className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-                    >
-                      <Phone className="w-4 h-4 text-[#7e141c]" />
-                      Phone Number *
-                    </Label>
                     <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
+                      id="company"
+                      name="company"
+                      value={formData.company}
                       onChange={handleChange}
-                      placeholder="Enter your phone number"
+                      placeholder="Tell us your company name"
                       className={`h-12 border-2 transition-all duration-200 ${
-                        errors.phone 
-                          ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                          : 'border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20'
+                        errors.company
+                          ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                          : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
                       }`}
                     />
-                    {errors.phone && (
+                    {errors.company && (
                       <p className="text-sm text-red-600 flex items-center gap-1">
                         <AlertCircle className="w-4 h-4" />
-                        {errors.phone}
+                        {errors.company}
                       </p>
                     )}
                   </div>
                 </div>
 
-                {/* Subject Field */}
-                <div className="space-y-2">
-                  <Label
-                    htmlFor="subject"
-                    className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-                  >
-                    <MessageSquare className="w-4 h-4 text-[#7e141c]" />
-                    Subject *
-                  </Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="What can we help you with?"
-                    className={`h-12 border-2 transition-all duration-200 ${
-                      errors.subject 
-                        ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                        : 'border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20'
-                    }`}
-                  />
-                  {errors.subject && (
-                    <p className="text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.subject}
-                    </p>
-                  )}
-                </div>
-
                 {/* Message Field */}
                 <div className="space-y-2">
-                  <Label
-                    htmlFor="message"
-                    className="text-sm font-semibold text-gray-700 flex items-center gap-2"
-                  >
-                    <MessageSquare className="w-4 h-4 text-[#7e141c]" />
-                    Message *
-                  </Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -387,10 +303,10 @@ export default function EnhancedContactForm({
                     onChange={handleChange}
                     placeholder="Tell us more about your project or requirements..."
                     rows={5}
-                    className={`border-2 transition-all duration-200 ${
-                      errors.message 
-                        ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' 
-                        : 'border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20'
+                    className={`border-2 transition-all h-[123px] duration-200 ${
+                      errors.message
+                        ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                        : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
                     }`}
                   />
                   {errors.message && (
@@ -415,7 +331,7 @@ export default function EnhancedContactForm({
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full h-14 rounded-full text-lg font-semibold bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center gap-2">
@@ -424,8 +340,8 @@ export default function EnhancedContactForm({
                     </div>
                   ) : (
                     <div className="flex items-center gap-2">
-                      <Send className="w-5 h-5" />
                       Send Message
+                      <Send className="w-5 h-5" />
                     </div>
                   )}
                 </Button>
@@ -436,52 +352,38 @@ export default function EnhancedContactForm({
 
         {/* Contact Information */}
         {showContactInfo && (
-          <div className="space-y-6">
-            <Card className="border-0 shadow-lg bg-white">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-gray-">
-                  Contact Information
-                </CardTitle>
-                <CardDescription>
-                  Get in touch with us through any of these channels
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors">
+          <div className="space-y-6 lg:col-span-2">
+            <h1 className="text-2xl mb-0 pb-0 font-bold text-white">{title}</h1>
+            <p className="text-white text-sm">{description}</p>
+            {contactInfo.map((info, index) => (
+              <Card
+                key={index}
+                className="border shadow-lg bg-white group hover:bg-gradient-to-r hover:from-[#7e141c] hover:to-[#e31b25] hover:text-white transition-colors duration-200  hover:border-white"
+              >
+                <CardContent className="space-y-4">
+                  <div className="flex items-start gap-3 rounded-lg">
                     <div className="w-10 h-10 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-5 h-5 text-[#7e141c]" />
+                      <info.icon className="w-5 h-5 text-[#7e141c] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 text-sm">{info.label}</p>
+                      <p className="font-semibold text-gray-900 group-hover:text-white text-sm">
+                        {info.label}
+                      </p>
                       {info.href !== "#" ? (
-                        <a 
-                          href={info.href} 
-                          className="text-gray-600 hover:text-[#e31b25] transition-colors text-sm"
+                        <a
+                          href={info.href}
+                          className="text-gray-600 group-hover:text-white  transition-colors text-sm"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-gray-600 text-sm">{info.value}</p>
+                        <p className="text-gray-600 group-hover:text-white text-sm">{info.value}</p>
                       )}
                     </div>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-white">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-gray-900 mb-2">Quick Response</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  We typically respond to all inquiries within 24 hours during business days.
-                </p>
-                <div className="flex items-center gap-2 text-sm text-green-600">
-                  <CheckCircle className="w-4 h-4" />
-                  <span>Free consultation available</span>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         )}
       </div>

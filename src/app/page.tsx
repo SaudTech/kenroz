@@ -4,6 +4,7 @@ import Services from "@/components/sections/Services";
 import FAQ from "@/components/sections/FAQ";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
+import WhatWeDo from "@/components/sections/WhatWeDo";
 
 export default function HomePage() {
   return (
@@ -26,6 +27,7 @@ export default function HomePage() {
       <div className="min-h-screen overflow-x-hidden">
         <Hero />
         <About />
+        <WhatWeDo />
         <Services />
         <FAQ />
         <section
@@ -34,8 +36,6 @@ export default function HomePage() {
           aria-label="Contact Us"
         >
           <EnhancedContactForm
-            title="Get in touch with our experts"
-            description="Our experts are here to help you with your IT solutions and software development needs. Fill out the form below to start a conversation."
             showContactInfo={true}
           />
         </section>

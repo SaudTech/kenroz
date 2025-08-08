@@ -159,35 +159,6 @@ export default function Services() {
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Call to Action */}
-          {/* <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="bg-gradient-to-r from-[#e31b25] to-[#7e141c] rounded-3xl p-12 text-white shadow-2xl border border-[#7e141c]/20 max-w-4xl mx-auto">
-              <h3 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h3>
-              <p className="text-lg text-[#fffde7] mb-8 max-w-2xl mx-auto leading-relaxed">
-                Let's discuss how our expert team can help you leverage technology to achieve your business goals and stay ahead of the competition.
-              </p>
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center gap-3 bg-[#fffde7] text-[#e31b25] hover:bg-white px-10 py-4 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                }}
-              >
-                Start Your Project
-                <ArrowRight className="w-6 h-6" />
-              </motion.a>
-            </div>
-          </motion.div> */}
         </div>
       </div>
     </section>
