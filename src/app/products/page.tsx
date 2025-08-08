@@ -104,9 +104,9 @@ export default function ProductsPage() {
       <HeroBackground />
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
-        <section className="relative mb-24 rounded-3xl overflow-hidden">
+        <section className="relative mb-40 rounded-3xl overflow-hidden">
           <motion.header
-            className="relative z-10 text-center max-w-5xl mx-auto py-24"
+            className="relative z-10 text-center max-w-5xl mx-auto py-12"
             initial="hidden"
             animate="visible"
           >

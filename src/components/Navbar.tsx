@@ -1,21 +1,22 @@
 "use client";
 
-import { JSX, useCallback, useState, type ReactNode } from "react";
+import React, { JSX, useCallback, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import logo from "@/../public/logo.png";
+import { cn } from "@/lib/utils";
 
 type ServiceLink = { name: string; href: string };
 
 const serviceLinks: ServiceLink[] = [
-  { name: "Microsoft Dynamic 365", href: "#services" },
-  { name: "Cloud Solutions", href: "#services" },
-  { name: "Web Application Development", href: "#services" },
-  { name: "Mobile Application Development", href: "#services" },
-  { name: "Digital Marketing", href: "#services" },
-  { name: "Outsourcing", href: "#services" },
+  { name: "Microsoft Dynamic 365", href: "microsoft-dynamic-365" },
+  { name: "Cloud Solutions", href: "cloud-solutions" },
+  { name: "Web Application Development", href: "web-application-management" },
+  { name: "Mobile Application Development", href: "mobile-application-management" },
+  { name: "Digital Marketing", href: "digital-marketing" },
+  { name: "Outsourcing", href: "outsourcing" },
 ];
 
 export default function Navbar(): JSX.Element {
@@ -35,7 +36,7 @@ export default function Navbar(): JSX.Element {
           {/* Logo on the left */}
           <Link
             href="/"
-            className="flex items-center"
+            className="flex items-center "
             aria-label="Kenroz - Home"
           >
             <Image
@@ -49,20 +50,17 @@ export default function Navbar(): JSX.Element {
           </Link>
 
           {/* Right-aligned links */}
-          <div className="hidden lg:flex items-center space-x-0 ml-auto">
+          <div className="hidden lg:flex items-center space-x-0 ">
             <NavItem href="/#about" text="WHO WE ARE" />
             <Separator />
-            <NavItem
-              href="/#about"
-              text="WHAT WE DO"
-            />
+            <NavItem href="/#about" text="WHAT WE DO" />
             <Separator />
             <DropdownMenu label="WHAT WE SERVE">
               {serviceLinks.map((service) => (
                 <DropdownItem
                   key={service.name}
                   label={service.name}
-                  onClick={() => scrollToSection("services")}
+                  href={"/services/" + service.href}
                 />
               ))}
             </DropdownMenu>
@@ -74,7 +72,22 @@ export default function Navbar(): JSX.Element {
               onClick={() => scrollToSection("contact")}
             />
             <Separator />
-            <HireExperts />
+          </div>
+
+          <div className="flex gap-5 items-center">
+            <ButtonLink
+              href="/contact-us?p=hire"
+              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border border-solid text-[#e31b25] transition-colors hover:bg-gradient-to-r hover:from-[#e31b25] hover:to-[#7e141c]  border-[#e31b25] bg-transparent  hover:text-white rounded-full"
+            >
+              Careers
+            </ButtonLink>
+            <ButtonLink
+              href="/contact-us?p=hire"
+              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-full"
+            >
+              <Phone className="me-2 h-5 w-5" />
+              Contact Our Experts
+            </ButtonLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -157,13 +170,22 @@ interface NavItemProps {
   href?: string;
   text: string;
   onClick?: () => void;
+  className?: React.HTMLAttributes<HTMLAnchorElement>["className"];
 }
 
-function NavItem({ href, text, onClick }: NavItemProps): JSX.Element {
+function NavItem({
+  href,
+  text,
+  onClick,
+  className,
+}: NavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
-      className="px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#e31b25] transition-colors duration-200"
+      className={cn(
+        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#e31b25] transition-colors duration-200",
+        className
+      )}
       onClick={onClick}
     >
       {text}
@@ -172,7 +194,10 @@ function NavItem({ href, text, onClick }: NavItemProps): JSX.Element {
     <button
       type="button"
       onClick={onClick}
-      className="px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#e31b25] transition-colors duration-200"
+      className={cn(
+        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#e31b25] transition-colors duration-200",
+        className
+      )}
     >
       {text}
     </button>
@@ -186,6 +211,7 @@ interface DropdownMenuProps {
 
 function DropdownMenu({ label, children }: DropdownMenuProps): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
+
   return (
     <div
       className="relative px-1"
@@ -200,6 +226,7 @@ function DropdownMenu({ label, children }: DropdownMenuProps): JSX.Element {
       >
         {label} <ChevronDown className="w-4 h-4" />
       </button>
+
       {open && (
         <div
           role="menu"
@@ -214,20 +241,20 @@ function DropdownMenu({ label, children }: DropdownMenuProps): JSX.Element {
 
 interface DropdownItemProps {
   label: string;
+  href: string;
   onClick?: () => void;
 }
 
-function DropdownItem({ label, onClick }: DropdownItemProps): JSX.Element {
+function DropdownItem({ label, href, onClick }: DropdownItemProps): JSX.Element {
   return (
     <div role="none">
-      <button
-        type="button"
+      <Link href={href}
         role="menuitem"
         className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#fffde7] hover:text-[#e31b25] cursor-pointer transition-colors duration-200"
         onClick={onClick}
       >
         {label}
-      </button>
+      </Link>
       <div className="border-t border-gray-100" />
     </div>
   );
@@ -238,17 +265,48 @@ interface HireExpertsProps {
 }
 
 function HireExperts({ mobile = false }: HireExpertsProps): JSX.Element {
-  // Use Link directly instead of nesting a button with legacyBehavior
   return (
     <Link
       href="/contact-us?p=hire"
-      className={`inline-flex items-center font-semibold text-sm whitespace-nowrap px-10 py-3 
-         border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-lg
+      className={`inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 
+         border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-full
         ${mobile ? "w-full justify-center" : ""} transition-all duration-200`}
       role="button"
-      aria-label="Hire our experts"
+      aria-label="Contact Our Experts"
     >
-        Hire our experts
+      <Phone className="me-2 h-5 w-5" />
+      Contact Our Experts
+    </Link>
+  );
+}
+
+interface ButtonLinkProps {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+  mobile?: boolean;
+}
+
+export function ButtonLink({
+  href,
+  children,
+  className,
+  mobile = false,
+}: ButtonLinkProps): JSX.Element {
+  return (
+    <Link
+      href={href}
+      role="button"
+      className={cn(
+        `inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3
+        border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] 
+        hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-full
+        transition-all duration-200`,
+        mobile && "w-full justify-center",
+        className
+      )}
+    >
+      {children}
     </Link>
   );
 }

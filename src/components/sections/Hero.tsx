@@ -123,7 +123,7 @@ export default function Hero() {
               "Web Development",
               "Mobile Development",
               "Digital Marketing",
-              "Custom Software",
+              "Outsourcing",
             ]}
             className="text-white font-bold"
           />
@@ -275,28 +275,33 @@ export default function Hero() {
 
       {/* Floating particles animation */}
       <div className="absolute inset-0 z-0">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={`particle-${i}`}
-            className="absolute w-1 h-1 bg-red-400 rounded-full opacity-40"
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${20 + i * 8}%`,
-            }}
-            animate={{
-              y: [-10, 10, -10],
-              x: [-5, 5, -5],
-              opacity: [0.4, 0.8, 0.4],
-            }}
-            transition={{
-              duration: 3 + i * 0.5,
-              repeat: Infinity,
-              ease: easeInOut,
-              delay: i * 0.2,
-            }}
-          />
-        ))}
-      </div>
+  {[...Array(50)].map((_, i) => {
+    const left = Math.random() * 100; // random between 0–100%
+    const top = Math.random() * 100;  // random between 0–100%
+    return (
+      <motion.div
+        key={`particle-${i}`}
+        className="absolute w-1 h-1 bg-red-400 rounded-full opacity-40"
+        style={{
+          left: `${left}%`,
+          top: `${top}%`,
+        }}
+        animate={{
+          y: [-10, 10, -10],
+          x: [-5, 5, -5],
+          opacity: [0.4, 0.8, 0.4],
+        }}
+        transition={{
+          duration: 3 + Math.random() * 2, // random duration
+          repeat: Infinity,
+          ease: easeInOut,
+          delay: Math.random() * 2, // random delay
+        }}
+      />
+    );
+  })}
+</div>
+
     </section>
   );
 }
