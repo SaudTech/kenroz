@@ -53,8 +53,6 @@ export default function Navbar(): JSX.Element {
           <div className="hidden lg:flex items-center space-x-0 ">
             <NavItem href="/#about" text="WHO WE ARE" />
             <Separator />
-            <NavItem href="/#about" text="WHAT WE DO" />
-            <Separator />
             <DropdownMenu label="WHAT WE SERVE">
               {serviceLinks.map((service) => (
                 <DropdownItem
@@ -77,13 +75,13 @@ export default function Navbar(): JSX.Element {
           <div className="flex gap-5 items-center">
             <ButtonLink
               href="/contact-us?p=hire"
-              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border border-solid text-[#e31b25] transition-colors hover:bg-gradient-to-r hover:from-[#e31b25] hover:to-[#7e141c]  border-[#e31b25] bg-transparent  hover:text-white rounded-full"
+              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border border-solid text-[#df2a33] transition-colors hover:bg-gradient-to-r hover:from-[#df2a33] hover:to-[#9B2730]  border-[#df2a33] bg-transparent  hover:text-white rounded-full"
             >
               Careers
             </ButtonLink>
             <ButtonLink
               href="/contact-us?p=hire"
-              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-full"
+              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-[#df2a33] transition-colors bg-gradient-to-r from-[#df2a33] to-[#9B2730] hover:from-[#9B2730] hover:to-[#df2a33] text-white rounded-full"
             >
               <Phone className="me-2 h-5 w-5" />
               Contact Our Experts
@@ -183,7 +181,7 @@ function NavItem({
     <Link
       href={href}
       className={cn(
-        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#e31b25] transition-colors duration-200",
+        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#df2a33] transition-colors duration-200",
         className
       )}
       onClick={onClick}
@@ -195,7 +193,7 @@ function NavItem({
       type="button"
       onClick={onClick}
       className={cn(
-        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#e31b25] transition-colors duration-200",
+        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#df2a33] transition-colors duration-200",
         className
       )}
     >
@@ -220,7 +218,7 @@ function DropdownMenu({ label, children }: DropdownMenuProps): JSX.Element {
     >
       <button
         type="button"
-        className="text-sm font-semibold text-gray-700 hover:text-[#e31b25] transition-colors duration-200 flex items-center gap-1"
+        className="text-sm font-semibold text-gray-700 hover:text-[#df2a33] transition-colors duration-200 flex items-center gap-1"
         aria-haspopup="menu"
         aria-expanded={open}
       >
@@ -250,33 +248,13 @@ function DropdownItem({ label, href, onClick }: DropdownItemProps): JSX.Element 
     <div role="none">
       <Link href={href}
         role="menuitem"
-        className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#fffde7] hover:text-[#e31b25] cursor-pointer transition-colors duration-200"
+        className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#fffde7] hover:text-[#df2a33] cursor-pointer transition-colors duration-200"
         onClick={onClick}
       >
         {label}
       </Link>
       <div className="border-t border-gray-100" />
     </div>
-  );
-}
-
-interface HireExpertsProps {
-  mobile?: boolean;
-}
-
-function HireExperts({ mobile = false }: HireExpertsProps): JSX.Element {
-  return (
-    <Link
-      href="/contact-us?p=hire"
-      className={`inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 
-         border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-full
-        ${mobile ? "w-full justify-center" : ""} transition-all duration-200`}
-      role="button"
-      aria-label="Contact Our Experts"
-    >
-      <Phone className="me-2 h-5 w-5" />
-      Contact Our Experts
-    </Link>
   );
 }
 
@@ -299,8 +277,8 @@ export function ButtonLink({
       role="button"
       className={cn(
         `inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3
-        border-[#e31b25] transition-colors bg-gradient-to-r from-[#e31b25] to-[#7e141c] 
-        hover:from-[#7e141c] hover:to-[#e31b25] text-white rounded-full
+        border-[#df2a33] transition-colors bg-gradient-to-r from-[#df2a33] to-[#9B2730] 
+        hover:from-[#9B2730] hover:to-[#df2a33] text-white rounded-full
         transition-all duration-200`,
         mobile && "w-full justify-center",
         className
@@ -325,7 +303,7 @@ function MobileNavItem({
   return href ? (
     <Link
       href={href}
-      className="block text-gray-700 hover:text-[#e31b25] hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="block text-gray-700 hover:text-[#df2a33] hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
       onClick={onClick}
     >
       {text}
@@ -334,7 +312,7 @@ function MobileNavItem({
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left text-gray-700 hover:text-[#e31b25] hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="w-full text-left text-gray-700 hover:text-[#df2a33] hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
     >
       {text}
     </button>

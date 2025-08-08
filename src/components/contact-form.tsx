@@ -75,10 +75,10 @@ export default function ContactForm({
     <div className={`w-full max-w-2xl mx-auto ${className}`}>
       <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50">
         <CardHeader className="text-center space-y-4 pb-8">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center">
-            <MessageSquare className="w-8 h-8 text-[#7e141c]" />
+          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center">
+            <MessageSquare className="w-8 h-8 text-[#9B2730]" />
           </div>
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">
+          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#9B2730] to-[#df2a33] bg-clip-text text-transparent">
             {displayTitle}
           </CardTitle>
           {displayDescription && (
@@ -93,7 +93,7 @@ export default function ContactForm({
             {/* Name */}
             <div className="space-y-2">
               <Label htmlFor="name" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                <User className="w-4 h-4 text-[#7e141c]" />
+                <User className="w-4 h-4 text-[#9B2730]" />
                 Full Name *
               </Label>
               <Input
@@ -104,14 +104,14 @@ export default function ContactForm({
                 onChange={handleChange}
                 placeholder="Enter your full name"
                 required
-                className="h-12 border-2 border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20 transition-all duration-200"
+                className="h-12 border-2 border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20 transition-all duration-200"
               />
             </div>
 
             {/* Email */}
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#7e141c]" />
+                <Mail className="w-4 h-4 text-[#9B2730]" />
                 Email Address *
               </Label>
               <Input
@@ -122,14 +122,14 @@ export default function ContactForm({
                 onChange={handleChange}
                 placeholder="Enter your email address"
                 required
-                className="h-12 border-2 border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20 transition-all duration-200"
+                className="h-12 border-2 border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20 transition-all duration-200"
               />
             </div>
 
             {/* Phone */}
             <div className="space-y-2">
               <Label htmlFor="phone" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#7e141c]" />
+                <Phone className="w-4 h-4 text-[#9B2730]" />
                 Phone Number *
               </Label>
               <Input
@@ -140,14 +140,14 @@ export default function ContactForm({
                 onChange={handleChange}
                 placeholder="Enter your phone number"
                 required
-                className="h-12 border-2 border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20 transition-all duration-200"
+                className="h-12 border-2 border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20 transition-all duration-200"
               />
             </div>
 
             {/* Message */}
             <div className="space-y-2">
               <Label htmlFor="message" className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-[#7e141c]" />
+                <MessageSquare className="w-4 h-4 text-[#9B2730]" />
                 Message (Optional)
               </Label>
               <Textarea
@@ -156,7 +156,7 @@ export default function ContactForm({
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Tell us more about how we can help you..."
-                className="border-2 border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20 transition-all"
+                className="border-2 border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20 transition-all"
               />
             </div>
 
@@ -164,7 +164,7 @@ export default function ContactForm({
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-[#df2a33] to-[#9B2730] hover:from-[#9B2730] hover:to-[#df2a33] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {isSubmitting ? (
                 <div className="flex items-center gap-2">

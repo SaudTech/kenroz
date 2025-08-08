@@ -53,11 +53,11 @@ export default function ContactPage() {
         }}
       />
       
-      <div className="bg-gradient-to-br from-[#e31b25]/10 via-white to-[#7e141c]/10 min-h-screen py-16 px-4">
+      <div className="bg-gradient-to-br from-[#df2a33]/10 via-white to-[#9B2730]/10 min-h-screen py-16 px-4">
         <div className="container mx-auto max-w-7xl">
           {/* Page Header */}
           <header className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#7e141c] via-[#e31b25] to-black bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#9B2730] via-[#df2a33] to-black bg-clip-text text-transparent">
               Contact Us
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -81,7 +81,7 @@ export default function ContactPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="p-6 bg-white rounded-xl shadow-lg">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">⚡</span>
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Quick Response</h3>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 </p>
               </div>
               <div className="p-6 bg-white rounded-xl shadow-lg">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">🎯</span>
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Expert Consultation</h3>
@@ -99,7 +99,7 @@ export default function ContactPage() {
                 </p>
               </div>
               <div className="p-6 bg-white rounded-xl shadow-lg">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">🤝</span>
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Trusted Partner</h3>

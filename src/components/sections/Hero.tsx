@@ -75,7 +75,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="flex flex-col lg:flex-row items-center bg-gradient-to-br from-[#e31b25] via-[#7e141c] to-black text-center lg:text-left relative overflow-hidden py-12 px-4 w-full min-h-[700px] lg:h-[850px] md:px-8">
+    <section className="flex flex-col lg:flex-row items-center bg-gradient-to-br from-[#df2a33] via-[#9B2730] to-black text-center lg:text-left relative overflow-hidden py-12 px-4 w-full min-h-[700px] lg:h-[850px] md:px-8">
       <HeroBackground />
 
       {/* Left Side - Content */}
@@ -159,7 +159,7 @@ export default function Hero() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="#services"
-              className="inline-flex items-center gap-2 bg-[#fffde7] text-[#e31b25] hover:bg-white px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-[#fffde7] text-[#df2a33] hover:bg-white px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300"
             >
               Explore Our Services
               <ArrowRight className="w-5 h-5" />

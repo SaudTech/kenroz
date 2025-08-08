@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Kenroz website enhancement will transform the existing Next.js application into a professional, SEO-optimized, and mobile-responsive corporate website. The design leverages the existing tech stack (Next.js 15, React 19, Tailwind CSS 4, Framer Motion) while implementing a cohesive brand identity using the company's color scheme of reddish (#e31b25), white, black, and light yellow (#fffde7).
+The Kenroz website enhancement will transform the existing Next.js application into a professional, SEO-optimized, and mobile-responsive corporate website. The design leverages the existing tech stack (Next.js 15, React 19, Tailwind CSS 4, Framer Motion) while implementing a cohesive brand identity using the company's color scheme of reddish (#df2a33), white, black, and light yellow (#fffde7).
 
 The design focuses on creating a trustworthy, modern web presence that effectively communicates Kenroz's expertise in IT solutions while providing an optimal user experience across all devices.
 
@@ -281,8 +281,8 @@ enum ProductCategory {
 ### Color Palette
 ```css
 :root {
-  --primary-red: #e31b25;
-  --secondary-red: #7e141c;
+  --primary-red: #df2a33;
+  --secondary-red: #9B2730;
   --light-yellow: #fffde7;
   --pure-white: #ffffff;
   --pure-black: #000000;

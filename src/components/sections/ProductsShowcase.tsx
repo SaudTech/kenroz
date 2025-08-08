@@ -153,7 +153,7 @@ export default function ProductsShowcase() {
   }
 
   return (
-    <section id="products" className="relative py-20 bg-gradient-to-br from-black via-[#7e141c] to-black overflow-hidden">
+    <section id="products" className="relative py-20 bg-gradient-to-br from-black via-[#9B2730] to-black overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[url('/placeholder.svg?height=100&width=100')] opacity-5"></div>
       
@@ -167,12 +167,12 @@ export default function ProductsShowcase() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Badge className="mb-6 bg-[#e31b25] text-white px-4 py-2 text-sm font-semibold">
+            <Badge className="mb-6 bg-[#df2a33] text-white px-4 py-2 text-sm font-semibold">
               Our Products
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Powerful Software{' '}
-              <span className="bg-gradient-to-r from-[#fffde7] to-[#e31b25] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#fffde7] to-[#df2a33] bg-clip-text text-transparent">
                 Solutions
               </span>
             </h2>
@@ -208,7 +208,7 @@ export default function ProductsShowcase() {
                   }}
                 >
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#e31b25] to-[#fffde7] rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#df2a33] to-[#fffde7] rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                     <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-200/10">
                       <Image
                         src={product.image}
@@ -231,12 +231,12 @@ export default function ProductsShowcase() {
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
                   <div>
-                    <Badge className="mb-4 bg-[#fffde7] text-[#7e141c] px-3 py-1 text-xs font-medium">
+                    <Badge className="mb-4 bg-[#fffde7] text-[#9B2730] px-3 py-1 text-xs font-medium">
                       {product.category}
                     </Badge>
                     
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#e31b25] to-[#7e141c] rounded-xl flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-xl flex items-center justify-center">
                         <product.icon className="w-6 h-6 text-white" />
                       </div>
                       <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight">
@@ -279,7 +279,7 @@ export default function ProductsShowcase() {
                       {product.benefits.map((benefit) => (
                         <span
                           key={benefit}
-                          className="inline-block bg-[#fffde7] text-[#7e141c] px-3 py-1 rounded-full text-xs font-medium"
+                          className="inline-block bg-[#fffde7] text-[#9B2730] px-3 py-1 rounded-full text-xs font-medium"
                         >
                           {benefit}
                         </span>
@@ -299,7 +299,7 @@ export default function ProductsShowcase() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="bg-gradient-to-r from-[#fffde7] to-white rounded-3xl p-12 text-center shadow-2xl border border-[#e31b25]/20 max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-[#fffde7] to-white rounded-3xl p-12 text-center shadow-2xl border border-[#df2a33]/20 max-w-4xl mx-auto">
               <h3 className="text-3xl font-bold text-black mb-4">
                 Ready to Transform Your Operations?
               </h3>
@@ -309,7 +309,7 @@ export default function ProductsShowcase() {
               </p>
               <motion.a
                 href="#contact"
-                className="inline-flex items-center gap-3 bg-[#e31b25] text-white hover:bg-[#7e141c] px-10 py-4 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                className="inline-flex items-center gap-3 bg-[#df2a33] text-white hover:bg-[#9B2730] px-10 py-4 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={(e) => {

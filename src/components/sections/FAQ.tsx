@@ -38,7 +38,7 @@ export default function FAQ() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
               Frequently Asked{' '}
-              <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Questions</span>
+              <span className="bg-gradient-to-r from-[#9B2730] to-[#df2a33] bg-clip-text text-transparent">Questions</span>
             </h2>
             <p className="text-gray-600">Get answers to common questions about our services and process</p>
           </div>

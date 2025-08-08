@@ -46,7 +46,7 @@ function FeatureCard({ icon, title, children }: {
           whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ type: "spring", stiffness: 240, damping: 18 }}
-          className="w-14 h-14 bg-gradient-to-br from-[#e31b25] to-[#7e141c] rounded-xl flex items-center justify-center mr-4 shadow-lg"
+          className="w-14 h-14 bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-xl flex items-center justify-center mr-4 shadow-lg"
         >
           <Icon className="w-7 h-7 text-white" />
         </motion.div>
@@ -66,9 +66,9 @@ function ValueCard({ icon: Icon, title, description }: {
     <motion.div variants={fadeUp} className="text-center">
       <motion.div
         whileHover={{ scale: 1.08, rotate: 3 }}
-        className="w-16 h-16 group bg-gradient-to-br transition-colors duration-300 from-[#fffde7] to-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg border border-[#e31b25]/20 group-hover:shadow-xl hover:bg-gradient-to-r hover:from-[#e31b25] hover:to-[#7e141c]"
+        className="w-16 h-16 group bg-gradient-to-br transition-colors duration-300 from-[#fffde7] to-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg border border-[#df2a33]/20 group-hover:shadow-xl hover:bg-gradient-to-r hover:from-[#df2a33] hover:to-[#9B2730]"
       >
-        <Icon className="w-8 h-8 text-[#e31b25] group-hover:text-white" />
+        <Icon className="w-8 h-8 text-[#df2a33] group-hover:text-white" />
       </motion.div>
       <h4 className="text-lg font-bold text-black mb-2">{title}</h4>
       <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
@@ -98,7 +98,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="absolute top-40 -left-[30%] z-0 rotate-90 text-8xl lg:text-9xl font-extrabold tracking-[20px] lg:tracking-[40px] opacity-5 font-sans text-[#e31b25] pointer-events-none"
+        className="absolute top-40 -left-[30%] z-0 rotate-90 text-8xl lg:text-9xl font-extrabold tracking-[20px] lg:tracking-[40px] opacity-5 font-sans text-[#df2a33] pointer-events-none"
       >
         ABOUT
       </motion.div>
@@ -107,7 +107,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.1 }}
-        className="absolute -top-16 -right-16 w-80 h-80 bg-gradient-to-br from-[#e31b25]/10 to-transparent rounded-full pointer-events-none"
+        className="absolute -top-16 -right-16 w-80 h-80 bg-gradient-to-br from-[#df2a33]/10 to-transparent rounded-full pointer-events-none"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -129,7 +129,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
           >
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
               About{' '}
-              <span className="bg-gradient-to-r from-[#e31b25] to-[#7e141c] bg-clip-text text-transparent">Kenroz</span>
+              <span className="bg-gradient-to-r from-[#df2a33] to-[#9B2730] bg-clip-text text-transparent">Kenroz</span>
             </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Empowering businesses to lead with clarity, transform with technology, and excel with confidence
@@ -185,7 +185,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
             <motion.div
               variants={fadeUp}
               whileHover={{ scale: 1.03 }}
-              className="bg-gradient-to-br from-[#e31b25] to-[#7e141c] rounded-2xl p-8 text-white shadow-2xl border border-[#7e141c]/20 transition-transform duration-300"
+              className="bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-2xl p-8 text-white shadow-2xl border border-[#9B2730]/20 transition-transform duration-300"
             >
               <h4 className="text-xl font-bold mb-6 flex items-center">
                 <Shield className="w-7 h-7 mr-3 text-[#fffde7]" />

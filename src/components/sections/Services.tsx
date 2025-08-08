@@ -100,7 +100,7 @@ export default function Services() {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
               Our{' '}
-              <span className="bg-gradient-to-r from-[#e31b25] to-[#7e141c] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#df2a33] to-[#9B2730] bg-clip-text text-transparent">
                 Services
               </span>
             </h2>
@@ -124,18 +124,18 @@ export default function Services() {
                 className="group"
               >
                 <Link href={`/services/${service.path}`}>
-                  <Card className="cursor-pointer border-2 border-gray-200 hover:border-[#e31b25] shadow-lg hover:shadow-2xl transition-all duration-300 bg-white h-full overflow-hidden">
+                  <Card className="cursor-pointer border-2 border-gray-200 hover:border-[#df2a33] shadow-lg hover:shadow-2xl transition-all duration-300 bg-white h-full overflow-hidden">
                     <CardContent className="p-8">
                       <div className="flex items-start space-x-6">
                         <motion.div
-                          className="w-16 h-16 bg-gradient-to-br from-[#e31b25] to-[#7e141c] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                          className="w-16 h-16 bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"
                           whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ duration: 0.3 }}
                         >
                           <service.icon className="w-8 h-8 text-white" />
                         </motion.div>
                         <div className="flex-1">
-                          <h3 className="text-2xl font-bold text-black mb-3 group-hover:text-[#e31b25] transition-colors duration-300">
+                          <h3 className="text-2xl font-bold text-black mb-3 group-hover:text-[#df2a33] transition-colors duration-300">
                             {service.title}
                           </h3>
                           <DescriptionToggle description={service.fullDescription} />
@@ -144,7 +144,7 @@ export default function Services() {
                             {service.features.map((feature) => (
                               <span
                                 key={feature}
-                                className="inline-flex items-center gap-1 bg-[#fffde7] text-[#7e141c] px-3 py-1 rounded-full text-sm font-medium border border-[#e31b25]/20"
+                                className="inline-flex items-center gap-1 bg-[#fffde7] text-[#9B2730] px-3 py-1 rounded-full text-sm font-medium border border-[#df2a33]/20"
                               >
                                 <CheckCircle className="w-3 h-3" />
                                 {feature}

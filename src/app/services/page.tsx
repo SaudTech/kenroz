@@ -86,7 +86,7 @@ export default function ServicesPage() {
         }}
       />
       
-      <div className="bg-gradient-to-br from-[#e31b25]/5 via-white to-[#7e141c]/5 min-h-screen py-16">
+      <div className="bg-gradient-to-br from-[#df2a33]/5 via-white to-[#9B2730]/5 min-h-screen py-16">
         <div className="container mx-auto px-4">
           {/* Page Header */}
           <header className="text-center mb-16">
@@ -95,7 +95,7 @@ export default function ServicesPage() {
                 Our Expertise
               </span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#7e141c] via-[#e31b25] to-black bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#9B2730] via-[#df2a33] to-black bg-clip-text text-transparent">
               Our Services
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -108,7 +108,7 @@ export default function ServicesPage() {
           <Services />
 
           {/* Call to Action */}
-          <section className="mt-20 text-center bg-gradient-to-r from-[#e31b25]/10 to-[#7e141c]/10 rounded-3xl p-12">
+          <section className="mt-20 text-center bg-gradient-to-r from-[#df2a33]/10 to-[#9B2730]/10 rounded-3xl p-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Ready to Transform Your Business?
             </h2>
@@ -119,13 +119,13 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/contact-us" 
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#e31b25] to-[#7e141c] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#df2a33] to-[#9B2730] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 Get Free Consultation
               </a>
               <a 
                 href="/products" 
-                className="inline-flex items-center px-8 py-4 border-2 border-[#e31b25] text-[#e31b25] font-semibold rounded-xl hover:bg-[#e31b25] hover:text-white transition-all duration-300"
+                className="inline-flex items-center px-8 py-4 border-2 border-[#df2a33] text-[#df2a33] font-semibold rounded-xl hover:bg-[#df2a33] hover:text-white transition-all duration-300"
               >
                 View Our Products
               </a>

@@ -59,8 +59,8 @@ export default function SEOHead({
       <meta name="twitter:creator" content="@kenroz" />
 
       {/* Additional SEO Meta Tags */}
-      <meta name="theme-color" content="#e31b25" />
-      <meta name="msapplication-TileColor" content="#e31b25" />
+      <meta name="theme-color" content="#df2a33" />
+      <meta name="msapplication-TileColor" content="#df2a33" />
       <meta name="application-name" content="Kenroz" />
       <meta name="apple-mobile-web-app-title" content="Kenroz" />
       <meta name="apple-mobile-web-app-capable" content="yes" />

@@ -10,7 +10,7 @@
   - Create responsive services grid showcasing all six services (Microsoft Dynamics 365, Cloud Solutions, Web Development, Mobile Development, Digital Marketing, Outsourcing) with proper descriptions from details.txt
   - Build products showcase section displaying all five products (HRMS, Insurance, LMS, Payroll, ZATCA) with visual elements and detailed information
   - Implement mobile-first responsive design with "read more" functionality that truncates content after 3 lines on mobile devices
-  - Apply consistent brand colors (reddish #e31b25, white, black, light yellow #fffde7) throughout the homepage design
+  - Apply consistent brand colors (reddish #df2a33, white, black, light yellow #fffde7) throughout the homepage design
   - Optimize images from public folder for web performance and implement lazy loading
   - Create professional about section highlighting company expertise, values, and credibility
   - Add smooth animations and transitions using Framer Motion for enhanced user experience

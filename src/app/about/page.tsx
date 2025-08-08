@@ -63,7 +63,7 @@ export default function AboutPage() {
         }}
       />
       
-      <div className="bg-gradient-to-br from-[#e31b25]/5 via-white to-[#7e141c]/5 min-h-screen py-16">
+      <div className="bg-gradient-to-br from-[#df2a33]/5 via-white to-[#9B2730]/5 min-h-screen py-16">
         <div className="container mx-auto px-4">
           {/* About Section */}
           <About />
@@ -81,7 +81,7 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               <div className="text-center p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-3xl">🎯</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Transparency</h3>
@@ -92,7 +92,7 @@ export default function AboutPage() {
               </div>
 
               <div className="text-center p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-3xl">⚡</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Agility</h3>
@@ -103,7 +103,7 @@ export default function AboutPage() {
               </div>
 
               <div className="text-center p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-3xl">🏆</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Excellence</h3>
@@ -116,7 +116,7 @@ export default function AboutPage() {
           </section>
 
           {/* Why Choose Us */}
-          <section className="mt-20 bg-gradient-to-r from-[#e31b25]/10 to-[#7e141c]/10 rounded-3xl p-12">
+          <section className="mt-20 bg-gradient-to-r from-[#df2a33]/10 to-[#9B2730]/10 rounded-3xl p-12">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Why Choose Kenroz?
@@ -128,19 +128,19 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-xl">
-                <div className="text-2xl font-bold text-[#e31b25] mb-2">50+</div>
+                <div className="text-2xl font-bold text-[#df2a33] mb-2">50+</div>
                 <p className="text-gray-700 font-medium">Expert Team Members</p>
               </div>
               <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-xl">
-                <div className="text-2xl font-bold text-[#e31b25] mb-2">100+</div>
+                <div className="text-2xl font-bold text-[#df2a33] mb-2">100+</div>
                 <p className="text-gray-700 font-medium">Successful Projects</p>
               </div>
               <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-xl">
-                <div className="text-2xl font-bold text-[#e31b25] mb-2">24/7</div>
+                <div className="text-2xl font-bold text-[#df2a33] mb-2">24/7</div>
                 <p className="text-gray-700 font-medium">Support Available</p>
               </div>
               <div className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-xl">
-                <div className="text-2xl font-bold text-[#e31b25] mb-2">5+</div>
+                <div className="text-2xl font-bold text-[#df2a33] mb-2">5+</div>
                 <p className="text-gray-700 font-medium">Years of Excellence</p>
               </div>
             </div>

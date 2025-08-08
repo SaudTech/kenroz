@@ -198,7 +198,7 @@ export default function EnhancedContactForm({
         <div className="lg:col-span-3">
           <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50">
             <CardHeader className="space-y-4">
-              <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">
+              <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#9B2730] to-[#df2a33] bg-clip-text text-transparent">
                 Send us a message
               </CardTitle>
             </CardHeader>
@@ -218,7 +218,7 @@ export default function EnhancedContactForm({
                       className={`h-12 border-2 transition-all duration-200 ${
                         errors.firstName
                           ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
+                          : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
                       }`}
                     />
                     {errors.firstName && (
@@ -237,7 +237,7 @@ export default function EnhancedContactForm({
                       value={formData.lastName}
                       onChange={handleChange}
                       placeholder="Your last name"
-                      className="h-12 border-2 border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20 transition-all duration-200"
+                      className="h-12 border-2 border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20 transition-all duration-200"
                     />
                     {errors.lastName && (
                       <p className="text-sm text-red-600 flex items-center gap-1">
@@ -261,7 +261,7 @@ export default function EnhancedContactForm({
                       className={`h-12 border-2 transition-all duration-200 ${
                         errors.email
                           ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
+                          : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
                       }`}
                     />
                     {errors.email && (
@@ -282,7 +282,7 @@ export default function EnhancedContactForm({
                       className={`h-12 border-2 transition-all duration-200 ${
                         errors.company
                           ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                          : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
+                          : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
                       }`}
                     />
                     {errors.company && (
@@ -306,7 +306,7 @@ export default function EnhancedContactForm({
                     className={`border-2 transition-all h-[123px] duration-200 ${
                       errors.message
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-[#e31b25] focus:ring-[#e31b25]/20"
+                        : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
                     }`}
                   />
                   {errors.message && (
@@ -331,7 +331,7 @@ export default function EnhancedContactForm({
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-14 rounded-full text-lg font-semibold bg-gradient-to-r from-[#e31b25] to-[#7e141c] hover:from-[#7e141c] hover:to-[#e31b25] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full h-14 rounded-full text-lg font-semibold bg-gradient-to-r from-[#df2a33] to-[#9B2730] hover:from-[#9B2730] hover:to-[#df2a33] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center gap-2">
@@ -358,12 +358,12 @@ export default function EnhancedContactForm({
             {contactInfo.map((info, index) => (
               <Card
                 key={index}
-                className="border shadow-lg bg-white group hover:bg-gradient-to-r hover:from-[#7e141c] hover:to-[#e31b25] hover:text-white transition-colors duration-200  hover:border-white"
+                className="border shadow-lg bg-white group hover:bg-gradient-to-r hover:from-[#9B2730] hover:to-[#df2a33] hover:text-white transition-colors duration-200  hover:border-white"
               >
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-3 rounded-lg">
-                    <div className="w-10 h-10 bg-gradient-to-br from-[#e31b25]/20 to-[#7e141c]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-5 h-5 text-[#7e141c] group-hover:text-white transition-colors duration-300" />
+                    <div className="w-10 h-10 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-5 h-5 text-[#9B2730] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900 group-hover:text-white text-sm">

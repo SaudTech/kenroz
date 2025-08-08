@@ -53,19 +53,19 @@ export default function Footer() {
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-[#e31b25]" />
+                <Phone className="w-4 h-4 text-[#df2a33]" />
                 <span className="text-gray-300 text-sm">
                   +91 (810) 624-9040
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-[#e31b25]" />
+                <Mail className="w-4 h-4 text-[#df2a33]" />
                 <span className="text-gray-300 text-sm">
                   contact@kenroz.com
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-[#e31b25]" />
+                <MapPin className="w-4 h-4 text-[#df2a33]" />
                 <span className="text-gray-300 text-sm">Hyderabad, India</span>
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function Footer() {
                 <li key={link}>
                   <a
                     href={`#${link.toLowerCase().replace(" ", "")}`}
-                    className="text-gray-400 hover:text-[#e31b25] transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                    className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
                     onClick={(e) => {
                       e.preventDefault();
                       const element = document.getElementById(
@@ -100,7 +100,7 @@ export default function Footer() {
                 <li key={service}>
                   <a
                     href="#services"
-                    className="text-gray-400 hover:text-[#e31b25] transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                    className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
                     onClick={(e) => {
                       e.preventDefault();
                       document
@@ -126,7 +126,7 @@ export default function Footer() {
                 <a
                   key={legal}
                   href="#"
-                  className="text-gray-400 hover:text-[#e31b25] transition-colors duration-300 text-xs"
+                  className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 text-xs"
                   onClick={(e) => e.preventDefault()}
                 >
                   {legal}
@@ -139,7 +139,7 @@ export default function Footer() {
               <a
                 key={index}
                 href={href}
-                className="p-2 bg-gray-800 hover:bg-gradient-to-r hover:from-[#7e141c] hover:to-[#e31b25] text-gray-400 hover:text-white rounded-lg transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-[#7e141c]"
+                className="p-2 bg-gray-800 hover:bg-gradient-to-r hover:from-[#9B2730] hover:to-[#df2a33] text-gray-400 hover:text-white rounded-lg transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-[#9B2730]"
                 onClick={(e) => e.preventDefault()}
               >
                 <Icon className="w-4 h-4" />
@@ -150,7 +150,7 @@ export default function Footer() {
       </div>
       <button
         onClick={scrollToTop}
-        className="absolute bottom-8 right-8 p-3 bg-gradient-to-r from-[#7e141c] to-[#e31b25] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-[#7e141c]/50"
+        className="absolute bottom-8 right-8 p-3 bg-gradient-to-r from-[#9B2730] to-[#df2a33] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-[#9B2730]/50"
       >
         <ArrowUp className="w-5 h-5" />
       </button>

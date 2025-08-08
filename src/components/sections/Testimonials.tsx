@@ -27,10 +27,10 @@ export default function Testimonials() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="bg-yellow-100 text-[#e31b25] px-4 py-2 text-sm font-semibold rounded-full border border-yellow-200">Testimonials</span>
+            <span className="bg-yellow-100 text-[#df2a33] px-4 py-2 text-sm font-semibold rounded-full border border-yellow-200">Testimonials</span>
             <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
               What Our{' '}
-              <span className="bg-gradient-to-r from-[#7e141c] to-[#e31b25] bg-clip-text text-transparent">Clients Say</span>
+              <span className="bg-gradient-to-r from-[#9B2730] to-[#df2a33] bg-clip-text text-transparent">Clients Say</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Real feedback from real clients who&apos;ve experienced the Kenroz difference</p>
           </div>
@@ -47,7 +47,7 @@ export default function Testimonials() {
                 <p className="text-gray-700 mb-4 italic leading-relaxed">&quot;{testimonial.content}&quot;</p>
                 <div>
                   <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                  <p className="text-[#e31b25] text-sm">{testimonial.role}</p>
+                  <p className="text-[#df2a33] text-sm">{testimonial.role}</p>
                 </div>
               </div>
             ))}
