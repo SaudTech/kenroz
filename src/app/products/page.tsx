@@ -110,17 +110,6 @@ export default function ProductsPage() {
             initial="hidden"
             animate="visible"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-block mb-6"
-            >
-              <span className="inline-block px-4 py-2 bg-red-100 text-red-800 text-sm font-semibold rounded-full mb-4">
-                Our Solutions
-              </span>
-            </motion.div>
-
             <motion.h1
               className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-700 bg-clip-text text-transparent mb-8 leading-tight"
               initial={{ opacity: 0, y: 20 }}

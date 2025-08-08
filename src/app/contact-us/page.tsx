@@ -57,11 +57,6 @@ export default function ContactPage() {
         <div className="container mx-auto max-w-7xl">
           {/* Page Header */}
           <header className="text-center mb-16">
-            <div className="inline-block mb-4">
-              <span className="inline-block px-4 py-2 bg-red-100 text-red-800 text-sm font-semibold rounded-full">
-                Get In Touch
-              </span>
-            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#7e141c] via-[#e31b25] to-black bg-clip-text text-transparent">
               Contact Us
             </h1>
