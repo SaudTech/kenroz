@@ -91,7 +91,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-gradient-to-br from-white via-[#fffde7] to-white overflow-hidden">
+    <section id="about" className="relative py-20 bg-gradient-to-br from-white via-[#fffde7] to-white overflow-hidden bg-red-300">
       {/* Background Elements (animate in) */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -131,9 +131,6 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
               About{' '}
               <span className="bg-gradient-to-r from-[#df2a33] to-[#9B2730] bg-clip-text text-transparent">Kenroz</span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-              Empowering businesses to lead with clarity, transform with technology, and excel with confidence
-            </p>
           </motion.div>
 
           {/* Company Story */}

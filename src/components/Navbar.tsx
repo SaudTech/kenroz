@@ -140,7 +140,14 @@ export default function Navbar(): JSX.Element {
                   onClick={() => scrollToSection("contact")}
                 />
                 <div className="pt-2 flex flex-col gap-2">
-                  <HireExperts mobile />
+                  <ButtonLink 
+                    href="/contact-us?p=hire"
+                    className="w-full justify-center"
+                    mobile
+                  >
+                    <Phone className="me-2 h-5 w-5" />
+                    Contact Our Experts
+                  </ButtonLink>
                 </div>
               </div>
             </motion.div>
