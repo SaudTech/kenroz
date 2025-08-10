@@ -255,7 +255,6 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
                         <FeatureCard
                           icon={Rocket}
                           title="Our Mission"
-                          className="h-full"
                         >
                           <DescriptionToggle description="We anticipate and solve tomorrow's challenges with tailored digital solutions that drive sustainable growth. Our mission is to be the catalyst that transforms your business vision into digital reality, ensuring you stay ahead in an ever-evolving technological landscape." />
                         </FeatureCard>
@@ -297,7 +296,6 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
                         <FeatureCard
                           icon={Code}
                           title="Our Expertise"
-                          className="h-full"
                         >
                           <DescriptionToggle description="Leveraging cutting-edge technologies including React, Node.js, Microsoft Dynamics 365, cloud-native solutions, and modern DevOps practices. We combine technical excellence with strategic business insight to deliver solutions that perform at scale and adapt to your evolving needs." />
                         </FeatureCard>
