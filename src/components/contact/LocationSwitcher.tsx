@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Building2, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Building2, Phone, Mail, Clock, Signpost } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Office = {
@@ -15,9 +15,29 @@ type Office = {
 
 type CountryKey = "USA" | "UAE" | "Saudi" | "India";
 
-const COUNTRY_ORDER: CountryKey[] = ["USA", "UAE", "Saudi", "India"];
+const COUNTRY_ORDER: CountryKey[] = ["India", "Saudi", "USA", "UAE"];
 
 const OFFICES: Record<CountryKey, Office[]> = {
+  India: [
+    {
+      label: "Hyderabad",
+      address: "HITEC City, Madhapur, Hyderabad 500081",
+      phone: "+91 22 5555 0101",
+      email: "hydInquiry@company.com",
+      hours: "Mon-Fri, 10:00-19:00",
+      mapHref: "https://maps.app.goo.gl/bFXrdf5PoijAqA7k7",
+    },
+  ],
+  Saudi: [
+    {
+      label: "Dammam, Saudi Arabia",
+      address: "King Fahd Industrial Port, Dammam 31461",
+      phone: "+966 11 555 7890",
+      email: "dammam@company.com",
+      hours: "Sun-Thu, 9:00-18:00",
+      mapHref: "https://maps.app.goo.gl/856RSqeg1PKtz8Ts5",
+    },
+  ],
   USA: [
     {
       label: "Chicago, IL",
@@ -36,26 +56,6 @@ const OFFICES: Record<CountryKey, Office[]> = {
       email: "dubai@company.com",
       hours: "Sun-Thu, 9:00-18:00",
       mapHref: "https://maps.app.goo.gl/tDcysU7CLx82DzkT6",
-    },
-  ],
-  Saudi: [
-    {
-      label: "Dammam, Saudi Arabia",
-      address: "King Fahd Industrial Port, Dammam 31461",
-      phone: "+966 11 555 7890",
-      email: "dammam@company.com",
-      hours: "Sun-Thu, 9:00-18:00",
-      mapHref: "https://maps.app.goo.gl/856RSqeg1PKtz8Ts5",
-    },
-  ],
-  India: [
-    {
-      label: "Hyderabad",
-      address: "HITEC City, Madhapur, Hyderabad 500081",
-      phone: "+91 22 5555 0101",
-      email: "hydInquiry@company.com",
-      hours: "Mon-Fri, 10:00-19:00",
-      mapHref: "https://maps.app.goo.gl/bFXrdf5PoijAqA7k7",
     },
   ],
 };
@@ -144,28 +144,28 @@ function LocationSwitcher({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.03, duration: 0.18 }}
             >
-              <Card className="border shadow-lg bg-white group hover:bg-gradient-to-r hover:from-[#9B2730] hover:to-[#df2a33] hover:text-white transition-colors duration-200 hover:border-white h-full">
+              <Card className="border shadow-lg bg-white  transition-colors duration-200 h-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <Building2 className="w-4 h-4 text-[#9B2730] group-hover:text-white transition-colors" />
+                    <Building2 className="w-4 h-4 text-[#9B2730] transition-colors" />
                     {info.label}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-4 h-4 text-[#9B2730] group-hover:text-white transition-colors" />
+                    <MapPin className="w-4 h-4 text-[#9B2730] transition-colors" />
 
-                    <p className="text-sm text-gray-700 group-hover:text-white/95">
+                    <p className="text-sm text-gray-700">
                       {info.address}
                     </p>
                   </div>
 
                   {info.phone && (
                     <div className="flex items-center gap-3">
-                      <Phone className="w-4 h-4 text-[#9B2730] group-hover:text-white transition-colors" />
+                      <Phone className="w-4 h-4 text-[#9B2730]  transition-colors" />
                       <a
                         href={`tel:${info.phone.replace(/\s/g, "")}`}
-                        className="text-sm text-gray-700 group-hover:text-white/95"
+                        className="text-sm text-gray-700 "
                       >
                         {info.phone}
                       </a>
@@ -204,7 +204,8 @@ function LocationSwitcher({
                         target="_blank"
                         rel="noreferrer"
                       >
-                        Open in Maps
+                        <Signpost />
+                        Get Directions
                       </a>
                     </Button>
                   </div>

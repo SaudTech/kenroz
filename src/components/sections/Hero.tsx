@@ -139,7 +139,7 @@ export default function Hero() {
           {valueProps.map((prop, index) => (
             <motion.div
               key={prop}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium"
+              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium hover:bg-[#df2a33] transition-colors"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
@@ -159,7 +159,7 @@ export default function Hero() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="#services"
-              className="inline-flex items-center gap-2 bg-[#fffde7] text-[#df2a33] hover:bg-white px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-[#fffde7] text-[#df2a33] px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300 hover:bg-transparent hover:border-white hover:text-white border border-solid"
             >
               Explore Our Services
               <ArrowRight className="w-5 h-5" />
@@ -263,7 +263,7 @@ export default function Hero() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 rounded-lg shadow-lg transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-[#df2a33] to-[#9B2730] hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 rounded-lg shadow-lg transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>

@@ -1,12 +1,21 @@
 "use client";
 import { motion, Variants } from "framer-motion";
-import { Rocket, Code, Shield, Target, Award, Globe, Zap, LucideIcon } from "lucide-react";
+import {
+  Rocket,
+  Code,
+  Shield,
+  Target,
+  Award,
+  Globe,
+  Zap,
+  LucideIcon,
+} from "lucide-react";
 import DescriptionToggle from "../DescriptionToggle";
 import React from "react";
 
 // --- Animations ---
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 0 },
   show: {
     opacity: 1,
     y: 0,
@@ -28,7 +37,11 @@ const containerStagger: Variants = {
     },
   },
 };
-function FeatureCard({ icon, title, children }: {
+function FeatureCard({
+  icon,
+  title,
+  children,
+}: {
   icon: LucideIcon;
   title: string;
   children: React.ReactNode;
@@ -57,7 +70,11 @@ function FeatureCard({ icon, title, children }: {
   );
 }
 
-function ValueCard({ icon: Icon, title, description }: {
+function ValueCard({
+  icon: Icon,
+  title,
+  description,
+}: {
   icon: LucideIcon;
   title: string;
   description: string;
@@ -83,15 +100,38 @@ With a strong foundation in enterprise solutions like Microsoft Dynamics 365, cu
 
 Driven by values of transparency, agility, and excellence, Kenroz is more than just a service provider — we are a technology partner invested in your success. Whether you're looking to modernize operations, enhance digital engagement, or launch a new platform, we're here to help you lead, transform, and excel — every step of the way.`;
 
+  const [activeTab, setActiveTab] = React.useState(0);
   const values = [
-    { icon: Target, title: "Transparency", description: "Clear communication and honest partnerships in every project" },
-    { icon: Zap, title: "Agility", description: "Rapid adaptation to changing business needs and market demands" },
-    { icon: Award, title: "Excellence", description: "Uncompromising quality in every solution we deliver" },
-    { icon: Globe, title: "Innovation", description: "Cutting-edge technology solutions for tomorrow's challenges" },
+    {
+      icon: Target,
+      title: "Transparency",
+      description:
+        "Clear communication and honest partnerships in every project",
+    },
+    {
+      icon: Zap,
+      title: "Agility",
+      description:
+        "Rapid adaptation to changing business needs and market demands",
+    },
+    {
+      icon: Award,
+      title: "Excellence",
+      description: "Uncompromising quality in every solution we deliver",
+    },
+    {
+      icon: Globe,
+      title: "Innovation",
+      description:
+        "Cutting-edge technology solutions for tomorrow's challenges",
+    },
   ];
 
   return (
-    <section id="about" className="relative py-20 bg-gradient-to-br from-white via-[#fffde7] to-white overflow-hidden bg-red-300">
+    <section
+      id="about"
+      className="relative py-20 bg-gradient-to-br from-white via-[#fffde7] to-white overflow-hidden bg-red-300"
+    >
       {/* Background Elements (animate in) */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -128,8 +168,10 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              About{' '}
-              <span className="bg-gradient-to-r from-[#df2a33] to-[#9B2730] bg-clip-text text-transparent">Kenroz</span>
+              About{" "}
+              <span className="bg-gradient-to-r from-[#df2a33] to-[#9B2730] bg-clip-text text-transparent">
+                Kenroz
+              </span>
             </h2>
           </motion.div>
 
@@ -152,7 +194,9 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
             viewport={{ once: true, amount: 0.4 }}
             className="mb-20"
           >
-            <h3 className="text-3xl font-bold text-center text-black mb-12">Our Core Values</h3>
+            <h3 className="text-3xl font-bold text-center text-black mb-12">
+              Our Core Values
+            </h3>
             <motion.div
               variants={containerStagger}
               initial="hidden"
@@ -161,52 +205,150 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
               className="grid grid-cols-2 lg:grid-cols-4 gap-8"
             >
               {values.map((value) => (
-                <ValueCard key={value.title} icon={value.icon} title={value.title} description={value.description} />
+                <ValueCard
+                  key={value.title}
+                  icon={value.icon}
+                  title={value.title}
+                  description={value.description}
+                />
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Feature Cards */}
-          <motion.div
-            variants={containerStagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-            className="grid gap-8 lg:grid-cols-3 mb-16"
-          >
-            <FeatureCard icon={Rocket} title="Our Mission">
-              <DescriptionToggle description="We anticipate and solve tomorrow's challenges with tailored digital solutions that drive sustainable growth. Our mission is to be the catalyst that transforms your business vision into digital reality, ensuring you stay ahead in an ever-evolving technological landscape." />
-            </FeatureCard>
+          {/* Main Layout */}
+          {/* Main Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16 items-stretch">
+            {/* Left Section - Tabs & Feature Cards */}
+            <div className="lg:col-span-3 h-full">
+              <div className="flex h-full">
+                {/* Tab Buttons */}
+                <div className="flex flex-col w-48 pr-4 border-r border-gray-200 dark:border-gray-700 overflow-auto">
+                  {["Our Mission", "Why Kenroz?", "Our Expertise"].map(
+                    (tab, idx) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(idx)}
+                        className={`py-3 px-4 text-left font-medium rounded-lg transition-colors ${
+                          activeTab === idx
+                            ? "bg-[#df2a33] text-white"
+                            : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200"
+                        }`}
+                      >
+                        {tab}
+                      </button>
+                    )
+                  )}
+                </div>
 
-            {/* Featured Card */}
-            <motion.div
-              variants={fadeUp}
-              whileHover={{ scale: 1.03 }}
-              className="bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-2xl p-8 text-white shadow-2xl border border-[#9B2730]/20 transition-transform duration-300"
-            >
-              <h4 className="text-xl font-bold mb-6 flex items-center">
-                <Shield className="w-7 h-7 mr-3 text-[#fffde7]" />
-                Why Choose Kenroz?
-              </h4>
-              <ul className="space-y-4 text-[#fffde7]">
-                {[
-                  "Strategic technology roadmap & consulting",
-                  "End-to-end implementation with industry best practices",
-                  "Proactive monitoring & performance optimization",
-                  "Comprehensive security, compliance & data privacy",
-                ].map((line) => (
-                  <motion.li key={line} variants={fadeUp} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-[#fffde7] rounded-full mt-2 flex-shrink-0" />
-                    <span>{line}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+                {/* Tab Content */}
+                <div className="flex-1 pl-6">
+                  <motion.div
+                    key={activeTab}
+                    variants={containerStagger}
+                    initial="hidden"
+                    animate="show"
+                    className="h-full flex flex-col"
+                  >
+                    {/* Wrap each tab panel in a full-height container */}
+                    {activeTab === 0 && (
+                      <div className="h-full">
+                        <FeatureCard
+                          icon={Rocket}
+                          title="Our Mission"
+                          className="h-full"
+                        >
+                          <DescriptionToggle description="We anticipate and solve tomorrow's challenges with tailored digital solutions that drive sustainable growth. Our mission is to be the catalyst that transforms your business vision into digital reality, ensuring you stay ahead in an ever-evolving technological landscape." />
+                        </FeatureCard>
+                      </div>
+                    )}
 
-            <FeatureCard icon={Code} title="Our Expertise">
-              <DescriptionToggle description="Leveraging cutting-edge technologies including React, Node.js, Microsoft Dynamics 365, cloud-native solutions, and modern DevOps practices. We combine technical excellence with strategic business insight to deliver solutions that perform at scale and adapt to your evolving needs." />
-            </FeatureCard>
-          </motion.div>
+                    {activeTab === 1 && (
+                      <motion.div
+                        variants={fadeUp}
+                        whileHover={{ scale: 1.03 }}
+                        className="bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-2xl p-8 text-white shadow-2xl border border-[#9B2730]/20 transition-transform duration-300 h-full flex flex-col"
+                      >
+                        <h4 className="text-xl font-bold mb-6 flex items-center">
+                          <Shield className="w-7 h-7 mr-3 text-[#fffde7]" />
+                          Why Choose Kenroz?
+                        </h4>
+                        <ul className="space-y-4 text-[#fffde7] flex-1">
+                          {[
+                            "Strategic technology roadmap & consulting",
+                            "End-to-end implementation with industry best practices",
+                            "Proactive monitoring & performance optimization",
+                            "Comprehensive security, compliance & data privacy",
+                          ].map((line) => (
+                            <motion.li
+                              key={line}
+                              variants={fadeUp}
+                              className="flex items-start gap-3"
+                            >
+                              <div className="w-2 h-2 bg-[#fffde7] rounded-full mt-2 flex-shrink-0" />
+                              <span>{line}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+
+                    {activeTab === 2 && (
+                      <div className="h-full">
+                        <FeatureCard
+                          icon={Code}
+                          title="Our Expertise"
+                          className="h-full"
+                        >
+                          <DescriptionToggle description="Leveraging cutting-edge technologies including React, Node.js, Microsoft Dynamics 365, cloud-native solutions, and modern DevOps practices. We combine technical excellence with strategic business insight to deliver solutions that perform at scale and adapt to your evolving needs." />
+                        </FeatureCard>
+                      </div>
+                    )}
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Section - Partner Spotlight */}
+            <div className="lg:col-span-2 h-full">
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-tr from-white to-[#fff8f8] dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 h-full flex flex-col items-center text-center"
+              >
+                {/* Square logo container */}
+                <div className="mb-6 w-28 h-28  rounded-xl flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/Emvive.png"
+                    alt="Emvive Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+
+                <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                  Partner Spotlight — Emvive
+                </h4>
+                <p className="text-gray-800 dark:text-gray-300 leading-relaxed mb-6">
+                  We’re the core{" "}
+                  <span className="font-semibold">Development team in India</span>{" "}
+                  for <span className="font-semibold">Emvive</span>, based in{" "}
+                  <span className="font-semibold">Dammam, Saudi Arabia</span>.
+                  
+                </p>
+
+                <div className="mt-auto">
+                  <a
+                    href="https://emvive.com"
+                    target="_blank"
+                    className="px-5 py-2 bg-[#df2a33] text-white rounded-lg shadow hover:bg-[#c4222a] transition-colors"
+                  >
+                    View Website
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </div> 
         </div>
       </div>
     </section>
