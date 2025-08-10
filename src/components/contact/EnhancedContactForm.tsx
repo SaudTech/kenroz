@@ -21,15 +21,11 @@ interface FormErrors {
 }
 
 interface EnhancedContactFormProps {
-  title?: string;
-  description?: string;
   className?: string;
   showContactInfo?: boolean;
 }
 
 export default function EnhancedContactForm({
-  title = "Get in Touch",
-  description = "Have questions? We'd love to hear from you. Send us a message and we'll response as soon as possible.",
   className = "",
   showContactInfo = true,
 }: EnhancedContactFormProps) {
@@ -324,7 +320,12 @@ export default function EnhancedContactForm({
 
         {/* Contact Information */}
         {showContactInfo && (
-          <LocationSwitcher title={title} description={description} />
+          <div className="bg-gradient-to-br from-[#9B2730] to-[#df2a33] rounded-xl p-8 text-white">
+            <LocationSwitcher
+              title="Our Offices"
+              description="Choose your region to get in touch"
+            />
+          </div>
         )}
       </div>
     </div>

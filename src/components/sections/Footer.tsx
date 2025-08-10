@@ -77,7 +77,7 @@ export default function Footer() {
                 <li key={link}>
                   <a
                     href={`#${link.toLowerCase().replace(" ", "")}`}
-                    className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                    className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 hover:translate-x-1 transform inline-block text-base"
                     onClick={(e) => {
                       e.preventDefault();
                       const element = document.getElementById(
@@ -100,7 +100,7 @@ export default function Footer() {
                 <li key={service}>
                   <a
                     href="#services"
-                    className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 hover:translate-x-1 transform inline-block text-sm"
+                    className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 hover:translate-x-1 transform inline-block text-base"
                     onClick={(e) => {
                       e.preventDefault();
                       document
@@ -115,25 +115,25 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Kenroz. All rights reserved. Made
-              with ❤️ in Hyderabad
-            </p>
-            <div className="flex space-x-4">
-              {legalLinks.map((legal) => (
-                <a
-                  key={legal}
-                  href="#"
-                  className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 text-xs"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  {legal}
-                </a>
-              ))}
-            </div>
+        <div className="mt-12 mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+          <p className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} Kenroz. All rights reserved. Made
+            with ❤️ in Hyderabad
+          </p>
+          <div className="flex space-x-4">
+            {legalLinks.map((legal) => (
+              <a
+                key={legal}
+                href="#"
+                className="text-gray-400 hover:text-[#df2a33] transition-colors duration-300 text-sm"
+                onClick={(e) => e.preventDefault()}
+              >
+                {legal}
+              </a>
+            ))}
           </div>
+        </div>
+        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex space-x-4 mt-4 md:mt-0">
             {socials.map(({ icon: Icon, href }, index) => (
               <a

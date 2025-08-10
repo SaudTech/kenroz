@@ -68,11 +68,7 @@ export default function ContactPage() {
           </header>
 
           {/* Enhanced Contact Form */}
-          <EnhancedContactForm
-            title="Let's Start a Conversation"
-            description="Tell us about your project and we'll get back to you within 24 hours with a detailed proposal."
-            showContactInfo={true}
-          />
+          <EnhancedContactForm showContactInfo={true} />
 
           {/* Additional Contact Information */}
           <section className="mt-20 text-center">
@@ -80,7 +76,7 @@ export default function ContactPage() {
               Why Choose Kenroz?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="p-6 bg-white rounded-xl shadow-lg">
+              <div className="p-6 bg-white rounded-xl shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">⚡</span>
                 </div>
@@ -89,7 +85,7 @@ export default function ContactPage() {
                   We respond to all inquiries within 24 hours during business days
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-xl shadow-lg">
+              <div className="p-6 bg-white rounded-xl shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">🎯</span>
                 </div>
@@ -98,7 +94,7 @@ export default function ContactPage() {
                   Free initial consultation to understand your specific needs
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-xl shadow-lg">
+              <div className="p-6 bg-white rounded-xl shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#df2a33]/20 to-[#9B2730]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">🤝</span>
                 </div>

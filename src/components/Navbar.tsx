@@ -74,7 +74,7 @@ export default function Navbar(): JSX.Element {
 
           <div className="flex gap-5 items-center">
             <ButtonLink
-              href="/contact-us?p=hire"
+              href="/careers"
               className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border border-solid text-[#df2a33] transition-colors hover:bg-gradient-to-r hover:from-[#df2a33] hover:to-[#9B2730]  border-[#df2a33] bg-transparent  hover:text-white rounded-full"
             >
               Careers
@@ -133,6 +133,11 @@ export default function Navbar(): JSX.Element {
                 <MobileNavItem
                   href="/products"
                   text="PRODUCTS"
+                  onClick={() => setIsMenuOpen(false)}
+                />
+                <MobileNavItem
+                  href="/careers"
+                  text="CAREERS"
                   onClick={() => setIsMenuOpen(false)}
                 />
                 <MobileNavItem
