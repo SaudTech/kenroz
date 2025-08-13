@@ -14,12 +14,11 @@ type MainLink = { label: string; href?: string; sectionId?: string };
 const MAIN_LINKS: MainLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/#services" },
   { label: "Tech", href: "/#tech" },
   { label: "Clients", href: "/#clients" },
   { label: "FAQ", href: "/#faq" },
   // Contact scrolls to the page section with id="contact"
-  { label: "Contact", sectionId: "contact" },
 ];
 
 export default function Navbar(): JSX.Element {
@@ -68,17 +67,11 @@ export default function Navbar(): JSX.Element {
           {/* Right actions */}
           <div className="flex gap-5 items-center">
             <ButtonLink
-              href="/careers"
-              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border border-solid text-[#df2a33] transition-colors hover:bg-gradient-to-r hover:from-[#df2a33] hover:to-[#9B2730] border-[#df2a33] bg-transparent hover:text-white rounded-full"
-            >
-              Careers
-            </ButtonLink>
-            <ButtonLink
               href="/contact-us?p=hire"
               className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-[#df2a33] transition-colors bg-gradient-to-r from-[#df2a33] to-[#9B2730] hover:from-[#9B2730] hover:to-[#df2a33] text-white rounded-full"
             >
               <Phone className="me-2 h-5 w-5" />
-              Contact Our Experts
+              Hire an Expert
             </ButtonLink>
           </div>
 
@@ -129,19 +122,12 @@ export default function Navbar(): JSX.Element {
                 )}
                 <div className="pt-2 flex flex-col gap-2">
                   <ButtonLink
-                    href="/careers"
-                    className="w-full justify-center"
-                    mobile
-                  >
-                    Careers
-                  </ButtonLink>
-                  <ButtonLink
                     href="/contact-us?p=hire"
                     className="w-full justify-center"
                     mobile
                   >
                     <Phone className="me-2 h-5 w-5" />
-                    Contact Our Experts
+                    Hire an Expert
                   </ButtonLink>
                 </div>
               </div>

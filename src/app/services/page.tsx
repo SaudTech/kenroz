@@ -90,11 +90,6 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           {/* Page Header */}
           <header className="text-center mb-16">
-            <div className="inline-block mb-4">
-              <span className="inline-block px-4 py-2 bg-red-100 text-red-800 text-sm font-semibold rounded-full">
-                Our Expertise
-              </span>
-            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#9B2730] via-[#df2a33] to-black bg-clip-text text-transparent">
               Our Services
             </h1>

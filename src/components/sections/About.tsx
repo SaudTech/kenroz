@@ -130,7 +130,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
   return (
     <section
       id="about"
-      className="relative py-20 bg-gradient-to-br from-white via-[#fffde7] to-white overflow-hidden bg-red-300"
+      className="relative py-20 bg-gradient-to-br from-white via-tertiary to-white overflow-hidden bg-red-300"
     >
       {/* Background Elements (animate in) */}
       <motion.div
@@ -216,8 +216,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
           </motion.div>
 
           {/* Main Layout */}
-          {/* Main Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16 items-stretch">
+          <div className=" max-w-3xl mx-auto gap-8 mb-16 items-stretch">
             {/* Left Section - Tabs & Feature Cards */}
             <div className="lg:col-span-3 h-full">
               <div className="flex h-full">
@@ -304,47 +303,6 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
                   </motion.div>
                 </div>
               </div>
-            </div>
-
-            {/* Right Section - Partner Spotlight */}
-            <div className="lg:col-span-2 h-full">
-              <motion.div
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="show"
-                whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-tr from-white to-[#fff8f8] dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 h-full flex flex-col items-center text-center"
-              >
-                {/* Square logo container */}
-                <div className="mb-6 w-28 h-28  rounded-xl flex items-center justify-center overflow-hidden">
-                  <img
-                    src="/Emvive.png"
-                    alt="Emvive Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-
-                <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  Partner Spotlight — Emvive
-                </h4>
-                <p className="text-gray-800 dark:text-gray-300 leading-relaxed mb-6">
-                  We’re the core{" "}
-                  <span className="font-semibold">Development team in India</span>{" "}
-                  for <span className="font-semibold">Emvive</span>, based in{" "}
-                  <span className="font-semibold">Dammam, Saudi Arabia</span>.
-                  
-                </p>
-
-                <div className="mt-auto">
-                  <a
-                    href="https://emvive.com"
-                    target="_blank"
-                    className="px-5 py-2 bg-[#df2a33] text-white rounded-lg shadow hover:bg-[#c4222a] transition-colors"
-                  >
-                    View Website
-                  </a>
-                </div>
-              </motion.div>
             </div>
           </div> 
         </div>

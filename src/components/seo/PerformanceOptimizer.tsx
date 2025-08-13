@@ -63,7 +63,8 @@ export default function PerformanceOptimizer() {
       // Monitor Core Web Vitals
       const observer = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
-          console.log(`${entry.name}: ${(entry as any).value || entry.duration || 'N/A'}`);
+          const value = (entry as PerformanceEntry & { value?: number }).value;
+          console.log(`${entry.name}: ${value ?? entry.duration ?? 'N/A'}`);
         });
       });
 

@@ -4,12 +4,12 @@ import { useEffect } from 'react';
 
 interface StructuredDataProps {
   type: 'organization' | 'service' | 'product' | 'website';
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
   useEffect(() => {
-    let structuredData: Record<string, any> = {};
+    let structuredData: Record<string, unknown> = {};
 
     switch (type) {
       case 'organization':

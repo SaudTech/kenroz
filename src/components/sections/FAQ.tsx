@@ -21,7 +21,7 @@ const faqs = [
   {
     question: 'What technologies do you specialize in?',
     answer:
-      'We work with modern technologies including React, Node.js, Python, cloud platforms (AWS, Azure), mobile development (React Native, Flutter), and emerging technologies like AI integration.',
+      "We work with all types of modern technologies in which includes but aren't limited to React, Node.js, Python, Java and fir cloud platforms (AWS, Azure, Digital Ocean), mobile development (React Native, Kotlin), and emerging technologies like AI integration.",
   },
   {
     question: 'How do you ensure project quality?',
@@ -32,7 +32,7 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="bg-gray-50 py-16">
+    <section id="faq" className="bg-gray-50 py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -45,11 +45,11 @@ export default function FAQ() {
 
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`faq-${index}`} className="rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md">
-                <AccordionTrigger className="px-6 py-4 text-base font-semibold text-gray-900">
+              <AccordionItem key={index} value={`faq-${index}`} className="rounded-lg border bg-gray-900 border-gray-200 shadow-sm transition-all hover:shadow-md">
+                <AccordionTrigger className="px-6 py-4 text-base font-semibold text-gray-200">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="px-6 text-gray-600">
+                <AccordionContent className="px-6 text-gray-200">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

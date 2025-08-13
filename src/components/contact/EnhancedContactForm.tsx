@@ -161,7 +161,7 @@ export default function EnhancedContactForm({
   }
 
   return (
-    <div className={`w-full mx-auto ${className}`}>
+    <div className={`w-full mx-auto ${className}`} id="contact">
       <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
         {/* Contact Form */}
         <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50">
