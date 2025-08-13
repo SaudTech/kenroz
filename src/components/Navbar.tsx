@@ -1,22 +1,25 @@
 "use client";
 
-import React, { JSX, useCallback, useState, type ReactNode } from "react";
+import React, { JSX, useCallback, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import logo from "@/../public/logo.png";
 import { cn } from "@/lib/utils";
 
-type ServiceLink = { name: string; href: string };
+type MainLink = { label: string; href?: string; sectionId?: string };
 
-const serviceLinks: ServiceLink[] = [
-  { name: "Microsoft Dynamic 365", href: "microsoft-dynamic-365" },
-  { name: "Cloud Solutions", href: "cloud-solutions" },
-  { name: "Web Application Development", href: "web-application-management" },
-  { name: "Mobile Application Development", href: "mobile-application-management" },
-  { name: "Digital Marketing", href: "digital-marketing" },
-  { name: "Outsourcing", href: "outsourcing" },
+// Desktop & Mobile link model (shared)
+const MAIN_LINKS: MainLink[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/services" },
+  { label: "Tech", href: "/#tech" },
+  { label: "Clients", href: "/#clients" },
+  { label: "FAQ", href: "/#faq" },
+  // Contact scrolls to the page section with id="contact"
+  { label: "Contact", sectionId: "contact" },
 ];
 
 export default function Navbar(): JSX.Element {
@@ -24,8 +27,8 @@ export default function Navbar(): JSX.Element {
 
   const scrollToSection = useCallback((sectionId: string) => {
     if (!sectionId) return;
-    const element = document.getElementById(sectionId);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
   }, []);
 
@@ -33,12 +36,8 @@ export default function Navbar(): JSX.Element {
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 z-50 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo on the left */}
-          <Link
-            href="/"
-            className="flex items-center "
-            aria-label="Kenroz - Home"
-          >
+          {/* Logo */}
+          <Link href="/" className="flex items-center" aria-label="Kenroz - Home">
             <Image
               src={logo}
               alt="Kenroz Logo"
@@ -49,33 +48,28 @@ export default function Navbar(): JSX.Element {
             />
           </Link>
 
-          {/* Right-aligned links */}
-          <div className="hidden lg:flex items-center space-x-0 ">
-            <NavItem href="/#about" text="WHO WE ARE" />
-            <Separator />
-            <DropdownMenu label="WHAT WE SERVE">
-              {serviceLinks.map((service) => (
-                <DropdownItem
-                  key={service.name}
-                  label={service.name}
-                  href={"/services/" + service.href}
-                />
-              ))}
-            </DropdownMenu>
-            <Separator />
-            <NavItem href="/products" text="PRODUCTS" />
-            <Separator />
-            <NavItem
-              text="CONTACT"
-              onClick={() => scrollToSection("contact")}
-            />
-            <Separator />
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center space-x-0">
+            {MAIN_LINKS.map((item, idx) => (
+              <React.Fragment key={item.label}>
+                {item.href ? (
+                  <NavItem href={item.href} text={item.label} />
+                ) : (
+                  <NavItem
+                    text={item.label}
+                    onClick={() => item.sectionId && scrollToSection(item.sectionId)}
+                  />
+                )}
+                {idx !== MAIN_LINKS.length - 1 && <Separator />}
+              </React.Fragment>
+            ))}
           </div>
 
+          {/* Right actions */}
           <div className="flex gap-5 items-center">
             <ButtonLink
               href="/careers"
-              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border border-solid text-[#df2a33] transition-colors hover:bg-gradient-to-r hover:from-[#df2a33] hover:to-[#9B2730]  border-[#df2a33] bg-transparent  hover:text-white rounded-full"
+              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border border-solid text-[#df2a33] transition-colors hover:bg-gradient-to-r hover:from-[#df2a33] hover:to-[#9B2730] border-[#df2a33] bg-transparent hover:text-white rounded-full"
             >
               Careers
             </ButtonLink>
@@ -117,35 +111,31 @@ export default function Navbar(): JSX.Element {
               className="lg:hidden overflow-hidden"
             >
               <div className="py-4 space-y-2 border-t border-gray-200/50">
-                <MobileNavItem
-                  href="/"
-                  text="WHO WE ARE"
-                  onClick={() => setIsMenuOpen(false)}
-                />
-                <MobileNavItem
-                  text="WHAT WE DO"
-                  onClick={() => scrollToSection("about")}
-                />
-                <MobileNavItem
-                  text="WHAT WE SERVE"
-                  onClick={() => scrollToSection("services")}
-                />
-                <MobileNavItem
-                  href="/products"
-                  text="PRODUCTS"
-                  onClick={() => setIsMenuOpen(false)}
-                />
-                <MobileNavItem
-                  href="/careers"
-                  text="CAREERS"
-                  onClick={() => setIsMenuOpen(false)}
-                />
-                <MobileNavItem
-                  text="CONTACT"
-                  onClick={() => scrollToSection("contact")}
-                />
+                {MAIN_LINKS.map((item) =>
+                  item.href ? (
+                    <MobileNavItem
+                      key={item.label}
+                      href={item.href}
+                      text={item.label}
+                      onClick={() => setIsMenuOpen(false)}
+                    />
+                  ) : (
+                    <MobileNavItem
+                      key={item.label}
+                      text={item.label}
+                      onClick={() => item.sectionId && scrollToSection(item.sectionId)}
+                    />
+                  )
+                )}
                 <div className="pt-2 flex flex-col gap-2">
-                  <ButtonLink 
+                  <ButtonLink
+                    href="/careers"
+                    className="w-full justify-center"
+                    mobile
+                  >
+                    Careers
+                  </ButtonLink>
+                  <ButtonLink
                     href="/contact-us?p=hire"
                     className="w-full justify-center"
                     mobile
@@ -167,10 +157,7 @@ export default function Navbar(): JSX.Element {
 
 function Separator(): JSX.Element {
   return (
-    <span
-      className="mx-4 text-gray-300 select-none font-bold"
-      aria-hidden="true"
-    >
+    <span className="mx-4 text-gray-300 select-none font-bold" aria-hidden="true">
       |
     </span>
   );
@@ -183,12 +170,7 @@ interface NavItemProps {
   className?: React.HTMLAttributes<HTMLAnchorElement>["className"];
 }
 
-function NavItem({
-  href,
-  text,
-  onClick,
-  className,
-}: NavItemProps): JSX.Element {
+function NavItem({ href, text, onClick, className }: NavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
@@ -214,62 +196,6 @@ function NavItem({
   );
 }
 
-interface DropdownMenuProps {
-  label: string;
-  children: ReactNode;
-}
-
-function DropdownMenu({ label, children }: DropdownMenuProps): JSX.Element {
-  const [open, setOpen] = useState<boolean>(false);
-
-  return (
-    <div
-      className="relative px-1"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        type="button"
-        className="text-sm font-semibold text-gray-700 hover:text-[#df2a33] transition-colors duration-200 flex items-center gap-1"
-        aria-haspopup="menu"
-        aria-expanded={open}
-      >
-        {label} <ChevronDown className="w-4 h-4" />
-      </button>
-
-      {open && (
-        <div
-          role="menu"
-          className="absolute left-0 mt-2 bg-white border border-gray-200 shadow-lg rounded-lg min-w-[220px] z-10"
-        >
-          {children}
-        </div>
-      )}
-    </div>
-  );
-}
-
-interface DropdownItemProps {
-  label: string;
-  href: string;
-  onClick?: () => void;
-}
-
-function DropdownItem({ label, href, onClick }: DropdownItemProps): JSX.Element {
-  return (
-    <div role="none">
-      <Link href={href}
-        role="menuitem"
-        className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#fffde7] hover:text-[#df2a33] cursor-pointer transition-colors duration-200"
-        onClick={onClick}
-      >
-        {label}
-      </Link>
-      <div className="border-t border-gray-100" />
-    </div>
-  );
-}
-
 interface ButtonLinkProps {
   href: string;
   children: React.ReactNode;
@@ -289,7 +215,7 @@ export function ButtonLink({
       role="button"
       className={cn(
         `inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3
-        border-[#df2a33] transition-colors bg-gradient-to-r from-[#df2a33] to-[#9B2730] 
+        border-[#df2a33] transition-colors bg-gradient-to-r from-[#df2a33] to-[#9B2730]
         hover:from-[#9B2730] hover:to-[#df2a33] text-white rounded-full
         transition-all duration-200`,
         mobile && "w-full justify-center",
@@ -307,11 +233,7 @@ interface MobileNavItemProps {
   onClick?: () => void;
 }
 
-function MobileNavItem({
-  href,
-  text,
-  onClick,
-}: MobileNavItemProps): JSX.Element {
+function MobileNavItem({ href, text, onClick }: MobileNavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
