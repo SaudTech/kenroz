@@ -15,6 +15,7 @@ const MAIN_LINKS: MainLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
   { label: "Services", href: "/#services" },
+  { label: "Products", href: "/products" },
   { label: "Tech", href: "/#tech" },
   { label: "Clients", href: "/#clients" },
   { label: "FAQ", href: "/#faq" },
@@ -25,10 +26,16 @@ export default function Navbar(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const scrollToSection = useCallback((sectionId: string) => {
-    if (!sectionId) return;
-    const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpen(false);
+    if (sectionId.startsWith("/#")) {
+      if (!sectionId) return;
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false);
+    } else {
+      const href = sectionId.startsWith("/") ? sectionId : `/#${sectionId}`;
+      window.location.href = href;
+      setIsMenuOpen(false);
+    }
   }, []);
 
   return (
@@ -36,7 +43,11 @@ export default function Navbar(): JSX.Element {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center" aria-label="Kenroz - Home">
+          <Link
+            href="/"
+            className="flex items-center"
+            aria-label="Kenroz - Home"
+          >
             <Image
               src={logo}
               alt="Kenroz Logo"
@@ -56,7 +67,9 @@ export default function Navbar(): JSX.Element {
                 ) : (
                   <NavItem
                     text={item.label}
-                    onClick={() => item.sectionId && scrollToSection(item.sectionId)}
+                    onClick={() =>
+                      item.sectionId && scrollToSection(item.sectionId)
+                    }
                   />
                 )}
                 {idx !== MAIN_LINKS.length - 1 && <Separator />}
@@ -68,7 +81,7 @@ export default function Navbar(): JSX.Element {
           <div className="flex gap-5 items-center">
             <ButtonLink
               href="/contact-us?p=hire"
-              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-[#df2a33] transition-colors bg-gradient-to-r from-[#df2a33] to-[#9B2730] hover:from-[#9B2730] hover:to-[#df2a33] text-white rounded-full"
+              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-primary transition-colors bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white rounded-full"
             >
               <Phone className="me-2 h-5 w-5" />
               Hire an Expert
@@ -116,7 +129,9 @@ export default function Navbar(): JSX.Element {
                     <MobileNavItem
                       key={item.label}
                       text={item.label}
-                      onClick={() => item.sectionId && scrollToSection(item.sectionId)}
+                      onClick={() =>
+                        item.sectionId && scrollToSection(item.sectionId)
+                      }
                     />
                   )
                 )}
@@ -143,7 +158,10 @@ export default function Navbar(): JSX.Element {
 
 function Separator(): JSX.Element {
   return (
-    <span className="mx-4 text-gray-300 select-none font-bold" aria-hidden="true">
+    <span
+      className="mx-4 text-gray-300 select-none font-bold"
+      aria-hidden="true"
+    >
       |
     </span>
   );
@@ -156,12 +174,17 @@ interface NavItemProps {
   className?: React.HTMLAttributes<HTMLAnchorElement>["className"];
 }
 
-function NavItem({ href, text, onClick, className }: NavItemProps): JSX.Element {
+function NavItem({
+  href,
+  text,
+  onClick,
+  className,
+}: NavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
       className={cn(
-        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#df2a33] transition-colors duration-200",
+        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200",
         className
       )}
       onClick={onClick}
@@ -173,7 +196,7 @@ function NavItem({ href, text, onClick, className }: NavItemProps): JSX.Element 
       type="button"
       onClick={onClick}
       className={cn(
-        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-[#df2a33] transition-colors duration-200",
+        "px-1 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200",
         className
       )}
     >
@@ -201,8 +224,8 @@ export function ButtonLink({
       role="button"
       className={cn(
         `inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3
-        border-[#df2a33] transition-colors bg-gradient-to-r from-[#df2a33] to-[#9B2730]
-        hover:from-[#9B2730] hover:to-[#df2a33] text-white rounded-full
+        border-primary transition-colors bg-gradient-to-r from-primary to-secondary
+        hover:from-secondary hover:to-primary text-white rounded-full
         transition-all duration-200`,
         mobile && "w-full justify-center",
         className
@@ -219,11 +242,15 @@ interface MobileNavItemProps {
   onClick?: () => void;
 }
 
-function MobileNavItem({ href, text, onClick }: MobileNavItemProps): JSX.Element {
+function MobileNavItem({
+  href,
+  text,
+  onClick,
+}: MobileNavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
-      className="block text-gray-700 hover:text-[#df2a33] hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="block text-gray-700 hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
       onClick={onClick}
     >
       {text}
@@ -232,7 +259,7 @@ function MobileNavItem({ href, text, onClick }: MobileNavItemProps): JSX.Element
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left text-gray-700 hover:text-[#df2a33] hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="w-full text-left text-gray-700 hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
     >
       {text}
     </button>

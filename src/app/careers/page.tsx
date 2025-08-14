@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 
 export default function CareersPage() {
   return (
-    <div className="bg-gradient-to-br from-[#df2a33]/10 via-white to-[#9B2730]/10 min-h-screen py-16">
+    <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 min-h-screen py-16">
       <div className="container mx-auto px-4 max-w-4xl">
         <header className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#9B2730] via-[#df2a33] to-black bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
             Careers
           </h1>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
@@ -32,7 +32,7 @@ export default function CareersPage() {
               <strong>Positions Open:</strong> Multiple
             </p>
             <p className="text-gray-700">
-              To apply, send your resume and project links to <a href="mailto:hr@kenroz.com" className="text-[#df2a33] font-semibold">hr@kenroz.com</a>.
+              To apply, send your resume and project links to <a href="mailto:hr@kenroz.com" className="text-primary font-semibold">hr@kenroz.com</a>.
             </p>
           </div>
         </section>

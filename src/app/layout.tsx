@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
+import { Section } from "./page";
 
 const font = Noto_Serif({
   variable: "--font-serif",
@@ -15,19 +16,20 @@ const font = Noto_Serif({
 export const metadata: Metadata = {
   title: {
     default: "Kenroz - Leading IT Solutions & Software Development Company",
-    template: "%s | Kenroz"
+    template: "%s | Kenroz",
   },
-  description: "Kenroz delivers innovative IT solutions including Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development, Digital Marketing, and custom software products like HRMS, Payroll, and ZATCA taxation systems. Empowering businesses to lead with clarity, transform with technology, and excel with confidence.",
+  description:
+    "Kenroz delivers innovative IT solutions including Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development, Digital Marketing, and custom software products like HRMS, Payroll, and ZATCA taxation systems. Empowering businesses to lead with clarity, transform with technology, and excel with confidence.",
   keywords: [
-    "IT solutions", 
-    "Microsoft Dynamics 365", 
-    "Cloud Solutions", 
-    "Web Development", 
-    "Mobile Development", 
-    "Digital Marketing", 
-    "HRMS", 
-    "Payroll", 
-    "ZATCA", 
+    "IT solutions",
+    "Microsoft Dynamics 365",
+    "Cloud Solutions",
+    "Web Development",
+    "Mobile Development",
+    "Digital Marketing",
+    "HRMS",
+    "Payroll",
+    "ZATCA",
     "Software Development",
     "Saudi Arabia IT company",
     "Enterprise software",
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     "Digital transformation",
     "IT consulting",
     "Cloud migration",
-    "DevOps solutions"
+    "DevOps solutions",
   ],
   authors: [{ name: "Kenroz", url: "https://kenroz.com" }],
   creator: "Kenroz",
@@ -46,37 +48,39 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://kenroz.com'),
+  metadataBase: new URL("https://kenroz.com"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
     languages: {
-      'en-US': '/en-US',
-      'ar-SA': '/ar-SA',
+      "en-US": "/en-US",
+      "ar-SA": "/ar-SA",
     },
   },
   openGraph: {
     title: "Kenroz - Leading IT Solutions & Software Development Company",
-    description: "Empowering businesses to lead with clarity, transform with technology, and excel with confidence. Expert IT solutions and custom software development in Saudi Arabia.",
+    description:
+      "Empowering businesses to lead with clarity, transform with technology, and excel with confidence. Expert IT solutions and custom software development in Saudi Arabia.",
     url: "https://kenroz.com",
     siteName: "Kenroz",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: '/logo.png',
+        url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: 'Kenroz - IT Solutions Company',
+        alt: "Kenroz - IT Solutions Company",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kenroz - Leading IT Solutions & Software Development Company",
-    description: "Empowering businesses to lead with clarity, transform with technology, and excel with confidence.",
+    description:
+      "Empowering businesses to lead with clarity, transform with technology, and excel with confidence.",
     site: "@kenroz",
     creator: "@kenroz",
-    images: ['/logo.png'],
+    images: ["/logo.png"],
   },
   robots: {
     index: true,
@@ -92,12 +96,12 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/logo.png',
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
   },
-  manifest: '/manifest.json',
-  category: 'technology',
+  manifest: "/manifest.json",
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -108,23 +112,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <StructuredData 
-          type="organization" 
+        <StructuredData
+          type="organization"
           data={{
             name: "Kenroz",
-            description: "Leading IT solutions and software development company specializing in Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development, and custom software products.",
+            description:
+              "Leading IT solutions and software development company specializing in Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development, and custom software products.",
             url: "https://kenroz.com",
             logo: "https://kenroz.com/logo.png",
             contactPoint: {
               "@type": "ContactPoint",
-              "telephone": "+966-XX-XXX-XXXX",
-              "contactType": "customer service",
-              "availableLanguage": ["English", "Arabic"]
+              telephone: "+966-XX-XXX-XXXX",
+              contactType: "customer service",
+              availableLanguage: ["English", "Arabic"],
             },
             address: {
               "@type": "PostalAddress",
-              "addressCountry": "SA",
-              "addressRegion": "Riyadh"
+              addressCountry: "SA",
+              addressRegion: "Riyadh",
             },
             foundingDate: "2020",
             numberOfEmployees: "50-100",
@@ -133,19 +138,20 @@ export default function RootLayout({
               "Microsoft Dynamics 365 Implementation",
               "Cloud Solutions and DevOps",
               "Web Application Development",
-              "Mobile Application Development", 
+              "Mobile Application Development",
               "Digital Marketing Services",
-              "IT Outsourcing Services"
-            ]
+              "IT Outsourcing Services",
+            ],
           }}
         />
-        <StructuredData 
-          type="website" 
+        <StructuredData
+          type="website"
           data={{
             name: "Kenroz",
             url: "https://kenroz.com",
-            description: "Leading IT solutions and software development company",
-            inLanguage: "en-US"
+            description:
+              "Leading IT solutions and software development company",
+            inLanguage: "en-US",
           }}
         />
       </head>
@@ -155,7 +161,9 @@ export default function RootLayout({
         <PerformanceOptimizer />
         <Navbar />
         <main className="mt-[64.89px]">{children}</main>
-        <Footer />
+        <Section is="even">
+          <Footer />
+        </Section>
       </body>
     </html>
   );

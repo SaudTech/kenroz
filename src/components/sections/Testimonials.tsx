@@ -29,7 +29,7 @@ export default function Testimonials() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mt-4 mb-4">
               What Our{' '}
-              <span className="bg-gradient-to-r from-[#9B2730] to-[#df2a33] bg-clip-text text-transparent">Clients Say</span>
+              <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">Clients Say</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Real feedback from real clients who&apos;ve experienced the Kenroz difference</p>
           </div>
@@ -46,7 +46,7 @@ export default function Testimonials() {
                 <p className="text-gray-700 mb-4 italic leading-relaxed">&quot;{testimonial.content}&quot;</p>
                 <div>
                   <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                  <p className="text-[#df2a33] text-sm">{testimonial.role}</p>
+                  <p className="text-primary text-sm">{testimonial.role}</p>
                 </div>
               </div>
             ))}

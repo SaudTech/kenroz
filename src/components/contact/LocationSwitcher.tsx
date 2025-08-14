@@ -147,13 +147,13 @@ function LocationSwitcher({
               <Card className="border shadow-lg bg-white  transition-colors duration-200 h-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base">
-                    <Building2 className="w-4 h-4 text-[#9B2730] transition-colors" />
+                    <Building2 className="w-4 h-4 text-secondary transition-colors" />
                     {info.label}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-4 h-4 text-[#9B2730] transition-colors" />
+                    <MapPin className="w-4 h-4 text-secondary transition-colors" />
 
                     <p className="text-sm text-gray-700">
                       {info.address}
@@ -162,7 +162,7 @@ function LocationSwitcher({
 
                   {info.phone && (
                     <div className="flex items-center gap-3">
-                      <Phone className="w-4 h-4 text-[#9B2730]  transition-colors" />
+                      <Phone className="w-4 h-4 text-secondary  transition-colors" />
                       <a
                         href={`tel:${info.phone.replace(/\s/g, "")}`}
                         className="text-sm text-gray-700 "
@@ -174,7 +174,7 @@ function LocationSwitcher({
 
                   {info.email && (
                     <div className="flex items-center gap-3">
-                      <Mail className="w-4 h-4 text-[#9B2730] group-hover:text-white transition-colors" />
+                      <Mail className="w-4 h-4 text-secondary group-hover:text-white transition-colors" />
                       <a
                         href={`mailto:${info.email}`}
                         className="text-sm text-gray-700 group-hover:text-white/95"
@@ -186,7 +186,7 @@ function LocationSwitcher({
 
                   {info.hours && (
                     <div className="flex items-center gap-3">
-                      <Clock className="w-4 h-4 text-[#9B2730] group-hover:text-white transition-colors" />
+                      <Clock className="w-4 h-4 text-secondary group-hover:text-white transition-colors" />
                       <p className="text-sm text-gray-700 group-hover:text-white/95">
                         {info.hours}
                       </p>
@@ -196,7 +196,7 @@ function LocationSwitcher({
                   <div className="pt-1">
                     <Button
                       variant="ghost"
-                      className="text-sm px-3 py-1.5 bg-white hover:bg-white/90 text-[#9B2730] group-hover:text-[#9B2730] rounded-full"
+                      className="text-sm px-3 py-1.5 bg-white hover:bg-white/90 text-secondary group-hover:text-secondary rounded-full"
                       asChild
                     >
                       <a

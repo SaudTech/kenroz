@@ -12,7 +12,7 @@ export default function Hero() {
   const easeInOut = [0.42, 0, 0.58, 1] as const;
 
   return (
-    <section className="flex flex-col items-center justify-center text-center relative overflow-hidden py-16 px-4 w-full min-h-[700px] lg:h-[850px] md:px-8">
+    <section className="flex flex-col items-center justify-center text-center relative overflow-hidden py-8 px-4 w-full h-[calc(100vh-64px)] md:px-8">
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
@@ -27,7 +27,7 @@ export default function Hero() {
 
       {/* Centered Content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center space-y-8 max-w-3xl"
+        className="relative z-10 flex flex-col items-center space-y-8 w-full"
         initial={{ opacity: 0, x: 0 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: easeOut }}
@@ -44,14 +44,14 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            Empowering Businesses to
-          </motion.span>
-          <motion.span
+            Empowering Businesses to{" "}
+          {/* </motion.span> */}
+          {/* <motion.span
             className="bg-gradient-to-r from-[#fffde7] via-white to-[#fffde7] bg-clip-text text-transparent"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-          >
+          > */}
             Lead, Transform & Excel
           </motion.span>
         </motion.h1>
@@ -86,7 +86,7 @@ export default function Hero() {
           {valueProps.map((prop, index) => (
             <motion.div
               key={prop}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium hover:bg-[#df2a33] transition-colors"
+              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium hover:bg-primary transition-colors"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
@@ -107,7 +107,7 @@ export default function Hero() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="#services"
-              className="inline-flex items-center gap-2 bg-[#fffde7] text-[#df2a33] px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300 hover:bg-transparent hover:border-white hover:text-white border border-solid"
+              className="inline-flex items-center gap-2 bg-[#fffde7] text-primary px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300 hover:bg-transparent hover:border-white hover:text-white border border-solid"
             >
               Explore Our Services
               <ArrowRight className="w-5 h-5" />

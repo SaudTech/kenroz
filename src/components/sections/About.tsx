@@ -12,18 +12,15 @@ import {
 } from "lucide-react";
 import DescriptionToggle from "../DescriptionToggle";
 import React from "react";
+import Partners from "./Partners";
 
-// --- Animations ---
+// --- Animations (kept snappy) ---
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 0 },
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.7,
-      // easeOut cubic-bezier
-      ease: [0.16, 1, 0.3, 1],
-    },
+    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -31,12 +28,10 @@ const containerStagger: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
+
 function FeatureCard({
   icon,
   title,
@@ -50,27 +45,26 @@ function FeatureCard({
   return (
     <motion.div
       variants={fadeUp}
-      whileHover={{ scale: 1.02, y: -4 }}
-      className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transform transition-all duration-300 h-full"
+      className="bg-white rounded-xl p-5 shadow-md border border-gray-100 transition-all duration-200 h-[230px]"
     >
-      <div className="flex items-center mb-6">
+      <div className="flex items-center mb-4">
         <motion.div
           initial={{ scale: 0.9, rotate: -2, opacity: 0 }}
           whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ type: "spring", stiffness: 240, damping: 18 }}
-          className="w-14 h-14 bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-xl flex items-center justify-center mr-4 shadow-lg"
+          className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mr-3 shadow-md"
         >
-          <Icon className="w-7 h-7 text-white" />
+          <Icon className="w-5 h-5 text-white" />
         </motion.div>
-        <h4 className="text-xl font-bold text-gray-900">{title}</h4>
+        <h4 className="text-lg font-bold text-gray-900">{title}</h4>
       </div>
-      <div className="text-gray-600 leading-relaxed">{children}</div>
+      <div className="text-gray-600 leading-relaxed text-sm">{children}</div>
     </motion.div>
   );
 }
 
-function ValueCard({
+function ValueItem({
   icon: Icon,
   title,
   description,
@@ -81,26 +75,22 @@ function ValueCard({
 }) {
   return (
     <motion.div variants={fadeUp} className="text-center">
-      <motion.div
-        whileHover={{ scale: 1.08, rotate: 3 }}
-        className="w-16 h-16 group bg-gradient-to-br transition-colors duration-300 from-[#fffde7] to-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg border border-[#df2a33]/20 group-hover:shadow-xl hover:bg-gradient-to-r hover:from-[#df2a33] hover:to-[#9B2730]"
-      >
-        <Icon className="w-8 h-8 text-[#df2a33] group-hover:text-white" />
-      </motion.div>
-      <h4 className="text-lg font-bold text-black mb-2">{title}</h4>
-      <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+      <div className="w-12 h-12 group bg-gradient-to-br from-[#fffde7] to-white rounded-xl flex items-center justify-center mx-auto mb-2.5 shadow border border-primary/20  transition">
+        <Icon className="w-6 h-6 text-primary group-hover:text-secondary" />
+      </div>
+      <h4 className="text-base font-semibold text-black mb-1">{title}</h4>
+      <p className="text-gray-600 text-sm leading-snug">{description}</p>
     </motion.div>
   );
 }
 
 export default function About() {
-  const companyDescription = `At Kenroz, we believe in empowering businesses to lead with clarity, transform with technology, and excel with confidence. We are a forward-thinking IT solutions company committed to delivering high-impact digital services and innovative software products tailored to the unique needs of each client. From startups to enterprises, we help organizations thrive in a connected, competitive world.
+  const companyDescription = `At Kenroz, we empower businesses to lead with clarity, transform with technology, and excel with confidence. We deliver high-impact digital services and software products tailored to each client. From startups to enterprises, we help organizations thrive in a connected, competitive world.
 
-With a strong foundation in enterprise solutions like Microsoft Dynamics 365, custom software development, cloud and DevOps, and industry-focused platforms such as HRMS, payroll, and taxation systems, our team blends technical expertise with strategic insight. Our approach is simple — we listen, we design, we build, and we support — ensuring that every solution is not just functional, but scalable, secure, and future-ready.
+With strengths in Microsoft Dynamics 365, custom development, cloud & DevOps, and platforms such as HRMS, payroll, and taxation systems, we blend technical depth with strategy. Our approach is simple — listen, design, build, support — so every solution is functional, scalable, secure, and future-ready.
 
-Driven by values of transparency, agility, and excellence, Kenroz is more than just a service provider — we are a technology partner invested in your success. Whether you're looking to modernize operations, enhance digital engagement, or launch a new platform, we're here to help you lead, transform, and excel — every step of the way.`;
+Guided by transparency, agility, and excellence, we partner in your success. Whether modernizing operations, enhancing engagement, or launching a new platform, we help you lead, transform, and excel.`;
 
-  const [activeTab, setActiveTab] = React.useState(0);
   const values = [
     {
       icon: Target,
@@ -111,8 +101,7 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
     {
       icon: Zap,
       title: "Agility",
-      description:
-        "Rapid adaptation to changing business needs and market demands",
+      description: "Rapidly adapt to evolving business needs and markets",
     },
     {
       icon: Award,
@@ -122,155 +111,102 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
     {
       icon: Globe,
       title: "Innovation",
-      description:
-        "Cutting-edge technology solutions for tomorrow's challenges",
+      description: "Cutting-edge tech for tomorrow’s challenges",
     },
   ];
+
+  const TABS = [
+    "Our Mission",
+    "Why Kenroz?",
+    "Our Expertise",
+    "Core Values",
+  ] as const;
+  const [activeTab, setActiveTab] = React.useState<number>(0);
 
   return (
     <section
       id="about"
-      className="relative py-20 bg-gradient-to-br from-white via-tertiary to-white overflow-hidden bg-red-300"
+      className="relative overflow-hidden"
     >
-      {/* Background Elements (animate in) */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="absolute top-40 -left-[30%] z-0 rotate-90 text-8xl lg:text-9xl font-extrabold tracking-[20px] lg:tracking-[40px] opacity-5 font-sans text-[#df2a33] pointer-events-none"
-      >
-        ABOUT
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.1 }}
-        className="absolute -top-16 -right-16 w-80 h-80 bg-gradient-to-br from-[#df2a33]/10 to-transparent rounded-full pointer-events-none"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.15 }}
-        className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-[#fffde7]/50 to-transparent rounded-full pointer-events-none"
-      />
+      {/* tighter vertical padding */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Header (smaller) */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          className="text-center mb-6"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-black">
+            About{" "}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Kenroz
+            </span>
+          </h2>
+        </motion.div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              About{" "}
-              <span className="bg-gradient-to-r from-[#df2a33] to-[#9B2730] bg-clip-text text-transparent">
-                Kenroz
-              </span>
-            </h2>
-          </motion.div>
+        {/* Company Story (compact) */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          className="max-w-4xl mx-auto mb-6 text-center"
+        >
+          <DescriptionToggle description={companyDescription} />
+        </motion.div>
 
-          {/* Company Story */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-            className="max-w-4xl mx-auto mb-20 text-center"
-          >
-            <DescriptionToggle description={companyDescription} />
-          </motion.div>
-
-          {/* Company Values */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.4 }}
-            className="mb-20"
-          >
-            <h3 className="text-3xl font-bold text-center text-black mb-12">
-              Our Core Values
-            </h3>
-            <motion.div
-              variants={containerStagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-8"
-            >
-              {values.map((value) => (
-                <ValueCard
-                  key={value.title}
-                  icon={value.icon}
-                  title={value.title}
-                  description={value.description}
-                />
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Main Layout */}
-          <div className=" max-w-3xl mx-auto gap-8 mb-16 items-stretch">
-            {/* Left Section - Tabs & Feature Cards */}
-            <div className="lg:col-span-3 h-full">
-              <div className="flex h-full">
-                {/* Tab Buttons */}
-                <div className="flex flex-col w-48 pr-4 border-r border-gray-200 dark:border-gray-700 overflow-auto">
-                  {["Our Mission", "Why Kenroz?", "Our Expertise"].map(
-                    (tab, idx) => (
-                      <button
-                        key={tab}
-                        onClick={() => setActiveTab(idx)}
-                        className={`py-3 px-4 text-left font-medium rounded-lg transition-colors ${
-                          activeTab === idx
-                            ? "bg-[#df2a33] text-white"
-                            : "hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200"
-                        }`}
-                      >
-                        {tab}
-                      </button>
-                    )
-                  )}
+        {/* Main Layout capped to viewport: left tabs + right panel.
+            On lg+: occupy ~75vh, inner panel scrolls if needed. */}
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-2xl">
+            <div className="h-[230px] flex">
+              {/* Tabs */}
+              <div className="w-40 lg:w-48 pr-3 border-r border-gray-200 overflow-auto">
+                <div className="sticky top-0 py-1 space-y-2 h-full flex flex-col justify-between">
+                  {TABS.map((tab, idx) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(idx)}
+                      className={`w-full py-2.5 px-3 text-left text-sm font-medium rounded-md transition-colors ${
+                        activeTab === idx
+                          ? "bg-primary text-white"
+                          : "hover:bg-primary/10 text-gray-800"
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
                 </div>
+              </div>
 
-                {/* Tab Content */}
-                <div className="flex-1 pl-6">
-                  <motion.div
-                    key={activeTab}
-                    variants={containerStagger}
-                    initial="hidden"
-                    animate="show"
-                    className="h-full flex flex-col"
-                  >
-                    {/* Wrap each tab panel in a full-height container */}
+              {/* Panel (scrollable) */}
+              <div className="flex-1 pl-4 min-w-0 ">
+                <motion.div
+                  key={activeTab}
+                  variants={containerStagger}
+                  initial="hidden"
+                  animate="show"
+                  className="h-full min-h-0 flex flex-col"
+                >
+                  <div className="h-full min-h-0 overflow-y-auto">
                     {activeTab === 0 && (
-                      <div className="h-full">
-                        <FeatureCard
-                          icon={Rocket}
-                          title="Our Mission"
-                        >
-                          <DescriptionToggle description="We anticipate and solve tomorrow's challenges with tailored digital solutions that drive sustainable growth. Our mission is to be the catalyst that transforms your business vision into digital reality, ensuring you stay ahead in an ever-evolving technological landscape." />
-                        </FeatureCard>
-                      </div>
+                      <FeatureCard icon={Rocket} title="Our Mission">
+                        <DescriptionToggle description="We anticipate and solve tomorrow's challenges with tailored digital solutions that drive sustainable growth. Our mission is to be the catalyst that transforms your business vision into digital reality, ensuring you stay ahead in an ever-evolving technological landscape." />
+                      </FeatureCard>
                     )}
 
                     {activeTab === 1 && (
                       <motion.div
                         variants={fadeUp}
-                        whileHover={{ scale: 1.03 }}
-                        className="bg-gradient-to-br from-[#df2a33] to-[#9B2730] rounded-2xl p-8 text-white shadow-2xl border border-[#9B2730]/20 transition-transform duration-300 h-full flex flex-col"
+                        className="bg-gradient-to-br from-primary to-secondary rounded-xl p-5 text-white shadow-lg border border-secondary/20 transition-transform duration-200 h-[230px]"
                       >
-                        <h4 className="text-xl font-bold mb-6 flex items-center">
-                          <Shield className="w-7 h-7 mr-3 text-[#fffde7]" />
+                        <h4 className="text-lg font-bold mb-4 flex items-center">
+                          <Shield className="w-5 h-5 mr-2 text-[#fffde7]" />
                           Why Choose Kenroz?
                         </h4>
-                        <ul className="space-y-4 text-[#fffde7] flex-1">
+                        <ul className="space-y-3 text-[#fffde7]">
                           {[
                             "Strategic technology roadmap & consulting",
                             "End-to-end implementation with industry best practices",
@@ -280,10 +216,10 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
                             <motion.li
                               key={line}
                               variants={fadeUp}
-                              className="flex items-start gap-3"
+                              className="flex items-start gap-2"
                             >
-                              <div className="w-2 h-2 bg-[#fffde7] rounded-full mt-2 flex-shrink-0" />
-                              <span>{line}</span>
+                              <div className="w-1.5 h-1.5 bg-[#fffde7] rounded-full mt-2 flex-shrink-0" />
+                              <span className="text-sm">{line}</span>
                             </motion.li>
                           ))}
                         </ul>
@@ -291,22 +227,71 @@ Driven by values of transparency, agility, and excellence, Kenroz is more than j
                     )}
 
                     {activeTab === 2 && (
-                      <div className="h-full">
-                        <FeatureCard
-                          icon={Code}
-                          title="Our Expertise"
-                        >
-                          <DescriptionToggle description="Leveraging cutting-edge technologies including React, Node.js, Microsoft Dynamics 365, cloud-native solutions, and modern DevOps practices. We combine technical excellence with strategic business insight to deliver solutions that perform at scale and adapt to your evolving needs." />
-                        </FeatureCard>
-                      </div>
+                      <FeatureCard icon={Code} title="Our Expertise">
+                        <DescriptionToggle description="We leverage React, Node.js, Microsoft Dynamics 365, cloud-native architectures, and modern DevOps. Our blend of technical excellence and business insight delivers solutions that perform at scale and evolve with your needs." />
+                      </FeatureCard>
                     )}
-                  </motion.div>
-                </div>
+
+                    {activeTab === 3 && (
+                      <motion.div
+                        variants={fadeUp}
+                        className="bg-white rounded-xl p-5 shadow-md border border-gray-100 h-[230px]"
+                      >
+                        <h4 className="text-lg font-bold text-black mb-4 text-center">
+                          Our Core Values
+                        </h4>
+                        <motion.div
+                          variants={containerStagger}
+                          initial="hidden"
+                          whileInView="show"
+                          viewport={{ once: true, amount: 0.2 }}
+                          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+                        >
+                          {values.map((v) => (
+                            <ValueItem
+                              key={v.title}
+                              icon={v.icon}
+                              title={v.title}
+                              description={v.description}
+                            />
+                          ))}
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
               </div>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
+
+      {/* background accents toned down and auto-hidden by container height */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 0.04, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="pointer-events-none absolute top-28 -left-[28%] rotate-90 text-7xl lg:text-8xl font-extrabold tracking-[16px] lg:tracking-[36px] text-primary hidden md:block"
+      >
+        ABOUT
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 0.08, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.05 }}
+        className="absolute -top-12 -right-12 w-56 h-56 bg-gradient-to-br from-primary/10 to-transparent rounded-full pointer-events-none"
+      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 0.06, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="absolute bottom-4 left-4 w-64 h-64 bg-gradient-to-tr from-[#fffde7]/50 to-transparent rounded-full pointer-events-none"
+      />
+
+      <Partners />
     </section>
   );
 }

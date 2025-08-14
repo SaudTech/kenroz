@@ -166,7 +166,7 @@ export default function EnhancedContactForm({
         {/* Contact Form */}
         <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50">
           <CardHeader className="space-y-4">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-[#9B2730] to-[#df2a33] bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
               Send us a message
             </CardTitle>
           </CardHeader>
@@ -186,7 +186,7 @@ export default function EnhancedContactForm({
                     className={`h-12 border-2 transition-all duration-200 ${
                       errors.firstName
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
+                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
                     }`}
                   />
                   {errors.firstName && (
@@ -205,7 +205,7 @@ export default function EnhancedContactForm({
                     value={formData.lastName}
                     onChange={handleChange}
                     placeholder="Your last name"
-                    className="h-12 border-2 border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20 transition-all duration-200"
+                    className="h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200"
                   />
                   {errors.lastName && (
                     <p className="text-sm text-red-600 flex items-center gap-1">
@@ -229,7 +229,7 @@ export default function EnhancedContactForm({
                     className={`h-12 border-2 transition-all duration-200 ${
                       errors.email
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
+                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
                     }`}
                   />
                   {errors.email && (
@@ -250,7 +250,7 @@ export default function EnhancedContactForm({
                     className={`h-12 border-2 transition-all duration-200 ${
                       errors.company
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
+                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
                     }`}
                   />
                   {errors.company && (
@@ -274,7 +274,7 @@ export default function EnhancedContactForm({
                   className={`border-2 transition-all h-[123px] duration-200 ${
                     errors.message
                       ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                      : "border-gray-200 focus:border-[#df2a33] focus:ring-[#df2a33]/20"
+                      : "border-gray-200 focus:border-primary focus:ring-primary/20"
                   }`}
                 />
                 {errors.message && (
@@ -299,7 +299,7 @@ export default function EnhancedContactForm({
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-14 rounded-full text-lg font-semibold bg-gradient-to-r from-[#df2a33] to-[#9B2730] hover:from-[#9B2730] hover:to-[#df2a33] text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full h-14 rounded-full text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
@@ -320,7 +320,7 @@ export default function EnhancedContactForm({
 
         {/* Contact Information */}
         {showContactInfo && (
-          <div className="bg-gradient-to-br from-[#9B2730] to-[#df2a33] rounded-xl p-8 text-white">
+          <div className="bg-gradient-to-br from-secondary to-primary rounded-xl p-8 text-white">
             <LocationSwitcher
               title="Our Offices"
               description="Choose your region to get in touch"
