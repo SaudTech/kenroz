@@ -61,7 +61,7 @@ export default function FAQ() {
               Frequently Asked{' '}
               <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">Questions</span>
             </h2>
-            <p className="text-gray-600">Get answers to common questions about our services and process</p>
+            <p className="text-gray-900">Get answers to common questions about our services and process</p>
           </div>
 
           <Accordion type="single" collapsible className="space-y-4">

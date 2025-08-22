@@ -82,7 +82,7 @@ export default function ContactForm({
             {displayTitle}
           </CardTitle>
           {displayDescription && (
-            <CardDescription className="text-lg text-gray-600 max-w-md mx-auto">
+            <CardDescription className="text-lg text-gray-900 max-w-md mx-auto">
               {displayDescription}
             </CardDescription>
           )}

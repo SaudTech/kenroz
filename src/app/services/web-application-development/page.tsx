@@ -166,7 +166,7 @@ export default function WebApplicationDevelopmentPage() {
                 Custom Web Application
                 <span className="block text-purple-600">Development</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Build powerful, scalable web applications that drive your
                 business forward. Our expert developers create custom solutions
                 using modern technologies and best practices for optimal
@@ -202,7 +202,7 @@ export default function WebApplicationDevelopmentPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why Choose Our Web Development Services?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               We deliver exceptional web applications with cutting-edge
               technology and user-focused design
             </p>
@@ -219,7 +219,7 @@ export default function WebApplicationDevelopmentPage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-900">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -233,7 +233,7 @@ export default function WebApplicationDevelopmentPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Technologies We Use
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               Modern, proven technologies for building robust and scalable web
               applications
             </p>
@@ -273,7 +273,7 @@ export default function WebApplicationDevelopmentPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Our Development Process
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               A systematic approach that ensures quality, timely delivery, and
               client satisfaction
             </p>
@@ -293,7 +293,7 @@ export default function WebApplicationDevelopmentPage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-4">
                     {step.section}
                   </h3>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                  <p className="text-gray-900 mb-6 text-sm leading-relaxed">
                     {step.description}
                   </p>
                 </div>

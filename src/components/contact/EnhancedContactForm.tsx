@@ -143,7 +143,7 @@ export default function EnhancedContactForm({
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               Message Sent Successfully!
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-900 mb-6">
               Thank you for contacting us. We&apos;ll get back to you within 24
               hours.
             </p>

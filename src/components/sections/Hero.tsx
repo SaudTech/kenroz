@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FlipWords } from "../ui/flip-words";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { ButtonLink } from "../Navbar";
 
 export default function Hero() {
   const valueProps = ["Future-ready solutions", "Expert team support", "Scalable & secure"];
@@ -105,13 +106,17 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 1.4 }}
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link
+            {/* <Link
               href="#services"
               className="inline-flex items-center gap-2 bg-[#fffde7] text-primary px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300 hover:bg-transparent hover:border-white hover:text-white border border-solid"
             >
               Explore Our Services
               <ArrowRight className="w-5 h-5" />
-            </Link>
+              </Link> */}
+            <ButtonLink href="#services">
+              Explore Our Services
+              <ArrowRight className="w-5 h-5 ms-2" />
+            </ButtonLink>
           </motion.div>
         </motion.div>
       </motion.div>

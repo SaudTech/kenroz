@@ -7,6 +7,8 @@ import FAQ from "@/components/sections/FAQ";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
 import { cn } from "@/lib/utils";
+import OurStory from "@/components/sections/OurStory";
+import StrategicPartner from "@/components/sections/StrategicPartner";
 
 export default function HomePage() {
   return (
@@ -31,7 +33,10 @@ export default function HomePage() {
           <Hero />
         </Section>
         <Section is="odd">
-          <About />
+          <OurStory />
+        </Section>
+        <Section is="odd">
+          <StrategicPartner />
         </Section>
         <Section is="even">
           <Services />
@@ -39,22 +44,15 @@ export default function HomePage() {
         <Section is="odd">
           <Technologies />
         </Section>
-        <Section is="even">
+        {/* <Section is="even">
           <Clients />
-        </Section>
-        <Section is="odd">
+        </Section> */}
+        {/* <Section is="odd">
           <FAQ />
-        </Section>
-        <Section is="even">
-          <EnhancedContactForm showContactInfo={true} />
-        </Section>
-
-        {/* <section
-          className="py-16"
-          id="contact"
-          aria-label="Contact Us"
-          >
-        </section> */}
+        </Section> */}
+        {/* <Section is="even">
+          <ShowLocations />
+        </Section> */}
       </div>
     </>
   );
@@ -75,9 +73,9 @@ export const Section = ({
     <section
       id={id}
       className={cn(
-        "w-full h-[calc(100vh-64px)] overflow-hidden bg-gradient-to-br",
+        "w-full min-h-[calc(100vh-64px)] h-full overflow-hidden",
         className,
-        is === "odd" ? "from:primary to:secondary" : "from:blue-300 to-yellow-500"
+        is === "odd" ? "bg-primary/10" : "from:blue-300 to-yellow-500"
       )}
     >
       {children}

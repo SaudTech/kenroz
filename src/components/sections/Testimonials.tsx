@@ -31,7 +31,7 @@ export default function Testimonials() {
               What Our{' '}
               <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">Clients Say</span>
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Real feedback from real clients who&apos;ve experienced the Kenroz difference</p>
+            <p className="text-gray-900 max-w-2xl mx-auto">Real feedback from real clients who&apos;ve experienced the Kenroz difference</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (

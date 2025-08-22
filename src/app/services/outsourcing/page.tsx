@@ -236,7 +236,7 @@ export default function page() {
                 IT Outsourcing
                 <span className="block text-indigo-600">Services</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Scale your development capabilities with our skilled
                 professionals. From dedicated teams to staff augmentation, we
                 provide flexible outsourcing solutions that integrate seamlessly
@@ -253,7 +253,7 @@ export default function page() {
                       <div className="text-2xl font-bold text-gray-900">
                         500+
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-gray-900">
                         Skilled Professionals
                       </div>
                     </div>
@@ -262,7 +262,7 @@ export default function page() {
                       <div className="text-2xl font-bold text-gray-900">
                         24/7
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-gray-900">
                         Global Coverage
                       </div>
                     </div>
@@ -270,7 +270,7 @@ export default function page() {
                   <div className="text-center p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg">
                     <DollarSign className="w-8 h-8 text-indigo-600 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-gray-900">60%</div>
-                    <div className="text-sm text-gray-600">Cost Reduction</div>
+                    <div className="text-sm text-gray-900">Cost Reduction</div>
                   </div>
                 </div>
               </div>
@@ -298,7 +298,7 @@ export default function page() {
                   <m.icon className="w-6 h-6" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{m.title}</h3>
-                <p className="text-gray-600">{m.description}</p>
+                <p className="text-gray-900">{m.description}</p>
               </li>
             ))}
           </ul>
@@ -339,7 +339,7 @@ export default function page() {
                 <w.icon className="w-6 h-6 text-indigo-600 mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-900">{w.title}</h3>
-                  <p className="text-gray-600 text-sm">{w.description}</p>
+                  <p className="text-gray-900 text-sm">{w.description}</p>
                 </div>
               </li>
             ))}
@@ -363,7 +363,7 @@ export default function page() {
                   {p.step}
                 </div>
                 <h3 className="font-semibold mb-1">{p.title}</h3>
-                <p className="text-gray-600 text-sm">{p.description}</p>
+                <p className="text-gray-900 text-sm">{p.description}</p>
               </li>
             ))}
           </ul>

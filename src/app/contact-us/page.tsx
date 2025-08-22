@@ -60,7 +60,7 @@ export default function ContactPage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
               Contact Us
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto leading-relaxed">
               Ready to take the next step? We&apos;re here to help you succeed. Reach
               out and let&apos;s discuss how we can work together to transform your business
               with innovative IT solutions.
@@ -81,7 +81,7 @@ export default function ContactPage() {
                   <span className="text-2xl">⚡</span>
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Quick Response</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-900 text-sm">
                   We respond to all inquiries within 24 hours during business days
                 </p>
               </div>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   <span className="text-2xl">🎯</span>
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Expert Consultation</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-900 text-sm">
                   Free initial consultation to understand your specific needs
                 </p>
               </div>
@@ -99,7 +99,7 @@ export default function ContactPage() {
                   <span className="text-2xl">🤝</span>
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">Trusted Partner</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-900 text-sm">
                   Long-term partnership approach with ongoing support
                 </p>
               </div>

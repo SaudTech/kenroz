@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import {
   Phone,
   Mail,
@@ -12,26 +11,22 @@ import {
   Linkedin,
   ArrowUp,
   ShieldCheck,
-  Award,
-  Clock,
-  Globe,
 } from "lucide-react";
 import { useCallback } from "react";
 import logo from "@/../public/logo.png";
-import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const quickLinks = ["About Us", "Services", "Portfolio", "Contact", "Blog"];
+  const quickLinks = ["About Us", "Services", "Products", "Contact Us", "Blog"];
   const services = [
     "Web Development",
     "Mobile Apps",
     "Cloud Solutions",
     "AI Integration",
-    "Consulting",
+    "Outsorucing",
   ];
   const resources = ["Case Studies", "Pricing", "Careers", "FAQ", "Status"];
   const socials = [
@@ -75,10 +70,6 @@ export default function Footer() {
                   priority
                   className="h-auto w-auto"
                 />
-                <span className="inline-flex items-center rounded-full bg-white/5 px-2.5 py-1 text-xs text-white/80 ring-1 ring-white/10">
-                  <ShieldCheck className="mr-1 h-3.5 w-3.5" aria-hidden />
-                  Enterprise-grade Delivery
-                </span>
               </div>
 
               <p className="text-white/80 leading-relaxed max-w-2xl text-sm sm:text-base">
@@ -137,11 +128,12 @@ export default function Footer() {
                 <h4 className="mb-3 font-semibold">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
                   {quickLinks.map((link) => {
-                    const id = link.toLowerCase().replace(/\s+/g, "");
+                    // Replace spaces with -
+                    const id = link.toLowerCase().replace(" ", "-");
                     return (
                       <li key={link}>
                         <a
-                          href={`#${id}`}
+                          href={`/${id}`}
                           onClick={(e) => handleAnchor(e, id)}
                           className="inline-block text-white/70 transition hover:text-white hover:translate-x-0.5"
                         >
@@ -207,81 +199,11 @@ export default function Footer() {
                 </ul>
               </div>
             </nav>
-          </section>
-          {/* Newsletter / Trust / Hours card */}
-          <div
-            className="
-              rounded-2xl bg-white/5 p-6 ring-1 ring-white/10
-              backdrop-blur supports-[backdrop-filter]:bg-white/10
-            "
-          >
-            <h3 className="text-lg font-semibold">Stay in the loop</h3>
-            <p className="mt-1 text-sm text-white/70">
-              Monthly insights on shipping faster, cutting cloud costs, and
-              improving security.
-            </p>
-            <form
-              className="mt-4 flex gap-2"
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Thanks! We’ll keep you updated.");
-              }}
-            >
-              <input
-                type="email"
-                required
-                placeholder="your@email.com"
-                className="
-                    w-full rounded-lg bg-black/40 px-3 py-2 text-sm text-white
-                    placeholder:text-white/50 ring-1 ring-white/15
-                    focus:outline-none focus:ring-2 focus:ring-primary
-                  "
-                aria-label="Email address"
-              />
-              <Button className="bg-primary hover:bg-[#c62930]">
-                Subscribe
-              </Button>
-            </form>
-
-
-            <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
-              <Globe className="h-3.5 w-3.5" />
-              <span>
-                Serving clients across India, Middle East, North Africa, EU & North America
-              </span>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
             <p className="text-xs sm:text-sm text-white/60">
-              © {new Date().getFullYear()} Kenroz. All rights reserved. Built
-              with care in Hyderabad.
+              © {new Date().getFullYear()} Kenroz. All rights reserved.
             </p>
+          </section>
 
-            <div className="flex items-center gap-2 text-xs text-white/60">
-              <span className="inline-flex items-center gap-1">
-                <span className="inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
-                Systems Operational
-              </span>
-              <span aria-hidden>·</span>
-              <Link
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="hover:text-white transition"
-              >
-                Status
-              </Link>
-              <span aria-hidden>·</span>
-              <Link
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="hover:text-white transition"
-              >
-                Sitemap
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
 

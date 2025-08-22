@@ -83,8 +83,8 @@ export default function Navbar(): JSX.Element {
               href="/contact-us?p=hire"
               className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-primary transition-colors bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white rounded-full"
             >
-              <Phone className="me-2 h-5 w-5" />
               Hire an Expert
+              <Phone className="ms-2 h-5 w-5" />
             </ButtonLink>
           </div>
 
@@ -141,8 +141,8 @@ export default function Navbar(): JSX.Element {
                     className="w-full justify-center"
                     mobile
                   >
-                    <Phone className="me-2 h-5 w-5" />
                     Hire an Expert
+                    <Phone className="ms-2 h-5 w-5" />
                   </ButtonLink>
                 </div>
               </div>
@@ -209,6 +209,7 @@ interface ButtonLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+  variant?: "default" | "secondary" | "outline";
   mobile?: boolean;
 }
 
@@ -216,6 +217,7 @@ export function ButtonLink({
   href,
   children,
   className,
+  variant,
   mobile = false,
 }: ButtonLinkProps): JSX.Element {
   return (
@@ -228,7 +230,9 @@ export function ButtonLink({
         hover:from-secondary hover:to-primary text-white rounded-full
         transition-all duration-200`,
         mobile && "w-full justify-center",
-        className
+        className,
+        variant === "secondary" &&
+          "bg-white text-primary hover:bg-secondary/80", 
       )}
     >
       {children}

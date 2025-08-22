@@ -79,7 +79,7 @@ export default function ProductsPage() {
           </motion.h1>
 
           <motion.p
-            className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
+            className="text-xl text-gray-900 leading-relaxed max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -134,7 +134,7 @@ export default function ProductsPage() {
                   </motion.h2>
 
                   <motion.p
-                    className="text-gray-600 leading-relaxed text-lg mb-6"
+                    className="text-gray-900 leading-relaxed text-lg mb-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}

@@ -69,7 +69,7 @@ export default function CombinedShowcase() {
             </span>{" "}
             & Their Words
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-900">
             Partnerships built on delivery, security, and reliability — in their
             own words.
           </p>

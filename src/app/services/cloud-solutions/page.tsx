@@ -125,7 +125,7 @@ export default function CloudSolutionsPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Cloud & DevOps Solutions</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               Accelerate your journey to the cloud and DevOps maturity with a secure, automated, and reliable tech stack.
             </p>
           </div>
@@ -156,7 +156,7 @@ export default function CloudSolutionsPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Us?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               Drive productivity and innovation with cloud-native agility and DevOps discipline.
             </p>
           </div>
@@ -168,7 +168,7 @@ export default function CloudSolutionsPage() {
               >
                 <div className="mb-4">{b.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{b.title}</h3>
-                <p className="text-gray-600">{b.description}</p>
+                <p className="text-gray-900">{b.description}</p>
               </div>
             ))}
           </div>
@@ -180,7 +180,7 @@ export default function CloudSolutionsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-3xl font-bold mb-2">Cloud Platforms & DevOps Tooling</h2>
-            <p className="text-gray-600">
+            <p className="text-gray-900">
               We integrate with the leading cloud providers and DevOps ecosystems tailored to your needs.
             </p>
           </div>

@@ -41,9 +41,10 @@ export default function Services() {
           className="text-center mb-14"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Our <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Services</span>
+            {/* Our <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Services</span> */}
+            Our Services
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-900 max-w-2xl mx-auto text-lg">
             Tailored digital solutions to grow, innovate, and succeed.
           </p>
         </motion.div>

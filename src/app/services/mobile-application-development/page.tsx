@@ -182,7 +182,7 @@ export default function MobileApplicationDevelopmentPage() {
                 Mobile Application
                 <span className="block text-green-600">Development</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Create engaging mobile experiences that users love. Our expert
                 team builds high-performance iOS and Android apps using native
                 and cross-platform technologies for maximum reach and user
@@ -227,7 +227,7 @@ export default function MobileApplicationDevelopmentPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Development Approaches
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               Choose the right approach for your project needs and budget
             </p>
           </div>
@@ -243,7 +243,7 @@ export default function MobileApplicationDevelopmentPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {approach.title}
                 </h3>
-                <p className="text-gray-600 mb-6">{approach.description}</p>
+                <p className="text-gray-900 mb-6">{approach.description}</p>
 
                 <div className="mb-6">
                   <h4 className="font-semibold text-gray-900 mb-3">
@@ -287,7 +287,7 @@ export default function MobileApplicationDevelopmentPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why Choose Our Mobile Development Services?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               We deliver exceptional mobile applications with cutting-edge
               technology and user-focused design
             </p>
@@ -304,7 +304,7 @@ export default function MobileApplicationDevelopmentPage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-900">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -318,7 +318,7 @@ export default function MobileApplicationDevelopmentPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Types of Mobile Apps We Build
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               From simple utility apps to complex enterprise solutions
             </p>
           </div>
@@ -336,7 +336,7 @@ export default function MobileApplicationDevelopmentPage() {
                     {app.title}
                   </h3>
                 </div>
-                <p className="text-gray-600 mb-6">{app.description}</p>
+                <p className="text-gray-900 mb-6">{app.description}</p>
                 <div className="grid grid-cols-2 gap-3">
                   {app.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
@@ -358,7 +358,7 @@ export default function MobileApplicationDevelopmentPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Platform Support
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-900">
               We develop for all major mobile platforms
             </p>
           </div>
@@ -370,7 +370,7 @@ export default function MobileApplicationDevelopmentPage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 iOS Development
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-900 mb-6">
                 Native iOS apps using Swift and Objective-C for iPhone and iPad
               </p>
               <div className="flex justify-center space-x-4 text-sm text-gray-500">
@@ -388,7 +388,7 @@ export default function MobileApplicationDevelopmentPage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Android Development
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-900 mb-6">
                 Native Android apps using Kotlin and Java for all Android
                 devices
               </p>

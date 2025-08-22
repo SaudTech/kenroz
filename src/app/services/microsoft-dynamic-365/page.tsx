@@ -99,7 +99,7 @@ export default function MicrosoftDynamic365Page() {
                 Microsoft Dynamics 365
                 <span className="block text-blue-600">Implementation</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Transform your business operations with unified CRM and ERP
                 solutions. Our expert team delivers customized Dynamics 365
                 implementations that streamline processes, boost productivity,
@@ -130,7 +130,7 @@ export default function MicrosoftDynamic365Page() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why Choose Dynamics 365?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               Unify your business operations with intelligent applications that
               adapt to your needs
             </p>
@@ -156,7 +156,7 @@ export default function MicrosoftDynamic365Page() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Dynamics 365 Modules We Implement
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
               Comprehensive solutions for every aspect of your business
             </p>
           </div>
@@ -174,7 +174,7 @@ export default function MicrosoftDynamic365Page() {
                     {module.name}
                   </h3>
                 </div>
-                <p className="text-gray-600 mb-6">{module.description}</p>
+                <p className="text-gray-900 mb-6">{module.description}</p>
                 <div className="grid grid-cols-2 gap-3">
                   {module.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
@@ -196,7 +196,7 @@ export default function MicrosoftDynamic365Page() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Success Stories
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-900">
               Real results from our Dynamics 365 implementations
             </p>
           </div>
