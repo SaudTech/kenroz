@@ -12,7 +12,7 @@ import {
 
 const EXCLUDED_EXPORTS = new Set(["default", "__esModule"]);
 
-function hashString(s) {
+function hashString(s: string) {
   let h = 2166136261;
   for (let i = 0; i < s.length; i++) {
     h ^= s.charCodeAt(i);
@@ -20,7 +20,7 @@ function hashString(s) {
   }
   return h >>> 0;
 }
-function seededRand(seed) {
+function seededRand(seed: number) {
   let x = seed || 123456789;
   return () => {
     x ^= x << 13;
@@ -29,7 +29,7 @@ function seededRand(seed) {
     return (x >>> 0) / 4294967296;
   };
 }
-function humanize(name) {
+function humanize(name: string) {
   const base = name.replace(/(Dark|Light|Logo|Icon)$/i, "");
   const spaced = base.replace(/([a-z0-9])([A-Z])/g, "$1 $2");
   return spaced
@@ -89,7 +89,7 @@ export default function Technologies() {
               const top = (y[i] ?? 0) + "%";
             
               // Random tilt (seeded per icon for stability)
-              const seed = hashString(label);
+              const seed = hashString(label as string);
               const rand = seededRand(seed);
               const rot = (rand() * 10 - 5).toFixed(2);
             
@@ -97,11 +97,11 @@ export default function Technologies() {
               const floatDelay = rand() * 2;
             
               return (
-                <Tooltip key={label}>
+                <Tooltip key={label as string}>
                   <TooltipTrigger asChild>
                     <div
-                      aria-label={label}
-                      title={label}
+                      aria-label={label as string}
+                      title={label as string}
                       className="
                         absolute w-16 h-16 md:w-20 md:h-20
                         p-2 rounded-lg bg-white
@@ -126,7 +126,7 @@ export default function Technologies() {
                     </div>
                   </TooltipTrigger>
                   <TooltipContent side="top" className="text-xs font-medium">
-                    {label}
+                    {label as string}
                   </TooltipContent>
                 </Tooltip>
               );
