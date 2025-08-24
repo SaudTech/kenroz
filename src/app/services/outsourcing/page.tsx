@@ -47,7 +47,7 @@ export default function page() {
       ],
       bestFor: "Long-term projects, Product development, Ongoing maintenance",
       icon: Users,
-      color: "blue",
+      color: "primary",
     },
     {
       title: "Staff Augmentation",
@@ -61,7 +61,7 @@ export default function page() {
       ],
       bestFor: "Skill gaps, Peak workloads, Specific expertise",
       icon: Zap,
-      color: "green",
+      color: "secondary",
     },
     {
       title: "Project-Based",
@@ -75,7 +75,7 @@ export default function page() {
       ],
       bestFor: "Specific projects, MVP development, Time-bound deliverables",
       icon: Settings,
-      color: "purple",
+      color: "primary",
     },
   ];
 
@@ -214,27 +214,26 @@ export default function page() {
   ];
 
   const colorClasses = {
-    blue: "bg-blue-100 text-blue-600",
-    green: "bg-green-100 text-green-600",
-    purple: "bg-purple-100 text-purple-600",
+    primary: "bg-primary/10 text-primary",
+    secondary: "bg-secondary/10 text-secondary",
   };
 
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <div className="inline-block mb-4">
-                <span className="px-4 py-2 bg-indigo-100 text-indigo-800 text-sm font-semibold rounded-full">
+                <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
                   Global Talent Pool
                 </span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 IT Outsourcing
-                <span className="block text-indigo-600">Services</span>
+                <span className="block text-primary">Services</span>
               </h1>
               <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Scale your development capabilities with our skilled
@@ -245,11 +244,11 @@ export default function page() {
             </div>
             <div className="lg:w-2/5">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-2xl blur-xl opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-20"></div>
                 <div className="relative bg-white rounded-2xl shadow-2xl p-8">
                   <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="text-center p-4 bg-indigo-50 rounded-lg">
-                      <Users className="w-8 h-8 text-indigo-600 mx-auto mb-2" />
+                    <div className="text-center p-4 bg-primary/10 rounded-lg">
+                      <Users className="w-8 h-8 text-primary mx-auto mb-2" />
                       <div className="text-2xl font-bold text-gray-900">
                         500+
                       </div>
@@ -257,8 +256,8 @@ export default function page() {
                         Skilled Professionals
                       </div>
                     </div>
-                    <div className="text-center p-4 bg-purple-50 rounded-lg">
-                      <Globe className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                    <div className="text-center p-4 bg-secondary/10 rounded-lg">
+                      <Globe className="w-8 h-8 text-secondary mx-auto mb-2" />
                       <div className="text-2xl font-bold text-gray-900">
                         24/7
                       </div>
@@ -267,8 +266,8 @@ export default function page() {
                       </div>
                     </div>
                   </div>
-                  <div className="text-center p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg">
-                    <DollarSign className="w-8 h-8 text-indigo-600 mx-auto mb-2" />
+                  <div className="text-center p-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
+                    <DollarSign className="w-8 h-8 text-primary mx-auto mb-2" />
                     <div className="text-2xl font-bold text-gray-900">60%</div>
                     <div className="text-sm text-gray-900">Cost Reduction</div>
                   </div>
@@ -320,7 +319,7 @@ export default function page() {
                   i % 2 !== 0 ? "" : "justify-end"
                 )}
               >
-                <s.icon className="w-6 h-6 text-indigo-600" />
+                <s.icon className="w-6 h-6 text-primary" />
                 <span className="font-medium text-gray-900">{s.title}</span>
               </li>
             ))}
@@ -336,7 +335,7 @@ export default function page() {
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {whyChoose.map((w, i) => (
               <li key={i} className="flex items-start space-x-3">
-                <w.icon className="w-6 h-6 text-indigo-600 mt-1" />
+                <w.icon className="w-6 h-6 text-primary mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-900">{w.title}</h3>
                   <p className="text-gray-900 text-sm">{w.description}</p>
@@ -359,7 +358,7 @@ export default function page() {
                 key={i}
                 className="text-center p-6 bg-white rounded-lg shadow"
               >
-                <div className="w-12 h-12 bg-indigo-500 text-white rounded-full mx-auto flex items-center justify-center mb-3">
+                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full mx-auto flex items-center justify-center mb-3">
                   {p.step}
                 </div>
                 <h3 className="font-semibold mb-1">{p.title}</h3>
@@ -371,14 +370,14 @@ export default function page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-indigo-700 text-white text-center">
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-primary-foreground text-center">
         <h2 className="text-4xl font-bold mb-4">Ready to Scale Your Team?</h2>
         <p className="mb-8">
           Let&apos;s discuss your needs and assemble the perfect team.
         </p>
         <Link
-          href={"/contact-us"}
-          className="inline-flex items-center px-8 py-4 bg-white text-indigo-700 rounded-xl hover:bg-gray-100 transition"
+          href={"/contact-us?p=outsourcing"}
+          className="inline-flex items-center px-8 py-4 bg-white text-primary rounded-xl hover:bg-gray-100 transition"
         >
           Contact Us <ArrowRight className="ml-2 w-5 h-5" />
         </Link>

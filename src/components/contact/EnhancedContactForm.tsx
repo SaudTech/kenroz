@@ -15,6 +15,7 @@ interface FormData {
   email: string;
   company: string;
   message: string;
+  context?: string;
 }
 
 interface FormErrors {
@@ -24,11 +25,13 @@ interface FormErrors {
 interface EnhancedContactFormProps {
   className?: string;
   showContactInfo?: boolean;
+  context?: string;
 }
 
 export default function EnhancedContactForm({
   className = "",
   showContactInfo = true,
+  context,
 }: EnhancedContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -39,6 +42,7 @@ export default function EnhancedContactForm({
     email: "",
     company: "",
     message: "",
+    context,
   });
 
   const validateForm = (): boolean => {
@@ -107,6 +111,7 @@ export default function EnhancedContactForm({
         email: "",
         company: "",
         message: "",
+        context,
       });
       setErrors({});
     } catch (error) {
@@ -174,6 +179,7 @@ export default function EnhancedContactForm({
 
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {context && <input type="hidden" name="context" value={context} />}
               {/* Name and Company Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">

@@ -1,10 +1,6 @@
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
 import Technologies from "@/components/sections/Technologies";
-import Clients from "@/components/sections/Clients";
-import FAQ from "@/components/sections/FAQ";
-import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
 import { cn } from "@/lib/utils";
 import OurStory from "@/components/sections/OurStory";

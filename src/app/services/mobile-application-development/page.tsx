@@ -168,19 +168,19 @@ export default function MobileApplicationDevelopmentPage() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-50 via-white to-blue-50 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <div className="inline-block mb-4">
-                <span className="px-4 py-2 bg-green-100 text-green-800 text-sm font-semibold rounded-full">
+                <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
                   iOS & Android Development
                 </span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Mobile Application
-                <span className="block text-green-600">Development</span>
+                <span className="block text-primary">Development</span>
               </h1>
               <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Create engaging mobile experiences that users love. Our expert
@@ -191,25 +191,25 @@ export default function MobileApplicationDevelopmentPage() {
             </div>
             <div className="lg:w-2/5">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl blur-xl opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-20"></div>
                 <div className="relative flex items-center justify-center space-x-4">
                   <div className="bg-white rounded-3xl shadow-2xl p-4 transform rotate-12">
-                    <div className="w-48 h-96 bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl flex flex-col items-center justify-center space-y-4">
-                      <Smartphone className="w-12 h-12 text-green-600" />
+                    <div className="w-48 h-96 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl flex flex-col items-center justify-center space-y-4">
+                      <Smartphone className="w-12 h-12 text-primary" />
                       <div className="space-y-2 w-32">
-                        <div className="h-3 bg-green-200 rounded"></div>
-                        <div className="h-3 bg-blue-200 rounded w-3/4"></div>
-                        <div className="h-3 bg-green-200 rounded w-1/2"></div>
+                        <div className="h-3 bg-primary/20 rounded"></div>
+                        <div className="h-3 bg-secondary/20 rounded w-3/4"></div>
+                        <div className="h-3 bg-primary/20 rounded w-1/2"></div>
                       </div>
                     </div>
                   </div>
                   <div className="bg-white rounded-3xl shadow-2xl p-4 transform -rotate-12">
-                    <div className="w-48 h-96 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl flex flex-col items-center justify-center space-y-4">
-                      <Tablet className="w-12 h-12 text-blue-600" />
+                    <div className="w-48 h-96 bg-gradient-to-br from-secondary/10 to-primary/10 rounded-2xl flex flex-col items-center justify-center space-y-4">
+                      <Tablet className="w-12 h-12 text-secondary" />
                       <div className="space-y-2 w-32">
-                        <div className="h-3 bg-blue-200 rounded"></div>
-                        <div className="h-3 bg-purple-200 rounded w-3/4"></div>
-                        <div className="h-3 bg-blue-200 rounded w-1/2"></div>
+                        <div className="h-3 bg-secondary/20 rounded"></div>
+                        <div className="h-3 bg-primary/20 rounded w-3/4"></div>
+                        <div className="h-3 bg-secondary/20 rounded w-1/2"></div>
                       </div>
                     </div>
                   </div>
@@ -237,8 +237,8 @@ export default function MobileApplicationDevelopmentPage() {
                 key={index}
                 className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-                  <approach.icon className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <approach.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {approach.title}
@@ -253,7 +253,7 @@ export default function MobileApplicationDevelopmentPage() {
                     {approach.technologies.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-green-50 text-green-700 text-sm rounded-full"
+                        className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full"
                       >
                         {tech}
                       </span>
@@ -268,7 +268,7 @@ export default function MobileApplicationDevelopmentPage() {
                   <div className="space-y-2">
                     {approach.pros.map((pro, idx) => (
                       <div key={idx} className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-primary" />
                         <span className="text-sm text-gray-700">{pro}</span>
                       </div>
                     ))}
@@ -298,8 +298,8 @@ export default function MobileApplicationDevelopmentPage() {
                 key={index}
                 className="p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-                  <feature.icon className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <feature.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {feature.title}
@@ -312,7 +312,7 @@ export default function MobileApplicationDevelopmentPage() {
       </section>
 
       {/* App Types */}
-      <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -329,8 +329,8 @@ export default function MobileApplicationDevelopmentPage() {
                 className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                    <app.icon className="w-6 h-6 text-green-600" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <app.icon className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900">
                     {app.title}
@@ -340,7 +340,7 @@ export default function MobileApplicationDevelopmentPage() {
                 <div className="grid grid-cols-2 gap-3">
                   {app.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="text-sm text-gray-700">{feature}</span>
                     </div>
                   ))}
@@ -382,8 +382,8 @@ export default function MobileApplicationDevelopmentPage() {
               </div>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg">
-              <div className="w-20 h-20 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Play className="w-10 h-10 text-white" />
+              <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Play className="w-10 h-10 text-primary-foreground" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Android Development
@@ -405,19 +405,19 @@ export default function MobileApplicationDevelopmentPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-blue-700">
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-primary-foreground mb-6">
             Ready to Build Your Mobile App?
           </h2>
-          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
             Transform your idea into a successful mobile application. Let&apos;s
             discuss your project and create an app that users will love.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href={"/contact-us"}
-              className="inline-flex items-center px-8 py-4 bg-white text-green-600 font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
+              href={"/contact-us?p=mobile-application-development"}
+              className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
             >
               Contact Us <ArrowRight className="ml-2 w-5 h-5" />
             </Link>

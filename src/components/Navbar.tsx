@@ -25,7 +25,7 @@ const MAIN_LINKS: NavLink[] = [
       { label: "Our Story", href: "/#our-story" },
       { label: "Why us", href: "/#why-us" },
       { label: "Strategic Partners", href: "/#strategic-partners" },
-      { label: "Contact Us", href: "/contact-us" },
+      { label: "Contact Us", href: "/contact-us?p=contact" },
     ],
   },
 ];

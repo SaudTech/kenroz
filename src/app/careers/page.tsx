@@ -1,4 +1,7 @@
+import Image from 'next/image';
 import { Metadata } from 'next';
+import Link from 'next/link';
+import JobList from '@/components/careers/JobList';
 
 export const metadata: Metadata = {
   title: 'Careers at Kenroz',
@@ -7,36 +10,62 @@ export const metadata: Metadata = {
 
 export default function CareersPage() {
   return (
-    <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 min-h-screen py-16">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <header className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
-            Careers
-          </h1>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            We&apos;re always looking for passionate people to join our growing team. If you love creating
-            impactful digital experiences, Kenroz is the place for you.
+    <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10">
+      {/* Hero Section */}
+      <section className="relative">
+        <Image
+          src="/photo-1521898284481-a5ec348cb555.avif"
+          alt="Kenroz team"
+          fill
+          className="object-cover -z-10" />
+        <div className="absolute inset-0 bg-black/60 -z-10" />
+        <div className="container mx-auto px-4 py-32 text-center text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">Join Our Team</h1>
+          <p className="max-w-2xl mx-auto text-lg">
+            Build the future with us. We craft impactful digital experiences for clients across the globe.
           </p>
-        </header>
+        </div>
+      </section>
 
-        <section className="space-y-8">
-          <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all">
-            <h2 className="text-2xl font-bold mb-2">Junior Frontend Developer, React</h2>
-            <p className="text-gray-700 mb-4">
-              <strong>Experience:</strong> No minimum experience required
-            </p>
-            <p className="text-gray-700 mb-4">
-              <strong>Requirements:</strong> Solid knowledge of React and at least two personal projects showcasing your skills.
-            </p>
-            <p className="text-gray-700 mb-4">
-              <strong>Positions Open:</strong> Multiple
-            </p>
-            <p className="text-gray-700">
-              To apply, send your resume and project links to <a href="mailto:hr@kenroz.com" className="text-primary font-semibold">hr@kenroz.com</a>.
-            </p>
-          </div>
-        </section>
-      </div>
+      {/* Why Work Here */}
+      <section className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-10">Why Work With Us</h2>
+        <ul className="grid gap-6 md:grid-cols-3 text-gray-700">
+          <li className="p-6 bg-white rounded-xl shadow">Remote flexibility</li>
+          <li className="p-6 bg-white rounded-xl shadow">Health insurance</li>
+          <li className="p-6 bg-white rounded-xl shadow">Learning budget</li>
+        </ul>
+        <div className="mt-12 text-center">
+          <blockquote className="text-xl italic">
+            “Working at Kenroz has been a growth experience. The team is supportive and innovative.”
+          </blockquote>
+          <p className="mt-2 font-semibold">— Jane, Developer</p>
+        </div>
+      </section>
+
+      {/* Open Positions */}
+      <section className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-10">Open Positions</h2>
+          <JobList />
+        </div>
+      </section>
+
+      {/* Diversity & Inclusion */}
+      <section className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-6">Diversity & Inclusion</h2>
+        <p className="text-center text-gray-700 max-w-2xl mx-auto">
+          We celebrate diversity and are committed to creating an inclusive environment for all employees.
+        </p>
+      </section>
+
+      {/* Application CTA */}
+      <section className="bg-primary text-white py-16 text-center">
+        <h2 className="text-3xl font-bold mb-4">Ready to Apply?</h2>
+        <Link href="mailto:hr@kenroz.com" className="bg-white text-primary px-6 py-3 rounded-md font-semibold">
+          Apply Now
+        </Link>
+      </section>
     </div>
   );
 }

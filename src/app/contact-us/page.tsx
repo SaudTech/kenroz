@@ -32,7 +32,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams?: { p?: string };
+}) {
+  const intent = searchParams?.p;
+  let heading = "Contact Us";
+  let description =
+    "Ready to take the next step? We\u2019re here to help you succeed. Reach out and let\u2019s discuss how we can work together to transform your business with innovative IT solutions.";
+
+  if (intent === "hire") {
+    heading = "Hire an Expert";
+    description =
+      "Looking to bring skilled professionals on board? Share your requirements and we\u2019ll connect you with the right talent.";
+  } else if (intent) {
+    heading = "Service Inquiry";
+    description =
+      "Interested in our services? Tell us about your project and we\u2019ll get back to you shortly.";
+  }
+
   return (
     <>
       <StructuredData 
@@ -58,17 +77,15 @@ export default function ContactPage() {
           {/* Page Header */}
           <header className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
-              Contact Us
+              {heading}
             </h1>
             <p className="text-xl text-gray-900 max-w-3xl mx-auto leading-relaxed">
-              Ready to take the next step? We&apos;re here to help you succeed. Reach
-              out and let&apos;s discuss how we can work together to transform your business
-              with innovative IT solutions.
+              {description}
             </p>
           </header>
 
           {/* Enhanced Contact Form */}
-          <EnhancedContactForm showContactInfo={false} />
+          <EnhancedContactForm showContactInfo={false} context={intent} />
 
         </div>
       </div>

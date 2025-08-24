@@ -7,7 +7,6 @@ import {
   Twitter,
   Linkedin,
   ArrowUp,
-  ShieldCheck,
 } from "lucide-react";
 import { useCallback } from "react";
 import logo from "@/../public/logo.png";
@@ -38,7 +37,7 @@ export default function Footer() {
     { label: "Services", href: "/#services" },
     { label: "Products", href: "/#products" },
     { label: "Resources", href: "/#resources" },
-    { label: "Contact Us", href: "/contact-us" },
+    { label: "Contact Us", href: "/contact-us?p=contact" },
   ]
 
   return (

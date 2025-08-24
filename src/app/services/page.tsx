@@ -101,8 +101,8 @@ export default function ServicesPage() {
               Get a free consultation today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/contact-us" 
+              <a
+                href="/contact-us?p=service"
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 Get Free Consultation

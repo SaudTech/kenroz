@@ -152,19 +152,19 @@ export default function WebApplicationDevelopmentPage() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <div className="inline-block mb-4">
-                <span className="px-4 py-2 bg-purple-100 text-purple-800 text-sm font-semibold rounded-full">
+                <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
                   Full-Stack Development
                 </span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Custom Web Application
-                <span className="block text-purple-600">Development</span>
+                <span className="block text-primary">Development</span>
               </h1>
               <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Build powerful, scalable web applications that drive your
@@ -175,17 +175,17 @@ export default function WebApplicationDevelopmentPage() {
             </div>
             <div className="lg:w-2/5">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-500 rounded-2xl blur-xl opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-20"></div>
                 <div className="relative bg-white rounded-2xl shadow-2xl p-8">
                   <div className="space-y-4">
                     <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
                     <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
-                    <div className="h-32 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center">
-                      <Code className="w-12 h-12 text-purple-600" />
+                    <div className="h-32 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
+                      <Code className="w-12 h-12 text-primary" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="h-8 bg-purple-100 rounded"></div>
-                      <div className="h-8 bg-blue-100 rounded"></div>
+                      <div className="h-8 bg-primary/10 rounded"></div>
+                      <div className="h-8 bg-secondary/10 rounded"></div>
                     </div>
                   </div>
                 </div>
@@ -213,8 +213,8 @@ export default function WebApplicationDevelopmentPage() {
                 key={index}
                 className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-                  <feature.icon className="w-6 h-6 text-purple-600" />
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                  <feature.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {feature.title}
@@ -245,8 +245,8 @@ export default function WebApplicationDevelopmentPage() {
                 className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100"
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <tech.icon className="w-5 h-5 text-purple-600" />
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <tech.icon className="w-5 h-5 text-primary" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900">
                     {tech.category}
@@ -255,7 +255,7 @@ export default function WebApplicationDevelopmentPage() {
                 <div className="space-y-2">
                   {tech.techs.map((t, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="text-sm text-gray-700">{t}</span>
                     </div>
                   ))}
@@ -267,7 +267,7 @@ export default function WebApplicationDevelopmentPage() {
       </section>
 
       {/* Development Process */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -285,7 +285,7 @@ export default function WebApplicationDevelopmentPage() {
                 className="relative flex flex-col lg:flex-row items-start gap-8 p-8 bg-white rounded-2xl shadow-lg"
               >
                 <div className="flex-shrink-0 absolute top-0 left-2/4 transform -translate-x-2/4 -translate-y-1/2">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl">
                     {index + 1}
                   </div>
                 </div>
@@ -304,19 +304,19 @@ export default function WebApplicationDevelopmentPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-700">
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
+          <h2 className="text-4xl font-bold text-primary-foreground mb-6">
             Ready to Build Your Web Application?
           </h2>
-          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
             Let&apos;s discuss your project requirements and create a custom web
             application that drives your business success. Get started today!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href={"/contact-us"}
-              className="inline-flex items-center px-8 py-4 bg-white text-purple-600 font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
+              href={"/contact-us?p=web-application-development"}
+              className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
             >
               Contact Us <ArrowRight className="ml-2 w-5 h-5" />
             </Link>

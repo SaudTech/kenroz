@@ -45,19 +45,22 @@ const platforms = [
 
 const benefits = [
   {
-    icon: <Cloud className="w-8 h-8 text-blue-600" />,
+    icon: <Cloud className="w-8 h-8 text-primary" />,
     title: "Faster Releases",
-    description: "Accelerate your software delivery while reducing errors and bottlenecks with modern automation."
+    description:
+      "Accelerate your software delivery while reducing errors and bottlenecks with modern automation."
   },
   {
-    icon: <Zap className="w-8 h-8 text-indigo-600" />,
+    icon: <Zap className="w-8 h-8 text-secondary" />,
     title: "Improved Reliability",
-    description: "Achieve high uptime and robust performance for business-critical apps with proven cloud architectures."
+    description:
+      "Achieve high uptime and robust performance for business-critical apps with proven cloud architectures."
   },
   {
-    icon: <Settings className="w-8 h-8 text-purple-600" />,
+    icon: <Settings className="w-8 h-8 text-primary" />,
     title: "Reduced Cost & Waste",
-    description: "Eliminate manual work, optimize infrastructure, and stay cost-effective at scale."
+    description:
+      "Eliminate manual work, optimize infrastructure, and stay cost-effective at scale."
   },
 ];
 
@@ -73,18 +76,18 @@ export default function CloudSolutionsPage() {
   return (
     <main className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-3/5">
             <div className="inline-block mb-4">
-              <span className="px-4 py-2 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">
+              <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
                 Cloud-Native + DevOps
               </span>
             </div>
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Cloud & DevOps{" "}
-              <span className="block text-blue-600">Solutions</span>
+              <span className="block text-primary">Solutions</span>
             </h1>
             <div className="mb-8 max-w-2xl">
               <DescriptionToggle description={heroDescription} />
@@ -92,13 +95,13 @@ export default function CloudSolutionsPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
-                className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+                className="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
               >
                 Get Started
               </a>
               <a
                 href="#learn-more"
-                className="inline-flex items-center px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300"
+                className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary/10 transition-all duration-300"
               >
                 Learn More
               </a>
@@ -136,14 +139,14 @@ export default function CloudSolutionsPage() {
                 className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col gap-6"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-xl">
+                  <span className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-xl">
                     {feature.icon}
                   </span>
                   <h3 className="text-xl font-bold text-gray-900">{feature.title}</h3>
                 </div>
                 <p className="text-gray-700 flex-1">{feature.description}</p>
                 <div>
-                  <span className="text-sm font-medium text-blue-600 cursor-pointer">Learn more →</span>
+                  <span className="text-sm font-medium text-primary cursor-pointer">Learn more →</span>
                 </div>
               </div>
             ))}
@@ -200,7 +203,7 @@ export default function CloudSolutionsPage() {
       {/* CTA */}
       <section
         id="contact"
-        className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-center rounded-b-xl"
+        className="py-20 bg-gradient-to-r from-primary to-secondary text-primary-foreground text-center rounded-b-xl"
       >
         <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-10">
           <div className="lg:w-2/3 text-left">
@@ -210,7 +213,7 @@ export default function CloudSolutionsPage() {
             </p>
             <a
               href="mailto:hello@yourcompany.com"
-              className="inline-block px-8 py-4 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-blue-50 transition-all duration-300"
+              className="inline-block px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow hover:bg-primary/10 transition-all duration-300"
             >
               Talk to an Expert
             </a>
@@ -221,7 +224,7 @@ export default function CloudSolutionsPage() {
               <ul className="list-inside list-disc space-y-1 text-sm text-white/90">
                 {checklist.map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-blue-200 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-white/80 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}

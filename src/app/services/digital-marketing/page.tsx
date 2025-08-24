@@ -13,7 +13,6 @@ import {
   Eye,
 } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { ButtonLink } from "@/components/Navbar";
 
 export const metadata: Metadata = {
@@ -159,8 +158,8 @@ export default function DigitalMarketingPage() {
                 measurable results.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href={"/contact-us"}>
-                  <ButtonLink href={"/contact-us"}>
+                <Link href={"/contact-us?p=digital-marketing"}>
+                  <ButtonLink href={"/contact-us?p=digital-marketing"}>
                     Get in Touch
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </ButtonLink>

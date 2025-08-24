@@ -85,19 +85,19 @@ export default function MicrosoftDynamic365Page() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <div className="inline-block mb-4">
-                <span className="px-4 py-2 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">
+                <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
                   Microsoft Partner
                 </span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Microsoft Dynamics 365
-                <span className="block text-blue-600">Implementation</span>
+                <span className="block text-primary">Implementation</span>
               </h1>
               <p className="text-xl text-gray-900 mb-8 leading-relaxed">
                 Transform your business operations with unified CRM and ERP
@@ -108,7 +108,7 @@ export default function MicrosoftDynamic365Page() {
             </div>
             <div className="lg:w-2/5">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-2xl blur-xl opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-20"></div>
                 <Image
                   src="/Microsoft Dynamic 365.webp"
                   alt="Microsoft Dynamics 365 Dashboard Interface"
@@ -141,7 +141,7 @@ export default function MicrosoftDynamic365Page() {
                 key={index}
                 className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
               >
-                <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <p className="text-gray-700 font-medium">{benefit}</p>
               </div>
             ))}
@@ -167,8 +167,8 @@ export default function MicrosoftDynamic365Page() {
                 className="p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <module.icon className="w-6 h-6 text-blue-600" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <module.icon className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900">
                     {module.name}
@@ -178,7 +178,7 @@ export default function MicrosoftDynamic365Page() {
                 <div className="grid grid-cols-2 gap-3">
                   {module.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="text-sm text-gray-700">{feature}</span>
                     </div>
                   ))}
@@ -201,20 +201,20 @@ export default function MicrosoftDynamic365Page() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl">
-              <div className="text-4xl font-bold text-green-600 mb-2">60%</div>
+            <div className="text-center p-8 bg-primary/10 rounded-2xl">
+              <div className="text-4xl font-bold text-primary mb-2">60%</div>
               <p className="text-gray-700 font-medium">
                 Reduction in manual processes
               </p>
             </div>
-            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl">
-              <div className="text-4xl font-bold text-blue-600 mb-2">40%</div>
+            <div className="text-center p-8 bg-secondary/10 rounded-2xl">
+              <div className="text-4xl font-bold text-secondary mb-2">40%</div>
               <p className="text-gray-700 font-medium">
                 Increase in sales productivity
               </p>
             </div>
-            <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl">
-              <div className="text-4xl font-bold text-purple-600 mb-2">25%</div>
+            <div className="text-center p-8 bg-primary/10 rounded-2xl">
+              <div className="text-4xl font-bold text-primary mb-2">25%</div>
               <p className="text-gray-700 font-medium">
                 Faster decision making
               </p>
@@ -224,18 +224,18 @@ export default function MicrosoftDynamic365Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700">
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Transform Your Business?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
             Let&apos;s discuss how Microsoft Dynamics 365 can streamline your
             operations and drive growth. Get a free consultation today.
           </p>
           <Link
-            href={"/contact-us"}
-            className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
+            href={"/contact-us?p=microsoft-dynamic-365"}
+            className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
           >
             Contact Us <ArrowRight className="ml-2 w-5 h-5" />
           </Link>

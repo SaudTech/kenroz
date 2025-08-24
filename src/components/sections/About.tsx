@@ -76,7 +76,7 @@ export default function About() {
               </div>
             </div>
 
-            <ButtonLink href="/contact-us">
+            <ButtonLink href="/contact-us?p=contact">
               Get in touch
               <ArrowRight className="ml-2 h-4 w-4" />
             </ButtonLink>
