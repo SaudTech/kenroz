@@ -161,7 +161,7 @@ export default function RootLayout({
         <PerformanceOptimizer />
         <Navbar />
         <main className="mt-[64.89px]">{children}</main>
-        <Section is="even">
+        <Section is="even" className="bg-black">
           <Footer />
         </Section>
       </body>

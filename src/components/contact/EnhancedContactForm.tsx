@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
+import { cn } from "@/lib/utils";
 
 interface FormData {
   firstName: string;
@@ -162,9 +163,9 @@ export default function EnhancedContactForm({
 
   return (
     <div className={`w-full mx-auto ${className}`} id="contact">
-      <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <div className={cn("grid grid-cols-2 gap-8 max-w-7xl mx-auto", !showContactInfo && "grid-cols-1")}>
         {/* Contact Form */}
-        <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-gray-50">
+        <Card className="border-0 max-w-4xl mx-auto shadow-2xl bg-gradient-to-br from-white to-gray-50">
           <CardHeader className="space-y-4">
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
               Send us a message

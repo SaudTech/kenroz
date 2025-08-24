@@ -38,7 +38,7 @@ export default function HomePage() {
         <Section is="odd">
           <StrategicPartner />
         </Section>
-        <Section is="even">
+        <Section is="odd">
           <Services />
         </Section>
         <Section is="odd">

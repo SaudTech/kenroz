@@ -2,9 +2,6 @@
 
 import Image from "next/image";
 import {
-  Phone,
-  Mail,
-  MapPin,
   Instagram,
   Facebook,
   Twitter,
@@ -20,216 +17,166 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const quickLinks = ["About Us", "Services", "Products", "Contact Us", "Blog"];
   const services = [
-    "Web Development",
-    "Mobile Apps",
+    "Digital Marketing",
+    "Website Development",
+    "Mobile Development",
+    "Microsoft Dynamic 365",
+    "Outsourcing",
     "Cloud Solutions",
-    "AI Integration",
-    "Outsorucing",
   ];
-  const resources = ["Case Studies", "Pricing", "Careers", "FAQ", "Status"];
+  const resources = ["Our Story", "Why Us", "Strategic Partner", "Contact Us"];
+  const legalLinks = ["Privacy Policy", "Terms of Service", "Cookie Policy"];
   const socials = [
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Facebook, href: "#", label: "Facebook" },
     { icon: Twitter, href: "#", label: "Twitter" },
     { icon: Linkedin, href: "#", label: "LinkedIn" },
   ];
-  const legalLinks = ["Privacy Policy", "Terms of Service", "Cookie Policy"];
-
-  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  const quickLinks = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/#services" },
+    { label: "Products", href: "/#products" },
+    { label: "Resources", href: "/#resources" },
+    { label: "Contact Us", href: "/contact-us" },
+  ]
 
   return (
     <footer
-      className="
-        relative text-white
-        bg-gradient-to-br from-[#0a0a0a] via-[#0e0b0b] to-[#141013]
-        border-t border-white/10
-      "
-      style={{ height: "calc(100vh - 65px)" }}
+      className="h-full text-white bg-black border-t border-white/10"
       aria-label="Site footer"
     >
-      {/* Full-height container */}
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8">
-        {/* Grid that fills height: header/links grow, bottom bar sticks */}
-        <div className="grid h-full grid-rows-[auto,1fr,auto] gap-8 py-10">
-          {/* Top: Brand + Pitch + Contact + Socials */}
-          <section className="grid gap-8 lg:grid-cols-[1.2fr,1fr]">
-            {/* Brand & pitch */}
-            <div>
-              <div className="flex items-center gap-3 mb-5">
-                <Image
-                  src={logo}
-                  alt="Kenroz Logo"
-                  width={180}
-                  height={40}
-                  priority
-                  className="h-auto w-auto"
-                />
-              </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Top Grid */}
+        <div className="grid gap-10 md:grid-cols-4">
+          {/* Col 1 */}
+          <div className="col-span-1">
+            <Image
+              src={logo}
+              alt="Kenroz Logo"
+              width={200}
+              height={200}
+              className="mb-6 h-auto w-auto"
+            />
 
-              <p className="text-white/80 leading-relaxed max-w-2xl text-sm sm:text-base">
-                Transforming businesses through secure, scalable software and
-                cloud solutions. We build experiences that measurably improve
-                performance, compliance, and growth.
-              </p>
-
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div className="flex items-start gap-3">
-                  <Phone className="h-4 w-4 text-primary mt-1" />
-                  <div className="text-sm text-white/85">
-                    <p className="font-medium">+91 (810) 624-9040</p>
-                    <p className="text-white/60">Mon–Fri, 10:00–19:00 IST</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Mail className="h-4 w-4 text-primary mt-1" />
-                  <div className="text-sm text-white/85">
-                    <p className="font-medium">contact@kenroz.com</p>
-                    <p className="text-white/60">Replies within 24 hours</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-4 w-4 text-primary mt-1" />
-                  <div className="text-sm text-white/85">
-                    <p className="font-medium">Hyderabad, India</p>
-                    <p className="text-white/60">Global delivery model</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                {socials.map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    onClick={(e) => e.preventDefault()}
-                    aria-label={label}
-                    className="
-                      group inline-flex items-center justify-center rounded-lg
-                      bg-white/5 px-3 py-2 text-white/80 ring-1 ring-white/10
-                      transition-all hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white
-                    "
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-3 mb-6">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="flex items-center justify-center w-9 h-9 rounded-full bg-white/10 hover:bg-primary transition"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
 
-            {/* Middle: Link groups */}
-            <nav className="grid gap-8 md:grid-cols-3 lg:grid-cols-4">
-              {/* Quick Links */}
-              <div>
-                <h4 className="mb-3 font-semibold">Quick Links</h4>
-                <ul className="space-y-2 text-sm">
-                  {quickLinks.map((link) => {
-                    // Replace spaces with -
-                    const id = link.toLowerCase().replace(" ", "-");
-                    return (
-                      <li key={link}>
-                        <a
-                          href={`/${id}`}
-                          onClick={(e) => handleAnchor(e, id)}
-                          className="inline-block text-white/70 transition hover:text-white hover:translate-x-0.5"
-                        >
-                          {link}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+            <div className="flex items-center gap-3  rounded-lg p-3">
+                <Image
+                src={"/isoImage.webp"}
+                alt="certification Logo"
+                width={140}
+                height={10}
+                className="h-36 w-36"
+              />
 
-              {/* Services */}
-              <div>
-                <h4 className="mb-3 font-semibold">Services</h4>
-                <ul className="space-y-2 text-sm">
-                  {services.map((service) => (
-                    <li key={service}>
-                      <a
-                        href="#services"
-                        onClick={(e) => handleAnchor(e, "services")}
-                        className="inline-block text-white/70 transition hover:text-white hover:translate-x-0.5"
-                      >
-                        {service}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <p className="text-lg text-white/80 leading-snug">
+                Grow your business by <br /> Leveraging Technology.
+              </p>
+            </div>
+          </div>
 
-              {/* Resources */}
-              <div>
-                <h4 className="mb-3 font-semibold">Resources</h4>
-                <ul className="space-y-2 text-sm">
-                  {resources.map((r) => (
-                    <li key={r}>
-                      <a
-                        href="#"
-                        onClick={(e) => e.preventDefault()}
-                        className="inline-block text-white/70 transition hover:text-white hover:translate-x-0.5"
-                      >
-                        {r}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Col 2 & 3 */}
+          <div className="col-">
+            <h4 className="mb-4 text-3xl font-semibold">Services</h4>
+            <ul className="space-y-2 text-xl">
+              {services.map((service) => (
+                <li key={service}>
+                  <a
+                    href="#"
+                    className="inline-block text-white/70 hover:text-white transition"
+                  >
+                    {service}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              {/* Legal */}
-              <div className="lg:block">
-                <h4 className="mb-3 font-semibold">Legal</h4>
-                <ul className="space-y-2 text-sm">
-                  {legalLinks.map((legal) => (
-                    <li key={legal}>
-                      <a
-                        href="#"
-                        onClick={(e) => e.preventDefault()}
-                        className="inline-block text-white/70 transition hover:text-white hover:translate-x-0.5"
-                      >
-                        {legal}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </nav>
-            <p className="text-xs sm:text-sm text-white/60">
-              © {new Date().getFullYear()} Kenroz. All rights reserved.
+          {/* Col 4 */}
+          <div>
+            <h4 className="mb-4 text-3xl font-semibold">Resources</h4>
+            <ul className="space-y-2 text-xl">
+              {resources.map((r) => (
+                <li key={r}>
+                  <a
+                    href="#"
+                    className="inline-block text-white/70 hover:text-white transition"
+                  >
+                    {r}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 5 */}
+          <div>
+            <h4 className="mb-4 text-3xl font-semibold">Legal Center</h4>
+            <ul className="space-y-2 text-xl">
+              {legalLinks.map((legal) => (
+                <li key={legal}>
+                  <a
+                    href="#"
+                    className="inline-block text-white/70 hover:text-white transition"
+                  >
+                    {legal}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-white/10 mt-12 pt-8">
+          {/* Quick Links */}
+          <div className="mb-6">
+            <h4 className="mb-3 text-3xl font-semibold">Quick Links</h4>
+            <ul className="flex flex-wrap gap-4 text-xl">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-white/70 hover:text-white transition"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Bottom Note */}
+          <div className="text-xs sm:text-sm text-white/60 flex flex-col sm:flex-row justify-between items-center">
+            <p>
+              © {new Date().getFullYear()} Kenroz Private Limited. All rights
+              reserved.
             </p>
-          </section>
-
+          </div>
         </div>
       </div>
 
       {/* Scroll-to-top */}
       <button
         onClick={scrollToTop}
-        className="
-          group absolute bottom-6 right-6 rounded-full border border-white/15
-          bg-white/10 p-3 text-white shadow-lg backdrop-blur
-          transition-all hover:bg-primary hover:border-primary hover:shadow-xl
-        "
+        className="group absolute bottom-6 right-6 rounded-full border border-white/15 bg-white/10 p-3 text-white shadow-lg backdrop-blur transition-all hover:bg-primary hover:border-primary hover:shadow-xl"
         aria-label="Back to top"
         title="Back to top"
       >
-        <ArrowUp className="h-5 w-5 transition group-hover:translate-y-[-2px]" />
+        <ArrowUp className="h-5 w-5 transition group-hover:-translate-y-1" />
       </button>
-
-      {/* Soft vignette accent */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-20"
-        style={{
-          background:
-            "radial-gradient(600px 240px at 90% -10%, rgba(223,42,51,0.25), transparent), radial-gradient(500px 220px at 0% 110%, rgba(155,39,48,0.18), transparent)",
-        }}
-      />
     </footer>
   );
 }
