@@ -156,7 +156,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${font.className} antialiased min-h-screen overflow-x-hidden`}
+        className={`${font.className} antialiased min-h-screen bg-primary/15 overflow-x-hidden`}
       >
         <PerformanceOptimizer />
         <Navbar />

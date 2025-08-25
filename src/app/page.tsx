@@ -71,7 +71,6 @@ export const Section = ({
       className={cn(
         "w-full min-h-[calc(100vh-64px)] h-full overflow-hidden",
         className,
-        is === "odd" ? "bg-primary/10" : "from:blue-300 to-yellow-500"
       )}
     >
       {children}

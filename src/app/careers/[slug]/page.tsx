@@ -1,3 +1,4 @@
+import { ButtonLink } from '@/components/Navbar';
 import { jobs } from '@/lib/jobs';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -55,12 +56,9 @@ export default async function JobDetailPage({ params }: Props) {
         ))}
       </ul>
 
-      <a
-        href="mailto:hr@kenroz.com"
-        className="inline-block bg-primary text-white px-6 py-3 rounded-md font-semibold"
-      >
+      <ButtonLink href={`/apply-for-job?job=${job.slug}`} className="text-white">
         Apply Now
-      </a>
+      </ButtonLink>
     </div>
   );
 }

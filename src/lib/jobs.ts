@@ -19,7 +19,7 @@ export const jobs: Job[] = [
     slug: "python-developer",
     title: "Python Developer",
     department: "Engineering",
-    location: "Remote (India)",
+    location: "Hyderabad, India",
     description:
       "As a Python Developer, you’ll build and scale core backend services that directly power our customer-facing applications. You will design APIs and distributed systems that handle high traffic, ensuring performance, maintainability, and security. You’ll collaborate with cross-functional teams to deliver impactful features while following best practices around code quality, testing, and architecture.",
     responsibilities: [
@@ -42,7 +42,7 @@ export const jobs: Job[] = [
     slug: "java-developer",
     title: "Java Developer",
     department: "Engineering",
-    location: "Hyderabad, IN — Hybrid",
+    location: "Hyderabad, India",
     description:
       "As a Java Developer, you’ll design and maintain the backend services that form the foundation of our scalable applications. You will focus on building reliable systems with Spring Boot, optimizing performance, and ensuring code quality. You’ll work in a collaborative environment with strong engineering practices and opportunities for technical growth.",
     responsibilities: [
@@ -65,7 +65,7 @@ export const jobs: Job[] = [
     slug: "devops-engineer",
     title: "DevOps / Cloud Engineer",
     department: "Engineering",
-    location: "Bengaluru, IN — Hybrid",
+    location: "Dammam, Saudi Arabia",
     description:
       "As a DevOps / Cloud Engineer, you’ll be responsible for architecting cloud infrastructure, managing CI/CD workflows, and ensuring reliability in highly available distributed systems. You’ll drive automation, improve developer workflows, and establish observability practices to maintain secure, cost-effective operations. This role is critical for enabling developers to deploy and scale services with confidence.",
     responsibilities: [
@@ -88,7 +88,7 @@ export const jobs: Job[] = [
     slug: "qa-sdet",
     title: "QA Engineer (SDET)",
     department: "Engineering",
-    location: "Remote",
+    location: "Dubai, United Arab Emirates",
     description:
       "As a Software Development Engineer in Test (SDET), you will ensure high product quality through test automation frameworks, exploratory testing, and CI/CD integration. You’ll collaborate with developers to embed testability and prevent defects early, shaping a culture of quality across the engineering org.",
     responsibilities: [
@@ -111,7 +111,7 @@ export const jobs: Job[] = [
     slug: "mobile-engineer-react-native",
     title: "Mobile Engineer (React Native)",
     department: "Engineering",
-    location: "Remote",
+    location: "Dammam, Saudi Arabia",
     description:
       "As a Mobile Engineer (React Native), you’ll deliver seamless, performant mobile applications across iOS and Android. You’ll own the full lifecycle of mobile development — from component design and API integration to performance tuning and release management. This role is ideal for developers passionate about mobile UX and app reliability at scale.",
     responsibilities: [
@@ -136,7 +136,7 @@ export const jobs: Job[] = [
     slug: "product-manager",
     title: "Product Manager",
     department: "Product",
-    location: "Remote (US time zones)",
+    location: "Dubai, United Arab Emirates",
     description:
       "As a Product Manager, you will lead end-to-end product development, driving discovery, roadmap prioritization, and successful launches. You’ll balance customer needs, technical feasibility, and business impact to ensure our products deliver measurable value. This role requires strong cross-functional collaboration and the ability to turn complex problems into elegant solutions.",
     responsibilities: [
@@ -159,7 +159,7 @@ export const jobs: Job[] = [
     slug: "technical-program-manager",
     title: "Technical Program Manager",
     department: "Product",
-    location: "Houston, TX — Onsite",
+    location: "Houston, United States of America",
     description:
       "As a Technical Program Manager, you will orchestrate large-scale initiatives across multiple teams, ensuring seamless execution, risk mitigation, and alignment with business goals. You’ll be a central communicator between executives, stakeholders, and delivery teams while driving predictability and accountability in critical projects.",
     responsibilities: [
@@ -184,7 +184,7 @@ export const jobs: Job[] = [
     slug: "product-designer",
     title: "Product Designer (UX/UI)",
     department: "Design",
-    location: "Remote",
+    location: "Hyderabad, India",
     description:
       "As a Product Designer, you’ll own the design of critical product experiences, from early discovery sketches to polished UI. You’ll create intuitive user flows, build prototypes, and maintain a scalable design system. This role balances creativity with practicality, ensuring designs are not just beautiful but highly functional and accessible.",
     responsibilities: [
@@ -207,7 +207,7 @@ export const jobs: Job[] = [
     slug: "ux-researcher",
     title: "UX Researcher",
     department: "Design",
-    location: "Dubai, AE — Hybrid",
+    location: "Dubai, United Arab Emirates",
     description:
       "As a UX Researcher, you’ll uncover deep insights into user behaviors and needs to shape product decisions. You’ll use qualitative and quantitative research methods to validate hypotheses and guide product roadmaps. Your findings will equip design, product, and engineering with the evidence they need to make user-centered decisions.",
     responsibilities: [
@@ -232,7 +232,7 @@ export const jobs: Job[] = [
     slug: "growth-marketing-manager",
     title: "Growth Marketing Manager",
     department: "Marketing",
-    location: "Remote",
+    location: "Dammam, Saudi Arabia",
     description:
       "As a Growth Marketing Manager, you’ll own acquisition, engagement, and conversion campaigns across digital channels. You’ll experiment with creative campaigns, analyze funnel metrics, and drive rapid improvements in customer acquisition cost and lifetime value. This role requires a strong blend of analytical thinking, creativity, and a bias toward execution.",
     responsibilities: [
@@ -255,7 +255,7 @@ export const jobs: Job[] = [
     slug: "content-marketer",
     title: "Content Marketing Specialist",
     department: "Marketing",
-    location: "Remote",
+    location: "Hyderabad, India",
     description:
       "As a Content Marketing Specialist, you’ll produce high-quality written content that educates users, builds authority, and fuels inbound growth. You’ll own the editorial calendar, develop SEO strategies, and collaborate with experts to create content formats ranging from blogs and case studies to technical whitepapers.",
     responsibilities: [
@@ -280,7 +280,7 @@ export const jobs: Job[] = [
     slug: "account-executive",
     title: "Account Executive (SaaS)",
     department: "Sales",
-    location: "Hyderabad, IN — Hybrid",
+    location: "Hyderabad, India",
     description:
       "As an Account Executive, you’ll be responsible for running full-cycle SaaS sales processes, from prospecting and demos to contract negotiation and closing. You’ll engage mid-market customers, understand their challenges, and position our platform as a strategic solution that drives measurable value.",
     responsibilities: [
@@ -303,7 +303,7 @@ export const jobs: Job[] = [
     slug: "sdr",
     title: "Sales Development Representative",
     department: "Sales",
-    location: "Remote (India)",
+    location: "Dammam, Saudi Arabia",
     description:
       "As a Sales Development Representative, you’ll generate sales pipeline by researching target accounts, crafting outbound campaigns, and engaging prospects across multiple channels. This role is the foundation of our sales organization, offering high visibility, measurable impact, and fast career progression opportunities.",
     responsibilities: [
@@ -328,7 +328,7 @@ export const jobs: Job[] = [
     slug: "hr-business-partner",
     title: "HR Business Partner",
     department: "People & Talent",
-    location: "Hyderabad, IN — Onsite",
+    location: "Hyderabad, India",
     description:
       "As an HR Business Partner, you will work closely with leaders to drive organizational effectiveness, improve engagement, and champion culture initiatives. You’ll coach managers, influence people strategies, and support performance management, compensation, and learning programs across business units.",
     responsibilities: [
@@ -353,7 +353,7 @@ export const jobs: Job[] = [
     slug: "project-manager",
     title: "Project Manager",
     department: "Operations",
-    location: "Remote",
+    location: "Houston, United States of America",
     description:
       "As a Project Manager, you’ll oversee the execution of cross-functional initiatives, ensuring projects are delivered on time, within scope, and aligned to strategic objectives. You’ll lead planning rituals, risk management, and stakeholder communication while driving accountability across teams.",
     responsibilities: [

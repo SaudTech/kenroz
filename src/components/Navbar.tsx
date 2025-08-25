@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils";
 
 type NavLink = {
   label: string;
-  href?: string;           // e.g. "/#services"
-  sectionId?: string;      // e.g. "services"
-  links?: NavLink[];       // sub links
+  href?: string; // e.g. "/#services"
+  sectionId?: string; // e.g. "services"
+  links?: NavLink[]; // sub links
 };
 
 const MAIN_LINKS: NavLink[] = [
@@ -36,7 +36,8 @@ export default function Navbar(): JSX.Element {
 
   // smooth-scroll helper for in-page ids (e.g., "services")
   const scrollToSection = useCallback((id: string) => {
-    const el = typeof document !== "undefined" ? document.getElementById(id) : null;
+    const el =
+      typeof document !== "undefined" ? document.getElementById(id) : null;
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
       setIsMenuOpen(false);
@@ -67,8 +68,19 @@ export default function Navbar(): JSX.Element {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center" aria-label="Kenroz - Home">
-            <Image src={logo} alt="Kenroz Logo" width={150} height={60} className="w-auto" priority />
+          <Link
+            href="/"
+            className="flex items-center"
+            aria-label="Kenroz - Home"
+          >
+            <Image
+              src={logo}
+              alt="Kenroz Logo"
+              width={150}
+              height={60}
+              className="w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -78,7 +90,11 @@ export default function Navbar(): JSX.Element {
                 {item.links?.length ? (
                   <DesktopDropdown item={item} onNavigate={handleNav} />
                 ) : (
-                  <NavItem href={item.href} text={item.label} onClick={() => handleNav(item)} />
+                  <NavItem
+                    href={item.href}
+                    text={item.label}
+                    onClick={() => handleNav(item)}
+                  />
                 )}
                 {idx !== MAIN_LINKS.length - 1 && <Separator />}
               </React.Fragment>
@@ -87,7 +103,7 @@ export default function Navbar(): JSX.Element {
 
           {/* Right actions */}
           <div className="flex gap-5 items-center">
-            <ButtonLink href="/careers" variant="secondary" className="hidden text-md font-bold lg:inline-flex items-center whitespace-nowrap px-8 py-3 border-primary transition-colors bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white rounded-full">
+            <ButtonLink href="/careers" variant="secondary">
               Careers
             </ButtonLink>
             <ButtonLink
@@ -108,7 +124,11 @@ export default function Navbar(): JSX.Element {
             aria-controls="mobile-nav"
             type="button"
           >
-            {isMenuOpen ? <X className="w-6 h-6 text-gray-700" /> : <Menu className="w-6 h-6 text-gray-700" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6 text-gray-700" />
+            ) : (
+              <Menu className="w-6 h-6 text-gray-700" />
+            )}
           </button>
         </div>
 
@@ -131,7 +151,9 @@ export default function Navbar(): JSX.Element {
                       item={item}
                       isOpen={mobileOpenKey === item.label}
                       onToggle={() =>
-                        setMobileOpenKey((k) => (k === item.label ? null : item.label))
+                        setMobileOpenKey((k) =>
+                          k === item.label ? null : item.label
+                        )
                       }
                       onLeafClick={(leaf) => {
                         handleNav(leaf);
@@ -147,7 +169,11 @@ export default function Navbar(): JSX.Element {
                   )
                 )}
                 <div className="pt-2 flex flex-col gap-2">
-                  <ButtonLink href="/contact-us?p=hire" className="w-full justify-center" mobile>
+                  <ButtonLink
+                    href="/contact-us?p=hire"
+                    className="w-full justify-center"
+                    mobile
+                  >
                     Hire an Expert
                     <Phone className="ms-2 h-5 w-5" />
                   </ButtonLink>
@@ -200,11 +226,20 @@ function DesktopDropdown({
             return (
               <li key={child.label} role="none">
                 {child.href ? (
-                  <Link href={child.href} onClick={() => onNavigate(child)} role="menuitem">
+                  <Link
+                    href={child.href}
+                    onClick={() => onNavigate(child)}
+                    role="menuitem"
+                  >
                     {content}
                   </Link>
                 ) : (
-                  <button type="button" onClick={() => onNavigate(child)} role="menuitem" className="w-full">
+                  <button
+                    type="button"
+                    onClick={() => onNavigate(child)}
+                    role="menuitem"
+                    className="w-full"
+                  >
                     {content}
                   </button>
                 )}
@@ -240,7 +275,9 @@ function MobileExpandable({
         aria-controls={`mobile-sub-${item.label}`}
       >
         <span>{item.label}</span>
-        <ChevronDown className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")} />
+        <ChevronDown
+          className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")}
+        />
       </button>
 
       <AnimatePresence initial={false}>
@@ -285,7 +322,10 @@ function MobileExpandable({
 
 function Separator(): JSX.Element {
   return (
-    <span className="mx-4 text-gray-300 select-none font-bold" aria-hidden="true">
+    <span
+      className="mx-4 text-gray-300 select-none font-bold"
+      aria-hidden="true"
+    >
       |
     </span>
   );
@@ -298,7 +338,12 @@ interface NavItemProps {
   className?: React.HTMLAttributes<HTMLAnchorElement>["className"];
 }
 
-function NavItem({ href, text, onClick, className }: NavItemProps): JSX.Element {
+function NavItem({
+  href,
+  text,
+  onClick,
+  className,
+}: NavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
@@ -324,37 +369,75 @@ function NavItem({ href, text, onClick, className }: NavItemProps): JSX.Element 
   );
 }
 
-interface ButtonLinkProps {
-  href: string;
+type ButtonLinkProps = {
+  href?: string;
   children: React.ReactNode;
   className?: string;
   variant?: "default" | "secondary" | "outline";
   mobile?: boolean;
-}
+  onClick?: () => void;
+};
 
 export function ButtonLink({
   href,
   children,
   className,
-  variant,
+  variant = "default",
   mobile = false,
+  onClick,
 }: ButtonLinkProps): JSX.Element {
+  const baseClasses = cn(
+    // Base styles
+    `inline-flex items-center justify-center font-semibold text-sm whitespace-nowrap px-8 py-3
+     rounded-full transition-all duration-300 ease-in-out transform
+     hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl
+     focus:outline-none focus:ring-4 focus:ring-primary/20`,
+
+    // Primary variant (default)
+    variant === "default" &&
+      `bg-gradient-to-r from-primary via-primary/90 to-secondary
+       hover:from-secondary hover:via-primary hover:to-primary
+       text-white border border-primary/20
+       hover:shadow-primary/25 shadow-primary/20`,
+
+    // Secondary variant
+    variant === "secondary" &&
+      `bg-gradient-to-r from-primary/20 via-primary/10 to-primary/10 
+       border-2 border-primary
+       text-foreground 
+       shadow-inner hover:shadow-lg
+       backdrop-blur-sm
+       hover:from-primary/30 hover:via-primary/20 hover:to-primary/30`,
+
+    // Outline variant
+    variant === "outline" &&
+      `bg-transparent border-2 border-primary
+       text-primary hover:text-white
+       hover:bg-gradient-to-r hover:from-primary hover:to-secondary
+       hover:border-transparent
+       shadow-none hover:shadow-lg hover:shadow-primary/25`,
+
+    // Mobile full width
+    mobile && "w-full",
+
+    // Custom className override
+    className
+  );
+
+  if (href) {
+    return (
+      <Link href={href} role="button" className={baseClasses}>
+        <span className="relative z-10 flex items-center gap-2">
+          {children}
+        </span>
+      </Link>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      role="button"
-      className={cn(
-        `inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3
-        border-primary transition-colors bg-gradient-to-r from-primary to-secondary
-        hover:from-secondary hover:to-primary rounded-full
-        transition-all duration-200 text-white`,
-        mobile && "w-full justify-center",
-        className,
-        variant === "secondary" && "bg-transparent  text-foreground hover:text-primary"
-      )}
-    >
-      {children}
-    </Link>
+    <button type="button" onClick={onClick} className={baseClasses}>
+      <span className="relative z-10 flex items-center gap-2">{children}</span>
+    </button>
   );
 }
 
@@ -364,7 +447,11 @@ interface MobileNavItemProps {
   onClick?: () => void;
 }
 
-function MobileNavItem({ href, text, onClick }: MobileNavItemProps): JSX.Element {
+function MobileNavItem({
+  href,
+  text,
+  onClick,
+}: MobileNavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
