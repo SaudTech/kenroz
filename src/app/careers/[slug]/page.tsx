@@ -4,15 +4,16 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return jobs.map((job) => ({ slug: job.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const job = jobs.find((j) => j.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const job = jobs.find((j) => j.slug === slug);
   if (!job) {
     return { title: 'Job not found' };
   }
@@ -22,8 +23,9 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function JobDetailPage({ params }: Props) {
-  const job = jobs.find((j) => j.slug === params.slug);
+export default async function JobDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const job = jobs.find((j) => j.slug === slug);
   if (!job) {
     notFound();
   }

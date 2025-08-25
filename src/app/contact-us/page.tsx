@@ -32,12 +32,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage({
+export default async function ContactPage({
   searchParams,
 }: {
-  searchParams?: { p?: string };
+  searchParams?: Promise<{ p?: string }>;
 }) {
-  const intent = searchParams?.p;
+  const resolvedSearchParams = await searchParams;
+  const intent = resolvedSearchParams?.p;
   let heading = "Contact Us";
   let description =
     "Ready to take the next step? We\u2019re here to help you succeed. Reach out and let\u2019s discuss how we can work together to transform your business with innovative IT solutions.";

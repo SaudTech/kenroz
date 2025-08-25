@@ -90,11 +90,6 @@ export default function MicrosoftDynamic365Page() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
-              <div className="inline-block mb-4">
-                <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
-                  Microsoft Partner
-                </span>
-              </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Microsoft Dynamics 365
                 <span className="block text-primary">Implementation</span>

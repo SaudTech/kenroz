@@ -80,11 +80,6 @@ export default function CloudSolutionsPage() {
         <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-3/5">
-            <div className="inline-block mb-4">
-              <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full">
-                Cloud-Native + DevOps
-              </span>
-            </div>
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Cloud & DevOps{" "}
               <span className="block text-primary">Solutions</span>

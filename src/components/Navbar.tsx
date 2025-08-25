@@ -18,14 +18,14 @@ type NavLink = {
 const MAIN_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
-  { label: "Products", href: "/#products" },
+  { label: "Products", href: "/products" },
   {
     label: "Resources",
     links: [
       { label: "Our Story", href: "/#our-story" },
       { label: "Why us", href: "/#why-us" },
       { label: "Strategic Partners", href: "/#strategic-partners" },
-      { label: "Contact Us", href: "/contact-us?p=contact" },
+      { label: "Contact Us", href: "/contact-us" },
     ],
   },
 ];
