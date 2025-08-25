@@ -7,11 +7,8 @@ import {
   CircleCheckBig,
   ThumbsUp,
   Users,
-  ChevronDown,
 } from "lucide-react";
 import { motion, useReducedMotion, Variants } from "framer-motion";
-import { cn } from "@/lib/utils";
-import Blob from "../Blob";
 
 function SectionHeader({
   subtitle,
@@ -32,7 +29,6 @@ function SectionHeader({
         {subtitle}
       </p>
 
-      {/* Title row + chevron on right */}
       <button
         type="button"
         onClick={onToggle}
@@ -43,21 +39,14 @@ function SectionHeader({
         <h2 className="text-3xl md:text-4xl font-bold leading-tight text-foreground">
           {title}
         </h2>
-        <ChevronDown
-          className={cn(
-            "h-6 w-6 flex-shrink-0 text-foreground/80 transition-transform duration-200",
-            isOpen && "rotate-180"
-          )}
-          aria-hidden="true"
-        />
       </button>
     </div>
   );
 }
 
 const stats = [
-  { label: "5+ years of experience", icon: Calendar },
-  { label: "99% satisfied clients", icon: ThumbsUp },
+  { label: "5+ Years of experience", icon: Calendar },
+  { label: "99% Satisfied clients", icon: ThumbsUp },
   { label: "10+ Companies", icon: Users },
   { label: "14+ Projects", icon: CircleCheckBig },
 ];
@@ -110,6 +99,7 @@ export default function OurStory() {
 
   return (
     <section className="relative w-full">
+
       {/* NOTE: no parent whileInView here; every element manages its own in-view animation */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Left Side: Text Content */}
@@ -215,7 +205,7 @@ export default function OurStory() {
         <div className="lg:col-span-6 relative h-full flex gap-6 items-start">
           {/* Image only animates when the image itself is visible */}
           <motion.div
-            className="relative aspect-[4/5] w-[100%] overflow-hidden rounded-2xl border shadow-lg"
+            className="relative aspect-[4/5] w-[75%] overflow-hidden rounded-2xl border shadow-lg"
             variants={fromRight}
             initial="hidden"
             whileInView="show"
@@ -231,11 +221,11 @@ export default function OurStory() {
           </motion.div>
 
           {/* Each stat tile checks its own visibility */}
-          <div className="flex flex-col justify-between gap-10 w-1/4 absolute -right-10 top-0">
+          <div className="flex flex-col justify-between gap-4 w-1/4 absolute right-15 top-0">
             {stats.map(({ label, icon: Icon }, i) => (
               <motion.div
                 key={label}
-                className="aspect-square flex flex-col items-center justify-center rounded-xl border bg-primary/60 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition-shadow text-center"
+                className="aspect-square h-[120px] w-[120px] flex flex-col items-center justify-center rounded-xl border bg-primary/60 backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition-shadow text-center"
                 variants={statTile}
                 initial="hidden"
                 whileInView="show"

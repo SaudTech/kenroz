@@ -78,8 +78,6 @@ export default function CareersPage() {
             </div>
           </div>
         </div>
-        {/* Soft radial highlight */}
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
       </section>
 
       {/* Why Kenroz */}

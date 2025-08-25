@@ -25,9 +25,13 @@ export default function HomePage() {
         }}
       />
 
-      <Blob className="absolute top-0 left-0 z-[999]" />
+      <div className="min-h-screen overflow-x-hidden relative">
+        <Blob className="top-[22%] left-0" />
+        <Blob className="top-[38%] right-0" />
+        <Blob className="top-[54%] left-0" />
+        <Blob className="top-[70%] right-0" />
+        <Blob className="top-[86%] left-0" />
 
-      <div className="min-h-screen overflow-x-hidden">
         <Section is="even">
           <Hero />
         </Section>
@@ -74,7 +78,7 @@ export const Section = ({
       id={id}
       className={cn(
         "w-full min-h-[calc(100vh-64px)] h-full overflow-hidden",
-        className,
+        className
       )}
     >
       {children}

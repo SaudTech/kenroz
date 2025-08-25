@@ -91,8 +91,6 @@ function PartnerCard({ p }: { p: Partner }) {
 export default function StrategicPartner() {
   return (
     <section className="w-full" id="strategic-partners">
-      {/* Background accent */}
-      <div className="pointer-events-none absolute left-[-12%] top-[200%] z-[1] h-[35rem] w-[35rem] rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl" />
 
       <div className="relative z-[4] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Header */}

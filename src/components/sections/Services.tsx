@@ -62,7 +62,6 @@ export default function Services() {
 
   return (
     <section id="services" className="py-20">
-      <div className="pointer-events-none absolute right-[-12%] top-[300%] z-[1] h-[35rem] w-[35rem] rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl" />
       <div className="container mx-auto px-4 z-[3]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
