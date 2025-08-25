@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { ButtonLink } from "@/components/Navbar";
 import { OpenInformativeDialog } from "@/components/OpenInformativeDialog";
-import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Careers at Kenroz",

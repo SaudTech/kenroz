@@ -17,12 +17,12 @@ export default function Footer() {
   }, []);
 
   const services = [
-    "Digital Marketing",
-    "Website Development",
-    "Mobile Development",
-    "Microsoft Dynamic 365",
-    "Outsourcing",
-    "Cloud Solutions",
+    {label: "Digital Marketing", href: "/services/digital-marketing"},
+    {label: "Website Development", href: "/services/website-application-development"},
+    {label: "Mobile Development", href: "/services/mobile-application-development"},
+    {label: "Microsoft Dynamic 365", href: "/services/microsoft-dynamic-365"},
+    {label: "Outsourcing", href: "/services/outsourcing"},
+    {label: "Cloud Solutions", href: "/services/cloud-solutions"},
   ];
   const resources = ["Our Story", "Why Us", "Strategic Partner", "Contact Us"];
   const legalLinks = ["Privacy Policy", "Terms of Service", "Cookie Policy"];
@@ -35,7 +35,7 @@ export default function Footer() {
   const quickLinks = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/#services" },
-    { label: "Products", href: "/#products" },
+    { label: "Products", href: "/products" },
     { label: "Resources", href: "/#resources" },
     { label: "Contact Us", href: "/contact-us" },
   ]
@@ -91,12 +91,12 @@ export default function Footer() {
             <h4 className="mb-4 text-3xl font-semibold">Services</h4>
             <ul className="space-y-2 text-xl">
               {services.map((service) => (
-                <li key={service}>
+                <li key={service.label}>
                   <a
-                    href="#"
+                    href={service.href}
                     className="inline-block text-white/70 hover:text-white transition"
                   >
-                    {service}
+                    {service.label}
                   </a>
                 </li>
               ))}

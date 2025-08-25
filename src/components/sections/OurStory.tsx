@@ -9,12 +9,7 @@ import {
   Users,
   ChevronDown,
 } from "lucide-react";
-import {
-  motion,
-  AnimatePresence,
-  useReducedMotion,
-  Variants,
-} from "framer-motion";
+import { motion, useReducedMotion, Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 function SectionHeader({

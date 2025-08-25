@@ -58,7 +58,8 @@ export const Section = ({
   children,
   id,
   className = "",
-  is,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  is: _is,
 }: {
   children: React.ReactNode;
   id?: string;
