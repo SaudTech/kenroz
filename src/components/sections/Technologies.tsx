@@ -9,6 +9,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Check } from "lucide-react";
+import SectionHeader from "../SectionHeader";
 
 const EXCLUDED_EXPORTS = new Set(["default", "__esModule"]);
 
@@ -57,82 +59,103 @@ export default function Technologies() {
 
   return (
     <section id="tech" className="py-20 md:py-24">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-black">
-            Our Technology Stack
-          </h2>
-          <p className="mt-2 text-gray-900 mx-auto text-sm md:text-base max-w-2xl">
-            A scattered, floating logo cloud — smaller tiles, each offset for a
-            casual layout.
-          </p>
-        </div>
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+          {/* Icons grid (left) */}
+          <div className="md:col-span-7">
+            <style>{`
+              @keyframes float {
+                0% { transform: translateY(0); }
+                50% { transform: translateY(-12px); }
+                100% { transform: translateY(0); }
+              }
+            `}</style>
 
-        <style>{`
-          @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0); }
-          }
-        `}</style>
+            <TooltipProvider delayDuration={80}>
+              <div
+                className="relative w-full mx-auto"
+                style={{
+                  minHeight: "350px",
+                }}
+              >
+                {iconEntries.map(([label, Comp], i) => {
+                  // Use x/y arrays, fallback to 0 if out-of-bounds
+                  const left = (x[i] ?? 0) + "%";
+                  const top = (y[i] ?? 0) + "%";
 
-        <TooltipProvider delayDuration={80}>
-          <div
-            className="relative w-full mx-auto"
-            style={{
-              minHeight: "350px",
-            }}
-          >
-            {iconEntries.map(([label, Comp], i) => {
-              // Use x/y arrays, fallback to 0 if out-of-bounds
-              const left = (x[i] ?? 0) + "%";
-              const top = (y[i] ?? 0) + "%";
+                  // Random tilt (seeded per icon for stability)
+                  const seed = hashString(label as string);
+                  const rand = seededRand(seed);
+                  const rot = (rand() * 10 - 5).toFixed(2);
 
-              // Random tilt (seeded per icon for stability)
-              const seed = hashString(label as string);
-              const rand = seededRand(seed);
-              const rot = (rand() * 10 - 5).toFixed(2);
+                  const floatDuration = 2.5 + rand() * 6;
+                  const floatDelay = rand() * 2;
 
-              const floatDuration = 2.5 + rand() * 6;
-              const floatDelay = rand() * 2;
-
-              return (
-                <Tooltip key={label as string}>
-                  <TooltipTrigger asChild>
-                    <div
-                      aria-label={label as string}
-                      title={label as string}
-                      className="
-                        absolute w-20 h-20 md:w-24 md:h-24
-                        p-2 rounded-lg bg-white
-                        shadow-md border border-gray-200
-                        flex items-center justify-center
-                        transition-transform duration-300
-                        hover:scale-110 hover:shadow-xl
-                        will-change-transform
-                      "
-                      style={{
-                        left,
-                        top,
-                        transform: `rotate(${rot}deg)`,
-                        animation: `float ${floatDuration}s ease-in-out infinite`,
-                        animationDelay: `${floatDelay}s`,
-                      }}
-                    >
-                      {createElement(Comp, {
-                        className: "w-full h-full object-contain",
-                        "aria-hidden": true,
-                      })}
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" className="text-xs font-medium">
-                    {label as string}
-                  </TooltipContent>
-                </Tooltip>
-              );
-            })}
+                  return (
+                    <Tooltip key={label as string}>
+                      <TooltipTrigger asChild>
+                        <div
+                          aria-label={label as string}
+                          title={label as string}
+                          className="
+                            absolute w-20 h-20 md:w-24 md:h-24
+                            p-2 rounded-lg bg-white
+                            shadow-md border border-gray-200
+                            flex items-center justify-center
+                            transition-transform duration-300
+                            hover:scale-110 hover:shadow-xl
+                            will-change-transform
+                          "
+                          style={{
+                            left,
+                            top,
+                            transform: `rotate(${rot}deg)`,
+                            animation: `float ${floatDuration}s ease-in-out infinite`,
+                            animationDelay: `${floatDelay}s`,
+                          }}
+                        >
+                          {createElement(Comp, {
+                            className: "w-full h-full object-contain",
+                            "aria-hidden": true,
+                          })}
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="text-xs font-medium">
+                        {label as string}
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
+              </div>
+            </TooltipProvider>
           </div>
-        </TooltipProvider>
+
+          {/* Content (right) */}
+          <div className="md:col-span-5">
+            <div className="sticky top-20">
+              <SectionHeader
+                subtitle="Technologies we use"
+                title="Our Technology Stack"
+                description="A selection of frameworks, languages, and tools that power our solutions."
+              />
+
+              <ul className="mt-6 space-y-3">
+                {[
+                  "Modern frameworks and libraries",
+                  "Cloud-native infrastructure",
+                  "Secure and scalable data solutions",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-1 rounded-full border p-1">
+                      <Check className="h-4 w-4 text-primary" />
+                    </span>
+                    <span className="text-sm md:text-base text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

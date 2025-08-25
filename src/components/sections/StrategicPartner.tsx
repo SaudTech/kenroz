@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { ButtonLink } from "../Navbar";
+import SectionHeader from "../SectionHeader";
 
 type Partner = {
   id: "emvive" | "arcgen";
@@ -27,19 +28,6 @@ const partners: Partner[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus, sapien et luctus posuere, dui magna dapibus nisl, non mollis mi sem at augue.",
   },
 ];
-
-function SectionHeader({ subtitle, title }: { subtitle: string; title: string }) {
-  return (
-    <div className="text-left">
-      <p className="text-sm tracking-widest uppercase text-primary/90 font-semibold">
-        {subtitle}
-      </p>
-      <h2 className="mt-2 text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.02] text-foreground">
-        {title}
-      </h2>
-    </div>
-  );
-}
 
 function Initials({ name }: { name: string }) {
   const initials = name
