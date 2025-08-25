@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import HeroBackground from "@/components/sections/HeroBackground";
+import Blob from "@/components/Blob";
+import { Section } from "@/app/page";
 
 export default function ProductsPage() {
   const products = [
@@ -100,11 +101,16 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-red-50 overflow-x-hidden">
-      <HeroBackground />
+    <div className="min-h-screen overflow-x-hidden relative">
+      <Blob className="top-[22%] left-0" />
+      <Blob className="top-[38%] right-0" />
+      <Blob className="top-[54%] left-0" />
+      <Blob className="top-[70%] right-0" />
+      <Blob className="top-[86%] left-0" />
 
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
-        <section className="relative mb-40 rounded-3xl overflow-hidden">
+      <Section is="even" className="pt-32 pb-24">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="relative mb-40 rounded-3xl overflow-hidden">
           <motion.header
             className="relative z-10 text-center max-w-5xl mx-auto py-12"
             initial="hidden"
@@ -217,6 +223,7 @@ export default function ProductsPage() {
           ))}
         </motion.section>
       </main>
+      </Section>
     </div>
   );
 }

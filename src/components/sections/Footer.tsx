@@ -24,8 +24,17 @@ export default function Footer() {
     {label: "Outsourcing", href: "/services/outsourcing"},
     {label: "Cloud Solutions", href: "/services/cloud-solutions"},
   ];
-  const resources = ["Our Story", "Why Us", "Used by", "Strategic Partner", "Contact Us"];
-  const legalLinks = ["Privacy Policy", "Terms of Service", "Cookie Policy"];
+  const resources = [
+    { label: "Our Story", href: "/#our-story" },
+    { label: "Why Us", href: "/#why-us" },
+    { label: "Strategic Partner", href: "/#strategic-partner" },
+    { label: "Contact Us", href: "/contact-us" },
+  ];
+  const legalLinks = [
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
+    { label: "Cookie Policy", href: "/cookie-policy" },
+  ];
   const socials = [
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Facebook, href: "#", label: "Facebook" },
@@ -36,7 +45,6 @@ export default function Footer() {
     { label: "Home", href: "/" },
     { label: "Services", href: "/#services" },
     { label: "Products", href: "/products" },
-    { label: "Resources", href: "/#resources" },
     { label: "Contact Us", href: "/contact-us" },
   ]
 
@@ -108,12 +116,12 @@ export default function Footer() {
             <h4 className="mb-4 text-3xl font-semibold">Resources</h4>
             <ul className="space-y-2 text-xl">
               {resources.map((r) => (
-                <li key={r}>
+                <li key={r.label}>
                   <a
-                    href="#"
+                    href={r.href}
                     className="inline-block text-white/70 hover:text-white transition"
                   >
-                    {r}
+                    {r.label}
                   </a>
                 </li>
               ))}
@@ -125,12 +133,12 @@ export default function Footer() {
             <h4 className="mb-4 text-3xl font-semibold">Legal Center</h4>
             <ul className="space-y-2 text-xl">
               {legalLinks.map((legal) => (
-                <li key={legal}>
+                <li key={legal.label}>
                   <a
-                    href="#"
+                    href={legal.href}
                     className="inline-block text-white/70 hover:text-white transition"
                   >
-                    {legal}
+                    {legal.label}
                   </a>
                 </li>
               ))}

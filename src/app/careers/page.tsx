@@ -206,7 +206,6 @@ export default function CareersPage() {
       {/* JSON-LD */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
       />
     </div>
