@@ -10,8 +10,7 @@ import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
 
 interface FormData {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   email: string;
   company: string;
   message: string;
@@ -37,8 +36,7 @@ export default function EnhancedContactForm({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     company: "",
     message: "",
@@ -48,18 +46,11 @@ export default function EnhancedContactForm({
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // First name validation
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
-    } else if (formData.firstName.trim().length < 2) {
-      newErrors.firstName = "Name must be at least 2 characters";
-    }
-
-    // Last name validation
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required";
-    } else if (formData.lastName.trim().length < 2) {
-      newErrors.lastName = "Name must be at least 2 characters";
+    // Full name validation
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full name is required";
+    } else if (formData.fullName.trim().length < 2) {
+      newErrors.fullName = "Name must be at least 2 characters";
     }
 
     // Company validation
@@ -106,8 +97,7 @@ export default function EnhancedContactForm({
 
       setIsSubmitted(true);
       setFormData({
-        firstName: "",
-        lastName: "",
+        fullName: "",
         email: "",
         company: "",
         message: "",
@@ -170,7 +160,7 @@ export default function EnhancedContactForm({
     <div className={`w-full mx-auto ${className}`} id="contact">
       <div className={cn("grid grid-cols-2 gap-8 max-w-7xl mx-auto", !showContactInfo && "grid-cols-1")}>
         {/* Contact Form */}
-        <Card className="border-0 max-w-4xl mx-auto shadow-2xl bg-gradient-to-br from-white to-gray-50">
+        <Card className="border-0 w-full mx-auto shadow-2xl bg-gradient-to-br from-white to-gray-50">
           <CardHeader className="space-y-4">
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
               Send us a message
@@ -180,50 +170,31 @@ export default function EnhancedContactForm({
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-6">
               {context && <input type="hidden" name="context" value={context} />}
-              {/* Name and Company Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    placeholder="Enter your first name"
-                    className={`h-12 border-2 transition-all duration-200 ${
-                      errors.firstName
-                        ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                    }`}
-                  />
-                  {errors.firstName && (
-                    <p className="text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.firstName}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    placeholder="Your last name"
-                    className="h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200"
-                  />
-                  {errors.lastName && (
-                    <p className="text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.lastName}
-                    </p>
-                  )}
-                </div>
+              
+              {/* Full Name Field */}
+              <div className="space-y-2">
+                <Input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                  className={`h-12 border-2 transition-all duration-200 ${
+                    errors.fullName
+                      ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                      : "border-gray-200 focus:border-primary focus:ring-primary/20"
+                  }`}
+                />
+                {errors.fullName && (
+                  <p className="text-sm text-red-600 flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    {errors.fullName}
+                  </p>
+                )}
               </div>
 
-              {/* Email and Phone Row */}
+              {/* Email and Company Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Input

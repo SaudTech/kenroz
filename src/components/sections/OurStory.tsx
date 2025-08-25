@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { motion, useReducedMotion, Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Blob from "../Blob";
 
 function SectionHeader({
   subtitle,
@@ -251,17 +252,6 @@ export default function OurStory() {
           </div>
         </div>
       </div>
-
-      {/* Background accent also waits for its own visibility */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 -z-10"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={view}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-      </motion.div>
     </section>
   );
 }

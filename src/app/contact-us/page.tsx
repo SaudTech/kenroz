@@ -1,10 +1,11 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch with Kenroz IT Solutions",
-  description: "Contact Kenroz for expert IT solutions, software development, and digital transformation services. Get a free consultation for Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development.",
+  description:
+    "Contact Kenroz for expert IT solutions, software development, and digital transformation services. Get a free consultation for Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development.",
   keywords: [
     "contact Kenroz",
     "IT solutions consultation",
@@ -15,20 +16,22 @@ export const metadata: Metadata = {
     "mobile app development",
     "digital marketing services",
     "IT outsourcing inquiry",
-    "Saudi Arabia IT company contact"
+    "Saudi Arabia IT company contact",
   ],
   openGraph: {
     title: "Contact Us - Get in Touch with Kenroz IT Solutions",
-    description: "Ready to transform your business with cutting-edge IT solutions? Contact our expert team for a free consultation on software development, cloud solutions, and digital transformation.",
+    description:
+      "Ready to transform your business with cutting-edge IT solutions? Contact our expert team for a free consultation on software development, cloud solutions, and digital transformation.",
     url: "https://kenroz.com/contact-us",
     type: "website",
   },
   twitter: {
     title: "Contact Us - Get in Touch with Kenroz IT Solutions",
-    description: "Ready to transform your business with cutting-edge IT solutions? Contact our expert team for a free consultation.",
+    description:
+      "Ready to transform your business with cutting-edge IT solutions? Contact our expert team for a free consultation.",
   },
   alternates: {
-    canonical: '/contact-us',
+    canonical: "/contact-us",
   },
 };
 
@@ -53,41 +56,66 @@ export default async function ContactPage({
       "Interested in our services? Tell us about your project and we\u2019ll get back to you shortly.";
   }
 
+  const locations = [
+    { city: "Hyderabad", flag: "\uD83C\uDDEE\uD83C\uDDF3" },
+    { city: "Dammam", flag: "\uD83C\uDDF8\uD83C\uDDE6" },
+    { city: "Chicago", flag: "\uD83C\uDDFA\uD83C\uDDF8" },
+    { city: "Dubai", flag: "\uD83C\uDDE6\uD83C\uDDEA" },
+  ];
+
   return (
     <>
-      <StructuredData 
-        type="organization" 
+      <StructuredData
+        type="organization"
         data={{
           "@type": "ContactPage",
-          "mainEntity": {
+          mainEntity: {
             "@type": "Organization",
-            "name": "Kenroz",
-            "contactPoint": {
+            name: "Kenroz",
+            contactPoint: {
               "@type": "ContactPoint",
-              "telephone": "+966-XX-XXX-XXXX",
-              "contactType": "customer service",
-              "availableLanguage": ["English", "Arabic"],
-              "areaServed": "SA"
-            }
-          }
+              telephone: "+966-XX-XXX-XXXX",
+              contactType: "customer service",
+              availableLanguage: ["English", "Arabic"],
+              areaServed: "SA",
+            },
+          },
         }}
       />
-      
-      <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 min-h-screen py-16 px-4">
+
+      <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 min-h-screen flex items-center py-24 px-6">
         <div className="container mx-auto max-w-7xl">
-          {/* Page Header */}
-          <header className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
-              {heading}
-            </h1>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto leading-relaxed">
-              {description}
-            </p>
-          </header>
+          <div className="grid md:grid-cols-2 gap-20 items-center">
+            {/* Left column with heading and locations */}
+            <div className="space-y-8">
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
+                {heading}
+              </h1>
+              <p className="text-lg md:text-xl text-gray-900 max-w-xl leading-relaxed">
+                {description}
+              </p>
+              {!intent && (
+                <ul className="mt-10 space-y-4">
+                  {locations.map((loc) => (
+                    <li
+                      key={loc.city}
+                      className="flex items-center text-xl font-medium"
+                    >
+                      <span className="text-3xl mr-3">{loc.flag}</span>
+                      {loc.city}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
 
-          {/* Enhanced Contact Form */}
-          <EnhancedContactForm showContactInfo={false} context={intent} />
-
+            {/* Right column with contact form */}
+              <EnhancedContactForm
+                showContactInfo={false}
+                context={intent}
+                className="w-full"
+              />
+          </div>
         </div>
       </div>
     </>

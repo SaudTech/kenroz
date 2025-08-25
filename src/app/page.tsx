@@ -5,6 +5,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import { cn } from "@/lib/utils";
 import OurStory from "@/components/sections/OurStory";
 import StrategicPartner from "@/components/sections/StrategicPartner";
+import Blob from "@/components/Blob";
 
 export default function HomePage() {
   return (
@@ -23,6 +24,8 @@ export default function HomePage() {
           },
         }}
       />
+
+      <Blob className="absolute top-0 left-0 z-[999]" />
 
       <div className="min-h-screen overflow-x-hidden">
         <Section is="even">
