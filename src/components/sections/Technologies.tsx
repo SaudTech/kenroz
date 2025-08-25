@@ -45,10 +45,10 @@ function humanize(name: string) {
 }
 
 export default function Technologies() {
-  // Your custom positions
-  const x = [0, 25, 13, 50, 50, 90, 50, 50, 25, 75, 100, 75, 100, 8];
-  const y = [50, 25, 100, 0, 35, 100, 70, 100, 75, 75, 13, 25, 50, 0];
-      
+  // Custom positions for each technology icon (x%, y%)
+  const x = [4, 20, 40, 57, 80, 90, 15, 38, 55, 75, 5, 25, 45, 65, 85, 26, 67];
+  const y = [10, 0, 20, 5, 15, 24, 55, 54, 60, 50, 85, 80, 85, 75, 85, 35, 35];
+
   const iconEntries = useMemo(() => {
     return Object.entries(TechIcons)
       .filter(([k, v]) => !EXCLUDED_EXPORTS.has(k) && typeof v === "function")
@@ -63,7 +63,8 @@ export default function Technologies() {
             Our Technology Stack
           </h2>
           <p className="mt-2 text-gray-900 mx-auto text-sm md:text-base max-w-2xl">
-            A scattered, floating logo cloud — smaller tiles, each offset for a casual layout.
+            A scattered, floating logo cloud — smaller tiles, each offset for a
+            casual layout.
           </p>
         </div>
 
@@ -79,23 +80,22 @@ export default function Technologies() {
           <div
             className="relative w-full mx-auto"
             style={{
-              minHeight: "300px",
-              maxWidth: "700px",
+              minHeight: "350px",
             }}
           >
             {iconEntries.map(([label, Comp], i) => {
               // Use x/y arrays, fallback to 0 if out-of-bounds
               const left = (x[i] ?? 0) + "%";
               const top = (y[i] ?? 0) + "%";
-            
+
               // Random tilt (seeded per icon for stability)
               const seed = hashString(label as string);
               const rand = seededRand(seed);
               const rot = (rand() * 10 - 5).toFixed(2);
-            
-              const floatDuration = 2.5 + rand() * 2;
+
+              const floatDuration = 2.5 + rand() * 6;
               const floatDelay = rand() * 2;
-            
+
               return (
                 <Tooltip key={label as string}>
                   <TooltipTrigger asChild>
@@ -103,7 +103,7 @@ export default function Technologies() {
                       aria-label={label as string}
                       title={label as string}
                       className="
-                        absolute w-16 h-16 md:w-20 md:h-20
+                        absolute w-20 h-20 md:w-24 md:h-24
                         p-2 rounded-lg bg-white
                         shadow-md border border-gray-200
                         flex items-center justify-center

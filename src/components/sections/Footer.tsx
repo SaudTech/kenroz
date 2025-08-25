@@ -24,7 +24,7 @@ export default function Footer() {
     {label: "Outsourcing", href: "/services/outsourcing"},
     {label: "Cloud Solutions", href: "/services/cloud-solutions"},
   ];
-  const resources = ["Our Story", "Why Us", "Strategic Partner", "Contact Us"];
+  const resources = ["Our Story", "Why Us", "Used by", "Strategic Partner", "Contact Us"];
   const legalLinks = ["Privacy Policy", "Terms of Service", "Cookie Policy"];
   const socials = [
     { icon: Instagram, href: "#", label: "Instagram" },

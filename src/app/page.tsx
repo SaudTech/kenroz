@@ -5,6 +5,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import { cn } from "@/lib/utils";
 import OurStory from "@/components/sections/OurStory";
 import StrategicPartner from "@/components/sections/StrategicPartner";
+import UsedBy from "@/components/sections/UsedBy";
 import Blob from "@/components/Blob";
 
 export default function HomePage() {
@@ -40,6 +41,9 @@ export default function HomePage() {
         </Section>
         <Section is="odd">
           <StrategicPartner />
+        </Section>
+        <Section is="odd">
+          <UsedBy />
         </Section>
         <Section is="odd">
           <Services />
