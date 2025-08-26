@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 import { ButtonLink } from "../Navbar";
 import SectionHeader from "../SectionHeader";
 
@@ -43,9 +44,18 @@ function Initials({ name }: { name: string }) {
   );
 }
 
-function PartnerCard({ p }: { p: Partner }) {
+function PartnerCard({ p, index }: { p: Partner; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <div className="group relative w-full flex flex-col rounded-2xl border bg-background/70 shadow-sm transition-shadow hover:shadow-md">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      className="group relative w-full flex flex-col rounded-2xl border bg-background/70 shadow-sm transition-shadow hover:shadow-md"
+    >
       {/* Logo / Header */}
       <div className="p-6 flex items-center flex-col gap-3">
         {p.logo ? (
@@ -68,35 +78,50 @@ function PartnerCard({ p }: { p: Partner }) {
 
       {/* Footer */}
       <div className="p-6 pt-0">
-        <ButtonLink href="#">
-          Visit website
-        </ButtonLink>
+        <ButtonLink href="#">Visit website</ButtonLink>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function StrategicPartner() {
+  const headingRef = useRef<HTMLDivElement>(null);
+  const headingInView = useInView(headingRef, { once: true, margin: "-100px" });
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const textInView = useInView(textRef, { once: true, margin: "-100px" });
+
   return (
     <section className="w-full" id="strategic-partners">
-
       <div className="relative z-[4] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Header */}
         <div className="mb-10 max-w-3xl">
-          <SectionHeader
-            subtitle="Companies Who benefited from us"
-            title="Strategic Partners"
-          />
-          <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground">
+          <motion.div
+            ref={headingRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={headingInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionHeader
+              subtitle="Companies Who benefited from us"
+              title="Strategic Partners"
+            />
+          </motion.div>
+          <motion.p
+            ref={textRef}
+            className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            animate={textInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             We collaborate with visionary companies to deliver stronger outcomes and accelerate
             innovation across platforms.
-          </p>
+          </motion.p>
         </div>
 
         {/* Two equal cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2  gap-6 items-stretch">
-          {partners.map((p) => (
-            <PartnerCard key={p.id} p={p} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          {partners.map((p, i) => (
+            <PartnerCard key={p.id} p={p} index={i} />
           ))}
         </div>
       </div>
