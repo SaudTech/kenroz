@@ -37,8 +37,6 @@ export const metadata: Metadata = {
   },
 };
 
-type SearchParams = { p?: string };
-
 const locations = [
   {
     city: "Hyderabad",
@@ -122,29 +120,30 @@ function LocationCard({
   );
 }
 
+type ContactSearchParams = {
+  p?: string | string[];
+};
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams?: Promise<SearchParams> | SearchParams;
+  searchParams?: Promise<ContactSearchParams>;
 }) {
-  const resolved =
-    (searchParams && "then" in (searchParams as Promise<SearchParams>)
-      ? await (searchParams as Promise<SearchParams>)
-      : (searchParams as SearchParams)) || {};
-  const intent = resolved?.p;
+  const resolved = (await searchParams) ?? {};
+  const rawIntent = resolved.p;
+  const intent = Array.isArray(rawIntent) ? rawIntent[0] : rawIntent;
 
   let heading = "Contact Us";
   let description =
-    "Ready to take the next step? We’re here to help you succeed. ";
+    "Ready to take the next step? We're here to help you succeed. ";
 
   if (intent === "hire") {
     heading = "Hire an Expert";
     description =
-      "Looking to bring skilled professionals on board? Share your requirements and we’ll connect you with the right talent.";
+      "Looking to bring skilled professionals on board? Share your requirements and we'll connect you with the right talent.";
   } else if (intent) {
     heading = "Service Inquiry";
     description =
-      "Interested in our services? Tell us about your project and we’ll get back to you shortly.";
+      "Interested in our services? Tell us about your project and we'll get back to you shortly.";
   }
 
   return (
