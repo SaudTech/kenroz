@@ -81,7 +81,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-3  rounded-lg p-3">
                 <Image
-                src={"/isoImage.webp"}
+                src={"/certification.png"}
                 alt="certification Logo"
                 width={140}
                 height={10}

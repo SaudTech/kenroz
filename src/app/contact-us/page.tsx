@@ -1,6 +1,8 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
+import { MapPin, Phone, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch with Kenroz IT Solutions",
@@ -35,33 +37,115 @@ export const metadata: Metadata = {
   },
 };
 
+type SearchParams = { p?: string };
+
+const locations = [
+  {
+    city: "Hyderabad",
+    flag: "/flags/ind.png",
+    location:
+      "Madhura Colony, Gachibowli, Hyderabad, Telangana 500104",
+    phone: "+91-9849000000",
+    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
+  },
+  {
+    city: "Dammam",
+    flag: "/flags/sau.png",
+    location:
+      "Al Khobar Al Shamalia, Al Khobar 34428, Saudi Arabia",
+    phone: "+966-23-234-2342",
+    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
+  },
+  {
+    city: "Houston",
+    flag: "/flags/usa.png",
+    location: "3100 Cleburne St, Houston, TX 77004, USA",
+    phone: "+1-642-234-2342",
+    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
+  },
+  {
+    city: "Dubai",
+    flag: "/flags/uae.png",
+    location:
+      "19 48A St - Al Barsha - Al Barsha 2 - Dubai - United Arab Emirates",
+    phone: "+971-18-923-2342",
+    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
+  },
+];
+
+function LocationCard({
+  city,
+  flag,
+  location,
+  phone,
+  operatingHours,
+}: (typeof locations)[number]) {
+  return (
+    <div className="group relative rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow p-5">
+      <div className="flex items-center gap-3 mb-3">
+        <div className="relative h-6 w-9 overflow-hidden rounded">
+          <Image
+            src={flag}
+            alt={`${city} flag`}
+            fill
+            sizes="36px"
+            className="object-cover"
+            priority={false}
+          />
+        </div>
+        <h3 className="text-lg font-semibold">{city}</h3>
+      </div>
+
+      <div className="space-y-2 text-sm text-gray-700">
+        <div className="flex items-start gap-2">
+          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
+          <p className="leading-snug">{location}</p>
+        </div>
+        <div className="flex items-start gap-2">
+          <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
+          <a
+            href={`tel:${phone.replace(/[^\d+]/g, "")}`}
+            className="leading-snug hover:underline"
+          >
+            {phone}
+          </a>
+        </div>
+        <div className="flex items-start gap-2">
+          <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
+          <p className="leading-snug">{operatingHours}</p>
+        </div>
+      </div>
+
+      {/* subtle gradient accent */}
+      <div className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    </div>
+  );
+}
+
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ p?: string }>;
+  searchParams?: Promise<SearchParams> | SearchParams;
 }) {
-  const resolvedSearchParams = await searchParams;
-  const intent = resolvedSearchParams?.p;
+  const resolved =
+    (searchParams && "then" in (searchParams as Promise<SearchParams>)
+      ? await (searchParams as Promise<SearchParams>)
+      : (searchParams as SearchParams)) || {};
+  const intent = resolved?.p;
+
   let heading = "Contact Us";
   let description =
-    "Ready to take the next step? We\u2019re here to help you succeed. Reach out and let\u2019s discuss how we can work together to transform your business with innovative IT solutions.";
+    "Ready to take the next step? We’re here to help you succeed. ";
 
   if (intent === "hire") {
     heading = "Hire an Expert";
     description =
-      "Looking to bring skilled professionals on board? Share your requirements and we\u2019ll connect you with the right talent.";
+      "Looking to bring skilled professionals on board? Share your requirements and we’ll connect you with the right talent.";
   } else if (intent) {
     heading = "Service Inquiry";
     description =
-      "Interested in our services? Tell us about your project and we\u2019ll get back to you shortly.";
+      "Interested in our services? Tell us about your project and we’ll get back to you shortly.";
   }
-
-  const locations = [
-    { city: "Hyderabad", flag: "\uD83C\uDDEE\uD83C\uDDF3" },
-    { city: "Dammam", flag: "\uD83C\uDDF8\uD83C\uDDE6" },
-    { city: "Chicago", flag: "\uD83C\uDDFA\uD83C\uDDF8" },
-    { city: "Dubai", flag: "\uD83C\uDDE6\uD83C\uDDEA" },
-  ];
 
   return (
     <>
@@ -85,36 +169,34 @@ export default async function ContactPage({
 
       <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 min-h-screen flex items-center py-24 px-6">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
-            {/* Left column with heading and locations */}
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+            {/* Left: heading + cards */}
             <div className="space-y-8">
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
                 {heading}
               </h1>
-              <p className="text-lg md:text-xl text-gray-900 max-w-xl leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-900 max-w-2xl leading-relaxed">
                 {description}
               </p>
+
+              {/* Location cards */}
               {!intent && (
-                <ul className="mt-10 space-y-4">
+                <div className="grid sm:grid-cols-2 gap-5 mt-6">
                   {locations.map((loc) => (
-                    <li
-                      key={loc.city}
-                      className="flex items-center text-xl font-medium"
-                    >
-                      <span className="text-3xl mr-3">{loc.flag}</span>
-                      {loc.city}
-                    </li>
+                    <LocationCard key={loc.city} {...loc} />
                   ))}
-                </ul>
+                </div>
               )}
             </div>
 
-            {/* Right column with contact form */}
+            {/* Right: contact form */}
+            <div className="w-full">
               <EnhancedContactForm
                 showContactInfo={false}
                 context={intent}
                 className="w-full"
               />
+            </div>
           </div>
         </div>
       </div>
