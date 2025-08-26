@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   Globe,
@@ -115,14 +116,20 @@ export default function Services() {
           {/* Cards (Right) */}
           <div className="md:col-span-7">
             <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
-              {services.map((service) => (
+              {services.map((service, i) => (
                 <Link
                   key={service.path}
                   href={`/services/${service.path}`}
                   aria-label={`Read more about ${service.title}`}
                   className="group h-full"
                 >
-                  <div className="h-full rounded-2xl border transition-colors duration-300 border-border bg-card/70 backdrop-blur-md shadow-sm hover:shadow-lg focus-within:ring-2 focus-within:ring-ring">
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
+                    className="h-full rounded-2xl border transition-colors duration-300 border-border bg-card/70 backdrop-blur-md shadow-sm hover:shadow-lg focus-within:ring-2 focus-within:ring-ring"
+                  >
                     <div className="flex h-full flex-col p-4 md:p-6">
                       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary shadow-md">
                         <service.icon className="h-6 w-6 text-primary-foreground" />
@@ -142,7 +149,7 @@ export default function Services() {
                         Explore <ArrowRight className="h-4 w-4" />
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </Link>
               ))}
             </div>

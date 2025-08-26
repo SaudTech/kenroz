@@ -1,229 +1,438 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useMemo } from "react";
 import Image from "next/image";
-import Blob from "@/components/Blob";
-import { Section } from "@/app/page";
+import { motion } from "framer-motion";
+
+import { Section } from "@/app/page"; // keeping your Section wrapper
+import { ButtonLink } from "@/components/Navbar";
+import { cn } from "@/lib/utils";
+import SectionHeader from "@/components/SectionHeader";
+
+// ---------- Data ----------
+type Product = {
+  name: string;
+  slug: string;
+  subtitle: string;
+  description: string;
+  imageName: string;
+  footerText: string;
+};
+
+const products: Product[] = [
+  {
+    name: "HRMS Solution Systems",
+    slug: "hrms-solution-systems",
+    subtitle: "All-in-one HR suite",
+    description:
+      "Streamline the entire employee journey with an all-in-one HR platform — from hiring to offboarding, with analytics and self-service built in.",
+    imageName: "/HCM.png",
+    footerText: "Compliant • Secure • Scalable",
+  },
+  {
+    name: "Payroll Management Systems",
+    slug: "payroll-management-systems",
+    subtitle: "Seamless payroll automation",
+    description:
+      "Automate payroll, tax, and compliance with seamless calculations, bank integration, and transparent employee access.",
+    imageName: "/Payroll.png",
+    footerText: "Accurate • Compliant • Reliable",
+  },
+  {
+    name: "ZATCA Taxation Solutions",
+    slug: "zatca-taxation-solutions",
+    subtitle: "E-invoicing made effortless",
+    description:
+      "Stay ZATCA-compliant with automated e-invoicing, QR codes, digital signatures, and real-time VAT submissions.",
+    imageName: "/Invoice.png",
+    footerText: "Regulation-ready • Trusted • Future-proof",
+  },
+  {
+    name: "Insurance Product Systems",
+    slug: "insurance-product-systems",
+    subtitle: "Smarter insurance operations",
+    description:
+      "Simplify policy management, underwriting, claims, and customer service with a flexible, insurer-focused platform.",
+    imageName: "/Insurance.png",
+    footerText: "Efficient • Integrated • Customer-centric",
+  },
+  {
+    name: "Learning Management Systems (LMS)",
+    slug: "learning-management-systems",
+    subtitle: "Empowering digital learning",
+    description:
+      "Deliver and track engaging learning experiences with interactive courses, certifications, and mobile-first access.",
+    imageName: "/LMS.png",
+    footerText: "Engaging • Flexible • Insight-driven",
+  },
+];
+
+
+// ---------- Animations ----------
+const fadeInUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
+const fromLeft = {
+  hidden: { opacity: 0, x: -60, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.7 },
+  },
+};
+
+const fromRight = {
+  hidden: { opacity: 0, x: 60, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.7 },
+  },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+};
 
 export default function ProductsPage() {
-  const products = [
-    {
-      name: "HRMS Solution Systems",
-      description:
-        "A full-featured Human Resource Management System that automates the entire employee lifecycle: recruitment, onboarding, attendance, performance, training, appraisals, and offboarding. Integrates seamlessly with payroll and leave modules. Provides real-time analytics for managers and self-service portals for employees. Fully customizable, compliant with local labor laws, and built with strong data security to scale with your organization.",
-      features: [
-        "Employee Lifecycle Management",
-        "Real-time Analytics",
-        "Self-service Portals",
-        "Compliance Ready",
-      ],
-      imageName: "/HCM.png",
-    },
-    {
-      name: "Payroll Management Systems",
-      description:
-        "Automates payroll calculations, tax deductions, statutory compliance, and audit trails. Employees get self-service access to payslips, tax summaries, and leave balances; HR/finance teams benefit from automatic tax computation, bank file generation, and tight integration with attendance/HRMS. Flexible rules, comprehensive reporting, and legal compliance reduce manual effort and errors.",
-      features: [
-        "Automated Calculations",
-        "Tax Compliance",
-        "Bank Integration",
-        "Audit Trails",
-      ],
-      imageName: "/Payroll.png",
-    },
-    {
-      name: "ZATCA Taxation Solutions",
-      description:
-        "Designed for Saudi Arabian businesses to comply with ZATCA e-invoicing and VAT regulations (Phase 1 & 2). Automates invoice creation, validation, secure QR code generation, UUIDs, digital signatures, and real-time submission. Includes an intuitive dashboard, reconciliation tools, and audit-ready reporting to minimize penalties and adapt to evolving regulations.",
-      features: [
-        "ZATCA Compliance",
-        "E-invoicing",
-        "Digital Signatures",
-        "Real-time Submission",
-      ],
-      imageName: "/Invoice.png",
-    },
-    {
-      name: "Insurance Product Systems",
-      description:
-        "A specialized platform for insurers (life, health, general) to streamline policy administration, underwriting, claims, and customer service. Features dynamic dashboards, rule-based workflow automation, unified policy lifecycle tracking, and customer/agent portals. Modular, API-ready, compatible with legacy and cloud setups; ensures regulatory compliance while improving efficiency and client satisfaction.",
-      features: [
-        "Policy Administration",
-        "Claims Management",
-        "Workflow Automation",
-        "Customer Portals",
-      ],
-      imageName: "/Insurance.png",
-    },
-    {
-      name: "Learning Management Systems (LMS)",
-      description:
-        "Empowers organizations and institutions to deliver, track, and manage training and educational content. Supports interactive courses, quizzes, certifications, progress analytics, and easy course creation. Learners enjoy a seamless, device-agnostic experience; trainers get powerful authoring and insight tools. Includes role-based access, multilingual support, custom branding, and integrations with HR and calendar systems to enable continuous, culture-aligned learning.",
-      features: [
-        "Interactive Courses",
-        "Progress Analytics",
-        "Multi-device Support",
-        "Custom Branding",
-      ],
-      imageName: "/LMS.png",
-    },
-  ];
+  // JSON-LD for SEO
+  const productJsonLd = useMemo(() => {
+    const baseUrl =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://kenroz.com";
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const featureListVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const featureItemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-  };
+    return products.map((p) => ({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: p.name,
+      image: `${baseUrl}${p.imageName}`,
+      description: p.description,
+      brand: { "@type": "Brand", name: "Kenroz" },
+      url: `${baseUrl}/products#${p.slug}`,
+    }));
+  }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden relative">
-      <Blob className="top-[22%] left-0" />
-      <Blob className="top-[38%] right-0" />
-      <Blob className="top-[54%] left-0" />
-      <Blob className="top-[70%] right-0" />
-      <Blob className="top-[86%] left-0" />
-
-      <Section is="even" className="pt-32 pb-24">
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <section className="relative mb-40 rounded-3xl overflow-hidden">
-          <motion.header
-            className="relative z-10 text-center max-w-5xl mx-auto py-12"
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.h1
-              className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-700 via-red-600 to-red-700 bg-clip-text text-transparent mb-8 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Powerful Products for Modern Business
-            </motion.h1>
-
-            <motion.p
-              className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              We offer powerful, flexible, and scalable software products that help businesses optimize operations,
-              enhance employee experiences, and ensure compliance. Our solutions are designed to meet real-world business
-              challenges with intuitive interfaces and reliable performance.
-            </motion.p>
-          </motion.header>
-        </section>
-
-        <motion.section
-          className="space-y-32"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {products.map((product, index) => (
-            <motion.div
-              key={product.name}
-              variants={itemVariants}
-              className={`flex flex-col lg:flex-row ${index % 2 === 0 ? "lg:flex-row-reverse" : ""
-                } items-center gap-12 lg:gap-20 group`}
-            >
+    <div className="relative min-h-screen overflow-x-hidden">
+      {/* ===== HERO (full-bleed, no outside space) ===== */}
+      <section className="relative w-full">
+        {/* Full-bleed media */}
+        <div className="relative h-[52vh] md:h-[64vh] w-full overflow-hidden">
+          <Image
+            src="/product-hero-image.avif"
+            alt="Kenroz Products"
+            fill
+            priority
+            className="absolute inset-0 object-cover"
+            sizes="100vw"
+          />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/45" />
+          {/* Animated gradient wash */}
+          <motion.div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(80rem 60rem at 70% -10%, rgba(255,255,255,0.14), transparent 60%), radial-gradient(70rem 50rem at 10% 120%, rgba(255,255,255,0.10), transparent 60%)",
+              backgroundSize: "200% 200%",
+            }}
+            animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
+          {/* Content */}
+          <div className="relative z-10 flex h-full items-center">
+            <div className="w-full px-4 sm:px-6 lg:px-8">
               <motion.div
-                className="lg:w-1/2 flex justify-center"
-                whileHover={{
-                  scale: 1.05,
-                  rotate: index % 2 === 0 ? 2 : -2,
-                  transition: { duration: 0.3 },
-                }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                variants={stagger}
+                className="mx-auto max-w-5xl text-center"
               >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-                  <Image
-                    src={product.imageName}
-                    alt={`${product.name} illustration`}
-                    width={400}
-                    height={400}
-                    className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-2xl shadow-2xl border border-red-200/50 group-hover:shadow-3xl transition-all duration-500"
-                  />
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="lg:w-1/2 space-y-6"
-                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                <div>
-                  <motion.h2
-                    className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {product.name}
-                  </motion.h2>
-
-                  <motion.p
-                    className="text-gray-700 leading-relaxed text-lg mb-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                  >
-                    {product.description}
-                  </motion.p>
-                </div>
-
-                <motion.div
-                  className="grid grid-cols-2 gap-3"
-                  variants={featureListVariants}
-                  initial="hidden"
-                  animate="visible"
+                <motion.h1
+                  variants={fadeInUp}
+                  className="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-2xl"
                 >
-                  {product.features.map((feature) => (
-                    <motion.div
-                      key={feature}
-                      variants={featureItemVariants}
-                      className="flex items-center space-x-2 text-sm text-gray-700 bg-white/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-red-200/50"
-                      whileHover={{
-                        scale: 1.05,
-                        backgroundColor: "rgba(252,165,165,0.2)",
-                        transition: { duration: 0.2 },
-                      }}
-                    >
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="font-medium">{feature}</span>
-                    </motion.div>
-                  ))}
+                  Products built for modern business
+                </motion.h1>
+                <motion.p
+                  variants={fadeInUp}
+                  className="mx-auto mt-4 md:mt-6 max-w-3xl text-base md:text-lg text-white/90 leading-relaxed"
+                >
+                  Powerful, flexible, and secure software that streamlines
+                  operations, enhances employee experiences, and keeps you
+                  compliant — at scale.
+                </motion.p>
+                <motion.div
+                  variants={fadeInUp}
+                  className="mt-8 flex flex-col sm:flex-row justify-center gap-3"
+                >
+                  <ButtonLink 
+                    href="#catalog"
+                    className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <span className="relative z-10">Explore products</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+                  </ButtonLink>
+                  <ButtonLink
+                    href="/contact"
+                    variant="secondary"
+                    className="text-white group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <span className="relative z-10">Talk to an expert</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+                  </ButtonLink>
                 </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
-        </motion.section>
-      </main>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PRODUCTS ===== */}
+      <Section is="odd" id="catalog" className="py-14 md:py-20">
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-10 md:mb-14 max-w-3xl text-center">
+            <motion.h2
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.6 }}
+              variants={fadeInUp}
+              className="text-3xl md:text-4xl font-bold tracking-tight"
+            >
+              Our product catalog
+            </motion.h2>
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.6 }}
+              variants={fadeInUp}
+              className="mt-3 text-slate-600"
+            >
+              Select a solution to learn how it fits your organization’s
+              workflows and goals.
+            </motion.p>
+          </div>
+
+          {/* <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+              <div className="md:col-span-7">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.4 }}
+                  variants={imageLeft ? fromLeft : fromRight}
+                  className={cn(imageLeft ? "order-1" : "order-2", "w-full")}
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5">
+                    <Image
+                      src={product.imageName}
+                      alt={`${product.name} illustration`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+              <div className="md:col-span-5">
+                <div className="sticky top-20">
+                  <motion.div
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <SectionHeader
+                      subtitle="Trusted by leading companies"
+                      title="Our Clients"
+                      description="Teams across construction, manufacturing, trading, and services rely on Kenroz to streamline operations and accelerate growth."
+                    />
+                  </motion.div>
+
+                  <ul className="mt-6 space-y-3">
+                    {[
+                      "Robust, secure implementations with enterprise-grade standards",
+                      "Faster time-to-value with clean, scalable architecture",
+                      "Hands-on support from discovery to deployment—and beyond",
+                    ].map((item, i) => (
+                      <motion.li
+                        key={item}
+                        className="flex items-start gap-3"
+                        variants={fadeInUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.6 }}
+                        transition={{ duration: 0.5, delay: i * 0.15 }}
+                      >
+                        <span className="mt-1 rounded-full border p-1">
+                          <Check className="h-4 w-4 text-primary" />
+                        </span>
+                        <span className="text-sm md:text-base text-muted-foreground">
+                          {item}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+
+                  <motion.div
+                    className="mt-8 flex flex-wrap items-center gap-3"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    <ButtonLink href="/contact-us">Get on this list</ButtonLink>
+                  </motion.div>
+
+                  <motion.p
+                    className="mt-4 text-xs text-muted-foreground"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    Privacy-first by design • Secure SDLC • Regular updates
+                  </motion.p>
+                </div>
+              </div>
+            </div>
+          </div> */}
+
+          <div className="space-y-12 md:space-y-16">
+            {products.map((product, idx) => {
+              const imageLeft = idx % 2 === 0; // even index = left, odd index = right
+              return (
+                <motion.div
+                  key={product.slug}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={stagger}
+                  className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+                                         {/* Image Column - Positioned based on index */}
+                     <motion.div 
+                       className={cn(
+                         "md:col-span-6",
+                         imageLeft ? "order-1" : "order-2"
+                       )}
+                       variants={imageLeft ? fromLeft : fromRight}
+                     >
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
+                        <Image
+                          src={product.imageName}
+                          alt={`${product.name} illustration`}
+                          fill
+                          className="object-cover transition-transform duration-700 hover:scale-105"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                        {/* Subtle overlay for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                      </div>
+                    </motion.div>
+
+                                         {/* Content Column */}
+                     <motion.div 
+                       className={cn(
+                         "md:col-span-6",
+                         imageLeft ? "order-2" : "order-1"
+                       )}
+                       variants={fadeInUp}
+                     >
+                      <div className="sticky top-20">
+                        <motion.div variants={fadeInUp}>
+                          <SectionHeader
+                            subtitle={product.subtitle}
+                            title={product.name}
+                            description={product.description}
+                            titleClassName="text-2xl md:text-4xl lg:text-5xl"
+                            descriptionClassName="text-sm leading-relaxed"
+                          />
+                        </motion.div>
+
+
+
+                        {/* CTAs */}
+                        <motion.div
+                          className="mt-8 flex flex-wrap items-center gap-3"
+                          variants={fadeInUp}
+                        >
+                          <ButtonLink 
+                            href={`/contact-us?p=inquire-${product.slug}`}
+                            className="group relative overflow-hidden"
+                          >
+                            <span className="relative z-10">Inquire about this product</span>
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+                          </ButtonLink>
+                        </motion.div>
+
+                        {/* Subtle compliance / assurance line */}
+                        <motion.p
+                          className="mt-4 text-xs text-muted-foreground/70"
+                          variants={fadeInUp}
+                        >
+                          {product.footerText}
+                        </motion.p>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </main>
       </Section>
+
+      {/* ===== CTA (tight bottom spacing) ===== */}
+      <section className="relative overflow-hidden bg-slate-900 text-white">
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(60rem 60rem at 50% -10%, rgba(255,255,255,0.08), transparent)",
+          }}
+        />
+        <div className="container relative z-10 mx-auto px-4 py-14 md:py-16 text-center">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Ready to transform your business?
+            </h2>
+            <p className="mt-3 text-white/80">
+              Not sure which product fits best? We’ll help you evaluate options
+              and design a rollout plan that sticks.
+            </p>
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <ButtonLink href="/contact">Talk to an expert</ButtonLink>
+              <ButtonLink href="#catalog" variant="outline">
+                View products
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== JSON-LD (SEO) ===== */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
     </div>
   );
 }

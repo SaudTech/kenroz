@@ -51,15 +51,6 @@ export default function HomePage() {
         <Section is="odd">
           <Technologies />
         </Section>
-        {/* <Section is="even">
-          <Clients />
-        </Section> */}
-        {/* <Section is="odd">
-          <FAQ />
-        </Section> */}
-        {/* <Section is="even">
-          <ShowLocations />
-        </Section> */}
       </div>
     </>
   );

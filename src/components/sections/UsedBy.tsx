@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { ButtonLink } from "../Navbar";
@@ -24,6 +25,11 @@ const companies: Company[] = [
   { name: "Arcgen", logo: "/Arcgen.png" },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function UsedBy() {
   return (
     <section className="w-full" id="used-by" aria-labelledby="used-by-heading">
@@ -32,11 +38,16 @@ export default function UsedBy() {
           {/* Logos grid (left) */}
           <div className="md:col-span-7">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
-              {companies.map((company) => (
-                <div
+              {companies.map((company, i) => (
+                <motion.div
                   key={company.name}
                   className="flex items-center justify-center p-4 md:p-6 rounded-2xl border bg-background/60 backdrop-blur-sm hover:shadow-sm transition-shadow"
                   title={company.name}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <div
                     className={cn(
@@ -53,7 +64,7 @@ export default function UsedBy() {
                       sizes="(max-width: 768px) 160px, 180px"
                     />
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -61,11 +72,19 @@ export default function UsedBy() {
           {/* Content (right) */}
           <div className="md:col-span-5">
             <div className="sticky top-20">
-              <SectionHeader
-                subtitle="Trusted by leading companies"
-                title="Our Clients"
-                description="Teams across construction, manufacturing, trading, and services rely on Kenroz to streamline operations and accelerate growth."
-              />
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.6 }}
+              >
+                <SectionHeader
+                  subtitle="Trusted by leading companies"
+                  title="Our Clients"
+                  description="Teams across construction, manufacturing, trading, and services rely on Kenroz to streamline operations and accelerate growth."
+                />
+              </motion.div>
 
               {/* Value bullets */}
               <ul className="mt-6 space-y-3">
@@ -73,28 +92,50 @@ export default function UsedBy() {
                   "Robust, secure implementations with enterprise-grade standards",
                   "Faster time-to-value with clean, scalable architecture",
                   "Hands-on support from discovery to deployment—and beyond",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
+                ].map((item, i) => (
+                  <motion.li
+                    key={item}
+                    className="flex items-start gap-3"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.5, delay: i * 0.15 }}
+                  >
                     <span className="mt-1 rounded-full border p-1">
                       <Check className="h-4 w-4 text-primary" />
                     </span>
                     <span className="text-sm md:text-base text-muted-foreground">{item}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
-              
+
               {/* CTAs */}
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <motion.div
+                className="mt-8 flex flex-wrap items-center gap-3"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <ButtonLink href="/contact-us">
                   Get on this list
                 </ButtonLink>
-              </div>
+              </motion.div>
 
               {/* Subtle compliance / assurance line (generic & safe) */}
-              <p className="mt-4 text-xs text-muted-foreground">
+              <motion.p
+                className="mt-4 text-xs text-muted-foreground"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 Privacy-first by design • Secure SDLC • Regular updates
-              </p>
+              </motion.p>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { createElement } from "react";
+import { motion } from "framer-motion";
 import * as TechIcons from "../Icons";
 import {
   Tooltip,
@@ -60,7 +61,7 @@ export default function Technologies() {
   return (
     <section id="tech" className="py-20 md:py-24">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20">
           {/* Icons grid (left) */}
           <div className="md:col-span-7">
             <style>{`
@@ -94,7 +95,7 @@ export default function Technologies() {
                   return (
                     <Tooltip key={label as string}>
                       <TooltipTrigger asChild>
-                        <div
+                        <motion.div
                           aria-label={label as string}
                           title={label as string}
                           className="
@@ -113,12 +114,16 @@ export default function Technologies() {
                             animation: `float ${floatDuration}s ease-in-out infinite`,
                             animationDelay: `${floatDelay}s`,
                           }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true, amount: 0.3 }}
+                          transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
                         >
                           {createElement(Comp, {
                             className: "w-full h-full object-contain",
                             "aria-hidden": true,
                           })}
-                        </div>
+                        </motion.div>
                       </TooltipTrigger>
                       <TooltipContent side="top" className="text-xs font-medium">
                         {label as string}
@@ -135,7 +140,7 @@ export default function Technologies() {
             <div className="sticky top-20">
               <SectionHeader
                 subtitle="Technologies we use"
-                title="Our Technology Stack"
+                title="Our Technologies"
                 description="A selection of frameworks, languages, and tools that power our solutions."
               />
 
