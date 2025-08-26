@@ -31,9 +31,11 @@ export default function Footer() {
     { label: "Contact Us", href: "/contact-us" },
   ];
   const legalLinks = [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms of Service", href: "/terms-of-service" },
-    { label: "Cookie Policy", href: "/cookie-policy" },
+    { label: "Privacy Policy", href: "/legal/privacy-policy" },
+    { label: "Terms of Service", href: "/legal/terms-of-service" },
+    { label: "Cookie Policy", href: "/legal/cookie-policy" },
+    { label: "Refund & Cancellation Policy", href: "/legal/refund-cancellation-policy" },
+    { label: "Acceptable Use Policy", href: "/legal/acceptable-use-policy" },
   ];
   const socials = [
     { icon: Instagram, href: "#", label: "Instagram" },
