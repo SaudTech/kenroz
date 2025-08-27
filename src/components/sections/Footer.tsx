@@ -45,9 +45,9 @@ export default function Footer() {
   ];
   const quickLinks = [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/#services" },
     { label: "Products", href: "/products" },
     { label: "Contact Us", href: "/contact-us" },
+    { label: "Career", href: "/careers" },
   ]
 
   return (
@@ -161,6 +161,23 @@ export default function Footer() {
                     className="text-white/70 hover:text-white transition"
                   >
                     {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services Links */}
+          <div className="mb-6">
+            <h4 className="mb-3 text-3xl font-semibold">Services</h4>
+            <ul className="flex flex-wrap gap-4 text-xl">
+              {services.map((service) => (
+                <li key={service.href}>
+                  <a
+                    href={service.href}
+                    className="text-white/70 hover:text-white transition"
+                  >
+                    {service.label}
                   </a>
                 </li>
               ))}

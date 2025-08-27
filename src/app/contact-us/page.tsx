@@ -171,7 +171,7 @@ export default async function ContactPage({
           <div className="grid lg:grid-cols-2 gap-20 items-start">
             {/* Left: heading + cards */}
             <div className="space-y-8">
-              <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-secondary via-primary to-black bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-extrabold text-black">
                 {heading}
               </h1>
               <p className="text-lg md:text-xl text-gray-900 max-w-2xl leading-relaxed">

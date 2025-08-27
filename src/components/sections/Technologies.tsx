@@ -11,7 +11,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Check } from "lucide-react";
-import SectionHeader from "../SectionHeader";
 
 const EXCLUDED_EXPORTS = new Set(["default", "__esModule"]);
 
@@ -60,10 +59,47 @@ export default function Technologies() {
 
   return (
     <section id="tech" className="py-20 md:py-24">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20">
-          {/* Icons grid (left) */}
-          <div className="md:col-span-7">
+      <div className="relative mx-auto max-w-7xl text-center px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
+        >
+          Our Technologies
+        </motion.h2>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20">
+          {/* Text content (left on desktop) */}
+          <div className="md:col-span-5 order-2 md:order-1">
+            <div className="sticky top-20">
+              <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
+                Technologies we use
+              </p>
+              <p className="mt-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+                A selection of frameworks, languages, and tools that power our solutions.
+              </p>
+
+              <ul className="mt-6 space-y-3">
+                {[
+                  "Modern frameworks and libraries",
+                  "Cloud-native infrastructure",
+                  "Secure and scalable data solutions",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-1 rounded-full border p-1">
+                      <Check className="h-4 w-4 text-primary" />
+                    </span>
+                    <span className="text-sm md:text-base text-muted-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Icons grid (right on desktop) */}
+          <div className="md:col-span-7 order-1 md:order-2">
             <style>{`
               @keyframes float {
                 0% { transform: translateY(0); }
@@ -133,32 +169,6 @@ export default function Technologies() {
                 })}
               </div>
             </TooltipProvider>
-          </div>
-
-          {/* Content (right) */}
-          <div className="md:col-span-5">
-            <div className="sticky top-20">
-              <SectionHeader
-                subtitle="Technologies we use"
-                title="Our Technologies"
-                description="A selection of frameworks, languages, and tools that power our solutions."
-              />
-
-              <ul className="mt-6 space-y-3">
-                {[
-                  "Modern frameworks and libraries",
-                  "Cloud-native infrastructure",
-                  "Secure and scalable data solutions",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1 rounded-full border p-1">
-                      <Check className="h-4 w-4 text-primary" />
-                    </span>
-                    <span className="text-sm md:text-base text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </div>

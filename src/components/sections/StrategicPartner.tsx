@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ButtonLink } from "../Navbar";
-import SectionHeader from "../SectionHeader";
 
 type Partner = {
   id: "emvive" | "arcgen";
@@ -85,44 +84,49 @@ function PartnerCard({ p, index }: { p: Partner; index: number }) {
 }
 
 export default function StrategicPartner() {
-  const headingRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-100px" });
   const textRef = useRef<HTMLParagraphElement>(null);
   const textInView = useInView(textRef, { once: true, margin: "-100px" });
 
   return (
     <section className="w-full" id="strategic-partners">
-      <div className="relative z-[4] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Header */}
-        <div className="mb-10 max-w-3xl">
-          <motion.div
-            ref={headingRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={headingInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <SectionHeader
-              subtitle="Companies Who benefited from us"
-              title="Strategic Partners"
-            />
-          </motion.div>
-          <motion.p
-            ref={textRef}
-            className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            animate={textInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            We collaborate with visionary companies to deliver stronger outcomes and accelerate
-            innovation across platforms.
-          </motion.p>
-        </div>
+      <div className="relative z-[4] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        {/* Title spanning both columns */}
+        <motion.h2
+          ref={headingRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={headingInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
+        >
+          Strategic Partners
+        </motion.h2>
 
-        {/* Two equal cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          {partners.map((p, i) => (
-            <PartnerCard key={p.id} p={p} index={i} />
-          ))}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Cards (left on desktop) */}
+          <div className="order-2 md:order-1 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            {partners.map((p, i) => (
+              <PartnerCard key={p.id} p={p} index={i} />
+            ))}
+          </div>
+
+          {/* Text content (right on desktop) */}
+          <div className="order-1 md:order-2 mb-10 max-w-3xl">
+            <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
+              Companies Who benefited from us
+            </p>
+            <motion.p
+              ref={textRef}
+              className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground"
+              initial={{ opacity: 0, y: 20 }}
+              animate={textInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              We collaborate with visionary companies to deliver stronger outcomes and accelerate
+              innovation across platforms.
+            </motion.p>
+          </div>
         </div>
       </div>
     </section>

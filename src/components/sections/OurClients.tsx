@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { ButtonLink } from "../Navbar";
-import SectionHeader from "../SectionHeader";
 
 interface Company {
   name: string;
@@ -33,10 +32,95 @@ const fadeUp = {
 export default function OurClients() {
   return (
     <section className="w-full" id="our-clients" aria-labelledby="our-clients-heading">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-          {/* Logos grid (left) */}
-          <div className="md:col-span-7">
+      <div className="relative mx-auto max-w-7xl text-center px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
+        >
+          Our Clients
+        </motion.h2>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+          {/* Text content (left on desktop) */}
+          <div className="md:col-span-5 order-2 md:order-1">
+            <div className="sticky top-20">
+              <motion.p
+                className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.6 }}
+              >
+                Trusted by leading companies
+              </motion.p>
+              <motion.p
+                className="mt-4 text-base md:text-lg leading-relaxed text-muted-foreground"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                Teams across construction, manufacturing, trading, and services rely on Kenroz to streamline operations and accelerate growth.
+              </motion.p>
+
+              {/* Value bullets */}
+              <ul className="mt-6 space-y-3 w-full text-start">
+                {[
+                  "Robust, secure implementations with enterprise-grade standards",
+                  "Faster time-to-value with clean, scalable architecture",
+                  "Hands-on support from discovery to deployment—and beyond",
+                ].map((item, i) => (
+                  <motion.li
+                    key={item}
+                    className="flex items-start gap-3"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.5, delay: i * 0.15 }}
+                  >
+                    <span className="mt-1 rounded-full border p-1">
+                      <Check className="h-4 w-4 text-primary" />
+                    </span>
+                    <span className="text-sm md:text-base text-muted-foreground">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+
+              {/* CTAs */}
+              <motion.div
+                className="mt-8 flex flex-wrap items-center gap-3"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <ButtonLink href="/contact-us">Get on this list</ButtonLink>
+              </motion.div>
+
+              {/* Subtle compliance / assurance line (generic & safe) */}
+              <motion.p
+                className="mt-4 text-xs text-muted-foreground"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                Privacy-first by design • Secure SDLC • Regular updates
+              </motion.p>
+            </div>
+          </div>
+
+          {/* Logos grid (right on desktop) */}
+          <div className="md:col-span-7 order-1 md:order-2">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
               {companies.map((company, i) => (
                 <motion.div
@@ -66,76 +150,6 @@ export default function OurClients() {
                   </div>
                 </motion.div>
               ))}
-            </div>
-          </div>
-
-          {/* Content (right) */}
-          <div className="md:col-span-5">
-            <div className="sticky top-20">
-              <motion.div
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.6 }}
-                transition={{ duration: 0.6 }}
-              >
-                <SectionHeader
-                  subtitle="Trusted by leading companies"
-                  title="Our Clients"
-                  description="Teams across construction, manufacturing, trading, and services rely on Kenroz to streamline operations and accelerate growth."
-                />
-              </motion.div>
-
-              {/* Value bullets */}
-              <ul className="mt-6 space-y-3">
-                {[
-                  "Robust, secure implementations with enterprise-grade standards",
-                  "Faster time-to-value with clean, scalable architecture",
-                  "Hands-on support from discovery to deployment—and beyond",
-                ].map((item, i) => (
-                  <motion.li
-                    key={item}
-                    className="flex items-start gap-3"
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.6 }}
-                    transition={{ duration: 0.5, delay: i * 0.15 }}
-                  >
-                    <span className="mt-1 rounded-full border p-1">
-                      <Check className="h-4 w-4 text-primary" />
-                    </span>
-                    <span className="text-sm md:text-base text-muted-foreground">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-
-
-              {/* CTAs */}
-              <motion.div
-                className="mt-8 flex flex-wrap items-center gap-3"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.6 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <ButtonLink href="/contact-us">
-                  Get on this list
-                </ButtonLink>
-              </motion.div>
-
-              {/* Subtle compliance / assurance line (generic & safe) */}
-              <motion.p
-                className="mt-4 text-xs text-muted-foreground"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.6 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                Privacy-first by design • Secure SDLC • Regular updates
-              </motion.p>
             </div>
           </div>
         </div>
