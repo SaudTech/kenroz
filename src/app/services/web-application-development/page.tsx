@@ -14,6 +14,7 @@ import {
   Cpu,
 } from "lucide-react";
 import Link from "next/link";
+import EngagementSection from "@/components/EngagementSection";
 
 export const metadata: Metadata = {
   title: "Custom Web Application Development Services | Modern & Scalable",
@@ -299,25 +300,12 @@ export default function WebApplicationDevelopmentPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-primary-foreground mb-6">
-            Ready to Build Your Web Application?
-          </h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Let&apos;s discuss your project requirements and create a custom web
-            application that drives your business success. Get started today!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href={"/contact-us?p=web-application-development"}
-              className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <EngagementSection
+        title="Ready to Build Your Web Application?"
+        description="Let&apos;s discuss your project requirements and create a custom web application that drives your business success. Get started today!"
+        button1Url="/contact-us?p=web-application-development"
+        button1Text="Contact us"
+      />
     </main>
   );
 }

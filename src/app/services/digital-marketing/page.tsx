@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { ButtonLink } from "@/components/Navbar";
+import EngagementSection from "@/components/EngagementSection";
 
 export const metadata: Metadata = {
   title:
@@ -322,18 +323,13 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white text-center">
-        <h2 className="text-3xl font-semibold mb-4">
-          Ready to Grow Your Business Online?
-        </h2>
-        <p className="mb-8">
-          Let&apos;s create a digital marketing strategy that drives real
-          results. Get a free marketing audit and discover growth opportunities.
-        </p>
-        <ButtonLink href="/contact-us?p=digital-marketing" variant={"secondary"}>
-          Contact Us <ArrowRight className="ml-2 w-5 h-5" />
-        </ButtonLink>
-      </section>
+      <EngagementSection
+        title="Ready to Grow Your Business Online?"
+        description="Let's create a digital marketing strategy that drives real
+          results. Get a free marketing audit and discover growth opportunities."
+        button1Url="/contact-us?p=digital-marketing"
+        button1Text="Contact us"
+      />
     </main>
   );
 }

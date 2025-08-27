@@ -7,6 +7,7 @@ import Footer from "@/components/sections/Footer";
 import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
 import { Section } from "./page";
+import EngagementSection from "@/components/EngagementSection";
 
 const font = Noto_Serif({
   variable: "--font-serif",
@@ -161,6 +162,7 @@ export default function RootLayout({
         <PerformanceOptimizer />
         <Navbar />
         <main className="mt-[64.89px]">{children}</main>
+
         <Section is="even" className="bg-black">
           <Footer />
         </Section>

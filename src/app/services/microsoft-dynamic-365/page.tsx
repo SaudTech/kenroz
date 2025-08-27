@@ -9,6 +9,7 @@ import {
   Target,
 } from "lucide-react";
 import Link from "next/link";
+import EngagementSection from "@/components/EngagementSection";
 
 export const metadata: Metadata = {
   title: "Microsoft Dynamics 365 Implementation & Customization Services",
@@ -83,7 +84,7 @@ export default function MicrosoftDynamic365Page() {
   ];
 
   return (
-    <main className="bg-white">
+    <main>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -219,23 +220,12 @@ export default function MicrosoftDynamic365Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Let&apos;s discuss how Microsoft Dynamics 365 can streamline your
-            operations and drive growth. Get a free consultation today.
-          </p>
-          <Link
-            href={"/contact-us?p=microsoft-dynamic-365"}
-            className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
-          >
-            Contact Us <ArrowRight className="ml-2 w-5 h-5" />
-          </Link>
-        </div>
-      </section>
+      <EngagementSection
+        title="Ready to transform your business?"
+        description="Let's discuss how Microsoft Dynamics 365 can streamline your operations and drive growth. Get a free consultation today."
+        button1Url="/contact-us?p=microsoft-dynamic-365"
+        button1Text="Contact us"
+      />
     </main>
   );
 }

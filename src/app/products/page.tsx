@@ -8,6 +8,7 @@ import { Section } from "@/app/page"; // keeping your Section wrapper
 import { ButtonLink } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import SectionHeader from "@/components/SectionHeader";
+import EngagementSection from "@/components/EngagementSection";
 
 // ---------- Data ----------
 type Product = {
@@ -66,7 +67,6 @@ const products: Product[] = [
     footerText: "Engaging • Flexible • Insight-driven",
   },
 ];
-
 
 // ---------- Animations ----------
 const fadeInUp = {
@@ -178,7 +178,7 @@ export default function ProductsPage() {
                   variants={fadeInUp}
                   className="mt-8 flex flex-col sm:flex-row justify-center gap-3"
                 >
-                  <ButtonLink 
+                  <ButtonLink
                     href="#catalog"
                     className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                   >
@@ -326,14 +326,14 @@ export default function ProductsPage() {
                   className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-                                         {/* Image Column - Positioned based on index */}
-                     <motion.div 
-                       className={cn(
-                         "md:col-span-6",
-                         imageLeft ? "order-1" : "order-2"
-                       )}
-                       variants={imageLeft ? fromLeft : fromRight}
-                     >
+                    {/* Image Column - Positioned based on index */}
+                    <motion.div
+                      className={cn(
+                        "md:col-span-6",
+                        imageLeft ? "order-1" : "order-2"
+                      )}
+                      variants={imageLeft ? fromLeft : fromRight}
+                    >
                       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
                         <Image
                           src={product.imageName}
@@ -347,14 +347,14 @@ export default function ProductsPage() {
                       </div>
                     </motion.div>
 
-                                         {/* Content Column */}
-                     <motion.div 
-                       className={cn(
-                         "md:col-span-6",
-                         imageLeft ? "order-2" : "order-1"
-                       )}
-                       variants={fadeInUp}
-                     >
+                    {/* Content Column */}
+                    <motion.div
+                      className={cn(
+                        "md:col-span-6",
+                        imageLeft ? "order-2" : "order-1"
+                      )}
+                      variants={fadeInUp}
+                    >
                       <div className="sticky top-20">
                         <motion.div variants={fadeInUp}>
                           <SectionHeader
@@ -366,18 +366,18 @@ export default function ProductsPage() {
                           />
                         </motion.div>
 
-
-
                         {/* CTAs */}
                         <motion.div
                           className="mt-8 flex flex-wrap items-center gap-3"
                           variants={fadeInUp}
                         >
-                          <ButtonLink 
+                          <ButtonLink
                             href={`/contact-us?p=inquire-${product.slug}`}
                             className="group relative overflow-hidden"
                           >
-                            <span className="relative z-10">Inquire about this product</span>
+                            <span className="relative z-10">
+                              Inquire about this product
+                            </span>
                             <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
                           </ButtonLink>
                         </motion.div>
@@ -400,33 +400,12 @@ export default function ProductsPage() {
       </Section>
 
       {/* ===== CTA (tight bottom spacing) ===== */}
-      <section className="relative overflow-hidden bg-slate-900 text-white">
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(60rem 60rem at 50% -10%, rgba(255,255,255,0.08), transparent)",
-          }}
+        <EngagementSection
+          title="Ready to transform your business?"
+          description="Not sure which product fits best? We’ll help you evaluate options and design a rollout plan that sticks."
+          button1Url="/contact-us"
+          button1Text="Contact us"
         />
-        <div className="container relative z-10 mx-auto px-4 py-14 md:py-16 text-center">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Ready to transform your business?
-            </h2>
-            <p className="mt-3 text-white/80">
-              Not sure which product fits best? We’ll help you evaluate options
-              and design a rollout plan that sticks.
-            </p>
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <ButtonLink href="/contact">Talk to an expert</ButtonLink>
-              <ButtonLink href="#catalog" variant="outline">
-                View products
-              </ButtonLink>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== JSON-LD (SEO) ===== */}
       <script

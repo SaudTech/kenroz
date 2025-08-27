@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import EngagementSection from "@/components/EngagementSection";
 
 export const metadata: Metadata = {
   title:
@@ -286,7 +287,7 @@ export default function page() {
                 className="p-6 bg-gray-50 rounded-lg flex flex-col items-center"
               >
                 <div
-                // @ts-expect-error Test
+                  // @ts-expect-error Test
                   className={`${colorClasses[m.color]} p-3 rounded-full mb-4`}
                 >
                   <m.icon className="w-6 h-6" />
@@ -365,18 +366,12 @@ export default function page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-primary-foreground text-center">
-        <h2 className="text-4xl font-bold mb-4">Ready to Scale Your Team?</h2>
-        <p className="mb-8">
-          Let&apos;s discuss your needs and assemble the perfect team.
-        </p>
-        <Link
-          href={"/contact-us?p=outsourcing"}
-          className="inline-flex items-center px-8 py-4 bg-white text-primary rounded-xl hover:bg-gray-100 transition"
-        >
-          Contact Us <ArrowRight className="ml-2 w-5 h-5" />
-        </Link>
-      </section>
+      <EngagementSection
+        title="Ready to Scale Your Team?"
+        description="Let's discuss your needs and assemble the perfect team."
+        button1Url="/contact-us?p=outsourcing"
+        button1Text="Contact us"
+      />
     </main>
   );
 }

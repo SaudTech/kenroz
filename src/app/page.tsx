@@ -5,14 +5,16 @@ import StructuredData from "@/components/seo/StructuredData";
 import { cn } from "@/lib/utils";
 import OurStory from "@/components/sections/OurStory";
 import StrategicPartner from "@/components/sections/StrategicPartner";
-import UsedBy from "@/components/sections/UsedBy";
+import OurClients from "@/components/sections/OurClients";
 import Blob from "@/components/Blob";
+import EngagementSection from "@/components/EngagementSection";
 
 export default function HomePage() {
   return (
     <>
       <StructuredData
-        type="website"
+        type="we
+        site"
         data={{
           "@type": "WebPage",
           name: "Kenroz - Leading IT Solutions & Software Development Company",
@@ -43,7 +45,7 @@ export default function HomePage() {
           <StrategicPartner />
         </Section>
         <Section is="odd">
-          <UsedBy />
+          <OurClients />
         </Section>
         <Section is="odd">
           <Services />
@@ -51,6 +53,12 @@ export default function HomePage() {
         <Section is="odd">
           <Technologies />
         </Section>
+        <EngagementSection
+          title="Ready to Build Your Web Application?"
+          description="Let's discuss your project requirements and create a custom web application that drives your business success. Get started today!"
+          button1Url="/contact-us?p=web-application-development"
+          button1Text="Contact us"
+        />
       </div>
     </>
   );

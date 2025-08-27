@@ -30,9 +30,9 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function UsedBy() {
+export default function OurClients() {
   return (
-    <section className="w-full" id="used-by" aria-labelledby="used-by-heading">
+    <section className="w-full" id="our-clients" aria-labelledby="our-clients-heading">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
           {/* Logos grid (left) */}

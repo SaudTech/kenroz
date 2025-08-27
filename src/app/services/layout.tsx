@@ -44,7 +44,7 @@ export default function ServicesLayout({ children }: { children: React.ReactNode
           "serviceType": "Information Technology Services"
         }}
       />
-      <div className="min-h-screen flex flex-col bg-white">
+      <div className="min-h-screen flex flex-col bg-primary/15">
         <main className="flex-grow">{children}</main>
       </div>
     </>

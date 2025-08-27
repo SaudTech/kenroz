@@ -16,6 +16,7 @@ import {
   CreditCard,
 } from "lucide-react";
 import Link from "next/link";
+import EngagementSection from "@/components/EngagementSection";
 
 export const metadata: Metadata = {
   title: "Mobile App Development Services | iOS & Android Apps",
@@ -400,25 +401,13 @@ export default function MobileApplicationDevelopmentPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-primary-foreground mb-6">
-            Ready to Build Your Mobile App?
-          </h2>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Transform your idea into a successful mobile application. Let&apos;s
-            discuss your project and create an app that users will love.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href={"/contact-us?p=mobile-application-development"}
-              className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow-lg hover:bg-gray-50 transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <EngagementSection
+        title="Ready to Build Your Mobile App?"
+        description="Transform your idea into a successful mobile application. Let's
+            discuss your project and create an app that users will love."
+        button1Url="/contact-us?p=mobile-application-development"
+        button1Text="Contact us"
+      />
     </main>
   );
 }

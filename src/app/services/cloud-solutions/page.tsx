@@ -1,6 +1,7 @@
 import { CheckCircle, Cloud, Layers, Repeat, ServerCrash, Settings, Zap } from "lucide-react";
 import Image from "next/image";
 import DescriptionToggle from "@/components/DescriptionToggle";
+import EngagementSection from "@/components/EngagementSection";
 
 export const metadata = {
   title: "Cloud & DevOps Solutions",
@@ -196,45 +197,12 @@ export default function CloudSolutionsPage() {
       </section>
 
       {/* CTA */}
-      <section
-        id="contact"
-        className="py-20 bg-gradient-to-r from-primary to-secondary text-primary-foreground text-center rounded-b-xl"
-      >
-        <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-10">
-          <div className="lg:w-2/3 text-left">
-            <h2 className="text-4xl font-bold mb-4">Future-Proof Your Infrastructure</h2>
-            <p className="text-xl mb-6">
-              Whether you&apos;re migrating legacy systems or building cloud-native apps, we tailor each solution to your business goals and compliance needs.
-            </p>
-            <a
-              href="mailto:hello@yourcompany.com"
-              className="inline-block px-8 py-4 bg-white text-primary font-semibold rounded-xl shadow hover:bg-primary/10 transition-all duration-300"
-            >
-              Talk to an Expert
-            </a>
-          </div>
-          <div className="lg:w-1/3 w-full flex justify-center">
-            <div className="bg-white/10 backdrop-blur p-6 rounded-lg">
-              <h4 className="font-semibold mb-2 text-white">Quick Start Checklist</h4>
-              <ul className="list-inside list-disc space-y-1 text-sm text-white/90">
-                {checklist.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-white/80 flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer note */}
-      <footer className="container mx-auto px-4 py-8 text-center text-sm text-gray-500">
-        <p>
-          We integrate with AWS, Azure, Google Cloud, and modern DevOps tools to deliver secure, compliant, and scalable systems. Custom SLAs and support plans available.
-        </p>
-      </footer>
+      <EngagementSection
+        title="Future-Proof Your Infrastructure"
+        description="Whether you&apos;re migrating legacy systems or building cloud-native apps, we tailor each solution to your business goals and compliance needs."
+        button1Url="/contact-us?p=cloud-solutions"
+        button1Text="Contact us"
+      />
     </main>
   );
 }
