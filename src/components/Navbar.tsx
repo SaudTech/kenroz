@@ -1,6 +1,6 @@
 "use client";
 
-import React, { JSX, useCallback, useState } from "react";
+import React, { JSX, useCallback, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils";
 
 type NavLink = {
   label: string;
-  href?: string; // e.g. "/#services"
-  sectionId?: string; // e.g. "services"
-  links?: NavLink[]; // sub links
+  href?: string;
+  sectionId?: string;
+  links?: NavLink[];
 };
 
 const MAIN_LINKS: NavLink[] = [
@@ -34,8 +34,14 @@ const MAIN_LINKS: NavLink[] = [
 export default function Navbar(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileOpenKey, setMobileOpenKey] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
-  // smooth-scroll helper for in-page ids (e.g., "services")
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToSection = useCallback((id: string) => {
     const el =
       typeof document !== "undefined" ? document.getElementById(id) : null;
@@ -43,13 +49,11 @@ export default function Navbar(): JSX.Element {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
       setIsMenuOpen(false);
     } else {
-      // fallback: navigate to hash on home
       window.location.href = `/#${id}`;
       setIsMenuOpen(false);
     }
   }, []);
 
-  // normalize click handling for any item
   const handleNav = useCallback(
     (item: NavLink) => {
       if (item.sectionId) {
@@ -57,7 +61,6 @@ export default function Navbar(): JSX.Element {
         return;
       }
       if (item.href) {
-        // if href has a "#id" part for current page, let Link handle; mobile menu closes on click
         setIsMenuOpen(false);
       }
     },
@@ -65,36 +68,50 @@ export default function Navbar(): JSX.Element {
   );
 
   return (
-    <nav className="fixed top-0 left-0 right-0 p-4 py-6 bg-black backdrop-blur-xl  z-50 shadow-sm">
+    <motion.nav
+      initial={false}
+      animate={{
+        backgroundColor: scrolled ? "#ffffff" : "rgba(0,0,0,1)",
+        transition: { duration: 0.3, ease: "easeInOut" },
+      }}
+      className="fixed top-0 left-0 right-0 z-[80] p-4 py-6 backdrop-blur-xl z-50 shadow-sm"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center"
-            aria-label="Kenroz - Home"
-          >
-            <Image
-              src={logo}
-              alt="Kenroz Logo"
-              width={200}
-              height={200}
-              className="w-auto"
-              priority
-            />
+          <Link href="/" className="flex items-center" aria-label="Kenroz - Home">
+            <motion.div
+              animate={{ scale: scrolled ? 0.9 : 1 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Image
+                src={logo}
+                alt="Kenroz Logo"
+                width={200}
+                height={200}
+                className="w-auto"
+                priority
+              />
+            </motion.div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex text-xl items-center space-x-0">
+          <div
+            className={cn(
+              "hidden lg:flex text-xl items-center space-x-0",
+              scrolled ? "text-black" : "text-white"
+            )}
+          >
             {MAIN_LINKS.map((item, idx) => (
               <React.Fragment key={item.label}>
                 {item.links?.length ? (
-                  <DesktopDropdown item={item} onNavigate={handleNav} />
+                  <DesktopDropdown item={item} onNavigate={handleNav} scrolled={scrolled} />
                 ) : (
                   <NavItem
                     href={item.href}
                     text={item.label}
                     onClick={() => handleNav(item)}
+                    scrolled={scrolled}
                   />
                 )}
                 {idx !== MAIN_LINKS.length - 1 && <Separator />}
@@ -104,7 +121,7 @@ export default function Navbar(): JSX.Element {
 
           {/* Right actions */}
           <div className="flex gap-5 items-center">
-            <ButtonLink href="/careers" variant="outline">
+            <ButtonLink href="/careers" variant="outline" className={cn(scrolled ? "text-black" : "text-white")}>
               Careers
             </ButtonLink>
             <ButtonLink
@@ -184,24 +201,30 @@ export default function Navbar(): JSX.Element {
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 
 /* ---------- Desktop Dropdown ---------- */
-
 function DesktopDropdown({
   item,
   onNavigate,
+  scrolled,
 }: {
   item: NavLink;
   onNavigate: (item: NavLink) => void;
+  scrolled: boolean;
 }) {
   return (
     <div className="relative group">
       <button
         type="button"
-        className="px-1 py-2 font-bold text-md bg-clip-text text-transparent bg-gradient-to-r from-white to-white hover:from-secondary hover:to-primary transition-colors duration-200 inline-flex items-center gap-1"
+        className={cn(
+          "px-1 py-2 font-bold text-md transition-colors duration-200 inline-flex items-center gap-1",
+          scrolled
+            ? "text-black hover:text-primary"
+            : "bg-clip-text text-transparent bg-gradient-to-r from-white to-white hover:from-secondary hover:to-primary"
+        )}
         aria-haspopup="menu"
         aria-expanded="false"
       >
@@ -209,7 +232,6 @@ function DesktopDropdown({
         <ChevronDown className="h-4 w-4 text-card-foreground group-hover:text-primary" />
       </button>
 
-      {/* Menu */}
       <div
         className={cn(
           "invisible opacity-0 group-hover:visible group-hover:opacity-100",
@@ -220,9 +242,7 @@ function DesktopDropdown({
         <ul className="py-2">
           {item.links?.map((child) => {
             const content = (
-              <span
-                className="block group w-full text-left px-4 py-2.5 text-lg font-semibold hover:bg-black rounded-md"
-              >
+              <span className="block group w-full text-left px-4 py-2.5 text-lg font-semibold hover:bg-black rounded-md">
                 <span className="group-hover:bg-gradient-to-r group-hover:from-secondary group-hover:to-primary group-hover:bg-clip-text group-hover:text-transparent">
                   {child.label}
                 </span>
@@ -258,7 +278,6 @@ function DesktopDropdown({
 }
 
 /* ---------- Mobile Expandable ---------- */
-
 function MobileExpandable({
   item,
   isOpen,
@@ -324,7 +343,6 @@ function MobileExpandable({
 }
 
 /* ---------- Helper Components ---------- */
-
 function Separator(): JSX.Element {
   return (
     <span
@@ -340,6 +358,7 @@ interface NavItemProps {
   href?: string;
   text: string;
   onClick?: () => void;
+  scrolled?: boolean;
   className?: React.HTMLAttributes<HTMLAnchorElement>["className"];
 }
 
@@ -347,13 +366,15 @@ function NavItem({
   href,
   text,
   onClick,
+  scrolled,
   className,
 }: NavItemProps): JSX.Element {
   return href ? (
     <Link
       href={href}
       className={cn(
-        "px-1 py-2 text-sm font-bold text-md text-white hover:text-primary transition-colors duration-200",
+        "px-1 py-2 text-sm font-bold text-md transition-colors duration-200",
+        scrolled ? "text-black hover:text-primary" : "text-white hover:text-primary",
         className
       )}
       onClick={onClick}
@@ -365,7 +386,8 @@ function NavItem({
       type="button"
       onClick={onClick}
       className={cn(
-        "px-1 py-2 text-sm font-bold text-md text-white hover:text-primary transition-colors duration-200",
+        "px-1 py-2 text-sm font-bold text-md transition-colors duration-200",
+        scrolled ? "text-black hover:text-primary" : "text-white hover:text-primary",
         className
       )}
     >
@@ -392,20 +414,15 @@ export function ButtonLink({
   onClick,
 }: ButtonLinkProps): JSX.Element {
   const baseClasses = cn(
-    // Base styles
     `inline-flex items-center justify-center font-semibold text-lg whitespace-nowrap px-8 py-3
      rounded-full transition-all duration-300 ease-in-out transform
      hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl
      focus:outline-none focus:ring-4 focus:ring-primary/20`,
-
-    // Primary variant (default)
     variant === "default" &&
       `bg-gradient-to-r from-primary via-primary/90 to-secondary
        hover:from-transparent hover:via-transparent hover:to-transparent hover:text-primary hover:border-primary
        text-white border border-primary/20 text-lg
        hover:shadow-primary/25 shadow-primary/20 min-w-[235px]`,
-
-    // Secondary variant
     variant === "secondary" &&
       `bg-gradient-to-r from-primary/20 via-primary/10 to-primary/10 
        border-2 border-primary
@@ -413,26 +430,18 @@ export function ButtonLink({
        shadow-inner hover:shadow-lg
        backdrop-blur-sm
        hover:from-primary/30 hover:via-primary/20 hover:to-primary/30`,
-
-    // Outline variant
     variant === "outline" &&
       `bg-transparent border-2 border-primary
        text-white hover:text-primary
        shadow-none hover:shadow-lg hover:shadow-primary/25`,
-
-    // Mobile full width
     mobile && "w-full",
-
-    // Custom className override
     className
   );
 
   if (href) {
     return (
       <Link href={href} role="button" className={baseClasses}>
-        <span className="relative z-10 flex items-center gap-2">
-          {children}
-        </span>
+        <span className="relative z-10 flex items-center gap-2">{children}</span>
       </Link>
     );
   }

@@ -52,7 +52,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="h-full text-white bg-black border-t border-white/10"
+      className="h-full text-white bg-black border-t border-white/10 z-[90] relative"
       aria-label="Site footer"
     >
       <div className="container mx-auto px-4  py-16">

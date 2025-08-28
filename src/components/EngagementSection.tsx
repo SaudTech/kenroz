@@ -19,7 +19,7 @@ const EngagementSection: React.FC<EngagementSectionProps> = ({
   button2Text,
 }) => {
   return (
-    <section className="relative overflow-hidden bg-slate-900 text-white">
+    <section className="relative overflow-hidden bg-slate-900 text-white z-[90]">
       <div className="container relative z-10 mx-auto px-4 py-14 md:py-16 text-center">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
