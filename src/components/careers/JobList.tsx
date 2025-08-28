@@ -160,11 +160,11 @@ export default function JobList() {
           return (
             <Card
               key={job.slug}
-              className="group relative flex flex-col border-slate-200 bg-white shadow-sm transition hover:shadow-md"
+              className="group relative flex flex-col border-slate-200 bg-card shadow-sm transition hover:shadow-md"
             >
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between gap-3">
-                  <CardTitle className="text-xl font-semibold leading-snug">
+                  <CardTitle className="text-xl font-semibold leading-snug text-card-foreground">
                     <Link
                       href={`/careers/${job.slug}`}
                       className="after:absolute after:inset-0 focus:outline-none"
@@ -183,9 +183,9 @@ export default function JobList() {
               </CardHeader>
 
               <CardContent className="flex-1">
-                <p className="line-clamp-3 text-slate-600">{job.description}</p>
+                <p className="line-clamp-3 text-card-foreground">{job.description}</p>
 
-                <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+                <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-card-foreground">
                   <span className="inline-flex items-center gap-1.5">
                     <Briefcase className="h-4 w-4" />
                     {job.department}
@@ -212,14 +212,14 @@ export default function JobList() {
                   href={`/careers/${job.slug}`}
                   className="inline-flex items-center gap-1 font-semibold text-primary hover:underline"
                 >
-                  View role <ArrowRight className="h-4 w-4" />
+                  More details <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link
+                {/* <Link
                   href={`mailto:hr@kenroz.com?subject=Application: ${encodeURIComponent(job.title)}`}
                   className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-50"
                 >
                   Apply
-                </Link>
+                </Link> */}
               </CardFooter>
 
               {/* Clickable overlay for accessibility without breaking buttons */}

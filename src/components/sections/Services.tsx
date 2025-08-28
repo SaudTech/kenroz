@@ -12,6 +12,7 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+import { ButtonLink } from "../Navbar";
 
 // Small, focused types so props stay clean and consistent
 type ServiceItem = {
@@ -26,44 +27,45 @@ const services: ServiceItem[] = [
     icon: Settings,
     title: "Microsoft Dynamics 365",
     path: "microsoft-dynamic-365",
-    desc: "Empower your business with smart ERP & CRM solutions tailored to your workflow.",
+    desc: "Smart ERP & CRM solutions tailored to your business.",
   },
   {
     icon: Cloud,
     title: "Cloud Solutions",
     path: "cloud-solutions",
-    desc: "Secure, scalable, and flexible cloud infrastructure to accelerate digital transformation.",
+    desc: "Secure, scalable cloud infrastructure for your growth.",
   },
   {
     icon: Globe,
     title: "Web Application Development",
     path: "web-application-development",
-    desc: "Modern, high‑performance web apps built for growth and reliability.",
+    desc: "High-performance web apps built for reliability.",
   },
   {
     icon: Smartphone,
     title: "Mobile Application Development",
     path: "mobile-application-development",
-    desc: "Engaging, user‑friendly mobile apps that bring your ideas to life.",
+    desc: "User-friendly mobile apps that bring ideas to life.",
   },
   {
     icon: Megaphone,
     title: "Digital Marketing",
     path: "digital-marketing",
-    desc: "Data‑driven strategies to boost visibility, reach, and customer engagement.",
+    desc: "Data-driven strategies to boost reach and engagement.",
   },
   {
     icon: Users,
     title: "Outsourcing",
     path: "outsourcing",
-    desc: "Cost‑efficient, skilled teams to streamline operations and scale effortlessly.",
+    desc: "Cost-efficient teams to scale operations easily.",
   },
 ] as const;
+
 
 export default function Services() {
   return (
     <section className="w-full" id="services" aria-labelledby="services-heading">
-      <div className="relative mx-auto max-w-7xl text-center px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div className="relative mx-auto max-w-7xl text-center px-4  py-16 md:py-24">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,33 +85,29 @@ export default function Services() {
                   key={service.path}
                   href={`/services/${service.path}`}
                   aria-label={`Read more about ${service.title}`}
-                  className="group h-full"
+                  className="group h-full hover:scale-105 transition-all duration-300"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
-                    className="h-full rounded-2xl border transition-colors duration-300 border-border bg-card/70 backdrop-blur-md shadow-sm hover:shadow-lg focus-within:ring-2 focus-within:ring-ring"
+                    className="h-full rounded-2xl border transition-colors duration-300 border-border bg-card backdrop-blur-md shadow-sm hover:shadow-lg focus-within:ring-2 focus-within:ring-ring"
                   >
-                    <div className="flex h-full flex-col p-4 md:p-6">
+                    <div className="flex h-full flex-col p-4">
                       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary shadow-md">
                         <service.icon className="h-6 w-6 text-primary-foreground" />
                       </div>
 
                       {/* Title wraps (no truncation) */}
-                      <h3 className="text-base md:text-lg font-semibold leading-tight text-foreground text-center">
+                      <h3 className="text-base md:text-lg font-semibold leading-tight text-card-foreground text-center">
                         <span className="break-words hyphens-auto">{service.title}</span>
                       </h3>
 
                       {/* Description clamped for balance */}
-                      <p className="mt-2 text-xs md:text-sm text-muted-foreground text-center line-clamp-3">
+                      <p className="mt-2 text-xs md:text-sm text-card-foreground text-center line-clamp-3">
                         {service.desc}
                       </p>
-
-                      <div className="mt-4 flex items-center justify-center gap-2 text-sm font-medium text-primary/90 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        Explore <ArrowRight className="h-4 w-4" />
-                      </div>
                     </div>
                   </motion.div>
                 </Link>
@@ -118,12 +116,12 @@ export default function Services() {
           </div>
 
           {/* Text (right on desktop) */}
-          <div className="md:col-span-5 order-1 md:order-2">
-            <div className="md:sticky md:top-20">
-              <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
+          <div className="md:col-span-5 order-1 md:order-2  border-black border-solid border-2 rounded-md p-5 bg-gray-100 shadow-md">
+            <div className="md:sticky  text-start md:top-20">
+              <p className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold">
                 What we do best
               </p>
-              <p className="mt-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-4 font-bold md:text-lg leading-relaxed text-foreground">
                 We design, build, and scale digital solutions that empower businesses to operate smarter, innovate faster, and grow with confidence.
               </p>
 
@@ -131,36 +129,18 @@ export default function Services() {
               <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
                 {[
                   "Enterprise-grade security & compliance",
-                  "Design systems for pixel‑perfect consistency",
-                  "SLA-backed reliability and performance",
-                  "Transparent delivery with measurable outcomes",
+                  "Pixel-perfect design consistency",
+                  "SLA-backed reliability with transparent, measurable outcomes",
                 ].map((point) => (
-                  <li key={point} className="flex items-start gap-2">
+                  <li key={point} className="flex text-lg font-bold items-start gap-2">
                     <CheckCircle2 aria-hidden className="mt-0.5 h-4 w-4 text-primary" />
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-primary-foreground shadow-sm transition hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  Talk to an expert <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-
-              {/* Trust/Stats row */}
-              <div className="mt-10 grid grid-cols-2 gap-4 text-center md:text-left">
-                <div>
-                  <p className="text-3xl font-semibold tracking-tight">99.9%</p>
-                  <p className="text-xs text-muted-foreground">Uptime across managed projects</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-semibold tracking-tight">200k+</p>
-                  <p className="text-xs text-muted-foreground">Daily active users served</p>
-                </div>
+              <div className="flex flex-wrap justify-end items-center gap-3">
+                <ButtonLink href="/contact-us">Talk to an expert</ButtonLink>
               </div>
             </div>
           </div>

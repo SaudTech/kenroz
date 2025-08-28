@@ -41,16 +41,14 @@ const locations = [
   {
     city: "Hyderabad",
     flag: "/flags/ind.png",
-    location:
-      "Madhura Colony, Gachibowli, Hyderabad, Telangana 500104",
+    location: "Madhura Colony, Gachibowli, Hyderabad, Telangana 500104",
     phone: "+91-9849000000",
     operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
   },
   {
     city: "Dammam",
     flag: "/flags/sau.png",
-    location:
-      "Al Khobar Al Shamalia, Al Khobar 34428, Saudi Arabia",
+    location: "Al Khobar Al Shamalia, Al Khobar 34428, Saudi Arabia",
     phone: "+966-23-234-2342",
     operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
   },
@@ -166,14 +164,14 @@ export default async function ContactPage({
         }}
       />
 
-      <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 min-h-screen flex items-center py-24 px-6">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
+      <div className="min-h-screen flex items-center px-6 py-0 ">
+        <div className="container mx-auto max-w-7xl py-0">
+          <h1 className="w-full text-center text-5xl md:text-7xl font-extrabold text-black">
+            {heading}
+          </h1>
+          <div className="grid lg:grid-cols-2 gap-20 mt-4 items-start">
             {/* Left: heading + cards */}
             <div className="space-y-8">
-              <h1 className="text-5xl md:text-7xl font-extrabold text-black">
-                {heading}
-              </h1>
               <p className="text-lg md:text-xl text-gray-900 max-w-2xl leading-relaxed">
                 {description}
               </p>

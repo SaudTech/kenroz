@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Serif } from "next/font/google";
+import { Arimo } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
@@ -7,11 +7,11 @@ import Footer from "@/components/sections/Footer";
 import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
 import { Section } from "./page";
-import EngagementSection from "@/components/EngagementSection";
 
-const font = Noto_Serif({
-  variable: "--font-serif",
+const font = Arimo({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-arimo",
 });
 
 export const metadata: Metadata = {
@@ -157,11 +157,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${font.className} antialiased min-h-screen bg-primary/15 overflow-x-hidden`}
+        className={`${font.className} antialiased min-h-screen bg-white overflow-x-hidden`}
       >
         <PerformanceOptimizer />
         <Navbar />
-        <main className="mt-[64.89px]">{children}</main>
+        <main className="mt-[112px]">{children}</main>
 
         <Section is="even" className="bg-black">
           <Footer />

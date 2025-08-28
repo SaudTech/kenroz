@@ -13,27 +13,26 @@ export default function HomePage() {
   return (
     <>
       <StructuredData
-        type="we
-        site"
+        type="website"
         data={{
           "@type": "WebPage",
-          name: "Kenroz - Leading IT Solutions & Software Development Company",
+          name: "Kenroz IT Solutions - Digital Transformation & Enterprise Software Company",
           description:
-            "Empowering businesses to lead with clarity, transform with technology, and excel with confidence",
+            "Kenroz empowers businesses with innovative IT solutions, from Microsoft Dynamics 365 and Cloud to Web & Mobile Development, Digital Marketing, and IT Outsourcing. Partner with us to transform your business with technology.",
           url: "https://kenroz.com",
           mainEntity: {
             "@type": "Organization",
-            name: "Kenroz",
+            name: "Kenroz IT Solutions",
           },
         }}
       />
 
       <div className="min-h-screen overflow-x-hidden relative">
-        <Blob className="top-[22%] left-0" />
+        {/* <Blob className="top-[22%] left-0" />
         <Blob className="top-[38%] right-0" />
         <Blob className="top-[54%] left-0" />
         <Blob className="top-[70%] right-0" />
-        <Blob className="top-[86%] left-0" />
+        <Blob className="top-[86%] left-0" /> */}
 
         <Section is="even">
           <Hero />
@@ -54,9 +53,9 @@ export default function HomePage() {
           <Technologies />
         </Section>
         <EngagementSection
-          title="Ready to Build Your Web Application?"
-          description="Let's discuss your project requirements and create a custom web application that drives your business success. Get started today!"
-          button1Url="/contact-us?p=web-application-development"
+          title="Ready to Transform Your Business?"
+          description="Let’s explore your goals and craft the right IT solutions—whether it’s ERP, Cloud, Web, Mobile, Marketing, or Outsourcing. Partner with us to drive growth with confidence."
+          button1Url="/contact-us"
           button1Text="Contact us"
         />
       </div>
@@ -80,7 +79,7 @@ export const Section = ({
     <section
       id={id}
       className={cn(
-        "w-full min-h-[calc(100vh-64px)] h-full overflow-hidden",
+        "w-full min-h-[calc(100vh-64px)] h-full overflow-hidden border-b border-black",
         className
       )}
     >

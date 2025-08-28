@@ -65,7 +65,7 @@ export default function Navbar(): JSX.Element {
   );
 
   return (
-    <nav className="fixed top-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 z-50 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 p-4 py-6 bg-black backdrop-blur-xl  z-50 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -77,15 +77,15 @@ export default function Navbar(): JSX.Element {
             <Image
               src={logo}
               alt="Kenroz Logo"
-              width={150}
-              height={60}
+              width={200}
+              height={200}
               className="w-auto"
               priority
             />
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-0">
+          <div className="hidden lg:flex text-xl items-center space-x-0">
             {MAIN_LINKS.map((item, idx) => (
               <React.Fragment key={item.label}>
                 {item.links?.length ? (
@@ -104,12 +104,12 @@ export default function Navbar(): JSX.Element {
 
           {/* Right actions */}
           <div className="flex gap-5 items-center">
-            <ButtonLink href="/careers" variant="secondary">
+            <ButtonLink href="/careers" variant="outline">
               Careers
             </ButtonLink>
             <ButtonLink
               href="/contact-us?p=hire"
-              className="hidden lg:inline-flex items-center font-semibold text-sm whitespace-nowrap px-8 py-3 border-primary transition-colors bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white rounded-full"
+              className="hidden lg:inline-flex items-center font-semibold whitespace-nowrap px-8 py-3 border-primary transition-colors text-white rounded-full"
             >
               Hire an Expert
               <Phone className="ms-2 h-5 w-5" />
@@ -201,12 +201,12 @@ function DesktopDropdown({
     <div className="relative group">
       <button
         type="button"
-        className="px-1 py-2 font-bold text-md text-black hover:text-primary transition-colors duration-200 inline-flex items-center gap-1"
+        className="px-1 py-2 font-bold text-md bg-clip-text text-transparent bg-gradient-to-r from-white to-white hover:from-secondary hover:to-primary transition-colors duration-200 inline-flex items-center gap-1"
         aria-haspopup="menu"
         aria-expanded="false"
       >
         {item.label}
-        <ChevronDown className="h-4 w-4" />
+        <ChevronDown className="h-4 w-4 text-card-foreground group-hover:text-primary" />
       </button>
 
       {/* Menu */}
@@ -220,8 +220,12 @@ function DesktopDropdown({
         <ul className="py-2">
           {item.links?.map((child) => {
             const content = (
-              <span className="block w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-[#fffde7] hover:text-primary rounded-md">
-                {child.label}
+              <span
+                className="block group w-full text-left px-4 py-2.5 text-lg font-semibold hover:bg-black rounded-md"
+              >
+                <span className="group-hover:bg-gradient-to-r group-hover:from-secondary group-hover:to-primary group-hover:bg-clip-text group-hover:text-transparent">
+                  {child.label}
+                </span>
               </span>
             );
             return (
@@ -271,7 +275,7 @@ function MobileExpandable({
       <button
         type="button"
         onClick={onToggle}
-        className="w-full text-left font-bold text-md text-black hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-between"
+        className="w-full text-left font-bold text-md text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-between"
         aria-expanded={isOpen}
         aria-controls={`mobile-sub-${item.label}`}
       >
@@ -349,7 +353,7 @@ function NavItem({
     <Link
       href={href}
       className={cn(
-        "px-1 py-2 text-sm font-bold text-md text-black hover:text-primary transition-colors duration-200",
+        "px-1 py-2 text-sm font-bold text-md text-white hover:text-primary transition-colors duration-200",
         className
       )}
       onClick={onClick}
@@ -361,7 +365,7 @@ function NavItem({
       type="button"
       onClick={onClick}
       className={cn(
-        "px-1 py-2 text-sm font-bold text-md text-black hover:text-primary transition-colors duration-200",
+        "px-1 py-2 text-sm font-bold text-md text-white hover:text-primary transition-colors duration-200",
         className
       )}
     >
@@ -389,7 +393,7 @@ export function ButtonLink({
 }: ButtonLinkProps): JSX.Element {
   const baseClasses = cn(
     // Base styles
-    `inline-flex items-center justify-center font-semibold text-sm whitespace-nowrap px-8 py-3
+    `inline-flex items-center justify-center font-semibold text-lg whitespace-nowrap px-8 py-3
      rounded-full transition-all duration-300 ease-in-out transform
      hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl
      focus:outline-none focus:ring-4 focus:ring-primary/20`,
@@ -397,15 +401,15 @@ export function ButtonLink({
     // Primary variant (default)
     variant === "default" &&
       `bg-gradient-to-r from-primary via-primary/90 to-secondary
-       hover:from-secondary hover:via-primary hover:to-primary
-       text-white border border-primary/20
-       hover:shadow-primary/25 shadow-primary/20`,
+       hover:from-transparent hover:via-transparent hover:to-transparent hover:text-primary hover:border-primary
+       text-white border border-primary/20 text-lg
+       hover:shadow-primary/25 shadow-primary/20 min-w-[235px]`,
 
     // Secondary variant
     variant === "secondary" &&
       `bg-gradient-to-r from-primary/20 via-primary/10 to-primary/10 
        border-2 border-primary
-       text-foreground 
+       text-white 
        shadow-inner hover:shadow-lg
        backdrop-blur-sm
        hover:from-primary/30 hover:via-primary/20 hover:to-primary/30`,
@@ -413,9 +417,7 @@ export function ButtonLink({
     // Outline variant
     variant === "outline" &&
       `bg-transparent border-2 border-primary
-       text-primary hover:text-white
-       hover:bg-gradient-to-r hover:from-primary hover:to-secondary
-       hover:border-transparent
+       text-white hover:text-primary
        shadow-none hover:shadow-lg hover:shadow-primary/25`,
 
     // Mobile full width
@@ -456,7 +458,7 @@ function MobileNavItem({
   return href ? (
     <Link
       href={href}
-      className="block text-black hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="block text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
       onClick={onClick}
     >
       {text}
@@ -465,7 +467,7 @@ function MobileNavItem({
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left text-black hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="w-full text-left text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
     >
       {text}
     </button>

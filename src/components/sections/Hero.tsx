@@ -5,6 +5,17 @@ import { motion } from "framer-motion";
 import { FlipWords } from "../ui/flip-words";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { ButtonLink } from "../Navbar";
+import { TypewriterEffect } from "../ui/typewriter-effect";
+
+const words = [
+  { text: "Empowering", className: "text-white" },
+  { text: "Businesses", className: "text-white" },
+  { text: "to", className: "text-white" },
+  { text: "Lead,", className: "text-white" },
+  { text: "Transform", className: "text-white" },
+  { text: "and", className: "text-white" },
+  { text: "Excel.", className: "text-white" },
+];
 
 export default function Hero() {
   const valueProps = ["Future-ready solutions", "Expert team support", "Scalable & secure"];
@@ -38,22 +49,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: easeOut }}
         >
-          <motion.span
-            className="block mb-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            Empowering Businesses to{" "}
-          {/* </motion.span> */}
-          {/* <motion.span
-            className="bg-gradient-to-r from-[#fffde7] via-white to-[#fffde7] bg-clip-text text-transparent"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          > */}
-            Lead, Transform & Excel
-          </motion.span>
+
+        <TypewriterEffect words={words} className="text-white" />
+
         </motion.h1>
 
         <motion.div
@@ -113,7 +111,7 @@ export default function Hero() {
               <ArrowRight className="w-5 h-5" />
               </Link> */}
             <ButtonLink href="#services">
-              Explore Our Services
+              Our Services
               <ArrowRight className="w-5 h-5 ms-2" />
             </ButtonLink>
           </motion.div>

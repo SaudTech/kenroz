@@ -4,12 +4,15 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ButtonLink } from "../Navbar";
+import { ShieldUser } from "lucide-react";
 
 type Partner = {
-  id: "emvive" | "arcgen";
+  id: "emvive" | "arcgen" | string;
   name: string;
-  logo?: string; // optional logo path; fallback to initials
+  logo?: string;
   description: string;
+  website?: string;
+  tags?: string[];
 };
 
 const partners: Partner[] = [
@@ -18,14 +21,18 @@ const partners: Partner[] = [
     name: "Emvive",
     logo: "/emvive.png",
     description:
-      "Emvive is a leading software which helps companies manage their invoices and get compliant with the latest regulations of Zakat, Tax and Customs Authority in Saudi Arabia.",
+      "E-invoicing platform for ZATCA compliance, and enterprise-grade controls.",
+    website: "https://emvive.com",
+    tags: ["ZATCA", "e-Invoicing"],
   },
   {
     id: "arcgen",
     name: "Arcgen",
     logo: "/Arcgen.png",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus, sapien et luctus posuere, dui magna dapibus nisl, non mollis mi sem at augue.",
+      "Automation-first tooling to orchestrate data flows and reduce operational toil.",
+    website: "https://arcgen.in",
+    tags: ["Speech Recognition", "Healthcare"],
   },
 ];
 
@@ -43,41 +50,65 @@ function Initials({ name }: { name: string }) {
   );
 }
 
+function Tag({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full text-sm font-medium text-card-foreground">
+      {children}
+    </span>
+  );
+}
+
 function PartnerCard({ p, index }: { p: Partner; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group relative w-full flex flex-col rounded-2xl border bg-background/70 shadow-sm transition-shadow hover:shadow-md"
+      initial={{ opacity: 0, y: 30, scale: 0.98 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.12 }}
+      className="group relative w-full h-full"
     >
-      {/* Logo / Header */}
-      <div className="p-6 flex items-center flex-col gap-3">
-        {p.logo ? (
-          <div className="relative h-14 w-40 overflow-hidden rounded-xl border bg-white">
-            <Image src={p.logo} alt={`${p.name} logo`} fill className="object-contain p-2" />
+      {/* outer gradient frame */}
+      <div className="rounded-2xl p-[1px] bg-primary/10 h-full">
+        {/* inner card: full-height flex column */}
+        <div className="rounded-2xl bg-card backdrop-blur-sm border shadow-sm transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full flex flex-col min-h-[360px] md:min-h-[400px]">
+          <div className="mx-auto mb-4 mt-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary shadow-md">
+            <ShieldUser className="h-6 w-6 text-primary-foreground" />
           </div>
-        ) : (
-          <Initials name={p.name} />
-        )}
-        <h3 className="text-xl font-semibold leading-tight">{p.name}</h3>
-      </div>
 
-      {/* Divider */}
-      <div className="h-px bg-border" />
+          {/* Logo/Header */}
+          {p.logo ? (
+            <div className="relative h-24 w-full overflow-hidden rounded-t-2xl bg-card">
+              <Image
+                src={p.logo}
+                alt={`${p.name} logo`}
+                fill
+                className="object-contain bg-white p-3 max-w-[50%] rounded-md mx-auto"
+                sizes="200px"
+              />
+            </div>
+          ) : (
+            <div className="p-6">
+              <Initials name={p.name} />
+            </div>
+          )}
 
-      {/* Body */}
-      <div className="p-6 grow">
-        <p className="text-sm leading-relaxed text-muted-foreground">{p.description}</p>
-      </div>
+          {/* Body (flex-1 so it grows and pushes footer down) */}
+          <div className="px-6 py-5">
+            <p className="text-sm leading-relaxed text-card-foreground">
+              {p.description}
+            </p>
+          </div>
 
-      {/* Footer */}
-      <div className="p-6 pt-0">
-        <ButtonLink href="#">Visit website</ButtonLink>
+          {/* Footer */}
+          <div className="px-6 pb-6 pt-10 w-full flex justify-center">
+            {p.website && (
+              <ButtonLink href={p.website}>Visit website</ButtonLink>
+            )}
+          </div>
+        </div>
       </div>
     </motion.div>
   );
@@ -86,46 +117,89 @@ function PartnerCard({ p, index }: { p: Partner; index: number }) {
 export default function StrategicPartner() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-100px" });
-  const textRef = useRef<HTMLParagraphElement>(null);
-  const textInView = useInView(textRef, { once: true, margin: "-100px" });
+  const subRef = useRef<HTMLParagraphElement>(null);
+  const subInView = useInView(subRef, { once: true, margin: "-100px" });
 
   return (
     <section className="w-full" id="strategic-partners">
-      <div className="relative z-[4] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        {/* Title spanning both columns */}
+      <div className="relative z-[4] mx-auto max-w-7xl px-4 py-16 md:py-24">
+        {/* Title on top (kept) */}
         <motion.h2
           ref={headingRef}
           initial={{ opacity: 0, y: 20 }}
           animate={headingInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
+          className="text-center text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
         >
           Strategic Partners
         </motion.h2>
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Cards (left on desktop) */}
-          <div className="order-2 md:order-1 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* LEFT: Cards (kept left on desktop) */}
+          <div className="order-2 h-[400px] md:order-1 grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2 items-stretch">
             {partners.map((p, i) => (
               <PartnerCard key={p.id} p={p} index={i} />
             ))}
           </div>
 
-          {/* Text content (right on desktop) */}
-          <div className="order-1 md:order-2 mb-10 max-w-3xl">
-            <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
-              Companies Who benefited from us
-            </p>
-            <motion.p
-              ref={textRef}
-              className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground"
-              initial={{ opacity: 0, y: 20 }}
-              animate={textInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              We collaborate with visionary companies to deliver stronger outcomes and accelerate
-              innovation across platforms.
-            </motion.p>
+          {/* RIGHT: Content (kept right on desktop) */}
+          <div className="order-1 md:order-2 md:pl-4">
+            <div className="md:sticky md:top-28 text-center md:text-left">
+              <motion.p
+                ref={subRef}
+                initial={{ opacity: 0, y: 20 }}
+                animate={subInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mt-4 max-w-xl font-bold md:text-lg leading-relaxed text-foreground"
+              >
+                We partner with specialized platforms to deliver compliance,
+                automation, and intelligent customer experiences—so you launch
+                faster and scale with confidence.
+              </motion.p>
+
+              {/* Value bullets (plain list, no card styling) */}
+              <ul className="mt-6 space-y-2 list-disc list-inside text-lg text-foreground font-bold">
+                <li>
+                  <span className="">Faster rollouts:</span> battle-tested
+                  integrations & playbooks.
+                </li>
+                <li>
+                  <span className="">Assured compliance:</span> ZATCA, data
+                  privacy, and auditability.
+                </li>
+                <li>
+                  <span className="">Lower risk:</span> shared expertise, clear
+                  SLAs, predictable delivery.
+                </li>
+              </ul>
+
+              {/* Inline stats (just text, no boxes) */}
+              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-lg font-bold text-muted-foreground">
+                <div>
+                  <span className="text-2xl font-bold text-foreground block">
+                    95%
+                  </span>
+                  On-time delivery
+                </div>
+                <div>
+                  <span className="text-2xl font-bold text-foreground block">
+                    30%
+                  </span>
+                  Faster go-live
+                </div>
+                <div>
+                  <span className="text-2xl font-bold text-foreground block">
+                    4.8★
+                  </span>
+                  Client rating
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="mt-8 flex flex-wrap justify-end gap-3">
+                <ButtonLink href="/contact-us">Become a partner</ButtonLink>
+              </div>
+            </div>
           </div>
         </div>
       </div>

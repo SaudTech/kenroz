@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
-import { createElement } from "react";
+import { useMemo, createElement } from "react";
 import { motion } from "framer-motion";
 import * as TechIcons from "../Icons";
 import {
@@ -47,10 +46,6 @@ function humanize(name: string) {
 }
 
 export default function Technologies() {
-  // Custom positions for each technology icon (x%, y%)
-  const x = [4, 20, 40, 57, 80, 90, 15, 38, 55, 75, 5, 25, 45, 65, 85, 26, 67];
-  const y = [10, 0, 20, 5, 15, 24, 55, 54, 60, 50, 85, 80, 85, 75, 85, 35, 35];
-
   const iconEntries = useMemo(() => {
     return Object.entries(TechIcons)
       .filter(([k, v]) => !EXCLUDED_EXPORTS.has(k) && typeof v === "function")
@@ -59,7 +54,7 @@ export default function Technologies() {
 
   return (
     <section id="tech" className="py-20 md:py-24">
-      <div className="relative mx-auto max-w-7xl text-center px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl text-center px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,17 +66,26 @@ export default function Technologies() {
         </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20">
-          {/* Text content (left on desktop) */}
-          <div className="md:col-span-5 order-2 md:order-1">
+          {/* LEFT: Text */}
+          <div className="md:col-span-5 order-2 text-start md:order-1">
             <div className="sticky top-20">
-              <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
+              <p className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold">
                 Technologies we use
               </p>
-              <p className="mt-4 text-base md:text-lg leading-relaxed text-muted-foreground">
-                A selection of frameworks, languages, and tools that power our solutions.
+
+              {/* Shorter subtitle */}
+              <p className="mt-4 font-bold text-lg text-foreground">
+                Modern, scalable, and secure tools for building the future.
               </p>
 
-              <ul className="mt-6 space-y-3">
+              {/* Extra detail */}
+              <p className="mt-3 text-base text-muted-foreground">
+                From frontend frameworks to cloud-native services, we choose
+                technologies that ensure reliability, performance, and long-term
+                scalability for every project.
+              </p>
+
+              <ul className="mt-6 space-y-3 text-lg font-bold">
                 {[
                   "Modern frameworks and libraries",
                   "Cloud-native infrastructure",
@@ -91,40 +95,29 @@ export default function Technologies() {
                     <span className="mt-1 rounded-full border p-1">
                       <Check className="h-4 w-4 text-primary" />
                     </span>
-                    <span className="text-sm md:text-base text-muted-foreground">{item}</span>
+                    <span className="text-lg text-muted-foreground">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Icons grid (right on desktop) */}
+          {/* RIGHT: Icons */}
           <div className="md:col-span-7 order-1 md:order-2">
             <style>{`
               @keyframes float {
                 0% { transform: translateY(0); }
-                50% { transform: translateY(-12px); }
+                50% { transform: translateY(-10px); }
                 100% { transform: translateY(0); }
               }
             `}</style>
 
             <TooltipProvider delayDuration={80}>
-              <div
-                className="relative w-full mx-auto"
-                style={{
-                  minHeight: "350px",
-                }}
-              >
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 place-items-center">
                 {iconEntries.map(([label, Comp], i) => {
-                  // Use x/y arrays, fallback to 0 if out-of-bounds
-                  const left = (x[i] ?? 0) + "%";
-                  const top = (y[i] ?? 0) + "%";
-
-                  // Random tilt (seeded per icon for stability)
                   const seed = hashString(label as string);
                   const rand = seededRand(seed);
                   const rot = (rand() * 10 - 5).toFixed(2);
-
                   const floatDuration = 2.5 + rand() * 6;
                   const floatDelay = rand() * 2;
 
@@ -134,18 +127,8 @@ export default function Technologies() {
                         <motion.div
                           aria-label={label as string}
                           title={label as string}
-                          className="
-                            absolute w-20 h-20 md:w-24 md:h-24
-                            p-2 rounded-lg bg-white
-                            shadow-md border border-gray-200
-                            flex items-center justify-center
-                            transition-transform duration-300
-                            hover:scale-110 hover:shadow-xl
-                            will-change-transform
-                          "
+                          className="w-18 h-18 md:w-20 md:h-20 p-2 rounded-lg bg-white shadow-md border border-gray-200 flex items-center justify-center transition-transform duration-300 hover:scale-110 hover:shadow-xl will-change-transform"
                           style={{
-                            left,
-                            top,
                             transform: `rotate(${rot}deg)`,
                             animation: `float ${floatDuration}s ease-in-out infinite`,
                             animationDelay: `${floatDelay}s`,
@@ -153,7 +136,11 @@ export default function Technologies() {
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true, amount: 0.3 }}
-                          transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
+                          transition={{
+                            duration: 0.4,
+                            delay: i * 0.05,
+                            ease: "easeOut",
+                          }}
                         >
                           {createElement(Comp, {
                             className: "w-full h-full object-contain",

@@ -186,8 +186,8 @@ export default function ProductsPage() {
                     <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
                   </ButtonLink>
                   <ButtonLink
-                    href="/contact"
-                    variant="secondary"
+                    href="/contact-us"
+                    variant="outline"
                     className="text-white group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                   >
                     <span className="relative z-10">Talk to an expert</span>

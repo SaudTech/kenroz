@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { ButtonLink } from "@/components/Navbar";
 import { OpenInformativeDialog } from "@/components/OpenInformativeDialog";
+import EngagementSection from "@/components/EngagementSection";
 
 export const metadata: Metadata = {
   title: "Careers at Kenroz",
@@ -52,12 +53,6 @@ export default function CareersPage() {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 py-28 md:py-36 text-white">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="absolute top-8 left-0 flex justify-center bg-primary w-full  px-3 py-1 text-sm leading-6 ring-1 ring-inset ring-white/20">
-              Join our team - we&apos;re hiring across multiple departments.
-              <span className="ml-2 inline-flex items-center">
-                <ArrowRight className="ml-1 h-4 w-4" />
-              </span>
-            </p>
             <h1 className="mt-6 text-4xl md:text-6xl font-bold leading-tight tracking-tight">
               Build the future with Kenroz
             </h1>
@@ -71,7 +66,7 @@ export default function CareersPage() {
                 title="Refer a Candidate"
                 description="We're always on the lookout for exceptional talent. If you know someone who would be a strong addition to our team, we’d love to hear from you. Please send their details to hr@kenroz.com."
               >
-                <ButtonLink variant="secondary" className="text-white">
+                <ButtonLink variant="outline" className="text-white">
                   Refer a friend
                 </ButtonLink>
               </OpenInformativeDialog>
@@ -125,15 +120,17 @@ export default function CareersPage() {
           ].map(({ icon: Icon, title, desc }) => (
             <li
               key={title}
-              className="group rounded-2xl border border-slate-200 bg-background/70 p-6 shadow-sm hover:shadow-md transition"
+              className="group rounded-2xl border border-slate-200 bg-card p-6 shadow-sm hover:shadow-md transition"
             >
               <div className="flex items-start gap-4">
                 <span className="rounded-xl bg-slate-900/5 p-3 ring-1 ring-slate-900/10">
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-5 w-5 text-card-foreground" />
                 </span>
                 <div>
-                  <h3 className="font-semibold">{title}</h3>
-                  <p className="mt-1 text-sm text-slate-600">{desc}</p>
+                  <h3 className="font-semibold text-card-foreground">
+                    {title}
+                  </h3>
+                  <p className="mt-1 text-sm text-card-foreground">{desc}</p>
                 </div>
               </div>
             </li>
@@ -158,50 +155,13 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Diversity & Inclusion */}
-      <section className="container mx-auto px-4 py-16 md:py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Diversity & Inclusion
-          </h2>
-          <p className="mt-3 text-slate-700">
-            We celebrate diversity and commit to an inclusive environment for
-            all employees — across backgrounds, identities, and experiences. We
-            hire for talent and potential, and we provide accommodations
-            throughout the hiring process.
-          </p>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="relative overflow-hidden bg-slate-900 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(60rem_60rem_at_50%_-10%,rgba(255,255,255,0.08),transparent)]" />
-        <div className="container relative z-10 mx-auto px-4 py-16 md:py-20 text-center">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Ready to apply?
-            </h2>
-            <p className="mt-3 text-white/80">
-              If you don’t see the perfect role, reach out — we love meeting
-              great people.
-            </p>
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <Link
-                href="mailto:hr@kenroz.com"
-                className="rounded-xl bg-white px-5 py-3 font-semibold text-slate-900 shadow hover:shadow-md transition"
-              >
-                Apply now
-              </Link>
-              <Link
-                href="#open-roles"
-                className="rounded-xl ring-1 ring-white/40 px-5 py-3 font-semibold hover:bg-white/10 transition"
-              >
-                View roles
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <EngagementSection
+        title="Ready to apply?"
+        description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to hr@kenroz.com."
+        button1Url="/contact-us"
+        button1Text="Apply now"
+      />
 
       {/* JSON-LD */}
       <script

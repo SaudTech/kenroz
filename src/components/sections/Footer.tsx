@@ -55,7 +55,7 @@ export default function Footer() {
       className="h-full text-white bg-black border-t border-white/10"
       aria-label="Site footer"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container mx-auto px-4  py-16">
         {/* Top Grid */}
         <div className="grid gap-10 md:grid-cols-4">
           {/* Col 1 */}
@@ -104,7 +104,7 @@ export default function Footer() {
                 <li key={service.label}>
                   <a
                     href={service.href}
-                    className="inline-block text-white/70 hover:text-white transition"
+                    className="inline-block text-white/70 hover:text-primary transition"
                   >
                     {service.label}
                   </a>
@@ -121,7 +121,7 @@ export default function Footer() {
                 <li key={r.label}>
                   <a
                     href={r.href}
-                    className="inline-block text-white/70 hover:text-white transition"
+                    className="inline-block text-white/70 hover:text-primary transition"
                   >
                     {r.label}
                   </a>
@@ -138,7 +138,7 @@ export default function Footer() {
                 <li key={legal.label}>
                   <a
                     href={legal.href}
-                    className="inline-block text-white/70 hover:text-white transition"
+                    className="inline-block text-white/70 hover:text-primary transition"
                   >
                     {legal.label}
                   </a>
@@ -158,7 +158,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-white/70 hover:text-white transition"
+                    className="text-white/70 hover:text-primary transition"
                   >
                     {link.label}
                   </a>
@@ -175,7 +175,7 @@ export default function Footer() {
                 <li key={service.href}>
                   <a
                     href={service.href}
-                    className="text-white/70 hover:text-white transition"
+                    className="text-white/70 hover:text-primary transition"
                   >
                     {service.label}
                   </a>
