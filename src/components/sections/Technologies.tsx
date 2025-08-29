@@ -10,6 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Check } from "lucide-react";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
 const EXCLUDED_EXPORTS = new Set(["default", "__esModule"]);
 
@@ -51,15 +52,17 @@ export default function Technologies() {
       .filter(([k, v]) => !EXCLUDED_EXPORTS.has(k) && typeof v === "function")
       .map(([name, Comp]) => [humanize(name), Comp]);
   }, []);
+  const { fromLeft, fromRight } = useSectionVariants();
 
   return (
     <section id="tech" className="py-20 md:py-24">
       <div className="relative mx-auto max-w-7xl text-center px-4">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6 }}
+          variants={fromLeft}
+          initial="hidden"
+          whileInView="show"
+          viewport={view}
+          whileHover={hoverScale}
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
         >
           Our Technologies
@@ -69,34 +72,64 @@ export default function Technologies() {
           {/* LEFT: Text */}
           <div className="md:col-span-5 order-2 text-start md:order-1">
             <div className="sticky top-20">
-              <p className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold">
+              <motion.p
+                className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold"
+                variants={fromLeft}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
+              >
                 Technologies we use
-              </p>
+              </motion.p>
 
               {/* Shorter subtitle */}
-              <p className="mt-4 font-bold text-lg text-foreground">
+              <motion.p
+                className="mt-4 font-bold text-lg text-foreground"
+                variants={fromRight}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
+              >
                 Modern, scalable, and secure tools for building the future.
-              </p>
+              </motion.p>
 
               {/* Extra detail */}
-              <p className="mt-3 text-base text-muted-foreground">
+              <motion.p
+                className="mt-3 text-base text-muted-foreground"
+                variants={fromRight}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
+              >
                 From frontend frameworks to cloud-native services, we choose
                 technologies that ensure reliability, performance, and long-term
                 scalability for every project.
-              </p>
+              </motion.p>
 
               <ul className="mt-6 space-y-3 text-lg font-bold">
                 {[
                   "Modern frameworks and libraries",
                   "Cloud-native infrastructure",
                   "Secure and scalable data solutions",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
+                ].map((item, i) => (
+                  <motion.li
+                    key={item}
+                    className="flex items-start gap-3"
+                    variants={fromLeft}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={view}
+                    whileHover={hoverScale}
+                    transition={{ delay: i * 0.1 }}
+                  >
                     <span className="mt-1 rounded-full border p-1">
                       <Check className="h-4 w-4 text-primary" />
                     </span>
                     <span className="text-lg text-muted-foreground">{item}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>
@@ -127,7 +160,7 @@ export default function Technologies() {
                         <motion.div
                           aria-label={label as string}
                           title={label as string}
-                          className="w-18 h-18 md:w-20 md:h-20 p-2 rounded-lg bg-white shadow-md border border-gray-200 flex items-center justify-center transition-transform duration-300 hover:scale-110 hover:shadow-xl will-change-transform"
+                          className="w-18 h-18 md:w-20 md:h-20 p-2 rounded-lg bg-white shadow-md border border-gray-200 flex items-center justify-center transition-transform duration-300 hover:shadow-xl will-change-transform"
                           style={{
                             transform: `rotate(${rot}deg)`,
                             animation: `float ${floatDuration}s ease-in-out infinite`,
@@ -136,6 +169,7 @@ export default function Technologies() {
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true, amount: 0.3 }}
+                          whileHover={hoverScale}
                           transition={{
                             duration: 0.4,
                             delay: i * 0.05,

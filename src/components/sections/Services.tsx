@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import type { LucideIcon } from "lucide-react";
 import {
   Globe,
@@ -9,7 +10,6 @@ import {
   Megaphone,
   Users,
   Settings,
-  ArrowRight,
   CheckCircle2,
 } from "lucide-react";
 import { ButtonLink } from "../Navbar";
@@ -63,14 +63,16 @@ const services: ServiceItem[] = [
 
 
 export default function Services() {
+  const { fromLeft, fromRight } = useSectionVariants();
   return (
     <section className="w-full" id="services" aria-labelledby="services-heading">
       <div className="relative mx-auto max-w-7xl text-center px-4  py-16 md:py-24">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6 }}
+          variants={fromLeft}
+          initial="hidden"
+          whileInView="show"
+          viewport={view}
+          whileHover={hoverScale}
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
         >
           Our Services
@@ -85,13 +87,15 @@ export default function Services() {
                   key={service.path}
                   href={`/services/${service.path}`}
                   aria-label={`Read more about ${service.title}`}
-                  className="group h-full hover:scale-105 transition-all duration-300"
+                  className="group h-full transition-all duration-300"
                 >
                   <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
+                    variants={fromRight}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={view}
+                    whileHover={hoverScale}
+                    transition={{ delay: i * 0.15 }}
                     className="h-full rounded-2xl border transition-colors duration-300 border-border bg-card backdrop-blur-md shadow-sm hover:shadow-lg focus-within:ring-2 focus-within:ring-ring"
                   >
                     <div className="flex h-full flex-col p-4">
@@ -118,12 +122,26 @@ export default function Services() {
           {/* Text (right on desktop) */}
           <div className="md:col-span-5 order-1 md:order-2  border-black border-solid border-2 rounded-md p-5 bg-gray-100 shadow-md">
             <div className="md:sticky  text-start md:top-20">
-              <p className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold">
+              <motion.p
+                className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold"
+                variants={fromLeft}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
+              >
                 What we do best
-              </p>
-              <p className="mt-4 font-bold md:text-lg leading-relaxed text-foreground">
+              </motion.p>
+              <motion.p
+                className="mt-4 font-bold md:text-lg leading-relaxed text-foreground"
+                variants={fromRight}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
+              >
                 We design, build, and scale digital solutions that empower businesses to operate smarter, innovate faster, and grow with confidence.
-              </p>
+              </motion.p>
 
               {/* Added supporting content: quick value bullets + CTA */}
               <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
@@ -132,10 +150,18 @@ export default function Services() {
                   "Pixel-perfect design consistency",
                   "SLA-backed reliability with transparent, measurable outcomes",
                 ].map((point) => (
-                  <li key={point} className="flex text-lg font-bold items-start gap-2">
+                  <motion.li
+                    key={point}
+                    className="flex text-lg font-bold items-start gap-2"
+                    variants={fromLeft}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={view}
+                    whileHover={hoverScale}
+                  >
                     <CheckCircle2 aria-hidden className="mt-0.5 h-4 w-4 text-primary" />
                     <span>{point}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ButtonLink } from "../Navbar";
 import { ShieldUser } from "lucide-react";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
 type Partner = {
   id: "emvive" | "arcgen" | string;
@@ -50,24 +51,19 @@ function Initials({ name }: { name: string }) {
   );
 }
 
-function Tag({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full text-sm font-medium text-card-foreground">
-      {children}
-    </span>
-  );
-}
-
 function PartnerCard({ p, index }: { p: Partner; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { fromLeft, fromRight } = useSectionVariants();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30, scale: 0.98 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.12 }}
+      variants={index % 2 === 0 ? fromLeft : fromRight}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+      whileHover={hoverScale}
+      transition={{ delay: index * 0.12 }}
       className="group relative w-full h-full"
     >
       {/* outer gradient frame */}
@@ -119,6 +115,7 @@ export default function StrategicPartner() {
   const headingInView = useInView(headingRef, { once: true, margin: "-100px" });
   const subRef = useRef<HTMLParagraphElement>(null);
   const subInView = useInView(subRef, { once: true, margin: "-100px" });
+  const { fromLeft, fromRight } = useSectionVariants();
 
   return (
     <section className="w-full" id="strategic-partners">
@@ -126,9 +123,11 @@ export default function StrategicPartner() {
         {/* Title on top (kept) */}
         <motion.h2
           ref={headingRef}
-          initial={{ opacity: 0, y: 20 }}
-          animate={headingInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={fromLeft}
+          initial="hidden"
+          animate={headingInView ? "show" : "hidden"}
+          viewport={view}
+          whileHover={hoverScale}
           className="text-center text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
         >
           Strategic Partners
@@ -147,9 +146,11 @@ export default function StrategicPartner() {
             <div className="md:sticky md:top-28 text-center md:text-left">
               <motion.p
                 ref={subRef}
-                initial={{ opacity: 0, y: 20 }}
-                animate={subInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                variants={fromRight}
+                initial="hidden"
+                animate={subInView ? "show" : "hidden"}
+                viewport={view}
+                whileHover={hoverScale}
                 className="mt-4 max-w-xl font-bold md:text-lg leading-relaxed text-foreground"
               >
                 We partner with specialized platforms to deliver compliance,
@@ -159,18 +160,23 @@ export default function StrategicPartner() {
 
               {/* Value bullets (plain list, no card styling) */}
               <ul className="mt-6 space-y-2 list-disc list-inside text-lg text-foreground font-bold">
-                <li>
-                  <span className="">Faster rollouts:</span> battle-tested
-                  integrations & playbooks.
-                </li>
-                <li>
-                  <span className="">Assured compliance:</span> ZATCA, data
-                  privacy, and auditability.
-                </li>
-                <li>
-                  <span className="">Lower risk:</span> shared expertise, clear
-                  SLAs, predictable delivery.
-                </li>
+                {[
+                  "Faster rollouts: battle-tested integrations & playbooks.",
+                  "Assured compliance: ZATCA, data privacy, and auditability.",
+                  "Lower risk: shared expertise, clear SLAs, predictable delivery.",
+                ].map((text, i) => (
+                  <motion.li
+                    key={text}
+                    variants={fromLeft}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={view}
+                    whileHover={hoverScale}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    {text}
+                  </motion.li>
+                ))}
               </ul>
 
               {/* Inline stats (just text, no boxes) */}

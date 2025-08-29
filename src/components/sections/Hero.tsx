@@ -6,6 +6,7 @@ import { FlipWords } from "../ui/flip-words";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { ButtonLink } from "../Navbar";
 import { TypewriterEffect } from "../ui/typewriter-effect";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
 const words = [
   { text: "Empowering", className: "text-white" },
@@ -19,8 +20,8 @@ const words = [
 
 export default function Hero() {
   const valueProps = ["Future-ready solutions", "Expert team support", "Scalable & secure"];
-  const easeOut = [0.16, 1, 0.3, 1] as const;
   const easeInOut = [0.42, 0, 0.58, 1] as const;
+  const { fromLeft, fromRight } = useSectionVariants();
 
   return (
     <section className="flex flex-col items-center justify-center text-center relative overflow-hidden py-8 px-4 w-full h-[calc(100vh-64px)] md:px-8">
@@ -41,24 +42,27 @@ export default function Hero() {
         className="relative z-10 flex flex-col items-center space-y-8 w-full"
         initial={{ opacity: 0, x: 0 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: easeOut }}
+        transition={{ duration: 0.8 }}
       >
         <motion.h1
           className="text-white text-2xl md:text-3xl lg:text-5xl font-bold leading-tight"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: easeOut }}
+          variants={fromLeft}
+          initial="hidden"
+          whileInView="show"
+          viewport={view}
+          whileHover={hoverScale}
         >
-
-        <TypewriterEffect words={words} className="text-white" />
-
+          <TypewriterEffect words={words} className="text-white" />
         </motion.h1>
 
         <motion.div
           className="text-[#fffde7] text-lg lg:text-xl font-medium leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          variants={fromRight}
+          initial="hidden"
+          whileInView="show"
+          viewport={view}
+          whileHover={hoverScale}
+          transition={{ delay: 0.9 }}
         >
           <p className="mb-4">Your trusted technology partner for innovative IT solutions:</p>
           <FlipWords
@@ -84,10 +88,13 @@ export default function Hero() {
           {valueProps.map((prop, index) => (
             <motion.div
               key={prop}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium hover:bg-primary transition-colors"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
+              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium transition-colors"
+              variants={fromLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+              whileHover={hoverScale}
+              transition={{ delay: 1.2 + index * 0.1 }}
             >
               <CheckCircle className="w-4 h-4 text-[#fffde7]" />
               {prop}

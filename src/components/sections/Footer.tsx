@@ -9,12 +9,15 @@ import {
   ArrowUp,
 } from "lucide-react";
 import { useCallback } from "react";
+import { motion } from "framer-motion";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import logo from "@/../public/logo.png";
 
 export default function Footer() {
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+  const { fromLeft } = useSectionVariants();
 
   const services = [
     {label: "Digital Marketing", href: "/services/digital-marketing"},
@@ -98,7 +101,16 @@ export default function Footer() {
 
           {/* Col 2 & 3 */}
           <div className="col-">
-            <h4 className="mb-4 text-3xl font-semibold">Services</h4>
+            <motion.h4
+              className="mb-4 text-3xl font-semibold"
+              variants={fromLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+              whileHover={hoverScale}
+            >
+              Services
+            </motion.h4>
             <ul className="space-y-2 text-xl">
               {services.map((service) => (
                 <li key={service.label}>
@@ -115,7 +127,16 @@ export default function Footer() {
 
           {/* Col 4 */}
           <div>
-            <h4 className="mb-4 text-3xl font-semibold">Resources</h4>
+            <motion.h4
+              className="mb-4 text-3xl font-semibold"
+              variants={fromLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+              whileHover={hoverScale}
+            >
+              Resources
+            </motion.h4>
             <ul className="space-y-2 text-xl">
               {resources.map((r) => (
                 <li key={r.label}>
@@ -132,7 +153,16 @@ export default function Footer() {
 
           {/* Col 5 */}
           <div>
-            <h4 className="mb-4 text-3xl font-semibold">Legal Center</h4>
+            <motion.h4
+              className="mb-4 text-3xl font-semibold"
+              variants={fromLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+              whileHover={hoverScale}
+            >
+              Legal Center
+            </motion.h4>
             <ul className="space-y-2 text-xl">
               {legalLinks.map((legal) => (
                 <li key={legal.label}>
@@ -152,7 +182,16 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-8">
           {/* Quick Links */}
           <div className="mb-6">
-            <h4 className="mb-3 text-3xl font-semibold">Quick Links</h4>
+            <motion.h4
+              className="mb-3 text-3xl font-semibold"
+              variants={fromLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+              whileHover={hoverScale}
+            >
+              Quick Links
+            </motion.h4>
             <ul className="flex flex-wrap gap-4 text-xl">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -169,7 +208,16 @@ export default function Footer() {
 
           {/* Services Links */}
           <div className="mb-6">
-            <h4 className="mb-3 text-3xl font-semibold">Services</h4>
+            <motion.h4
+              className="mb-3 text-3xl font-semibold"
+              variants={fromLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+              whileHover={hoverScale}
+            >
+              Services
+            </motion.h4>
             <ul className="flex flex-wrap gap-4 text-xl">
               {services.map((service) => (
                 <li key={service.href}>

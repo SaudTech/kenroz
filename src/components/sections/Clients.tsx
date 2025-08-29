@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CometCard, CometItem } from "@/components/ui/comet-card";
+import { motion } from "framer-motion";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
 const clients = [
   {
@@ -53,6 +55,7 @@ export default function CombinedShowcase() {
   // quick lookup: testimonial by client name
   const tByRole = Object.fromEntries(testimonials.map((t) => [t.role, t]));
 
+  const { fromLeft, fromRight } = useSectionVariants();
   return (
     <section
       id="clients"
@@ -62,17 +65,31 @@ export default function CombinedShowcase() {
       <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
         {/* Unified header */}
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <motion.h2
+            className="text-3xl font-bold text-gray-900"
+            variants={fromLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={view}
+            whileHover={hoverScale}
+          >
             Trusted{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Clients
             </span>{" "}
             & Their Words
-          </h2>
-          <p className="mt-2 text-sm text-gray-900">
+          </motion.h2>
+          <motion.p
+            className="mt-2 text-sm text-gray-900"
+            variants={fromRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={view}
+            whileHover={hoverScale}
+          >
             Partnerships built on delivery, security, and reliability — in their
             own words.
-          </p>
+          </motion.p>
         </div>
 
         {/* Single row of combined cards (horizontal scroll to keep within height) */}
@@ -80,12 +97,18 @@ export default function CombinedShowcase() {
           {clients.map((client) => {
             const t = tByRole[client.name];
             return (
-              <CometCard
+              <motion.div
                 key={client.name}
                 className="min-w-[320px] max-w-sm flex-shrink-0"
+                variants={fromRight}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
               >
-                <div className="rounded-2xl overflow-hidden border border-gray-100 bg-white">
-                  {/* Client block */}
+                <CometCard className="h-full">
+                  <div className="rounded-2xl overflow-hidden border border-gray-100 bg-white">
+                    {/* Client block */}
                   <div className="bg-gradient-to-br from-primary to-secondary p-6 flex flex-col items-center">
                     <CometItem depth={0.4}>
                       <div className="relative mb-4 h-24 w-24">
@@ -137,8 +160,9 @@ export default function CombinedShowcase() {
                       </p>
                     </div>
                   )}
-                </div>
-              </CometCard>
+                  </div>
+                </CometCard>
+              </motion.div>
             );
           })}
         </div>

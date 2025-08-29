@@ -3,8 +3,9 @@
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import { Calendar, CircleCheckBig, ThumbsUp } from "lucide-react";
-import { motion, useReducedMotion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { TypewriterEffect } from "../ui/typewriter-effect";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
 function SectionHeader({
   subtitle,
@@ -19,8 +20,12 @@ function SectionHeader({
   onToggle: () => void;
   headerId: string;
 }) {
+  const { fromLeft } = useSectionVariants();
   return (
     <div className="text-left">
+      <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
+        {subtitle}
+      </p>
       <button
         type="button"
         onClick={onToggle}
@@ -34,7 +39,7 @@ function SectionHeader({
           initial="hidden"
           whileInView="show"
           viewport={view}
-          whileHover={{ scale: 1.02 }}
+          whileHover={hoverScale}
         >
           {title}
         </motion.h2>
@@ -48,45 +53,14 @@ const stats = [
   { label: "14+ Projects", icon: CircleCheckBig },
   { label: "Delivering Excellence", icon: ThumbsUp },
 ];
-const distance = 60;
-const view = { once: false, amount: 0 };
-
-const fromLeft: Variants = {
-  hidden: { x: -distance, opacity: 0 },
-  show: {
-    x: 0,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 60, damping: 14 },
-  },
-};
 export default function OurStory() {
   const [activeKey, setActiveKey] = useState<"story" | "why">("story");
-  const reduceMotion = useReducedMotion();
 
   const toggle = useCallback((key: "story" | "why") => {
     setActiveKey(() => key);
   }, []);
 
-  const distance = reduceMotion ? 0 : 60;
-  const view = { once: false, amount: 0 };
-
-  const fromLeft: Variants = {
-    hidden: { x: -distance, opacity: 0 },
-    show: {
-      x: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 60, damping: 14 },
-    },
-  };
-
-  const fromRight: Variants = {
-    hidden: { x: distance, opacity: 0 },
-    show: {
-      x: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 60, damping: 14 },
-    },
-  };
+  const { fromLeft, fromRight } = useSectionVariants();
 
   const slideVariants = {
     collapsed: { height: 0, opacity: 0, y: -4 },
@@ -104,7 +78,7 @@ export default function OurStory() {
           initial="hidden"
           whileInView="show"
           viewport={view}
-          whileHover={{ scale: 1.02 }}
+          whileHover={hoverScale}
           className="inline-block w-full text-center"
         >
           <TypewriterEffect
@@ -118,7 +92,13 @@ export default function OurStory() {
           <div className="lg:col-span-6 space-y-12">
             {/* Our Journey */}
             <div id="our-story">
-              <motion.div variants={fromLeft} initial="hidden" whileInView="show" viewport={view}>
+              <motion.div
+                variants={fromLeft}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
+              >
                 <SectionHeader
                   subtitle="Our Journey"
                   title="We started our journey years back"
@@ -146,7 +126,7 @@ export default function OurStory() {
                   initial="hidden"
                   whileInView="show"
                   viewport={view}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={hoverScale}
                 >
                   For over a decade, we’ve helped many businesses to grow in
                   various ways like branding, graphics design, web design,
@@ -161,7 +141,13 @@ export default function OurStory() {
 
             {/* Why Us */}
             <div id="why-us">
-              <motion.div variants={fromLeft} initial="hidden" whileInView="show" viewport={view}>
+              <motion.div
+                variants={fromLeft}
+                initial="hidden"
+                whileInView="show"
+                viewport={view}
+                whileHover={hoverScale}
+              >
                 <SectionHeader
                   subtitle="Why Us?"
                   title="Obvious 1st choice"
@@ -189,7 +175,7 @@ export default function OurStory() {
                   initial="hidden"
                   whileInView="show"
                   viewport={view}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={hoverScale}
                 >
                   Web design is more than just looking good! We create custom
                   websites that make your phone ring. With our in-house experts
@@ -238,7 +224,7 @@ export default function OurStory() {
                   initial="hidden"
                   whileInView="show"
                   viewport={view}
-                  whileHover={{ y: -4, scale: 1.02 }}
+                  whileHover={{ y: -4, ...hoverScale }}
                   transition={{ delay: i * 0.1 }}
                 >
                   <Icon className="h-8 w-8 text-primary-foreground mb-2" />
@@ -248,7 +234,7 @@ export default function OurStory() {
                     initial="hidden"
                     whileInView="show"
                     viewport={view}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={hoverScale}
                   >
                     {label}
                   </motion.span>

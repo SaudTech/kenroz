@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { ButtonLink } from "../Navbar";
+import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
 interface Company {
   name: string;
@@ -24,23 +25,19 @@ const companies: Company[] = [
   { name: "Arcgen", logo: "/Arcgen.png" },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function OurClients() {
+  const { fromLeft, fromRight } = useSectionVariants();
   return (
     <section className="w-full" id="our-clients" aria-labelledby="our-clients-heading">
       <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* ✅ Put border around actual content */}
         <div className="rounded-2xl bg-gray-100 shadow-md border border-solid border-black px-6 py-10 md:px-10 md:py-14">
           <motion.h2
-            variants={fadeUp}
+            variants={fromLeft}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.6 }}
+            whileInView="show"
+            viewport={view}
+            whileHover={hoverScale}
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground text-center"
           >
             Our Clients
@@ -52,22 +49,22 @@ export default function OurClients() {
               <div className="sticky top-20 text-start font-bold">
                 <motion.p
                   className="text-3xl md:text-4xl tracking-widest uppercase font-extrabold"
-                  variants={fadeUp}
+                  variants={fromLeft}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.6 }}
-                  transition={{ duration: 0.6 }}
+                  whileInView="show"
+                  viewport={view}
+                  whileHover={hoverScale}
                 >
                   Trusted by leading companies
                 </motion.p>
 
                 <motion.p
                   className="mt-4 text-lg leading-relaxed text-foreground"
-                  variants={fadeUp}
+                  variants={fromRight}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.6 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
+                  whileInView="show"
+                  viewport={view}
+                  whileHover={hoverScale}
                 >
                   Teams across construction, manufacturing, trading, and services rely on Kenroz to streamline operations and accelerate growth.
                 </motion.p>
@@ -81,11 +78,12 @@ export default function OurClients() {
                     <motion.li
                       key={item}
                       className="flex items-start gap-3"
-                      variants={fadeUp}
+                      variants={fromLeft}
                       initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.6 }}
-                      transition={{ duration: 0.5, delay: i * 0.15 }}
+                      whileInView="show"
+                      viewport={view}
+                      whileHover={hoverScale}
+                      transition={{ delay: i * 0.15 }}
                     >
                       <span className="mt-1 rounded-full border p-1">
                         <Check className="h-4 w-4 text-primary" />
@@ -97,11 +95,11 @@ export default function OurClients() {
 
                 <motion.div
                   className="mt-8 flex flex-wrap justify-end items-center gap-3"
-                  variants={fadeUp}
+                  variants={fromRight}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.6 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
+                  whileInView="show"
+                  viewport={view}
+                  whileHover={hoverScale}
                 >
                   <ButtonLink href="/contact-us">Work With Kenroz</ButtonLink>
                 </motion.div>
@@ -114,13 +112,14 @@ export default function OurClients() {
                 {companies.map((company, i) => (
                   <motion.div
                     key={company.name}
-                    className="group relative flex items-center justify-center p-4 md:p-6 rounded-2xl backdrop-blur-sm hover:scale-105 transition-all duration-300"
+                    className="group relative flex items-center justify-center p-4 md:p-6 rounded-2xl backdrop-blur-sm transition-all duration-300"
                     title={company.name}
-                    variants={fadeUp}
+                    variants={fromRight}
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.6 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    whileInView="show"
+                    viewport={view}
+                    whileHover={hoverScale}
+                    transition={{ delay: i * 0.1 }}
                   >
                     <div
                       className={cn(
