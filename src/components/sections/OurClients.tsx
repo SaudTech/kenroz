@@ -15,7 +15,10 @@ interface Company {
 
 const companies: Company[] = [
   { name: "Abacus", logo: "/clients/Abacus.jpg" },
-  { name: "Pure Quality Construction", logo: "/clients/Pure-Quality-Construction-LLC.webp" },
+  {
+    name: "Pure Quality Construction",
+    logo: "/clients/Pure-Quality-Construction-LLC.webp",
+  },
   { name: "Chemsol", logo: "/clients/Chemsol.png" },
   { name: "Tamimi Group", logo: "/clients/TamimiGroup.png" },
   { name: "Stepco", logo: "/clients/Stepco.png" },
@@ -28,7 +31,11 @@ const companies: Company[] = [
 export default function OurClients() {
   const { fromLeft, fromRight } = useSectionVariants();
   return (
-    <section className="w-full" id="our-clients" aria-labelledby="our-clients-heading">
+    <section
+      className="w-full"
+      id="our-clients"
+      aria-labelledby="our-clients-heading"
+    >
       <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* ✅ Put border around actual content */}
         <div className="rounded-2xl bg-gray-100 shadow-md border border-solid border-black px-6 py-10 md:px-10 md:py-14">
@@ -38,9 +45,9 @@ export default function OurClients() {
             whileInView="show"
             viewport={view}
             whileHover={hoverScale}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground text-center"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
           >
-            Our Clients
+            Our <span className="block text-primary">Clients</span>
           </motion.h2>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
@@ -66,7 +73,9 @@ export default function OurClients() {
                   viewport={view}
                   whileHover={hoverScale}
                 >
-                  Teams across construction, manufacturing, trading, and services rely on Kenroz to streamline operations and accelerate growth.
+                  Teams across construction, manufacturing, trading, and
+                  services rely on Kenroz to streamline operations and
+                  accelerate growth.
                 </motion.p>
 
                 <ul className="mt-6 space-y-3 w-full text-start">
@@ -88,7 +97,9 @@ export default function OurClients() {
                       <span className="mt-1 rounded-full border p-1">
                         <Check className="h-4 w-4 text-primary" />
                       </span>
-                      <span className="text-lg text-muted-foreground">{item}</span>
+                      <span className="text-lg text-muted-foreground">
+                        {item}
+                      </span>
                     </motion.li>
                   ))}
                 </ul>
@@ -124,7 +135,8 @@ export default function OurClients() {
                     <div
                       className={cn(
                         "relative h-20 w-44 md:h-20 md:w-48 opacity-80 group-hover:opacity-100 transition",
-                        company.name === "Premier global Trading" && "md:h-20 w-44",
+                        company.name === "Premier global Trading" &&
+                          "md:h-20 w-44",
                         company.name === "Musanadah" && "md:h-20 w-44"
                       )}
                     >

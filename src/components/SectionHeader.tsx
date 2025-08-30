@@ -15,9 +15,9 @@ export default function SectionHeader({
 }) {
   return (
     <div className="text-left">
-      <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
+      {/* <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
         {subtitle}
-      </p>
+      </p> */}
       <h2
         className={cn(
           "mt-2 text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground",

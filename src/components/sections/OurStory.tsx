@@ -4,17 +4,14 @@ import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import { Calendar, CircleCheckBig, ThumbsUp } from "lucide-react";
 import { motion } from "framer-motion";
-import { TypewriterEffect } from "../ui/typewriter-effect";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
 function SectionHeader({
-  subtitle,
   title,
   isOpen,
   onToggle,
   headerId,
 }: {
-  subtitle: string;
   title: string;
   isOpen: boolean;
   onToggle: () => void;
@@ -23,9 +20,6 @@ function SectionHeader({
   const { fromLeft } = useSectionVariants();
   return (
     <div className="text-left">
-      <p className="text-xs md:text-sm tracking-widest uppercase text-primary/90 font-semibold">
-        {subtitle}
-      </p>
       <button
         type="button"
         onClick={onToggle}
@@ -67,25 +61,21 @@ export default function OurStory() {
     open: { height: "auto", opacity: 1, y: 0 },
   };
 
-  const words = [{ text: "Who" }, { text: "We" }, { text: "Are" }];
-
   return (
     <section className="relative w-full">
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* Typewriter Heading */}
-        <motion.div
+      
+        <motion.h2
           variants={fromLeft}
           initial="hidden"
           whileInView="show"
           viewport={view}
           whileHover={hoverScale}
-          className="inline-block w-full text-center"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
         >
-          <TypewriterEffect
-            words={words}
-            className="text-center text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
-          />
-        </motion.div>
+          Who <span className="block text-primary">We Are</span>
+        </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Side */}
@@ -100,7 +90,6 @@ export default function OurStory() {
                 whileHover={hoverScale}
               >
                 <SectionHeader
-                  subtitle="Our Journey"
                   title="We started our journey years back"
                   isOpen={activeKey === "story"}
                   onToggle={() => toggle("story")}
@@ -149,7 +138,6 @@ export default function OurStory() {
                 whileHover={hoverScale}
               >
                 <SectionHeader
-                  subtitle="Why Us?"
                   title="Obvious 1st choice"
                   isOpen={activeKey === "why"}
                   onToggle={() => toggle("why")}
@@ -247,5 +235,3 @@ export default function OurStory() {
     </section>
   );
 }
-
-// Variants must be declared inside the component scope

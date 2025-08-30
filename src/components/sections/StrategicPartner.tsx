@@ -111,8 +111,6 @@ function PartnerCard({ p, index }: { p: Partner; index: number }) {
 }
 
 export default function StrategicPartner() {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const headingInView = useInView(headingRef, { once: true, margin: "-100px" });
   const subRef = useRef<HTMLParagraphElement>(null);
   const subInView = useInView(subRef, { once: true, margin: "-100px" });
   const { fromLeft, fromRight } = useSectionVariants();
@@ -122,15 +120,14 @@ export default function StrategicPartner() {
       <div className="relative z-[4] mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* Title on top (kept) */}
         <motion.h2
-          ref={headingRef}
           variants={fromLeft}
           initial="hidden"
-          animate={headingInView ? "show" : "hidden"}
+          whileInView="show"
           viewport={view}
           whileHover={hoverScale}
-          className="text-center text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
         >
-          Strategic Partners
+          Strategic <span className="block text-primary">Partners</span>
         </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">

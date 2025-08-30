@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import OurStory from "@/components/sections/OurStory";
 import StrategicPartner from "@/components/sections/StrategicPartner";
 import OurClients from "@/components/sections/OurClients";
-import Blob from "@/components/Blob";
 import EngagementSection from "@/components/EngagementSection";
 
 export default function HomePage() {
@@ -28,11 +27,6 @@ export default function HomePage() {
       />
 
       <div className="min-h-screen overflow-x-hidden relative">
-        {/* <Blob className="top-[22%] left-0" />
-        <Blob className="top-[38%] right-0" />
-        <Blob className="top-[54%] left-0" />
-        <Blob className="top-[70%] right-0" />
-        <Blob className="top-[86%] left-0" /> */}
 
         <Section is="even">
           <Hero />

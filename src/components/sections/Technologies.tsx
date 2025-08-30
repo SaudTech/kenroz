@@ -63,9 +63,9 @@ export default function Technologies() {
           whileInView="show"
           viewport={view}
           whileHover={hoverScale}
-          className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
         >
-          Our Technologies
+          Our <span className="block text-primary">Technologies</span>
         </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20">
@@ -128,7 +128,9 @@ export default function Technologies() {
                     <span className="mt-1 rounded-full border p-1">
                       <Check className="h-4 w-4 text-primary" />
                     </span>
-                    <span className="text-lg text-muted-foreground">{item}</span>
+                    <span className="text-lg text-muted-foreground">
+                      {item}
+                    </span>
                   </motion.li>
                 ))}
               </ul>
@@ -182,7 +184,10 @@ export default function Technologies() {
                           })}
                         </motion.div>
                       </TooltipTrigger>
-                      <TooltipContent side="top" className="text-xs font-medium">
+                      <TooltipContent
+                        side="top"
+                        className="text-xs font-medium"
+                      >
                         {label as string}
                       </TooltipContent>
                     </Tooltip>

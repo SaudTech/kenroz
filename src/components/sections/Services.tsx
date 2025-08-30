@@ -61,11 +61,14 @@ const services: ServiceItem[] = [
   },
 ] as const;
 
-
 export default function Services() {
   const { fromLeft, fromRight } = useSectionVariants();
   return (
-    <section className="w-full" id="services" aria-labelledby="services-heading">
+    <section
+      className="w-full"
+      id="services"
+      aria-labelledby="services-heading"
+    >
       <div className="relative mx-auto max-w-7xl text-center px-4  py-16 md:py-24">
         <motion.h2
           variants={fromLeft}
@@ -73,9 +76,9 @@ export default function Services() {
           whileInView="show"
           viewport={view}
           whileHover={hoverScale}
-          className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] text-foreground"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
         >
-          Our Services
+          Our <span className="block text-primary">Services</span>
         </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
@@ -105,7 +108,9 @@ export default function Services() {
 
                       {/* Title wraps (no truncation) */}
                       <h3 className="text-base md:text-lg font-semibold leading-tight text-card-foreground text-center">
-                        <span className="break-words hyphens-auto">{service.title}</span>
+                        <span className="break-words hyphens-auto">
+                          {service.title}
+                        </span>
                       </h3>
 
                       {/* Description clamped for balance */}
@@ -140,7 +145,9 @@ export default function Services() {
                 viewport={view}
                 whileHover={hoverScale}
               >
-                We design, build, and scale digital solutions that empower businesses to operate smarter, innovate faster, and grow with confidence.
+                We design, build, and scale digital solutions that empower
+                businesses to operate smarter, innovate faster, and grow with
+                confidence.
               </motion.p>
 
               {/* Added supporting content: quick value bullets + CTA */}
@@ -159,7 +166,10 @@ export default function Services() {
                     viewport={view}
                     whileHover={hoverScale}
                   >
-                    <CheckCircle2 aria-hidden className="mt-0.5 h-4 w-4 text-primary" />
+                    <CheckCircle2
+                      aria-hidden
+                      className="mt-0.5 h-4 w-4 text-primary"
+                    />
                     <span>{point}</span>
                   </motion.li>
                 ))}
