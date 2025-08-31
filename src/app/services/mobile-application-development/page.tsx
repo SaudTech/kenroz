@@ -1,4 +1,13 @@
-import { Metadata } from "next";
+"use client";
+
+import { motion } from "framer-motion";
+import useSectionVariants from "@/lib/useSectionVariants";
+import { hoverScale } from "@/lib/section-animations";
+import { Section } from "@/app/page";
+import EngagementSection from "@/components/EngagementSection";
+import { ButtonLink } from "@/components/Navbar";
+import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
+import ProcessAnimation, { ProcessStep } from "../outsourcing/process";
 import {
   Smartphone,
   Tablet,
@@ -6,408 +15,606 @@ import {
   Shield,
   Users,
   Star,
-  ArrowRight,
-  CheckCircle,
-  Apple,
-  Play,
+  CheckCircle2,
   Code,
   Layers,
   Bell,
-  CreditCard,
 } from "lucide-react";
-import Link from "next/link";
-import EngagementSection from "@/components/EngagementSection";
+import { AppleAppStore, GooglePlaystore } from "./PlatformIcons";
 
-export const metadata: Metadata = {
-  title: "Mobile App Development Services | iOS & Android Apps",
-  description:
-    "Professional mobile application development for iOS and Android. Create engaging, high-performance mobile apps with native and cross-platform solutions using React Native, Flutter, and Swift.",
-  keywords: [
-    "mobile app development",
-    "iOS app development",
-    "Android app development",
-    "React Native",
-    "Flutter development",
-    "cross-platform apps",
-    "mobile app development Saudi Arabia",
-  ],
+/* ------------------- Process (mobile-focused) ------------------- */
+const mobileProcess: ProcessStep[] = [
+  {
+    step: "01",
+    title: "Discovery & UX",
+    description:
+      "Define outcomes, audiences, and journeys. Wireframes, acceptance criteria, and analytics plan.",
+    glowMs: 1400,
+  },
+  {
+    step: "02",
+    title: "Architecture & Setup",
+    description:
+      "Native or cross-platform foundation, design system, environments, CI/CD (Fastlane/Gradle/Xcode Cloud).",
+    glowMs: 1200,
+  },
+  {
+    step: "03",
+    title: "Build & Integrate",
+    description:
+      "Core features first. Push, payments/IAP, maps/camera, offline sync. Tests, reviews, weekly demos.",
+    glowMs: 1600,
+  },
+  {
+    step: "04",
+    title: "Launch & Operate",
+    description:
+      "Store assets, privacy/data safety, phased rollout, crash/perf monitoring, roadmap iterations.",
+    glowMs: 1200,
+  },
+];
+
+/* ------------------- Content blocks ------------------- */
+const developmentApproaches = [
+  {
+    title: "Native Development",
+    description: "Platform-specific apps for optimal performance and UX",
+    technologies: ["Swift/SwiftUI", "Objective-C", "Kotlin", "Java"],
+    pros: [
+      "Best Performance",
+      "Full Platform Features",
+      "Optimal UX",
+      "Store-ready",
+    ],
+    icon: Smartphone,
+  },
+  {
+    title: "Cross-Platform",
+    description: "One codebase for iOS and Android with near-native feel",
+    technologies: ["React Native", "Flutter"],
+    pros: ["Cost Effective", "Faster Delivery", "Code Reuse", "Consistent UI"],
+    icon: Layers,
+  },
+  {
+    title: "Hybrid / PWA",
+    description: "Web tech in a native shell, ideal for content and utilities",
+    technologies: ["Capacitor", "Ionic", "PWA"],
+    pros: ["Quick Launch", "Web Skills", "Easy Updates", "Lower Cost"],
+    icon: Code,
+  },
+];
+
+const features = [
+  {
+    icon: Smartphone,
+    title: "Native Performance",
+    description:
+      "Optimized per platform with smooth animations and responsive gestures.",
+  },
+  {
+    icon: Shield,
+    title: "Security First",
+    description:
+      "Secure storage, biometrics, device checks, and encrypted traffic end-to-end.",
+  },
+  {
+    icon: Zap,
+    title: "Fast & Responsive",
+    description:
+      "Snappy interactions and tuned cold-start times for real-world devices.",
+  },
+  {
+    icon: Users,
+    title: "User-Centric Design",
+    description:
+      "Guideline-compliant patterns (HIG/Material) validated by user feedback.",
+  },
+  {
+    icon: Bell,
+    title: "Push & Engagement",
+    description:
+      "Targeted push, in-app messaging, and deep links for higher retention.",
+  },
+  {
+    icon: Star,
+    title: "Store-Ready & ASO",
+    description:
+      "Optimized listings, screenshots, privacy labels, and review prompts.",
+  },
+];
+
+/* ------------------- Store Badge (for iOS / Android) ------------------- */
+const StoreBadge = ({
+  kind,
+  href = "/contact-us?p=mobile-apps",
+  label,
+  delay = 8,
+}: {
+  kind: "ios" | "android";
+  href?: string;
+  label?: string;
+  delay?: number;
+}) => {
+  const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
+    useSectionVariants();
+  const Icon = kind === "ios" ? AppleAppStore : GooglePlaystore;
+  const text = label ?? (kind === "ios" ? "iOS (App Store)" : "Android (Google Play)");
+  const variants =
+    kind === "ios"
+      ? slideInFromLeftWithDelay(delay, 60, 0.6, true)
+      : slideInFromRightWithDelay(delay, 60, 0.6, true);
+
+  return (
+    <motion.a
+      href={href}
+      aria-label={`We build for ${text}`}
+      className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-2 text-card-foreground shadow hover:shadow-md"
+      initial="hidden"
+      whileInView="visible"
+      variants={variants}
+      viewport={{ once: true, amount: 0.4 }}
+      whileHover={hoverScale}
+    >
+      <span className="grid place-items-center rounded-xl bg-white/90 p-1.5">
+        <Icon className="h-6 w-6" />
+      </span>
+      <span className="text-sm font-medium">
+        {text}
+        <span className="ml-1 text-foreground/60 group-hover:text-foreground/80">
+          • Build-ready
+        </span>
+      </span>
+    </motion.a>
+  );
 };
 
 export default function MobileApplicationDevelopmentPage() {
-  const developmentApproaches = [
-    {
-      title: "Native Development",
-      description:
-        "Platform-specific apps for optimal performance and user experience",
-      technologies: [
-        "Swift/Objective-C",
-        "Kotlin/Java",
-        "Xcode",
-        "Android Studio",
-      ],
-      pros: [
-        "Best Performance",
-        "Full Platform Features",
-        "Optimal UX",
-        "App Store Optimization",
-      ],
-      icon: Smartphone,
-    },
-    {
-      title: "Cross-Platform",
-      description:
-        "Single codebase for multiple platforms with near-native performance",
-      technologies: ["React Native", "Flutter", "Xamarin", "Ionic"],
-      pros: [
-        "Cost Effective",
-        "Faster Development",
-        "Code Reusability",
-        "Consistent UI",
-      ],
-      icon: Layers,
-    },
-    {
-      title: "Hybrid Development",
-      description:
-        "Web technologies wrapped in native containers for quick deployment",
-      technologies: ["Cordova", "PhoneGap", "Ionic", "HTML5"],
-      pros: ["Quick Launch", "Web Skills", "Easy Updates", "Lower Cost"],
-      icon: Code,
-    },
-  ];
-
-  const appTypes = [
-    {
-      title: "E-commerce Apps",
-      description:
-        "Shopping apps with payment integration, product catalogs, and user accounts",
-      features: [
-        "Product Catalog",
-        "Secure Payments",
-        "User Profiles",
-        "Push Notifications",
-      ],
-      icon: CreditCard,
-    },
-    {
-      title: "Social & Communication",
-      description:
-        "Social networking, messaging, and community-building applications",
-      features: [
-        "Real-time Chat",
-        "Social Features",
-        "Media Sharing",
-        "User Communities",
-      ],
-      icon: Users,
-    },
-    {
-      title: "Business & Productivity",
-      description:
-        "Enterprise apps for workflow management, collaboration, and productivity",
-      features: [
-        "Task Management",
-        "Team Collaboration",
-        "Document Sharing",
-        "Analytics",
-      ],
-      icon: Layers,
-    },
-    {
-      title: "On-Demand Services",
-      description:
-        "Service marketplace apps connecting users with service providers",
-      features: [
-        "GPS Integration",
-        "Booking System",
-        "Payment Gateway",
-        "Rating System",
-      ],
-      icon: Bell,
-    },
-  ];
-
-  const features = [
-    {
-      icon: Smartphone,
-      title: "Native Performance",
-      description:
-        "Optimized for each platform to deliver the best possible user experience and performance.",
-    },
-    {
-      icon: Shield,
-      title: "Security First",
-      description:
-        "Built with security best practices including data encryption and secure authentication.",
-    },
-    {
-      icon: Zap,
-      title: "Fast & Responsive",
-      description:
-        "Optimized for speed with smooth animations and quick response times.",
-    },
-    {
-      icon: Users,
-      title: "User-Centric Design",
-      description:
-        "Intuitive interfaces designed based on user research and platform guidelines.",
-    },
-    {
-      icon: Bell,
-      title: "Push Notifications",
-      description:
-        "Engage users with targeted, personalized push notifications and in-app messaging.",
-    },
-    {
-      icon: Star,
-      title: "App Store Optimization",
-      description:
-        "Optimized for app store discovery with proper metadata and compelling descriptions.",
-    },
-  ];
+  const {
+    slideInFromLeftWithDelay,
+    slideInFromRightWithDelay,
+  } = useSectionVariants();
 
   return (
-    <main className="bg-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+    <main>
+      {/* Hero — concise value + how we work */}
+      <Section
+        is="odd"
+        className="relative grid place-items-center overflow-hidden py-20"
+      >
+        <div className="container relative z-10 mx-auto px-4">
+          <div className="flex flex-col items-center gap-12 lg:flex-row">
             <div className="lg:w-3/5">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Mobile Application
-                <span className="block text-primary">Development</span>
-              </h1>
-              <p className="text-xl text-gray-900 mb-8 leading-relaxed">
-                Create engaging mobile experiences that users love. Our expert
-                team builds high-performance iOS and Android apps using native
-                and cross-platform technologies for maximum reach and user
-                satisfaction.
-              </p>
-            </div>
-            <div className="lg:w-2/5">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-20"></div>
-                <div className="relative flex items-center justify-center space-x-4">
-                  <div className="bg-white rounded-3xl shadow-2xl p-4 transform rotate-12">
-                    <div className="w-48 h-96 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl flex flex-col items-center justify-center space-y-4">
-                      <Smartphone className="w-12 h-12 text-primary" />
-                      <div className="space-y-2 w-32">
-                        <div className="h-3 bg-primary/20 rounded"></div>
-                        <div className="h-3 bg-secondary/20 rounded w-3/4"></div>
-                        <div className="h-3 bg-primary/20 rounded w-1/2"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-white rounded-3xl shadow-2xl p-4 transform -rotate-12">
-                    <div className="w-48 h-96 bg-gradient-to-br from-secondary/10 to-primary/10 rounded-2xl flex flex-col items-center justify-center space-y-4">
-                      <Tablet className="w-12 h-12 text-secondary" />
-                      <div className="space-y-2 w-32">
-                        <div className="h-3 bg-secondary/20 rounded"></div>
-                        <div className="h-3 bg-primary/20 rounded w-3/4"></div>
-                        <div className="h-3 bg-secondary/20 rounded w-1/2"></div>
-                      </div>
-                    </div>
-                  </div>
+              <motion.h1
+                className="mb-6 text-5xl font-bold leading-tight text-foreground lg:text-6xl"
+                initial="hidden"
+                animate="visible"
+                variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
+                custom={0}
+                whileHover={hoverScale}
+              >
+                Mobile Application <span className="text-primary">Development</span>
+              </motion.h1>
+
+              <motion.p
+                className="mb-6 text-xl leading-relaxed text-foreground"
+                initial="hidden"
+                animate="visible"
+                variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
+                custom={1}
+                whileHover={hoverScale}
+              >
+                Ship polished iOS and Android apps without guesswork. We align
+                on outcomes, set a realistic plan, and deliver usable increments
+                each sprint so stakeholders see progress and go live with
+                confidence.
+              </motion.p>
+
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+                  custom={6}
+                >
+                  <ButtonLink href="/contact-us?p=mobile-apps">Get Started</ButtonLink>
+                </motion.div>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+                  custom={7}
+                >
+                  <ButtonLink variant="outline" href="/contact-us" className="text-black">
+                    Have inquiries?
+                  </ButtonLink>
+                </motion.div>
+              </div>
+
+              {/* Platform badges — just to indicate capability (iOS / Android / both) */}
+              <div className="mt-6 space-y-2">
+                <motion.p
+                  className="text-sm text-foreground/70"
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromLeftWithDelay(10, 40, 0.6)}
+                  viewport={{ once: true }}
+                >
+                  We build for <span className="font-semibold">iOS</span>,{" "}
+                  <span className="font-semibold">Android</span>, or{" "}
+                  <span className="font-semibold">both</span>.
+                </motion.p>
+
+                <div className="flex flex-wrap items-center gap-3">
+                  <StoreBadge kind="ios" delay={10} />
+                  <StoreBadge kind="android" delay={11} />
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Development Approaches */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Development Approaches
-            </h2>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
-              Choose the right approach for your project needs and budget
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {developmentApproaches.map((approach, index) => (
-              <div
-                key={index}
-                className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                  <approach.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  {approach.title}
-                </h3>
-                <p className="text-gray-900 mb-6">{approach.description}</p>
-
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">
-                    Technologies:
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {approach.technologies.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-3">
-                    Advantages:
-                  </h4>
-                  <div className="space-y-2">
-                    {approach.pros.map((pro, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-primary" />
-                        <span className="text-sm text-gray-700">{pro}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Our Mobile Development Services?
-            </h2>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
-              We deliver exceptional mobile applications with cutting-edge
-              technology and user-focused design
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                  <feature.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-900">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* App Types */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Types of Mobile Apps We Build
-            </h2>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
-              From simple utility apps to complex enterprise solutions
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {appTypes.map((app, index) => (
-              <div
-                key={index}
-                className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                    <app.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    {app.title}
-                  </h3>
-                </div>
-                <p className="text-gray-900 mb-6">{app.description}</p>
-                <div className="grid grid-cols-2 gap-3">
-                  {app.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-gray-700">{feature}</span>
+            {/* Hero visual */}
+            <motion.div
+              className="relative lg:w-2/5"
+              variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.4 }}
+            >
+              <div className="relative flex items-center justify-center space-x-4">
+                <div className="transform rotate-12 rounded-3xl bg-white p-4 shadow-2xl">
+                  <div className="flex h-96 w-48 flex-col items-center justify-center space-y-4 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10">
+                    <Smartphone className="h-12 w-12 text-primary" />
+                    <div className="w-32 space-y-2">
+                      <div className="h-3 rounded bg-primary/20"></div>
+                      <div className="h-3 w-3/4 rounded bg-secondary/20"></div>
+                      <div className="h-3 w-1/2 rounded bg-primary/20"></div>
                     </div>
+                  </div>
+                </div>
+                <div className="transform -rotate-12 rounded-3xl bg-white p-4 shadow-2xl">
+                  <div className="flex h-96 w-48 flex-col items-center justify-center space-y-4 rounded-2xl bg-gradient-to-br from-secondary/10 to-primary/10">
+                    <Tablet className="h-12 w-12 text-secondary" />
+                    <div className="w-32 space-y-2">
+                      <div className="h-3 rounded bg-secondary/20"></div>
+                      <div className="h-3 w-3/4 rounded bg-primary/20"></div>
+                      <div className="h-3 w-1/2 rounded bg-secondary/20"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Development Approaches (cards) */}
+      <Section is="odd" id="approaches" className="relative py-20 pt-0">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            className="mb-4 text-5xl font-bold text-foreground"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+            custom={0}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            <div className="mx-auto mb-3 max-w-[470px] border-t-2 border-black"></div>
+            Development Approaches
+            <div className="mx-auto mt-3 max-w-[470px] border-t-2 border-black"></div>
+          </motion.h2>
+
+          <motion.p
+            className="mx-auto mb-12 max-w-3xl text-xl text-foreground"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+            custom={1}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Choose the route that fits your goals, budget, and timeline.
+          </motion.p>
+
+          <ul className="grid grid-cols-1 gap-6 text-left lg:grid-cols-3">
+            {developmentApproaches.map((a, i) => (
+              <motion.li
+                key={a.title}
+                className="rounded-2xl border border-border bg-card p-8 text-card-foreground shadow-lg"
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                whileHover={hoverScale}
+                viewport={{ once: true }}
+              >
+                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary">
+                  <a.icon className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h3 className="mb-3 text-center text-2xl font-bold">{a.title}</h3>
+                <p className="mb-6 text-center">{a.description}</p>
+
+                <h4 className="mb-2 font-semibold">Technologies</h4>
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {a.technologies.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-primary px-3 py-1 text-sm text-primary-foreground"
+                    >
+                      {t}
+                    </span>
                   ))}
                 </div>
-              </div>
+
+                <h4 className="mb-2 font-semibold">Advantages</h4>
+                <ul className="space-y-2">
+                  {a.pros.map((p) => (
+                    <li key={p} className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                      <span className="text-sm text-primary-foreground">{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
-      </section>
+      </Section>
+
+      {/* Features */}
+      <Section is="odd" id="features" className="relative py-20 pt-0">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            className="mb-4 text-5xl font-bold text-foreground"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+            custom={0}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            <div className="mx-auto mb-3 max-w-[470px] border-t-2 border-black"></div>
+            Capabilities
+            <div className="mx-auto mt-3 max-w-[470px] border-t-2 border-black"></div>
+          </motion.h2>
+
+          <motion.p
+            className="mx-auto mb-12 max-w-3xl text-xl text-foreground"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+            custom={1}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Practical features we build into modern mobile apps.
+          </motion.p>
+
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((f, i) => (
+              <motion.li
+                key={f.title}
+                className="rounded-2xl border border-border bg-card p-8 text-card-foreground shadow-lg"
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                whileHover={hoverScale}
+                viewport={{ once: true }}
+              >
+                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                  <f.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="mb-2 text-center text-xl font-bold">{f.title}</h3>
+                <p className="text-center">{f.description}</p>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      <PageDividerTwo />
 
       {/* Platform Support */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Platform Support
-            </h2>
-            <p className="text-xl text-gray-900">
-              We develop for all major mobile platforms
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg">
-              <div className="w-20 h-20 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Apple className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                iOS Development
-              </h3>
-              <p className="text-gray-900 mb-6">
-                Native iOS apps using Swift and Objective-C for iPhone and iPad
-              </p>
-              <div className="flex justify-center space-x-4 text-sm text-gray-500">
-                <span>iPhone</span>
-                <span>•</span>
-                <span>iPad</span>
-                <span>•</span>
-                <span>Apple Watch</span>
-              </div>
-            </div>
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg">
-              <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Play className="w-10 h-10 text-primary-foreground" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Android Development
-              </h3>
-              <p className="text-gray-900 mb-6">
-                Native Android apps using Kotlin and Java for all Android
-                devices
-              </p>
-              <div className="flex justify-center space-x-4 text-sm text-gray-500">
-                <span>Smartphones</span>
-                <span>•</span>
-                <span>Tablets</span>
-                <span>•</span>
-                <span>Wear OS</span>
-              </div>
-            </div>
+<Section is="odd" id="platforms" className="py-20 pt-0">
+  <div className="container mx-auto px-4">
+    <div className="mb-12 text-center">
+      <motion.h2
+        className="mb-4 text-4xl font-bold text-foreground"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+        custom={0}
+        viewport={{ once: true }}
+        whileHover={hoverScale}
+      >
+        Supported Platforms
+      </motion.h2>
+      <motion.p
+        className="text-xl text-foreground"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+        custom={1}
+        viewport={{ once: true }}
+      >
+        We design, build, and ship for <b>iOS</b>, <b>Android</b>, or{" "}
+        <b>both</b>—native or cross-platform.
+      </motion.p>
+    </div>
+
+    {/* Cards */}
+    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {/* iOS */}
+      <motion.div
+        className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-lg"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+        viewport={{ once: true, amount: 0.4 }}
+        whileHover={hoverScale}
+      >
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gray-900">
+          <AppleAppStore className="h-10 w-10" />
+        </div>
+        <h3 className="mb-2 text-2xl font-bold text-foreground">iOS Development</h3>
+        <p className="mb-6 text-foreground">
+          Native apps using Swift/SwiftUI for high performance and HIG-compliant UX.
+        </p>
+        <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+          <span>iPhone</span>
+          <span>•</span>
+          <span>iPad</span>
+        </div>
+      </motion.div>
+
+      {/* Android */}
+      <motion.div
+        className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-2xl"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+        viewport={{ once: true, amount: 0.4 }}
+        whileHover={hoverScale}
+      >
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-card">
+          <GooglePlaystore className="h-10 w-10" />
+        </div>
+        <h3 className="mb-2 text-2xl font-bold text-foreground">Android Development</h3>
+        <p className="mb-6 text-foreground">
+          Native apps using Kotlin/Jetpack for Material-compliant, device-ready UI.
+        </p>
+        <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+          <span>Smartphones</span>
+          <span>•</span>
+          <span>Tablets</span>
+        </div>
+      </motion.div>
+
+      {/* Both */}
+      <motion.div
+        className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-lg"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromRightWithDelay(10, 80, 0.7, true)}
+        viewport={{ once: true, amount: 0.4 }}
+        whileHover={hoverScale}
+      >
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-gray-900 to-primary/90">
+          <div className="relative">
+            <AppleAppStore className="h-8 w-8 opacity-95" />
+            <GooglePlaystore className="h-8 w-8 absolute -right-4 -bottom-3 opacity-95" />
           </div>
         </div>
-      </section>
+        <h3 className="mb-2 text-2xl font-bold text-foreground">Both Platforms</h3>
+        <p className="mb-6 text-foreground">
+          Single codebase (React Native/Flutter) design system, unified analytics.
+        </p>
+        <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+          <span>Reuseable code</span>
+          <span>•</span>
+          <span>Faster development</span>
+        </div>
+      </motion.div>
+    </div>
 
-      {/* CTA Section */}
-      <EngagementSection
-        title="Ready to Build Your Mobile App?"
-        description="Transform your idea into a successful mobile application. Let's
-            discuss your project and create an app that users will love."
-        button1Url="/contact-us?p=mobile-application-development"
-        button1Text="Contact us"
+    {/* Divider */}
+    <div className="mx-auto my-12 h-px w-full max-w-6xl bg-border" />
+
+    {/* Publishing & Distribution */}
+    <div className="mx-auto max-w-6xl">
+      <motion.h4
+        className="mb-4 text-center text-xl font-semibold text-foreground"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromLeftWithDelay(10, 60, 0.6)}
+        viewport={{ once: true }}
+      >
+        Publishing & Distribution
+      </motion.h4>
+
+      <motion.ul
+        className="mb-10 flex flex-wrap items-center justify-center gap-2"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromRightWithDelay(10, 60, 0.6)}
+        viewport={{ once: true }}
+      >
+        {[
+          "App Store Connect",
+          "TestFlight",
+          "Google Play Console",
+          "Firebase App Distribution",
+          "Fastlane CI/CD",
+        ].map((t, i) => (
+          <motion.li
+            key={t}
+            className="rounded-full border border-border bg-card px-3 py-1 text-sm text-card-foreground"
+            variants={slideInFromLeftWithDelay(10 + i, 40, 0.5)}
+          >
+            {t}
+          </motion.li>
+        ))}
+      </motion.ul>
+
+      {/* Store-readiness checklist */}
+      <motion.div
+        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        initial="hidden"
+        whileInView="visible"
+        variants={slideInFromLeftWithDelay(12, 60, 0.6)}
+        viewport={{ once: true }}
+      >
+        {[
+          "Privacy labels (iOS) & Data Safety (Play)",
+          "App signing, certs & provisioning",
+          "Push notifications & deep links",
+          "IAP / subscriptions & receipts",
+          "Screenshots, metadata & ASO",
+          "Crash/perf monitoring & alerts",
+        ].map((item, i) => (
+          <motion.div
+            key={item}
+            className="flex items-start gap-2 rounded-xl border border-border bg-card p-4 text-card-foreground"
+            variants={slideInFromRightWithDelay(12 + i, 60, 0.6)}
+          >
+            <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
+            <span className="text-sm">{item}</span>
+          </motion.div>
+        ))}
+      </motion.div>
+
+    </div>
+  </div>
+</Section>
+
+
+      <PageDividerTwo />
+
+      {/* Process Flow — near the last section */}
+      <ProcessAnimation
+        id="process"
+        title="Our Delivery Process"
+        subtitle="We plan together, ship in increments, and keep scope transparent throughout."
+        centerLabel="Mobile App Process"
+        steps={mobileProcess}
+        defaultGlowMs={1400}
+        inViewThreshold={0.2}
       />
+
+      {/* CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <EngagementSection
+          title="Ready to build your mobile app?"
+          description="Book a quick discovery call—walk out with a plan, estimate, and a clear path to launch."
+          button1Url="/contact-us?p=mobile-application-development"
+          button1Text="Talk to us"
+        />
+      </motion.div>
     </main>
   );
 }

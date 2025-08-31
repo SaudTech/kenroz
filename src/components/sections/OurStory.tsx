@@ -110,7 +110,7 @@ export default function OurStory() {
                 className="overflow-visible"
               >
                 <motion.div
-                  className="mt-4 font-bold md:text-lg leading-relaxed text-black cursor-pointer inline-block"
+                  className="mt-4 hover:font-bold transition-all duration-300 md:text-lg leading-relaxed text-black cursor-pointer inline-block"
                   variants={fromRight}
                   initial="hidden"
                   whileInView="show"

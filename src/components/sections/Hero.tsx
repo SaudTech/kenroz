@@ -88,7 +88,7 @@ export default function Hero() {
           {valueProps.map((prop, index) => (
             <motion.div
               key={prop}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium transition-colors"
+              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium hover:scale-105 hover:shadow-lg hover:bg-primary hover:text-primary-foreground transition-all duration-500"
               variants={fromLeft}
               initial="hidden"
               whileInView="show"

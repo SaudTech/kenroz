@@ -5,64 +5,97 @@ import EngagementSection from "@/components/EngagementSection";
 import { motion } from "framer-motion";
 import useSectionVariants from "@/lib/useSectionVariants";
 import { hoverScale } from "@/lib/section-animations";
-import ProcessAnimation from "./process";
+import ProcessAnimation, { ProcessStep } from "./process";
 import { Section } from "@/app/page";
 import { ButtonLink } from "@/components/Navbar";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+const engagementModels = [
+  {
+    title: "Dedicated Team",
+    description:
+      "A full-time dedicated team that works exclusively on your projects with complete focus and commitment.",
+    features: [
+      "Full-time dedication",
+      "Direct communication",
+      "Long-term partnership",
+      "Scalable team size",
+    ],
+    bestFor: "Long-term projects, Product development, Ongoing maintenance",
+    icon: Users,
+    color: "primary",
+  },
+  {
+    title: "Staff Augmentation",
+    description:
+      "Extend your existing team with skilled professionals who integrate seamlessly with your workflows.",
+    features: [
+      "Quick onboarding",
+      "Flexible duration",
+      "Your project management",
+      "Direct control",
+    ],
+    bestFor: "Skill gaps, Peak workloads, Specific expertise",
+    icon: Zap,
+    color: "secondary",
+  },
+  {
+    title: "Project-Based",
+    description:
+      "Complete project delivery from start to finish with our experienced project management and development teams.",
+    features: [
+      "End-to-end delivery",
+      "Fixed timeline",
+      "Defined scope",
+      "Quality assurance",
+    ],
+    bestFor: "Specific projects, MVP development, Time-bound deliverables",
+    icon: Settings,
+    color: "primary",
+  },
+];
+const process: ProcessStep[] = [
+  {
+    step: "01",
+    title: "Initiation & Planning",
+    description:
+      "Align on goals, scope out requirements, and assemble your dedicated team.",
+    glowMs: 1400, // customize per step (optional)
+  },
+  {
+    step: "02",
+    title: "Setup & Onboarding",
+    description:
+      "Establish tools, access, and workflows for smooth collaboration.",
+    glowMs: 1000,
+  },
+  {
+    step: "03",
+    title: "Execution & Monitoring",
+    description:
+      "Drive development forward with regular check-ins and quality reviews.",
+    glowMs: 1600,
+  },
+  {
+    step: "04",
+    title: "Delivery & Support",
+    description:
+      "Launch your solution and provide ongoing maintenance and enhancements.",
+    glowMs: 1200,
+  },
+];
 
 export default function Page() {
-  const engagementModels = [
-    {
-      title: "Dedicated Team",
-      description:
-        "A full-time dedicated team that works exclusively on your projects with complete focus and commitment.",
-      features: [
-        "Full-time dedication",
-        "Direct communication",
-        "Long-term partnership",
-        "Scalable team size",
-      ],
-      bestFor: "Long-term projects, Product development, Ongoing maintenance",
-      icon: Users,
-      color: "primary",
-    },
-    {
-      title: "Staff Augmentation",
-      description:
-        "Extend your existing team with skilled professionals who integrate seamlessly with your workflows.",
-      features: [
-        "Quick onboarding",
-        "Flexible duration",
-        "Your project management",
-        "Direct control",
-      ],
-      bestFor: "Skill gaps, Peak workloads, Specific expertise",
-      icon: Zap,
-      color: "secondary",
-    },
-    {
-      title: "Project-Based",
-      description:
-        "Complete project delivery from start to finish with our experienced project management and development teams.",
-      features: [
-        "End-to-end delivery",
-        "Fixed timeline",
-        "Defined scope",
-        "Quality assurance",
-      ],
-      bestFor: "Specific projects, MVP development, Time-bound deliverables",
-      icon: Settings,
-      color: "primary",
-    },
-  ];
-
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
     useSectionVariants();
 
-  const clientScreenWidth = useRef(0);
+  const [clientScreenWidth, setClientScreenWidth] = useState(0);
+
   useEffect(() => {
-    clientScreenWidth.current = window.innerWidth;
+    const update = () => setClientScreenWidth(window.innerWidth);
+    update(); // set once on mount
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   return (
@@ -70,7 +103,7 @@ export default function Page() {
       {/* Hero Section */}
       <Section
         is="odd"
-        className="relative py-20 overflow-hidden  grid place-items-center"
+        className="relative py-20 overflow-hidden grid place-items-center"
       >
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
@@ -230,18 +263,23 @@ export default function Page() {
           src="/bubble-side-divider.svg"
           alt="Outsourcing"
           className="absolute bottom-0 left-0 rotate-180"
-          width={window.innerWidth}
+          width={clientScreenWidth}
           height={100}
         />
       </Section>
       <Image
         src="/intersecting-wave-layers2.svg"
         alt="Outsourcing"
-        width={window.innerWidth}
+        width={clientScreenWidth}
         height={100}
       />
 
-      <ProcessAnimation />
+      <ProcessAnimation
+        steps={process}
+        centerLabel="Process"
+        subtitle="A clear, collaborative delivery flow tailored to your scope."
+        title="Process Overview"
+      />
 
       {/* CTA Section */}
       <motion.div

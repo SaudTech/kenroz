@@ -9,7 +9,7 @@ import {
   ArrowUp,
 } from "lucide-react";
 import { useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import logo from "@/../public/logo.png";
 
@@ -17,15 +17,27 @@ export default function Footer() {
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
   const { fromLeft } = useSectionVariants();
 
+  // Parent list variant to stagger children (uses your child variant `fromLeft`)
+  const listStagger: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
   const services = [
-    {label: "Digital Marketing", href: "/services/digital-marketing"},
-    {label: "Website Development", href: "/services/website-application-development"},
-    {label: "Mobile Development", href: "/services/mobile-application-development"},
-    {label: "Microsoft Dynamic 365", href: "/services/microsoft-dynamic-365"},
-    {label: "Outsourcing", href: "/services/outsourcing"},
-    {label: "Cloud Solutions", href: "/services/cloud-solutions"},
+    { label: "Digital Marketing", href: "/services/digital-marketing" },
+    { label: "Website Development", href: "/services/website-application-development" },
+    { label: "Mobile Development", href: "/services/mobile-application-development" },
+    { label: "Microsoft Dynamic 365", href: "/services/microsoft-dynamic-365" },
+    { label: "Outsourcing", href: "/services/outsourcing" },
+    { label: "Cloud Solutions", href: "/services/cloud-solutions" },
   ];
   const resources = [
     { label: "Our Story", href: "/#our-story" },
@@ -36,29 +48,29 @@ export default function Footer() {
   const legalLinks = [
     { label: "Privacy Policy", href: "/legal/privacy-policy" },
     { label: "Terms of Service", href: "/legal/terms-of-service" },
-    { label: "Cookie Policy", href: "/legal/cookie-policy" },
+    // { label: "Cookie Policy", href: "/legal/cookie-policy" },
     { label: "Refund & Cancellation Policy", href: "/legal/refund-cancellation-policy" },
-    { label: "Acceptable Use Policy", href: "/legal/acceptable-use-policy" },
+    // { label: "Acceptable Use Policy", href: "/legal/acceptable-use-policy" },
   ];
   const socials = [
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Facebook, href: "#", label: "Facebook" },
     { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/kenroz", label: "LinkedIn" },
   ];
   const quickLinks = [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
     { label: "Contact Us", href: "/contact-us" },
     { label: "Career", href: "/careers" },
-  ]
+  ];
 
   return (
     <footer
       className="h-full text-white bg-black border-t border-white/10 z-[90] relative"
       aria-label="Site footer"
     >
-      <div className="container mx-auto px-4  py-16">
+      <div className="container mx-auto px-4 py-16">
         {/* Top Grid */}
         <div className="grid gap-10 md:grid-cols-4">
           {/* Col 1 */}
@@ -71,36 +83,44 @@ export default function Footer() {
               className="mb-6 h-auto w-auto"
             />
 
-            <div className="flex flex-wrap gap-3 mb-6">
+            {/* Socials (stagger + fromLeft on each link) */}
+            <motion.div
+              className="flex flex-wrap gap-3 mb-6"
+              variants={listStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+            >
               {socials.map(({ icon: Icon, href, label }) => (
-                <a
+                <motion.a
                   key={label}
                   href={href}
                   aria-label={label}
                   className="flex items-center justify-center w-9 h-9 rounded-full bg-white/10 hover:bg-primary transition"
+                  variants={fromLeft}
+                  whileHover={hoverScale}
                 >
                   <Icon className="h-4 w-4" />
-                </a>
+                </motion.a>
               ))}
-            </div>
+            </motion.div>
 
-            <div className="flex items-center gap-3  rounded-lg p-3">
-                <Image
+            <div className="flex items-center gap-3 rounded-lg p-3">
+              <Image
                 src={"/certification.png"}
                 alt="certification Logo"
                 width={140}
                 height={10}
                 className="h-36 w-36"
               />
-
               <p className="text-lg text-white/80 leading-snug">
                 Grow your business by <br /> Leveraging Technology.
               </p>
             </div>
           </div>
 
-          {/* Col 2 & 3 */}
-          <div className="col-">
+          {/* Col 2 */}
+          <div>
             <motion.h4
               className="mb-4 text-3xl font-semibold"
               variants={fromLeft}
@@ -111,18 +131,60 @@ export default function Footer() {
             >
               Services
             </motion.h4>
-            <ul className="space-y-2 text-xl">
+            <motion.ul
+              className="space-y-2 text-xl"
+              variants={listStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+            >
               {services.map((service) => (
                 <li key={service.label}>
-                  <a
+                  <motion.a
                     href={service.href}
                     className="inline-block text-white/70 hover:text-primary transition"
+                    variants={fromLeft}
+                    whileHover={hoverScale}
                   >
                     {service.label}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
+          </div>
+
+          {/* Col 3 */}
+          <div>
+            <motion.h4
+              className="mb-4 text-3xl font-semibold"
+              variants={fromLeft}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+              whileHover={hoverScale}
+            >
+              Resources
+            </motion.h4>
+            <motion.ul
+              className="space-y-2 text-xl"
+              variants={listStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+            >
+              {resources.map((r) => (
+                <li key={r.label}>
+                  <motion.a
+                    href={r.href}
+                    className="inline-block text-white/70 hover:text-primary transition"
+                    variants={fromLeft}
+                    whileHover={hoverScale}
+                  >
+                    {r.label}
+                  </motion.a>
+                </li>
+              ))}
+            </motion.ul>
           </div>
 
           {/* Col 4 */}
@@ -135,46 +197,28 @@ export default function Footer() {
               viewport={view}
               whileHover={hoverScale}
             >
-              Resources
+              Legal Center
             </motion.h4>
-            <ul className="space-y-2 text-xl">
-              {resources.map((r) => (
-                <li key={r.label}>
-                  <a
-                    href={r.href}
-                    className="inline-block text-white/70 hover:text-primary transition"
-                  >
-                    {r.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 5 */}
-          <div>
-            <motion.h4
-              className="mb-4 text-3xl font-semibold"
-              variants={fromLeft}
+            <motion.ul
+              className="space-y-2 text-xl"
+              variants={listStagger}
               initial="hidden"
               whileInView="show"
               viewport={view}
-              whileHover={hoverScale}
             >
-              Legal Center
-            </motion.h4>
-            <ul className="space-y-2 text-xl">
               {legalLinks.map((legal) => (
                 <li key={legal.label}>
-                  <a
+                  <motion.a
                     href={legal.href}
                     className="inline-block text-white/70 hover:text-primary transition"
+                    variants={fromLeft}
+                    whileHover={hoverScale}
                   >
                     {legal.label}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
         </div>
 
@@ -192,18 +236,26 @@ export default function Footer() {
             >
               Quick Links
             </motion.h4>
-            <ul className="flex flex-wrap gap-4 text-xl">
+            <motion.ul
+              className="flex flex-wrap gap-4 text-xl"
+              variants={listStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+            >
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <motion.a
                     href={link.href}
                     className="text-white/70 hover:text-primary transition"
+                    variants={fromLeft}
+                    whileHover={hoverScale}
                   >
                     {link.label}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
 
           {/* Services Links */}
@@ -218,18 +270,26 @@ export default function Footer() {
             >
               Services
             </motion.h4>
-            <ul className="flex flex-wrap gap-4 text-xl">
+            <motion.ul
+              className="flex flex-wrap gap-4 text-xl"
+              variants={listStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={view}
+            >
               {services.map((service) => (
                 <li key={service.href}>
-                  <a
+                  <motion.a
                     href={service.href}
                     className="text-white/70 hover:text-primary transition"
+                    variants={fromLeft}
+                    whileHover={hoverScale}
                   >
                     {service.label}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
 
           {/* Bottom Note */}

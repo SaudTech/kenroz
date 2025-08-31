@@ -76,7 +76,7 @@ export default function Navbar(): JSX.Element {
           backgroundColor: scrolled ? "white" : "black",
           transition: { duration: 0.3, ease: "easeInOut" },
         }}
-        className="fixed top-0 left-0 right-0 z-[80] p-4 py-6 backdrop-blur-xl shadow-sm"
+        className="fixed top-0 left-0 right-0 z-[120] p-4 py-6 backdrop-blur-xl shadow-sm"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -219,7 +219,7 @@ export default function Navbar(): JSX.Element {
       <PageDividerOne
         color={scrolled ? "white" : "black"}
         className={cn(
-          "w-full z-[80] fixed top-28 left-0 transition-all duration-300",
+          "w-full z-[60] fixed top-28 left-0 transition-all duration-300",
           scrolled ? "drop-shadow-xl" : "shadow-none"
         )}
       />
@@ -238,7 +238,7 @@ function DesktopDropdown({
   scrolled: boolean;
 }) {
   return (
-    <div className="relative group">
+    <div className="relative group z-[9999]">
       <button
         type="button"
         className={cn(
@@ -256,7 +256,7 @@ function DesktopDropdown({
 
       <div
         className={cn(
-          "invisible opacity-0 group-hover:visible group-hover:opacity-100",
+          "invisible opacity-0 z-[9999] group-hover:visible group-hover:opacity-100",
           "absolute left-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-xl transition-all duration-150"
         )}
         role="menu"

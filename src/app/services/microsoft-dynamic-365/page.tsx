@@ -1,231 +1,359 @@
-import { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import useSectionVariants from "@/lib/useSectionVariants";
+import { hoverScale } from "@/lib/section-animations";
+import { Section } from "@/app/page";
+import EngagementSection from "@/components/EngagementSection";
+import { ButtonLink } from "@/components/Navbar";
 import {
-  CheckCircle,
+  CheckCircle2,
+  Target,
   Users,
   BarChart3,
   Zap,
-  ArrowRight,
-  Target,
+  Settings,
+  Link2,
+  ShieldCheck,
+  Wrench,
 } from "lucide-react";
-import Link from "next/link";
-import EngagementSection from "@/components/EngagementSection";
+import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 
-export const metadata: Metadata = {
-  title: "Microsoft Dynamics 365 Implementation & Customization Services",
-  description:
-    "Expert Microsoft Dynamics 365 implementation, customization, and support services. Transform your business operations with unified CRM and ERP solutions tailored to your needs.",
-  keywords: [
-    "Microsoft Dynamics 365",
-    "Dynamics 365 implementation",
-    "CRM solutions",
-    "ERP systems",
-    "business process automation",
-    "Dynamics 365 customization",
-    "Microsoft partner Saudi Arabia",
-  ],
-};
+/* ------------------------------------------------------------------ */
+/* Content (Dynamics-focused)                                          */
+/* ------------------------------------------------------------------ */
+const d365Modules = [
+  {
+    name: "Sales",
+    description:
+      "Shorten sales cycles and forecast accurately with guided processes and AI insights.",
+    icon: Target,
+    features: [
+      "Lead & Opportunity Mgmt",
+      "Forecasting & Pipeline",
+      "Playbooks & Sequences",
+      "Teams/Outlook integration",
+    ],
+  },
+  {
+    name: "Customer Service",
+    description:
+      "Deliver fast, consistent service across email, chat, voice, and self-service.",
+    icon: Users,
+    features: [
+      "Case & SLA Mgmt",
+      "Omnichannel Inbox",
+      "Knowledge Base",
+      "Customer Portal",
+    ],
+  },
+  {
+    name: "Finance & Operations",
+    description:
+      "Run finance, supply chain, and projects with compliant, real-time controls.",
+    icon: BarChart3,
+    features: [
+      "Financials & Reporting",
+      "Supply Chain",
+      "Project Ops",
+      "Global Compliance",
+    ],
+  },
+  {
+    name: "Marketing",
+    description:
+      "Build automated customer journeys and generate high-quality demand.",
+    icon: Zap,
+    features: [
+      "Customer Journeys",
+      "Segmentation & Scoring",
+      "Email/SMS",
+      "Real-time Analytics",
+    ],
+  },
+];
 
+const deliveryModels = [
+  {
+    title: "Implementation",
+    description:
+      "End-to-end delivery from discovery to go-live with proven accelerators.",
+    icon: Settings,
+    features: ["Fit-Gap & Solution Design", "Configurations & Security", "Data Migration", "UAT & Go-Live"],
+    bestFor: "New rollouts, global programs, re-platforming",
+  },
+  {
+    title: "Customization & Extensions",
+    description:
+      "Tailor Dynamics with plugins, PCF controls, workflows, and Power Platform.",
+    icon: Wrench,
+    features: ["Plugins & PCF", "Power Automate", "Canvas/Model-Driven Apps", "Custom Reports"],
+    bestFor: "Unique processes, UX, and reporting",
+  },
+  {
+    title: "Integration & Migration",
+    description:
+      "Connect Dynamics with ERPs, data lakes, and third-party apps—securely.",
+    icon: Link2,
+    features: ["Azure Integration Services", "APIs & Webhooks", "Master Data Strategy", "Legacy Data Migration"],
+    bestFor: "Hybrid stacks, phased modernization",
+  },
+  {
+    title: "Support & Managed Services",
+    description:
+      "Proactive L2/L3 support, enhancements, and release management with SLAs.",
+    icon: ShieldCheck,
+    features: ["SLA-backed Support", "Release/ALM", "Health & Security Reviews", "Roadmap & Enhancements"],
+    bestFor: "Run-ops, continuous improvement",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Page                                                                */
+/* ------------------------------------------------------------------ */
 export default function MicrosoftDynamic365Page() {
-  const modules = [
-    {
-      name: "Sales",
-      description: "Streamline your sales process from lead to close",
-      icon: Target,
-      features: [
-        "Lead Management",
-        "Opportunity Tracking",
-        "Sales Analytics",
-        "Mobile Access",
-      ],
-    },
-    {
-      name: "Customer Service",
-      description: "Deliver exceptional customer experiences",
-      icon: Users,
-      features: [
-        "Case Management",
-        "Knowledge Base",
-        "Omnichannel Support",
-        "SLA Management",
-      ],
-    },
-    {
-      name: "Finance & Operations",
-      description: "Optimize financial processes and operations",
-      icon: BarChart3,
-      features: [
-        "Financial Reporting",
-        "Supply Chain",
-        "Project Management",
-        "Compliance",
-      ],
-    },
-    {
-      name: "Marketing",
-      description: "Create targeted campaigns and nurture leads",
-      icon: Zap,
-      features: [
-        "Campaign Management",
-        "Lead Scoring",
-        "Email Marketing",
-        "Customer Journey",
-      ],
-    },
-  ];
-
-  const benefits = [
-    "Unified view of customer data across all touchpoints",
-    "Automated workflows reducing manual tasks by 60%",
-    "Real-time analytics and reporting for better decisions",
-    "Scalable solution that grows with your business",
-    "Enhanced collaboration across departments",
-    "Mobile access for productivity anywhere, anytime",
-  ];
+  const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
+    useSectionVariants();
 
   return (
     <main>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      {/* Hero — matches Outsourcing layout/animation */}
+      <Section
+        is="odd"
+        className="relative py-20 overflow-hidden grid place-items-center"
+      >
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Microsoft Dynamics 365
-                <span className="block text-primary">Implementation</span>
-              </h1>
-              <p className="text-xl text-gray-900 mb-8 leading-relaxed">
-                Transform your business operations with unified CRM and ERP
-                solutions. Our expert team delivers customized Dynamics 365
-                implementations that streamline processes, boost productivity,
-                and drive growth.
-              </p>
-            </div>
-            <div className="lg:w-2/5">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-20"></div>
-                <Image
-                  src="/Microsoft Dynamic 365.webp"
-                  alt="Microsoft Dynamics 365 Dashboard Interface"
-                  width={600}
-                  height={400}
-                  className="relative rounded-2xl shadow-2xl"
-                  priority
-                />
+              <motion.h1
+                className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
+                initial="hidden"
+                animate="visible"
+                variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
+                custom={0}
+                whileHover={hoverScale}
+              >
+                Microsoft <span className="text-primary">Dynamics 365</span>
+              </motion.h1>
+
+              <motion.p
+                className="text-xl text-foreground mb-8 leading-relaxed"
+                initial="hidden"
+                animate="visible"
+                variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
+                custom={1}
+                whileHover={hoverScale}
+              >
+                Unify CRM and ERP with implementations built for scale, security,
+                and measurable outcomes. Our certified consultants configure,
+                customize, and integrate Dynamics 365—backed by enterprise-grade
+                governance, DevOps, and change management.
+              </motion.p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+                  custom={2}
+                >
+                  <ButtonLink href="/contact-us?p=d365">Get Started</ButtonLink>
+                </motion.div>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+                  custom={3}
+                >
+                  <ButtonLink variant="outline" href="/contact-us" className="text-black">
+                    Have inquiries?
+                  </ButtonLink>
+                </motion.div>
               </div>
             </div>
+
+            {/* Hero visual / stats card */}
+            <motion.div
+              className="lg:w-2/5 relative"
+              variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+              initial="hidden"
+              whileInView="visible"
+            >
+              <Image
+                src="/Microsoft Dynamic 365.webp"
+                alt="Dynamics 365 dashboards"
+                width={800}
+                height={900}
+                className="rounded-2xl filter brightness-90"
+                priority
+              />
+            </motion.div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Dynamics 365?
-            </h2>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
-              Unify your business operations with intelligent applications that
-              adapt to your needs
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
-              >
-                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-700 font-medium">{benefit}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* “Modules” — styled like Engagement Models cards */}
+      <Section is="odd" id="d365-modules" className="py-20 pt-0 relative">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            className="text-5xl font-bold text-foreground mb-4"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+            custom={0}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            <div className="border-t-2 border-black max-w-[470px] mb-3 mx-auto"></div>
+            Dynamics 365 Modules
+            <div className="border-t-2 border-black max-w-[470px] mt-3 mx-auto"></div>
+          </motion.h2>
 
-      {/* Modules Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Dynamics 365 Modules We Implement
-            </h2>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
-              Comprehensive solutions for every aspect of your business
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {modules.map((module, index) => (
-              <div
-                key={index}
-                className="p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+          <motion.p
+            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+            custom={1}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Comprehensive capabilities across sales, service, finance, and marketing—implemented to fit your operating model.
+          </motion.p>
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {d365Modules.map((m, i) => (
+              <motion.li
+                key={m.name}
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                whileHover={hoverScale}
+                viewport={{ once: true }}
+                whileTap={{ scale: 0.97 }}
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                    <module.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    {module.name}
-                  </h3>
+                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
+                  <m.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
-                <p className="text-gray-900 mb-6">{module.description}</p>
-                <div className="grid grid-cols-2 gap-3">
-                  {module.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm text-gray-700">{feature}</span>
-                    </div>
+
+                <motion.h3
+                  className="text-xl font-semibold mb-2 text-center"
+                  whileHover={hoverScale}
+                  viewport={{ once: true }}
+                >
+                  {m.name}
+                </motion.h3>
+
+                <motion.p
+                  className="flex-1 text-center"
+                  whileHover={hoverScale}
+                  viewport={{ once: true }}
+                >
+                  {m.description}
+                </motion.p>
+
+                <ul className="mt-4 space-y-2 text-sm">
+                  {m.features.map((f) => (
+                    <motion.li
+                      key={f}
+                      className="flex items-center gap-2"
+                      whileHover={hoverScale}
+                      viewport={{ once: true }}
+                    >
+                      <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
+                      <span>{f}</span>
+                    </motion.li>
                   ))}
-                </div>
-              </div>
+                </ul>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
-      </section>
+      </Section>
 
-      {/* Success Stories */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Success Stories
-            </h2>
-            <p className="text-xl text-gray-900">
-              Real results from our Dynamics 365 implementations
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-primary/10 rounded-2xl">
-              <div className="text-4xl font-bold text-primary mb-2">60%</div>
-              <p className="text-gray-700 font-medium">
-                Reduction in manual processes
-              </p>
-            </div>
-            <div className="text-center p-8 bg-secondary/10 rounded-2xl">
-              <div className="text-4xl font-bold text-secondary mb-2">40%</div>
-              <p className="text-gray-700 font-medium">
-                Increase in sales productivity
-              </p>
-            </div>
-            <div className="text-center p-8 bg-primary/10 rounded-2xl">
-              <div className="text-4xl font-bold text-primary mb-2">25%</div>
-              <p className="text-gray-700 font-medium">
-                Faster decision making
-              </p>
-            </div>
-          </div>
+      {/* Decorative divider */}
+      <PageDividerTwo />
+
+      {/* Delivery Services — mirrors “Engagement Models” style */}
+      <Section is="odd" id="delivery-services" className="py-20 pt-0 relative">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            className="text-5xl font-bold text-foreground mb-4"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+            custom={0}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Delivery Services
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+            custom={1}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Choose the right path—new implementation, targeted customization, robust integrations, or SLA-backed managed services.
+          </motion.p>
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {deliveryModels.map((m, i) => (
+              <motion.li
+                key={m.title}
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                whileHover={hoverScale}
+                viewport={{ once: true }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
+                  <m.icon className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <motion.h3 className="text-xl font-semibold mb-2 text-center">
+                  {m.title}
+                </motion.h3>
+                <motion.p className="flex-1 text-center">{m.description}</motion.p>
+                <ul className="mt-4 space-y-2 text-sm">
+                  {m.features.map((f) => (
+                    <motion.li key={f} className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
+                      <span>{f}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-sm text-primary-foreground text-center">
+                  {m.bestFor}
+                </p>
+              </motion.li>
+            ))}
+          </ul>
         </div>
-      </section>
+      </Section>
 
-      {/* CTA Section */}
-      <EngagementSection
-        title="Ready to transform your business?"
-        description="Let's discuss how Microsoft Dynamics 365 can streamline your operations and drive growth. Get a free consultation today."
-        button1Url="/contact-us?p=microsoft-dynamic-365"
-        button1Text="Contact us"
-      />
+      {/* CTA — same component/style as Outsourcing */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <EngagementSection
+          title="Ready to transform with Dynamics 365?"
+          description="Talk to our consultants about a roadmap, quick wins, and a phased rollout plan that fits your timelines."
+          button1Url="/contact-us?p=d365"
+          button1Text="Talk to us"
+        />
+      </motion.div>
     </main>
   );
 }

@@ -1,208 +1,333 @@
-import { CheckCircle, Cloud, Layers, Repeat, ServerCrash, Settings, Zap } from "lucide-react";
+"use client";
+
 import Image from "next/image";
-import DescriptionToggle from "@/components/DescriptionToggle";
+import { motion } from "framer-motion";
+import useSectionVariants from "@/lib/useSectionVariants";
+import { hoverScale } from "@/lib/section-animations";
+import { Section } from "@/app/page";
 import EngagementSection from "@/components/EngagementSection";
+import { ButtonLink } from "@/components/Navbar";
+import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
+import {
+  CheckCircle2,
+  Cloud,
+  Layers,
+  Repeat,
+  ServerCrash,
+  ShieldCheck,
+  Wrench,
+  Settings,
+  Gauge,
+} from "lucide-react";
 
-export const metadata = {
-  title: "Cloud & DevOps Solutions",
-  description: "Migrate, build, and operate scalable and secure cloud infrastructure with integrated DevOps automation for faster releases and reliability.",
-};
-
-const heroDescription =
-  `
-Embrace the power of the cloud combined with modern DevOps practices to accelerate your business transformation. 
-Our Cloud and DevOps Solutions help you migrate, build, and manage scalable, secure cloud infrastructure while streamlining development through automation and continuous integration.
-Whether you're moving legacy systems to the cloud or deploying new applications, we ensure reliability and performance. We specialize in implementing DevOps methodologies that automate your software delivery lifecycle, enabling faster releases, improved quality, and reduced downtime. From infrastructure as code and container orchestration to monitoring and incident management, our team builds a seamless pipeline that supports your business agility and innovation goals. By integrating cloud platforms like Microsoft Azure, AWS, or Google Cloud with DevOps best practices, we help you reduce operational costs, enhance collaboration between development and operations teams, and maintain robust security and compliance.
-Partner with us to future-proof your IT environment and accelerate growth with confidence.`;
-
-const features = [
+/* ------------------------------------------------------------------ */
+/* Content (Cloud & DevOps)                                           */
+/* ------------------------------------------------------------------ */
+const capabilities = [
   {
-    icon: <Layers className="w-6 h-6" />,
-    title: "Infrastructure as Code",
+    name: "Infrastructure as Code",
     description:
-      "Define, provision, and manage cloud resources declaratively for repeatability and auditability."
+      "Codify cloud environments for repeatable, auditable, and secure provisioning.",
+    icon: Layers,
+    features: ["Terraform/Bicep", "Landing Zones", "Immutable Patterns", "Policy-as-Code"],
   },
   {
-    icon: <Repeat className="w-6 h-6" />,
-    title: "CI/CD Pipelines",
-    description: "Automate builds, tests, and deployments to accelerate delivery with confidence."
+    name: "CI/CD Pipelines",
+    description:
+      "Automate build, test, and deploy with gated releases and progressive delivery.",
+    icon: Repeat,
+    features: ["GitHub Actions/Azure DevOps", "Multi-env Promotion", "Blue/Green & Canary", "Artifact Mgmt"],
   },
   {
-    icon: <ServerCrash className="w-6 h-6" />,
-    title: "Monitoring & Incident Management",
+    name: "Containers & Kubernetes",
     description:
-      "Proactively detect issues and resolve incidents with observability baked into your stack."
+      "Operate resilient workloads with GitOps, autoscaling, and zero-downtime rollouts.",
+    icon: Cloud,
+    features: ["AKS/EKS/GKE", "Helm/Kustomize", "GitOps (ArgoCD/Flux)", "Service Mesh (Istio/Linkerd)"],
+  },
+  {
+    name: "Observability & Incidents",
+    description:
+      "Full-fidelity logs, metrics, and traces with on-call workflows baked in.",
+    icon: ServerCrash,
+    features: ["OpenTelemetry", "Dashboards & SLOs", "Alerting & Runbooks", "On-call & Postmortems"],
   },
 ];
 
-const platforms = [
-  { label: "AWS" },
-  { label: "Microsoft Azure" },
-  { label: "Google Cloud" },
-  { label: "Kubernetes" },
-  { label: "Terraform" },
-  { label: "GitHub Actions" },
-];
-
-const benefits = [
+const deliveryModels = [
   {
-    icon: <Cloud className="w-8 h-8 text-primary" />,
-    title: "Faster Releases",
+    title: "Cloud Migration & Foundations",
     description:
-      "Accelerate your software delivery while reducing errors and bottlenecks with modern automation."
+      "Assess, migrate, and stabilize with secure landing zones and reference architectures.",
+    icon: Settings,
+    features: ["Discovery & TCO", "Landing Zones", "Network/IAM Baselines", "Data & App Migration"],
+    bestFor: "Greenfield, re-platforming, phased modernization",
   },
   {
-    icon: <Zap className="w-8 h-8 text-secondary" />,
-    title: "Improved Reliability",
+    title: "Platform Engineering",
     description:
-      "Achieve high uptime and robust performance for business-critical apps with proven cloud architectures."
+      "Build an Internal Developer Platform with golden paths and paved roads.",
+    icon: Wrench,
+    features: ["IDP Backstage", "Reusable Templates", "Self-Service Portals", "Golden Pipelines"],
+    bestFor: "Standardization, scaling teams, faster onboarding",
   },
   {
-    icon: <Settings className="w-8 h-8 text-primary" />,
-    title: "Reduced Cost & Waste",
+    title: "DevSecOps & Compliance",
     description:
-      "Eliminate manual work, optimize infrastructure, and stay cost-effective at scale."
+      "Shift-left security with policy-as-code and automated compliance evidence.",
+    icon: ShieldCheck,
+    features: ["SAST/DAST/Secret Scans", "CIS/ISO/NIST Controls", "SBOM & Supply Chain", "Policy-as-Code"],
+    bestFor: "Regulated industries, enterprise guardrails",
+  },
+  {
+    title: "SRE & Managed Reliability",
+    description:
+      "SLA-backed operations with SLOs, capacity, and continuous resilience testing.",
+    icon: Gauge,
+    features: ["SLO/Error Budgets", "Capacity & Cost Mgmt", "Chaos & DR Drills", "24×7 Incident Response"],
+    bestFor: "Business-critical apps, uptime guarantees",
   },
 ];
 
-const checklist = [
-  "Assess current infrastructure",
-  "Define CI/CD workflow",
-  "Bootstrap IaC templates",
-  "Deploy observability",
-  "Enable automated releases",
-];
+/* ------------------------------------------------------------------ */
+/* Page                                                                */
+/* ------------------------------------------------------------------ */
+export default function CloudDevOpsPage() {
+  const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
+    useSectionVariants();
 
-export default function CloudSolutionsPage() {
   return (
-    <main className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-3/5">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Cloud & DevOps{" "}
-              <span className="block text-primary">Solutions</span>
-            </h1>
-            <div className="mb-8 max-w-2xl">
-              <DescriptionToggle description={heroDescription} />
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#contact"
-                className="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
+    <main>
+      {/* Hero — mirrors Outsourcing/D365 */}
+      <Section
+        is="odd"
+        className="relative py-20 overflow-hidden grid place-items-center"
+      >
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="lg:w-3/5">
+              <motion.h1
+                className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
+                initial="hidden"
+                animate="visible"
+                variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
+                custom={0}
+                whileHover={hoverScale}
               >
-                Get Started
-              </a>
-              <a
-                href="#learn-more"
-                className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary/10 transition-all duration-300"
+                Cloud & DevOps <span className="text-primary">Solutions</span>
+              </motion.h1>
+
+              <motion.p
+                className="text-xl text-foreground mb-8 leading-relaxed"
+                initial="hidden"
+                animate="visible"
+                variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
+                custom={1}
+                whileHover={hoverScale}
               >
-                Learn More
-              </a>
+                Migrate, build, and run on Azure/AWS/GCP with platform
+                engineering, GitOps, and SRE best practices. We codify your
+                infrastructure, automate delivery, and bake in security and
+                observability—so you ship faster, safer, and cheaper.
+              </motion.p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+                  custom={2}
+                >
+                  <ButtonLink href="/contact-us?p=cloud-devops">Get Started</ButtonLink>
+                </motion.div>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+                  custom={3}
+                >
+                  <ButtonLink variant="outline" href="/contact-us" className="text-black">
+                    Have inquiries?
+                  </ButtonLink>
+                </motion.div>
+              </div>
             </div>
-          </div>
-          <div className="lg:w-2/5 flex justify-center">
-            {/* Replace or supply your illustration here */}
-            <div className="relative w-[400px] h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+
+            {/* Hero visual */}
+            <motion.div
+              className="lg:w-2/5 relative"
+              variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+              initial="hidden"
+              whileInView="visible"
+            >
               <Image
                 src="/Cloud Solution.webp"
-                alt="Modern illustration of cloud infrastructure, containers, and DevOps automation"
-                fill
-                sizes="(max-width: 1024px) 80vw, 400px"
-                className="object-cover"
+                alt="Cloud & DevOps dashboards and pipelines"
+                width={800}
+                height={900}
+                className="rounded-2xl filter brightness-90"
                 priority
               />
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* What We Offer / Features */}
-      <section id="learn-more" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Cloud & DevOps Solutions</h2>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
-              Accelerate your journey to the cloud and DevOps maturity with a secure, automated, and reliable tech stack.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature) => (
-              <div
-                key={feature.title}
-                className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col gap-6"
+      {/* Capabilities — styled like “Engagement Models” cards */}
+      <Section is="odd" id="cloud-capabilities" className="py-20 pt-0 relative">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            className="text-5xl font-bold text-foreground mb-4"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+            custom={0}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            <div className="border-t-2 border-black max-w-[470px] mb-3 mx-auto" />
+            Cloud & DevOps Capabilities
+            <div className="border-t-2 border-black max-w-[470px] mt-3 mx-auto" />
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+            custom={1}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Golden paths for teams, automated pipelines for apps, and paved
+            roads for infrastructure—implemented with enterprise guardrails.
+          </motion.p>
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {capabilities.map((m, i) => (
+              <motion.li
+                key={m.name}
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                whileHover={hoverScale}
+                viewport={{ once: true }}
+                whileTap={{ scale: 0.97 }}
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-xl">
-                    {feature.icon}
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900">{feature.title}</h3>
+                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
+                  <m.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
-                <p className="text-gray-700 flex-1">{feature.description}</p>
-                <div>
-                  <span className="text-sm font-medium text-primary cursor-pointer">Learn more →</span>
+
+                <motion.h3
+                  className="text-xl font-semibold mb-2 text-center"
+                  whileHover={hoverScale}
+                  viewport={{ once: true }}
+                >
+                  {m.name}
+                </motion.h3>
+
+                <motion.p className="flex-1 text-center">{m.description}</motion.p>
+
+                <ul className="mt-4 space-y-2 text-sm">
+                  {m.features.map((f) => (
+                    <motion.li key={f} className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
+                      <span>{f}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      {/* Decorative divider */}
+      <PageDividerTwo />
+
+      {/* Delivery Services — mirrors the reference grid */}
+      <Section is="odd" id="delivery-services" className="py-20 pt-0 relative">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            className="text-5xl font-bold text-foreground mb-4"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+            custom={0}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Delivery Services
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+            custom={1}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            From first landing zone to a fully productized platform—with guardrails,
+            automation, and reliability baked in.
+          </motion.p>
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {deliveryModels.map((m, i) => (
+              <motion.li
+                key={m.title}
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                whileHover={hoverScale}
+                viewport={{ once: true }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
+                  <m.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Benefits Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Us?</h2>
-            <p className="text-xl text-gray-900 max-w-3xl mx-auto">
-              Drive productivity and innovation with cloud-native agility and DevOps discipline.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefits.map((b) => (
-              <div
-                key={b.title}
-                className="p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100"
-              >
-                <div className="mb-4">{b.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{b.title}</h3>
-                <p className="text-gray-900">{b.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                <motion.h3 className="text-xl font-semibold mb-2 text-center">
+                  {m.title}
+                </motion.h3>
+                <motion.p className="flex-1 text-center">{m.description}</motion.p>
 
-      {/* Platforms */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="text-3xl font-bold mb-2">Cloud Platforms & DevOps Tooling</h2>
-            <p className="text-gray-900">
-              We integrate with the leading cloud providers and DevOps ecosystems tailored to your needs.
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            {platforms.map((p) => (
-              <div
-                key={p.label}
-                className="flex flex-col items-center gap-2 bg-gray-50 px-6 py-4 rounded-lg shadow border font-semibold text-gray-800"
-              >
-                {p.label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                <ul className="mt-4 space-y-2 text-sm">
+                  {m.features.map((f) => (
+                    <motion.li key={f} className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
+                      <span>{f}</span>
+                    </motion.li>
+                  ))}
+                </ul>
 
-      {/* CTA */}
-      <EngagementSection
-        title="Future-Proof Your Infrastructure"
-        description="Whether you&apos;re migrating legacy systems or building cloud-native apps, we tailor each solution to your business goals and compliance needs."
-        button1Url="/contact-us?p=cloud-solutions"
-        button1Text="Contact us"
-      />
+                <p className="mt-4 text-sm text-primary-foreground text-center">
+                  {m.bestFor}
+                </p>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      {/* CTA — same component/style as reference */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <EngagementSection
+          title="Future-proof your platform"
+          description="Whether you’re migrating, standardizing, or scaling, we’ll design a secure, automated platform with measurable reliability."
+          button1Url="/contact-us?p=cloud-devops"
+          button1Text="Talk to us"
+        />
+      </motion.div>
     </main>
   );
 }
