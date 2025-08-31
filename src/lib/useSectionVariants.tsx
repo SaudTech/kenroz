@@ -87,7 +87,7 @@ const useSectionVariants = () => {
         transition: bounce
           ? {
               delay: delay * 0.15,
-              type: "spring",
+              type: "spring" as const,
               stiffness: 120,
               damping: 15,
               duration,

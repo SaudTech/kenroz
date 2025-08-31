@@ -1,26 +1,16 @@
 "use client";
 
-import { Metadata } from "next";
-import { Users, DollarSign, Globe, Zap, Settings } from "lucide-react";
+import { Users, Zap, Settings, CheckCircle2 } from "lucide-react";
 import EngagementSection from "@/components/EngagementSection";
 import { motion } from "framer-motion";
 import useSectionVariants from "@/lib/useSectionVariants";
+import { hoverScale } from "@/lib/section-animations";
 import ProcessAnimation from "./process";
-
-// Animation Variants
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
-  }),
-};
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-};
+import { Section } from "@/app/page";
+import { ButtonLink } from "@/components/Navbar";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import PageDividerOne from "@/components/pageDividers/PageDividerOne";
 
 export default function Page() {
   const engagementModels = [
@@ -68,67 +58,76 @@ export default function Page() {
     },
   ];
 
-  const process = [
-    {
-      step: "01",
-      title: "Initiation & Planning",
-      description:
-        "Align on goals, scope out requirements, and assemble your dedicated team.",
-    },
-    {
-      step: "02",
-      title: "Setup & Onboarding",
-      description:
-        "Establish tools, access, and workflows for smooth collaboration.",
-    },
-    {
-      step: "03",
-      title: "Execution & Monitoring",
-      description:
-        "Drive development forward with regular check-ins and quality reviews.",
-    },
-    {
-      step: "04",
-      title: "Delivery & Support",
-      description:
-        "Launch your solution and provide ongoing maintenance and enhancements.",
-    },
-  ];
-
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
     useSectionVariants();
+
+  const clientScreenWidth = useRef(0);
+  useEffect(() => {
+    clientScreenWidth.current = window.innerWidth;
+  }, []);
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden min-h-[calc(100vh-20vh)] grid place-items-center">
+      <Section
+        is="odd"
+        className="relative py-20 overflow-hidden  grid place-items-center"
+      >
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <motion.h1
-                className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+                className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
                 initial="hidden"
                 animate="visible"
                 variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
                 custom={0}
+                whileHover={hoverScale}
               >
                 Outsourcing <span className="text-primary">Services</span>
               </motion.h1>
 
               <motion.p
-                className="text-xl text-gray-900 mb-8 leading-relaxed"
+                className="text-xl text-foreground mb-8 leading-relaxed"
                 initial="hidden"
                 animate="visible"
                 variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
                 custom={1}
+                whileHover={hoverScale}
               >
-                Build faster with dedicated teams and expert talent—on your
-                tools, in your time zone. Choose from Dedicated Teams, Managed
-                Delivery, or Staff Augmentation. Our senior engineers, PMs, and
-                QA integrate seamlessly with your workflows, uphold bank-grade
-                security and clear SLAs, and deliver measurable outcomes across
+                Accelerate delivery with dedicated teams and top-tier talent.
+                Choose a model that fits your goals—Dedicated Teams, Staff
+                Augmentation, or Project-Based Delivery. Our senior engineers,
+                PMs, and QA integrate with your workflows, uphold
+                enterprise-grade security, and drive measurable results across
                 Dynamics 365, Cloud/DevOps, and Web & Mobile.
               </motion.p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+                  custom={2}
+                >
+                  <ButtonLink href="/contact-us?p=outsourcing">
+                    Get Started
+                  </ButtonLink>
+                </motion.div>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+                  custom={3}
+                >
+                  <ButtonLink
+                    variant="outline"
+                    href="/contact-us"
+                    className="text-black"
+                  >
+                    Have inquiries?
+                  </ButtonLink>
+                </motion.div>
+              </div>
             </div>
 
             {/* Stats Card */}
@@ -138,111 +137,110 @@ export default function Page() {
               initial="hidden"
               whileInView="visible"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-20"></div>
-              <div className="relative bg-white rounded-2xl shadow-2xl p-8">
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <motion.div
-                    className="text-center p-4 bg-primary/10 rounded-lg"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-gray-900">500+</div>
-                    <div className="text-sm text-gray-900">
-                      Skilled Professionals
-                    </div>
-                  </motion.div>
-                  <motion.div
-                    className="text-center p-4 bg-secondary/10 rounded-lg"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Globe className="w-8 h-8 text-secondary mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-gray-900">24/7</div>
-                    <div className="text-sm text-gray-900">Global Coverage</div>
-                  </motion.div>
-                </div>
-                <motion.div
-                  className="text-center p-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <DollarSign className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">60%</div>
-                  <div className="text-sm text-gray-900">Cost Reduction</div>
-                </motion.div>
-              </div>
+              <Image
+                src="/outsourcing.webp"
+                alt="Outsourcing"
+                width={800}
+                height={900}
+                className="rounded-2xl filter brightness-90"
+              />
             </motion.div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Engagement Models */}
-      <section className="py-20">
+      <Section is="odd" id="engagement-models" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
-            className="text-4xl font-bold text-gray-900 mb-4"
+            className="text-5xl font-bold text-foreground mb-4 "
             initial="hidden"
             whileInView="visible"
-            variants={fadeUp}
+            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
             custom={0}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
           >
+            <div className="border-t-2 border-black max-w-[470px] mb-3 mx-auto"></div>
             Engagement Models
+            <div className="border-t-2 border-black max-w-[470px] mt-3 mx-auto"></div>
           </motion.h2>
+          <motion.p
+            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+            custom={1}
+            viewport={{ once: true }}
+            whileHover={hoverScale}
+          >
+            Flexible engagement options tailored to your project scope,
+            timeline, and budget.
+          </motion.p>
           <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {engagementModels.map((m, i) => (
               <motion.li
                 key={i}
-                className="p-6 bg-card text-card-foreground rounded-lg flex flex-col items-center cursor-pointer"
-                variants={fadeUp}
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
-                custom={i}
-                whileHover={{ scale: 1.05 }}
+                custom={i + 2}
+                whileHover={hoverScale}
+                viewport={{ once: true }}
                 whileTap={{ scale: 0.97 }}
               >
-                <div
-                  className={`bg-primary text-primary-foreground p-3 rounded-full mb-4`}
+                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
+                  <m.icon className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <motion.h3
+                  className="text-xl font-semibold mb-2 text-center"
+                  whileHover={hoverScale}
+                  viewport={{ once: true }}
                 >
-                  <m.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{m.title}</h3>
-                <p className="">{m.description}</p>
+                  {m.title}
+                </motion.h3>
+                <motion.p
+                  className="flex-1 text-center"
+                  whileHover={hoverScale}
+                  viewport={{ once: true }}
+                >
+                  {m.description}
+                </motion.p>
+                <ul className="mt-4 space-y-2 text-sm">
+                  {m.features.map((f) => (
+                    <motion.li
+                      key={f}
+                      className="flex items-center gap-2"
+                      whileHover={hoverScale}
+                      viewport={{ once: true }}
+                    >
+                      <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
+                      <span>{f}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-sm text-primary-foreground">
+                  {m.bestFor}
+                </p>
               </motion.li>
             ))}
           </ul>
         </div>
-      </section>
-
-      {/* Process Section
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            className="text-4xl font-bold text-gray-900 mb-6 text-center"
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeUp}
-            custom={0}
-          >
-            Our Process
-          </motion.h2>
-          <ul className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {process.map((p, i) => (
-              <motion.li
-                key={i}
-                className="text-center p-6 bg-white rounded-lg shadow"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                custom={i}
-              >
-                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full mx-auto flex items-center justify-center mb-3">
-                  {p.step}
-                </div>
-                <h3 className="font-semibold mb-1">{p.title}</h3>
-                <p className="text-gray-900 text-sm">{p.description}</p>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-      </section> */}
+        <Image
+          src="/bubble-side-divider.svg"
+          alt="Outsourcing"
+          className="absolute bottom-0 left-0 rotate-180"
+          width={window.innerWidth}
+          height={100}
+        />
+      </Section>
+      <Image
+        src="/intersecting-wave-layers2.svg"
+        alt="Outsourcing"
+        width={window.innerWidth}
+        height={100}
+      />
 
       <ProcessAnimation />
 
@@ -254,9 +252,9 @@ export default function Page() {
       >
         <EngagementSection
           title="Ready to Scale Your Team?"
-          description="Let's discuss your needs and assemble the perfect team."
+          description="Connect with us to choose the right engagement model and accelerate delivery."
           button1Url="/contact-us?p=outsourcing"
-          button1Text="Contact us"
+          button1Text="Talk to us"
         />
       </motion.div>
     </>
