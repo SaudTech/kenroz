@@ -10,7 +10,6 @@ import { Section } from "@/app/page";
 import { ButtonLink } from "@/components/Navbar";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import PageDividerOne from "@/components/pageDividers/PageDividerOne";
 
 export default function Page() {
   const engagementModels = [
