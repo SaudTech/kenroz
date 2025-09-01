@@ -16,7 +16,8 @@ export default function SiteGuard({ children }: { children: ReactNode }) {
     if (unlocked === "true") {
       setAllowed(true);
     } else {
-      router.replace("/coming-soon");
+      // router.push("/coming-soon");
+      window.location.href = "/coming-soon";
     }
   }, [pathname, router]);
 
