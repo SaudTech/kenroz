@@ -8,6 +8,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
 import { Section } from "./page";
 import SiteGuard from "@/components/SiteGuard";
+import { Analytics } from "@vercel/analytics/next";
 
 const font = Arimo({
   subsets: ["latin"],
@@ -160,6 +161,7 @@ export default function RootLayout({
       <body
         className={`${font.className} antialiased min-h-screen bg-white overflow-x-hidden`}
       >
+        <Analytics />
         <PerformanceOptimizer />
         <SiteGuard>
           <Navbar />
