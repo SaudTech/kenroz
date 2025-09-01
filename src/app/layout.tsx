@@ -7,6 +7,7 @@ import Footer from "@/components/sections/Footer";
 import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
 import { Section } from "./page";
+import SiteGuard from "@/components/SiteGuard";
 
 const font = Arimo({
   subsets: ["latin"],
@@ -160,12 +161,14 @@ export default function RootLayout({
         className={`${font.className} antialiased min-h-screen bg-white overflow-x-hidden`}
       >
         <PerformanceOptimizer />
-        <Navbar />
-        <main className="mt-[112px]">{children}</main>
+        <SiteGuard>
+          <Navbar />
+          <main className="mt-[112px]">{children}</main>
 
-        <Section is="even" className="bg-black">
-          <Footer />
-        </Section>
+          <Section is="even" className="bg-black">
+            <Footer />
+          </Section>
+        </SiteGuard>
       </body>
     </html>
   );

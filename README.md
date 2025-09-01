@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Coming Soon Password Wall
+
+To require a password before accessing the site, set the `SITE_PASSWORD` environment variable. When this variable is present, visitors are redirected to a **Coming Soon** page where they must enter the password. After successful entry, a cookie and a `localStorage` key are set to unlock the rest of the site.
+
+```
+SITE_PASSWORD=your-password-here
+```
+
+Remove the variable to disable the password wall.
