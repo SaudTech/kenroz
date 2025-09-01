@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Calendar, CircleCheckBig, ThumbsUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
+import Paragraph from "../typography/Paragraph";
 
 function SectionHeader({
   title,
@@ -65,7 +66,7 @@ export default function OurStory() {
     <section className="relative w-full">
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* Typewriter Heading */}
-      
+
         <motion.h2
           variants={fromLeft}
           initial="hidden"
@@ -109,14 +110,7 @@ export default function OurStory() {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="overflow-visible"
               >
-                <motion.div
-                  className="mt-4 hover:font-bold transition-all duration-300 md:text-lg leading-relaxed text-black cursor-pointer inline-block"
-                  variants={fromRight}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={view}
-                  whileHover={hoverScale}
-                >
+                <Paragraph>
                   For over a decade, we’ve helped many businesses to grow in
                   various ways like branding, graphics design, web design,
                   mobile development, etc. Established in 2020, Kenroz is
@@ -124,7 +118,7 @@ export default function OurStory() {
                   destination for all your web design, mobile applications,
                   cloud applications, Software Development, SEO and Digital
                   Marketing needs.
-                </motion.div>
+                </Paragraph>
               </motion.div>
             </div>
 
@@ -157,21 +151,14 @@ export default function OurStory() {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="overflow-visible"
               >
-                <motion.div
-                  className="mt-4 font-bold md:text-lg leading-relaxed text-black cursor-pointer inline-block"
-                  variants={fromRight}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={view}
-                  whileHover={hoverScale}
-                >
+                <Paragraph>
                   Web design is more than just looking good! We create custom
                   websites that make your phone ring. With our in-house experts
                   and 20+ years of insights. With our extensive knowledge of
                   both technology and client requirements, we have built a
                   satisfied customer base of more than ten thousand spanning
                   across 26 countries, showcasing our proven track record.
-                </motion.div>
+                </Paragraph>
               </motion.div>
             </div>
           </div>

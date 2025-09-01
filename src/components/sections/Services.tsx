@@ -13,6 +13,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { ButtonLink } from "../Navbar";
+import Paragraph from "../typography/Paragraph";
 
 // Small, focused types so props stay clean and consistent
 type ServiceItem = {
@@ -137,18 +138,11 @@ export default function Services() {
               >
                 What we do best
               </motion.p>
-              <motion.p
-                className="mt-4 font-bold md:text-lg leading-relaxed text-foreground"
-                variants={fromRight}
-                initial="hidden"
-                whileInView="show"
-                viewport={view}
-                whileHover={hoverScale}
-              >
+              <Paragraph>
                 We design, build, and scale digital solutions that empower
                 businesses to operate smarter, innovate faster, and grow with
                 confidence.
-              </motion.p>
+              </Paragraph>
 
               {/* Added supporting content: quick value bullets + CTA */}
               <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
@@ -157,21 +151,15 @@ export default function Services() {
                   "Pixel-perfect design consistency",
                   "SLA-backed reliability with transparent, measurable outcomes",
                 ].map((point) => (
-                  <motion.li
-                    key={point}
-                    className="flex text-lg font-bold items-start gap-2"
-                    variants={fromLeft}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={view}
-                    whileHover={hoverScale}
-                  >
-                    <CheckCircle2
-                      aria-hidden
-                      className="mt-0.5 h-4 w-4 text-primary"
-                    />
+                  <Paragraph key={point} className="flex items-start gap-2">
+                    <div>
+                      <CheckCircle2
+                        aria-hidden
+                        className="mt-0.5 h-4 w-4 text-primary"
+                      />
+                    </div>
                     <span>{point}</span>
-                  </motion.li>
+                  </Paragraph>
                 ))}
               </ul>
 

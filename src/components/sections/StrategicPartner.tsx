@@ -6,6 +6,8 @@ import { motion, useInView } from "framer-motion";
 import { ButtonLink } from "../Navbar";
 import { ShieldUser } from "lucide-react";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
+import Paragraph from "../typography/Paragraph";
+import ListItem from "../typography/ListItem";
 
 type Partner = {
   id: "emvive" | "arcgen" | string;
@@ -91,15 +93,15 @@ function PartnerCard({ p, index }: { p: Partner; index: number }) {
             </div>
           )}
 
-          {/* Body (flex-1 so it grows and pushes footer down) */}
-          <div className="px-6 py-5">
+          {/* Body (grow to push footer down) */}
+          <div className="px-6 py-5 flex-1">
             <p className="text-sm leading-relaxed text-card-foreground">
               {p.description}
             </p>
           </div>
 
-          {/* Footer */}
-          <div className="px-6 pb-6 pt-10 w-full flex justify-center">
+          {/* Footer (stick to bottom) */}
+          <div className="px-6 pb-6 pt-10 w-full flex justify-center mt-auto">
             {p.website && (
               <ButtonLink href={p.website}>Visit website</ButtonLink>
             )}
@@ -111,9 +113,7 @@ function PartnerCard({ p, index }: { p: Partner; index: number }) {
 }
 
 export default function StrategicPartner() {
-  const subRef = useRef<HTMLParagraphElement>(null);
-  const subInView = useInView(subRef, { once: true, margin: "-100px" });
-  const { fromLeft, fromRight } = useSectionVariants();
+  const { fromLeft } = useSectionVariants();
 
   return (
     <section className="w-full" id="strategic-partners">
@@ -141,66 +141,50 @@ export default function StrategicPartner() {
           {/* RIGHT: Content (kept right on desktop) */}
           <div className="order-1 md:order-2 md:pl-4">
             <div className="md:sticky md:top-28 text-center md:text-left">
-              <motion.p
-                ref={subRef}
-                variants={fromRight}
-                initial="hidden"
-                animate={subInView ? "show" : "hidden"}
-                viewport={view}
-                whileHover={hoverScale}
-                className="mt-4 max-w-xl font-bold md:text-lg leading-relaxed text-foreground"
-              >
+              <Paragraph>
                 We partner with specialized platforms to deliver compliance,
                 automation, and intelligent customer experiences—so you launch
                 faster and scale with confidence.
-              </motion.p>
+              </Paragraph>
 
               {/* Value bullets (plain list, no card styling) */}
-              <ul className="mt-6 space-y-2 list-disc list-inside text-lg text-foreground font-bold">
+              <ul className="mt-6 -space-y-4 list-disc list-inside">
                 {[
                   "Faster rollouts: battle-tested integrations & playbooks.",
                   "Assured compliance: ZATCA, data privacy, and auditability.",
                   "Lower risk: shared expertise, clear SLAs, predictable delivery.",
                 ].map((text, i) => (
-                  <motion.li
-                    key={text}
-                    variants={fromLeft}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={view}
-                    whileHover={hoverScale}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    {text}
-                  </motion.li>
+                  <li key={i}>
+                    <Paragraph>{text}</Paragraph>
+                  </li>
                 ))}
               </ul>
 
               {/* Inline stats (just text, no boxes) */}
-              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-lg font-bold text-muted-foreground">
-                <div>
-                  <span className="text-2xl font-bold text-foreground block">
+              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+                <Paragraph>
+                  <span className="text-2xl font-bold block">
                     95%
                   </span>
                   On-time delivery
-                </div>
-                <div>
-                  <span className="text-2xl font-bold text-foreground block">
+                </Paragraph>
+                <Paragraph>
+                  <span className="text-2xl font-bold block">
                     30%
                   </span>
                   Faster go-live
-                </div>
-                <div>
-                  <span className="text-2xl font-bold text-foreground block">
-                    4.8★
+                </Paragraph>
+                <Paragraph>
+                  <span className="text-2xl font-bold block">
+                    4.8 ★
                   </span>
                   Client rating
-                </div>
+                </Paragraph>
               </div>
 
               {/* CTA */}
               <div className="mt-8 flex flex-wrap justify-end gap-3">
-                <ButtonLink href="/contact-us">Become a partner</ButtonLink>
+                <ButtonLink href="/contact-us?p=become-a-partner">Become a partner</ButtonLink>
               </div>
             </div>
           </div>

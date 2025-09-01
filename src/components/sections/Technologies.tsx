@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Check } from "lucide-react";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
+import Paragraph from "../typography/Paragraph";
 
 const EXCLUDED_EXPORTS = new Set(["default", "__esModule"]);
 
@@ -84,54 +85,29 @@ export default function Technologies() {
               </motion.p>
 
               {/* Shorter subtitle */}
-              <motion.p
-                className="mt-4 font-bold text-lg text-foreground"
-                variants={fromRight}
-                initial="hidden"
-                whileInView="show"
-                viewport={view}
-                whileHover={hoverScale}
-              >
+              <Paragraph>
                 Modern, scalable, and secure tools for building the future.
-              </motion.p>
+              </Paragraph>
 
               {/* Extra detail */}
-              <motion.p
-                className="mt-3 text-base text-muted-foreground"
-                variants={fromRight}
-                initial="hidden"
-                whileInView="show"
-                viewport={view}
-                whileHover={hoverScale}
-              >
+              <Paragraph>
                 From frontend frameworks to cloud-native services, we choose
                 technologies that ensure reliability, performance, and long-term
                 scalability for every project.
-              </motion.p>
+              </Paragraph>
 
-              <ul className="mt-6 space-y-3 text-lg font-bold">
+              <ul className="mt-6 -space-y-4">
                 {[
                   "Modern frameworks and libraries",
                   "Cloud-native infrastructure",
                   "Secure and scalable data solutions",
                 ].map((item, i) => (
-                  <motion.li
-                    key={item}
-                    className="flex items-start gap-3"
-                    variants={fromLeft}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={view}
-                    whileHover={hoverScale}
-                    transition={{ delay: i * 0.1 }}
-                  >
+                  <Paragraph key={item} className="flex items-start gap-2">
                     <span className="mt-1 rounded-full border p-1">
                       <Check className="h-4 w-4 text-primary" />
                     </span>
-                    <span className="text-lg text-muted-foreground">
-                      {item}
-                    </span>
-                  </motion.li>
+                    <span>{item}</span>
+                  </Paragraph>
                 ))}
               </ul>
             </div>

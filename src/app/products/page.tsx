@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 import SectionHeader from "@/components/SectionHeader";
 import EngagementSection from "@/components/EngagementSection";
 
+import Paragraph from "@/components/typography/Paragraph";
+
 // ---------- Data ----------
 type Product = {
   name: string;
@@ -22,7 +24,7 @@ type Product = {
 
 const products: Product[] = [
   {
-    name: "HRMS Solution Systems",
+    name: "PeopleSphere",
     slug: "hrms-solution-systems",
     subtitle: "All-in-one HR suite",
     description:
@@ -31,7 +33,7 @@ const products: Product[] = [
     footerText: "Compliant • Secure • Scalable",
   },
   {
-    name: "Payroll Management Systems",
+    name: "PayStream",
     slug: "payroll-management-systems",
     subtitle: "Seamless payroll automation",
     description:
@@ -40,7 +42,7 @@ const products: Product[] = [
     footerText: "Accurate • Compliant • Reliable",
   },
   {
-    name: "ZATCA Taxation Solutions",
+    name: "TaxNova",
     slug: "zatca-taxation-solutions",
     subtitle: "E-invoicing made effortless",
     description:
@@ -49,7 +51,7 @@ const products: Product[] = [
     footerText: "Regulation-ready • Trusted • Future-proof",
   },
   {
-    name: "Insurance Product Systems",
+    name: "InsuraCore",
     slug: "insurance-product-systems",
     subtitle: "Smarter insurance operations",
     description:
@@ -58,7 +60,7 @@ const products: Product[] = [
     footerText: "Efficient • Integrated • Customer-centric",
   },
   {
-    name: "Learning Management Systems (LMS)",
+    name: "Learnify",
     slug: "learning-management-systems",
     subtitle: "Empowering digital learning",
     description:
@@ -68,42 +70,8 @@ const products: Product[] = [
   },
 ];
 
-// ---------- Animations ----------
-const fadeInUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
-};
-
-const fromLeft = {
-  hidden: { opacity: 0, x: -60, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    scale: 1,
-    transition: { duration: 0.7 },
-  },
-};
-
-const fromRight = {
-  hidden: { opacity: 0, x: 60, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    scale: 1,
-    transition: { duration: 0.7 },
-  },
-};
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
-};
-
 export default function ProductsPage() {
+
   // JSON-LD for SEO
   const productJsonLd = useMemo(() => {
     const baseUrl =
@@ -153,48 +121,31 @@ export default function ProductsPage() {
           {/* Content */}
           <div className="relative z-10 flex h-full items-center">
             <div className="w-full px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.6 }}
-                variants={stagger}
-                className="mx-auto max-w-5xl text-center"
-              >
-                <motion.h1
-                  variants={fadeInUp}
-                  className="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-2xl"
-                >
+              <div className="mx-auto max-w-5xl text-center">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-2xl">
                   Products built for modern business
-                </motion.h1>
-                <motion.p
-                  variants={fadeInUp}
-                  className="mx-auto mt-4 md:mt-6 max-w-3xl text-base md:text-lg text-white/90 leading-relaxed"
-                >
+                </h1>
+                <p className="mx-auto mt-4 md:mt-6 max-w-3xl text-base md:text-lg text-white/90 leading-relaxed">
                   Powerful, flexible, and secure software that streamlines
                   operations, enhances employee experiences, and keeps you
                   compliant — at scale.
-                </motion.p>
-                <motion.div
-                  variants={fadeInUp}
-                  className="mt-8 flex flex-col sm:flex-row justify-center gap-3"
-                >
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
                   <ButtonLink
                     href="#catalog"
                     className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                   >
-                    <span className="relative z-10">Explore products</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+                    Explore products
                   </ButtonLink>
                   <ButtonLink
                     href="/contact-us"
                     variant="outline"
                     className="text-white group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                   >
-                    <span className="relative z-10">Talk to an expert</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+                    Talk to an expert
                   </ButtonLink>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -204,48 +155,30 @@ export default function ProductsPage() {
       <Section is="odd" id="catalog" className="py-14 md:py-20">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mb-10 md:mb-14 max-w-3xl text-center">
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.6 }}
-              variants={fadeInUp}
-              className="text-3xl md:text-4xl font-bold tracking-tight"
-            >
-              Our product catalog
-            </motion.h2>
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.6 }}
-              variants={fadeInUp}
-              className="mt-3 text-slate-600"
-            >
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center">
+              Our product <span className="block text-primary">catalog</span>
+            </h2>
+            <Paragraph>
               Select a solution to learn how it fits your organization’s
               workflows and goals.
-            </motion.p>
+            </Paragraph>
           </div>
 
-          
           <div className="space-y-12 md:space-y-16">
             {products.map((product, idx) => {
               const imageLeft = idx % 2 === 0; // even index = left, odd index = right
               return (
-                <motion.div
+                <div
                   key={product.slug}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  variants={stagger}
                   className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
                     {/* Image Column - Positioned based on index */}
-                    <motion.div
+                    <div
                       className={cn(
                         "md:col-span-6",
                         imageLeft ? "order-1" : "order-2"
                       )}
-                      variants={imageLeft ? fromLeft : fromRight}
                     >
                       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
                         <Image
@@ -258,18 +191,17 @@ export default function ProductsPage() {
                         {/* Subtle overlay for depth */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
                       </div>
-                    </motion.div>
+                    </div>
 
                     {/* Content Column */}
-                    <motion.div
+                    <div
                       className={cn(
                         "md:col-span-6",
                         imageLeft ? "order-2" : "order-1"
                       )}
-                      variants={fadeInUp}
                     >
                       <div className="sticky top-20">
-                        <motion.div variants={fadeInUp}>
+                        <div>
                           <SectionHeader
                             subtitle={product.subtitle}
                             title={product.name}
@@ -277,13 +209,10 @@ export default function ProductsPage() {
                             titleClassName="text-2xl md:text-4xl lg:text-5xl"
                             descriptionClassName="text-sm leading-relaxed"
                           />
-                        </motion.div>
+                        </div>
 
                         {/* CTAs */}
-                        <motion.div
-                          className="mt-8 flex flex-wrap items-center gap-3"
-                          variants={fadeInUp}
-                        >
+                        <div className="mt-8 flex flex-wrap items-center gap-3">
                           <ButtonLink
                             href={`/contact-us?p=inquire-${product.slug}`}
                             className="group relative overflow-hidden"
@@ -293,19 +222,16 @@ export default function ProductsPage() {
                             </span>
                             <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
                           </ButtonLink>
-                        </motion.div>
+                        </div>
 
                         {/* Subtle compliance / assurance line */}
-                        <motion.p
-                          className="mt-4 text-xs text-muted-foreground/70"
-                          variants={fadeInUp}
-                        >
+                        <p className="mt-4 text-xs text-muted-foreground/70">
                           {product.footerText}
-                        </motion.p>
+                        </p>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -313,12 +239,12 @@ export default function ProductsPage() {
       </Section>
 
       {/* ===== CTA (tight bottom spacing) ===== */}
-        <EngagementSection
-          title="Ready to transform your business?"
-          description="Not sure which product fits best? We’ll help you evaluate options and design a rollout plan that sticks."
-          button1Url="/contact-us"
-          button1Text="Contact us"
-        />
+      <EngagementSection
+        title="Ready to transform your business?"
+        description="Not sure which product fits best? We’ll help you evaluate options and design a rollout plan that sticks."
+        button1Url="/contact-us"
+        button1Text="Contact us"
+      />
 
       {/* ===== JSON-LD (SEO) ===== */}
       <script

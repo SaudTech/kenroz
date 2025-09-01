@@ -1,7 +1,7 @@
 import { useReducedMotion, Variants } from "framer-motion";
 
 // Shared viewport settings for section animations
-export const view = { once: false, amount: 0 };
+export const view = { once: true, amount: 0.1 };
 
 // Hook providing common motion variants
 export function useSectionVariants() {

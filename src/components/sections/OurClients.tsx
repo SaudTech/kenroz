@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { ButtonLink } from "../Navbar";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
+import Paragraph from "../typography/Paragraph";
 
 interface Company {
   name: string;
@@ -53,7 +54,7 @@ export default function OurClients() {
           <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
             {/* LEFT: Text */}
             <div className="md:col-span-5 order-2 md:order-1">
-              <div className="sticky top-20 text-start font-bold">
+              <div className="sticky top-20 text-start">
                 <motion.p
                   className="text-3xl md:text-4xl tracking-widest uppercase font-extrabold"
                   variants={fromLeft}
@@ -65,42 +66,24 @@ export default function OurClients() {
                   Trusted by leading companies
                 </motion.p>
 
-                <motion.p
-                  className="mt-4 text-lg leading-relaxed text-foreground"
-                  variants={fromRight}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={view}
-                  whileHover={hoverScale}
-                >
+                <Paragraph>
                   Teams across construction, manufacturing, trading, and
                   services rely on Kenroz to streamline operations and
                   accelerate growth.
-                </motion.p>
+                </Paragraph>
 
-                <ul className="mt-6 space-y-3 w-full text-start">
+                <ul className="mt-6 -space-y-5 w-full text-start">
                   {[
                     "Robust, secure implementations with enterprise-grade standards",
                     "Faster time-to-value with clean, scalable architecture",
                     "Hands-on support from discovery to deployment—and beyond",
                   ].map((item, i) => (
-                    <motion.li
-                      key={item}
-                      className="flex items-start gap-3"
-                      variants={fromLeft}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={view}
-                      whileHover={hoverScale}
-                      transition={{ delay: i * 0.15 }}
-                    >
-                      <span className="mt-1 rounded-full border p-1">
+                    <div key={i} className="flex items-center mb-2 gap-2">
+                      <span className="mt-1 rounded-full p-1">
                         <Check className="h-4 w-4 text-primary" />
                       </span>
-                      <span className="text-lg text-muted-foreground">
-                        {item}
-                      </span>
-                    </motion.li>
+                      <Paragraph>{item}</Paragraph>
+                    </div>
                   ))}
                 </ul>
 
@@ -112,7 +95,9 @@ export default function OurClients() {
                   viewport={view}
                   whileHover={hoverScale}
                 >
-                  <ButtonLink href="/contact-us">Work With Kenroz</ButtonLink>
+                  <ButtonLink href="/contact-us?p=work-with-kenroz">
+                    Work With Kenroz
+                  </ButtonLink>
                 </motion.div>
               </div>
             </div>

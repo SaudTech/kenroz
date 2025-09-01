@@ -217,10 +217,10 @@ export default function Navbar(): JSX.Element {
         </div>
       </motion.nav>
       <PageDividerOne
-        color={scrolled ? "white" : "black"}
+        color={"black"}
         className={cn(
-          "w-full z-[60] fixed top-28 left-0 transition-all duration-300",
-          scrolled ? "drop-shadow-xl" : "shadow-none"
+          "w-full z-[60] fixed top-28 left-0 transition-all duration-300 shadow-none",
+          scrolled && "opacity-0"
         )}
       />
     </>
@@ -443,7 +443,7 @@ export function ButtonLink({
     `inline-flex items-center justify-center font-semibold text-lg whitespace-nowrap px-8 py-3
      rounded-full transition-all duration-300 ease-in-out transform
      hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl
-     focus:outline-none focus:ring-4 focus:ring-primary/20`,
+     focus:outline-none focus:ring-8 ring-0 focus:ring-primary/20`,
     variant === "default" &&
       `bg-gradient-to-r from-primary via-primary/90 to-secondary
        hover:from-transparent hover:via-transparent hover:to-transparent hover:text-primary hover:border-primary

@@ -130,18 +130,25 @@ export default async function ContactPage({
   const rawIntent = resolved.p;
   const intent = Array.isArray(rawIntent) ? rawIntent[0] : rawIntent;
 
-  let heading = "Contact Us";
+  let heading = "Let’s Connect";
   let description =
-    "Ready to take the next step? We're here to help you succeed. ";
+    "Have a project in mind or need expert guidance? Our team at Kenroz is here to listen, understand, and help you achieve your goals. Reach out today and let’s start building your success story.";
 
   if (intent === "hire") {
-    heading = "Hire an Expert";
+    heading = "Hire Our Experts";
     description =
-      "Looking to bring skilled professionals on board? Share your requirements and we'll connect you with the right talent.";
+      "Looking for skilled professionals to strengthen your team? Share your requirements and we’ll match you with the right talent from Kenroz to accelerate your projects with confidence";
+  } else if (intent === "become-a-partner") {
+    heading = "Partner With Kenroz";
+    description =
+      "Collaboration drives innovation. If you’re ready to partner with us, tell us about your business, and let’s explore how we can grow stronger—together.";
+  }  else if (intent === "work-with-kenroz") {
+    heading = "Work with Kenroz";
+    description = "Passionate about technology and innovation? Explore opportunities to work with us and be part of a team shaping the future of IT solutions across the globe."
   } else if (intent) {
     heading = "Service Inquiry";
     description =
-      "Interested in our services? Tell us about your project and we'll get back to you shortly.";
+      "Interested in our solutions? Whether it’s cloud, digital transformation, or custom development, tell us about your project and we’ll get back to you with the right approach.";
   }
 
   return (
