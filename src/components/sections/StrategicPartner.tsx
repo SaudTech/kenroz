@@ -7,7 +7,6 @@ import { ButtonLink } from "../Navbar";
 import { ShieldUser } from "lucide-react";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
-import ListItem from "../typography/ListItem";
 
 type Partner = {
   id: "emvive" | "arcgen" | string;
