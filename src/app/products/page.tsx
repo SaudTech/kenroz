@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -71,6 +71,37 @@ const products: Product[] = [
 ];
 
 export default function ProductsPage() {
+  // Handle hash scrolling on page load
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        // Remove the # from the hash
+        const elementId = hash.substring(1);
+        const element = document.getElementById(elementId);
+        if (element) {
+          // Small delay to ensure page is fully loaded
+          setTimeout(() => {
+            element.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'end',
+              inline: 'nearest'
+            });
+          }, 100);
+        }
+      }
+    };
+
+    // Handle initial load
+    handleHashScroll();
+
+    // Handle hash changes (in case user navigates with hash)
+    window.addEventListener('hashchange', handleHashScroll);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll);
+    };
+  }, []);
 
   // JSON-LD for SEO
   const productJsonLd = useMemo(() => {
@@ -170,6 +201,7 @@ export default function ProductsPage() {
               return (
                 <div
                   key={product.slug}
+                  id={product.slug}
                   className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
@@ -217,10 +249,7 @@ export default function ProductsPage() {
                             href={`/contact-us?p=inquire-${product.slug}`}
                             className="group relative overflow-hidden"
                           >
-                            <span className="relative z-10">
                               Inquire about this product
-                            </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
                           </ButtonLink>
                         </div>
 
