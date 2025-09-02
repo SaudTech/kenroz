@@ -39,7 +39,22 @@ export default function OurClients() {
     >
       <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* ✅ Put border around actual content */}
-        <div className="rounded-2xl bg-gray-100 shadow-md border border-solid border-black px-6 py-10 md:px-10 md:py-14">
+        <div className="rounded-2xl bg-gray-100 shadow-md border overflow-hidden border-solid border-black px-6 py-10 md:px-10 md:py-14 relative">
+          <svg className="absolute top-0 -left-[15%] h-[35rem] w-[35rem] " viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="#ebebeb"
+              d="M45.3,-53.2C55.6,-45.2,58.9,-28.1,54.6,-15.1C50.4,-2.2,38.5,6.6,31.1,16.5C23.7,26.5,20.7,37.6,14.1,40.8C7.6,44.1,-2.6,39.6,-10.3,34.2C-18.1,28.9,-23.4,22.7,-28.3,15.6C-33.2,8.6,-37.7,0.6,-42,-13C-46.3,-26.5,-50.2,-45.6,-43.2,-54.2C-36.2,-62.7,-18.1,-60.8,-0.3,-60.5C17.4,-60.1,34.9,-61.2,45.3,-53.2Z"
+              transform="translate(100 100)"
+            />
+          </svg>
+          <svg className="absolute top-[50%] -right-[15%] h-[35rem] w-[35rem] rotate-[60deg]" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="#ebebeb"
+              d="M45.3,-53.2C55.6,-45.2,58.9,-28.1,54.6,-15.1C50.4,-2.2,38.5,6.6,31.1,16.5C23.7,26.5,20.7,37.6,14.1,40.8C7.6,44.1,-2.6,39.6,-10.3,34.2C-18.1,28.9,-23.4,22.7,-28.3,15.6C-33.2,8.6,-37.7,0.6,-42,-13C-46.3,-26.5,-50.2,-45.6,-43.2,-54.2C-36.2,-62.7,-18.1,-60.8,-0.3,-60.5C17.4,-60.1,34.9,-61.2,45.3,-53.2Z"
+              transform="translate(100 100)"
+            />
+          </svg>
+
           <motion.h2
             variants={fromLeft}
             initial="hidden"
