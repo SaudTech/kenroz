@@ -25,7 +25,7 @@ type Product = {
 const products: Product[] = [
   {
     name: "PeopleSphere",
-    slug: "hrms-solution-systems",
+    slug: "people-sphere",
     subtitle: "All-in-one HR suite",
     description:
       "Streamline the entire employee journey with an all-in-one HR platform — from hiring to offboarding, with analytics and self-service built in.",
@@ -34,7 +34,7 @@ const products: Product[] = [
   },
   {
     name: "PayStream",
-    slug: "payroll-management-systems",
+    slug: "pay-stream",
     subtitle: "Seamless payroll automation",
     description:
       "Automate payroll, tax, and compliance with seamless calculations, bank integration, and transparent employee access.",
@@ -43,7 +43,7 @@ const products: Product[] = [
   },
   {
     name: "TaxNova",
-    slug: "zatca-taxation-solutions",
+    slug: "tax-nova",
     subtitle: "E-invoicing made effortless",
     description:
       "Stay ZATCA-compliant with automated e-invoicing, QR codes, digital signatures, and real-time VAT submissions.",
@@ -52,7 +52,7 @@ const products: Product[] = [
   },
   {
     name: "InsuraCore",
-    slug: "insurance-product-systems",
+    slug: "insura-core",
     subtitle: "Smarter insurance operations",
     description:
       "Simplify policy management, underwriting, claims, and customer service with a flexible, insurer-focused platform.",
@@ -61,7 +61,7 @@ const products: Product[] = [
   },
   {
     name: "Learnify",
-    slug: "learning-management-systems",
+    slug: "learnify",
     subtitle: "Empowering digital learning",
     description:
       "Deliver and track engaging learning experiences with interactive courses, certifications, and mobile-first access.",
