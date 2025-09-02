@@ -25,9 +25,10 @@ const MAIN_LINKS: NavLink[] = [
     links: [
       { label: "About Us", href: "/#about-us" },
       { label: "Why Choose Us", href: "/#why-choose-us" },
-      { label: "Our Clients", href: "/#our-clients" },
-      { label: "Strategic Partners", href: "/#strategic-partners" },
-      { label: "Contact Us", href: "/contact-us" },
+      { label: "Our Clients & Successes", href: "/#our-clients" },
+      { label: "Partners & Alliances", href: "/#strategic-partners" },
+      { label: "Get in Touch", href: "/contact-us" },
+      { label: "Join Our Team", href: "/careers" },
     ],
   },
 ];
@@ -78,7 +79,7 @@ export default function Navbar(): JSX.Element {
         }}
         className="fixed top-0 left-0 right-0 z-[120] p-4 py-6 backdrop-blur-xl shadow-sm"
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link
@@ -131,13 +132,6 @@ export default function Navbar(): JSX.Element {
 
             {/* Right actions */}
             <div className="flex gap-5 items-center">
-              <ButtonLink
-                href="/careers"
-                variant="outline"
-                className={cn(scrolled ? "text-black" : "text-white")}
-              >
-                Careers
-              </ButtonLink>
               <ButtonLink
                 href="/contact-us?p=hire"
                 className="hidden lg:inline-flex items-center font-semibold whitespace-nowrap px-8 py-3 border-primary transition-colors text-white rounded-full"
@@ -257,43 +251,97 @@ function DesktopDropdown({
       <div
         className={cn(
           "invisible opacity-0 z-[9999] group-hover:visible group-hover:opacity-100",
-          "absolute left-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-xl transition-all duration-150"
+          "absolute left-0 mt-2 w-96 rounded-xl border border-gray-200 bg-white shadow-xl transition-all duration-150"
         )}
         role="menu"
       >
-        <ul className="py-2">
-          {item.links?.map((child) => {
-            const content = (
-              <span className="block group w-full text-left px-4 py-2.5 text-lg font-semibold hover:bg-black rounded-md">
-                <span className="group-hover:bg-gradient-to-r group-hover:from-secondary group-hover:to-primary group-hover:bg-clip-text group-hover:text-transparent">
-                  {child.label}
-                </span>
-              </span>
-            );
-            return (
-              <li key={child.label} role="none">
-                {child.href ? (
-                  <Link
-                    href={child.href}
-                    onClick={() => onNavigate(child)}
-                    role="menuitem"
-                  >
-                    {content}
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => onNavigate(child)}
-                    role="menuitem"
-                    className="w-full"
-                  >
-                    {content}
-                  </button>
-                )}
-              </li>
-            );
-          })}
-        </ul>
+        <div className="py-4 px-2">
+          {/* Column Titles in One Line */}
+          <div className="flex justify-between mb-4 px-2">
+            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider">
+              About & Credibility
+            </h3>
+            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider">
+              Connections & Opportunities
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-6">
+            {/* First Column - About & Credibility */}
+            <div>
+              <ul className="space-y-1">
+                {item.links?.slice(0, 3).map((child) => {
+                  const content = (
+                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-gray-50 rounded-md transition-colors">
+                      <span className="text-gray-700 group-hover:text-primary">
+                        {child.label}
+                      </span>
+                    </span>
+                  );
+                  return (
+                    <li key={child.label} role="none">
+                      {child.href ? (
+                        <Link
+                          href={child.href}
+                          onClick={() => onNavigate(child)}
+                          role="menuitem"
+                        >
+                          {content}
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => onNavigate(child)}
+                          role="menuitem"
+                          className="w-full"
+                        >
+                          {content}
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            
+            {/* Second Column - Connections & Opportunities */}
+            <div>
+              <ul className="space-y-1">
+                {item.links?.slice(3).map((child) => {
+                  const content = (
+                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-gray-50 rounded-md transition-colors">
+                      <span className="text-gray-700 group-hover:text-primary">
+                        {child.label}
+                      </span>
+                    </span>
+                  );
+                  return (
+                    <li key={child.label} role="none">
+                      {child.href ? (
+                        <Link
+                          href={child.href}
+                          onClick={() => onNavigate(child)}
+                          role="menuitem"
+                        >
+                          {content}
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => onNavigate(child)}
+                          role="menuitem"
+                          className="w-full"
+                        >
+                          {content}
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -495,7 +543,7 @@ function MobileNavItem({
   return href ? (
     <Link
       href={href}
-      className="block text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="flex text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] items-center"
       onClick={onClick}
     >
       {text}
