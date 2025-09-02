@@ -6,8 +6,8 @@ export const metadata: Metadata = {
 };
 
 const resources = [
-  { label: "Our Story", href: "/#our-story" },
-  { label: "Why Us", href: "/#why-us" },
+  { label: "About Us", href: "/#about-us" },
+  { label: "Why Choose Us", href: "/#why-choose-us" },
   { label: "Strategic Partner", href: "/#strategic-partner" },
   { label: "Contact Us", href: "/contact-us" },
 ];

@@ -8,18 +8,32 @@ import { ButtonLink } from "../Navbar";
 import { TypewriterEffect } from "../ui/typewriter-effect";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
-const words = [
-  { text: "Empowering", className: "text-white" },
-  { text: "Businesses", className: "text-white" },
-  { text: "to", className: "text-white" },
-  { text: "Lead,", className: "text-white" },
-  { text: "Transform", className: "text-white" },
-  { text: "and", className: "text-white" },
-  { text: "Excel.", className: "text-white" },
+const headlineWords = [
+  { text: "Innovate.", className: "text-white" },
+  { text: "Scale.", className: "text-white" },
+  { text: "Lead", className: "text-white" },
+  { text: "the", className: "text-white" },
+  { text: "Future.", className: "text-white" },
+];
+
+
+
+const featureHighlights = [
+  {
+    label: "Future-Ready Solutions",
+    hint: "Ready for tomorrow’s challenges",
+  },
+  {
+    label: "Expert Team Support",
+    hint: "Guidance at every step",
+  },
+  {
+    label: "Scalable & Secure",
+    hint: "Grow safely with confidence",
+  },
 ];
 
 export default function Hero() {
-  const valueProps = ["Future-ready solutions", "Expert team support", "Scalable & secure"];
   const easeInOut = [0.42, 0, 0.58, 1] as const;
   const { fromLeft, fromRight } = useSectionVariants();
 
@@ -34,7 +48,7 @@ export default function Hero() {
         muted
         playsInline
       />
-      {/* Overlay for readability */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/50 z-[1]" />
 
       {/* Centered Content */}
@@ -44,6 +58,7 @@ export default function Hero() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
+        {/* Headline (Typewriter Animation) */}
         <motion.h1
           className="text-white text-2xl md:text-3xl lg:text-5xl font-bold leading-tight"
           variants={fromLeft}
@@ -52,11 +67,12 @@ export default function Hero() {
           viewport={view}
           whileHover={hoverScale}
         >
-          <TypewriterEffect words={words} className="text-white" />
+          <TypewriterEffect words={headlineWords} className="text-white" />
         </motion.h1>
 
+        {/* Static Subtext + Rotating Services */}
         <motion.div
-          className="text-[#fffde7] text-lg lg:text-xl font-medium leading-relaxed"
+          className="text-[#fffde7] text-lg lg:text-xl font-medium leading-relaxed max-w-3xl"
           variants={fromRight}
           initial="hidden"
           whileInView="show"
@@ -64,31 +80,33 @@ export default function Hero() {
           whileHover={hoverScale}
           transition={{ delay: 0.9 }}
         >
-          <p className="mb-4">Your trusted technology partner for innovative IT solutions:</p>
+          <p className="mb-4">
+            Your trusted partner for smart, future-ready IT solutions.
+          </p>
           <FlipWords
             words={[
-              "Microsoft Dynamics 365",
-              "Cloud Solutions",
-              "Web Development",
-              "Mobile Development",
-              "Digital Marketing",
-              "Outsourcing",
+              { title: "Cloud Solutions", subtitle: "Streamline Your Business Operations" },
+              { title: "Digital Marketing", subtitle: "Grow Your Audience & Revenue" },
+              { title: "Microsoft Dynamics 365", subtitle: "Transform Enterprise Efficiency" },
+              { title: "AI & Automation", subtitle: "Future-Proof Your Processes" },
+              { title: "Custom Software Development", subtitle: "Build Solutions That Scale" },
+              { title: "Cybersecurity Solutions", subtitle: "Protect & Secure Your Data" },
             ]}
-            className="text-white font-bold"
-          />
+            className="text-center"
+          />{" "}
         </motion.div>
 
-        {/* Value Propositions */}
+        {/* Feature Highlights (button-style with hover explanatory text) */}
         <motion.div
           className="flex flex-wrap gap-4 justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.1 }}
         >
-          {valueProps.map((prop, index) => (
+          {featureHighlights.map((item, index) => (
             <motion.div
-              key={prop}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium hover:scale-105 hover:shadow-lg hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+              key={item.label}
+              className="group relative flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-sm font-medium border border-white/10 hover:shadow-lg transition-all duration-300"
               variants={fromLeft}
               initial="hidden"
               whileInView="show"
@@ -97,12 +115,24 @@ export default function Hero() {
               transition={{ delay: 1.2 + index * 0.1 }}
             >
               <CheckCircle className="w-4 h-4 text-[#fffde7]" />
-              {prop}
+              {item.label}
+
+              {/* Hover hint */}
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 whitespace-nowrap"
+              >
+                <div className="bg-white/95 text-gray-900 text-xs rounded-md px-3 py-2 shadow-xl border border-black/10">
+                  {item.hint}
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Button */}
+        {/* CTA Button */}
         <motion.div
           className="flex justify-center"
           initial={{ opacity: 0, y: 20 }}
@@ -110,15 +140,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 1.4 }}
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            {/* <Link
-              href="#services"
-              className="inline-flex items-center gap-2 bg-[#fffde7] text-primary px-8 py-4 rounded-full font-bold text-base shadow-2xl hover:shadow-3xl transition-all duration-300 hover:bg-transparent hover:border-white hover:text-white border border-solid"
-            >
-              Explore Our Services
-              <ArrowRight className="w-5 h-5" />
-              </Link> */}
             <ButtonLink href="#services">
-              Our Services
+              Explore Our Services
               <ArrowRight className="w-5 h-5 ms-2" />
             </ButtonLink>
           </motion.div>
@@ -134,10 +157,7 @@ export default function Hero() {
             <motion.div
               key={`particle-${i}`}
               className="absolute w-1 h-1 bg-red-400 rounded-full opacity-40"
-              style={{
-                left: `${left}%`,
-                top: `${top}%`,
-              }}
+              style={{ left: `${left}%`, top: `${top}%` }}
               animate={{
                 y: [-10, 10, -10],
                 x: [-5, 5, -5],

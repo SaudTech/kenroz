@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
-import { Calendar, CircleCheckBig, ThumbsUp } from "lucide-react";
+import { Brain, Handshake, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
@@ -44,9 +44,9 @@ function SectionHeader({
 }
 
 const stats = [
-  { label: "5+ Years of experience", icon: Calendar },
-  { label: "14+ Projects", icon: CircleCheckBig },
-  { label: "Delivering Excellence", icon: ThumbsUp },
+  { label: "Strategic Thinking", icon: Brain },
+  { label: "Technology Innovation", icon: Lightbulb },
+  { label: "Trusted Partner", icon: Handshake },
 ];
 export default function OurStory() {
   const [activeKey, setActiveKey] = useState<"story" | "why">("story");
@@ -82,7 +82,7 @@ export default function OurStory() {
           {/* Left Side */}
           <div className="lg:col-span-6 space-y-12">
             {/* Our Journey */}
-            <div id="our-story">
+            <div id="about-us">
               <motion.div
                 variants={fromLeft}
                 initial="hidden"
@@ -94,15 +94,15 @@ export default function OurStory() {
                   title="We started our journey years back"
                   isOpen={activeKey === "story"}
                   onToggle={() => toggle("story")}
-                  headerId="our-story"
+                  headerId="about-us"
                 />
               </motion.div>
 
               <motion.div
                 key="story-panel"
-                id="our-story-panel"
+                id="about-us-panel"
                 role="region"
-                aria-labelledby="our-story"
+                aria-labelledby="about-us"
                 initial="collapsed"
                 animate="open"
                 exit="collapsed"
@@ -111,19 +111,20 @@ export default function OurStory() {
                 className="overflow-visible"
               >
                 <Paragraph>
-                  For over a decade, we’ve helped many businesses to grow in
-                  various ways like branding, graphics design, web design,
-                  mobile development, etc. Established in 2020, Kenroz is
-                  headquartered in Hyderabad, India. Kenroz is your prime
-                  destination for all your web design, mobile applications,
-                  cloud applications, Software Development, SEO and Digital
-                  Marketing needs.
+                  Kenroz began in 2020 as a freelance venture with a vision to
+                  deliver innovative digital solutions. We started with a few
+                  projects and gradually expanded our expertise and team. By
+                  mid-2022, we developed a{" "}
+                  <b>taxation product for the Middle East</b>, marking a key
+                  milestone. In late 2024 and early 2025, we established our{" "}
+                  <b>first office in Hyderabad</b>, formalizing our operations
+                  and laying the foundation for growth.
                 </Paragraph>
               </motion.div>
             </div>
 
-            {/* Why Us */}
-            <div id="why-us">
+            {/* Why Choose Us */}
+            <div id="why-choose-us">
               <motion.div
                 variants={fromLeft}
                 initial="hidden"
@@ -135,15 +136,15 @@ export default function OurStory() {
                   title="Obvious 1st choice"
                   isOpen={activeKey === "why"}
                   onToggle={() => toggle("why")}
-                  headerId="why-us"
+                  headerId="why-choose-us"
                 />
               </motion.div>
 
               <motion.div
                 key="why-panel"
-                id="why-us-panel"
+                id="why-choose-us-panel"
                 role="region"
-                aria-labelledby="why-us"
+                aria-labelledby="why-choose-us"
                 initial="collapsed"
                 animate="open"
                 exit="collapsed"
@@ -152,12 +153,16 @@ export default function OurStory() {
                 className="overflow-visible"
               >
                 <Paragraph>
-                  Web design is more than just looking good! We create custom
-                  websites that make your phone ring. With our in-house experts
-                  and 20+ years of insights. With our extensive knowledge of
-                  both technology and client requirements, we have built a
-                  satisfied customer base of more than ten thousand spanning
-                  across 26 countries, showcasing our proven track record.
+                  As our reputation grew, we deliver{" "}
+                  <b>
+                    custom software, mobile apps, cloud solutions, digital
+                    marketing, Microsoft Dynamics 365, and outsourcing services
+                  </b>
+                  , working closely with clients to provide{" "}
+                  <b>end-to-end solutions</b>. We also formed{" "}
+                  <b>strategic partnerships</b> to expand our offerings and
+                  deliver even greater value. Kenroz has established itself as a{" "}
+                  <b>trusted partner for technology-driven business growth</b>.
                 </Paragraph>
               </motion.div>
             </div>

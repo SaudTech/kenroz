@@ -135,7 +135,7 @@ export default async function ContactPage({
     "Have a project in mind or need expert guidance? Our team at Kenroz is here to listen, understand, and help you achieve your goals. Reach out today and let’s start building your success story.";
 
   if (intent === "hire") {
-    heading = "Hire Our Experts";
+    heading = "Engage Our Experts";
     description =
       "Looking for skilled professionals to strengthen your team? Share your requirements and we’ll match you with the right talent from Kenroz to accelerate your projects with confidence";
   } else if (intent === "become-a-partner") {

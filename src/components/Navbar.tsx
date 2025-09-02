@@ -18,13 +18,13 @@ type NavLink = {
 
 const MAIN_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "Products", href: "/products" },
+  { label: "Solutions", href: "/#services" },
+  { label: "Tools & Products", href: "/products" },
   {
-    label: "Resources",
+    label: "Insights",
     links: [
-      { label: "Our Story", href: "/#our-story" },
-      { label: "Why us", href: "/#why-us" },
+      { label: "About Us", href: "/#about-us" },
+      { label: "Why Choose Us", href: "/#why-choose-us" },
       { label: "Our Clients", href: "/#our-clients" },
       { label: "Strategic Partners", href: "/#strategic-partners" },
       { label: "Contact Us", href: "/contact-us" },
@@ -142,7 +142,7 @@ export default function Navbar(): JSX.Element {
                 href="/contact-us?p=hire"
                 className="hidden lg:inline-flex items-center font-semibold whitespace-nowrap px-8 py-3 border-primary transition-colors text-white rounded-full"
               >
-                Hire an Expert
+                Engage Our Experts
                 <Phone className="ms-2 h-5 w-5" />
               </ButtonLink>
             </div>
@@ -206,7 +206,7 @@ export default function Navbar(): JSX.Element {
                       className="w-full justify-center"
                       mobile
                     >
-                      Hire an Expert
+                      Engage Our Experts
                       <Phone className="ms-2 h-5 w-5" />
                     </ButtonLink>
                   </div>
@@ -251,7 +251,7 @@ function DesktopDropdown({
         aria-expanded="false"
       >
         {item.label}
-        <ChevronDown className="h-4 w-4 text-card-foreground group-hover:text-primary" />
+        <ChevronDown className={cn("h-4 w-4 group-hover:text-primary", scrolled ? "text-black" : "text-card-foreground")} />
       </button>
 
       <div

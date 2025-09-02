@@ -1,95 +1,120 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
+
+type FlipItem =
+  | string
+  | { title: string; subtitle?: string; titleClassName?: string; subtitleClassName?: string };
 
 export const FlipWords = ({
   words,
   duration = 3000,
   className,
+  baseTitleClassName = "block text-white font-bold text-xl md:text-2xl",
+  baseSubtitleClassName = "block text-sm md:text-base text-[#fffde7]/80",
 }: {
-  words: string[];
+  words: FlipItem[];
   duration?: number;
   className?: string;
+  baseTitleClassName?: string;
+  baseSubtitleClassName?: string;
 }) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [idx, setIdx] = useState(0);
+  const [anim, setAnim] = useState(false);
+  const current = words[idx];
 
-  // thanks for the fix Julian - https://github.com/Julian-AT
-  const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
-    setIsAnimating(true);
-  }, [currentWord, words]);
+  const next = useCallback(() => {
+    setIdx((i) => (i + 1) % words.length);
+    setAnim(true);
+  }, [words.length]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
-        startAnimation();
-      }, duration);
-  }, [isAnimating, duration, startAnimation]);
+    if (!anim) {
+      const t = setTimeout(next, duration);
+      return () => clearTimeout(t);
+    }
+  }, [anim, duration, next]);
+
+  const spec = useMemo(() => {
+    if (typeof current === "string") {
+      return {
+        title: current,
+        subtitle: undefined as string | undefined,
+        titleClassName: "text-4xl md:text-5xl text-white",
+        subtitleClassName: "",
+      };
+    }
+    return {
+        title: current.title,
+        subtitle: current.subtitle,
+        titleClassName: cn(baseTitleClassName, current.titleClassName),
+        subtitleClassName: cn(baseSubtitleClassName, current.subtitleClassName),
+    };
+  }, [current, baseTitleClassName, baseSubtitleClassName]);
 
   return (
-    <AnimatePresence
-      onExitComplete={() => {
-        setIsAnimating(false);
-      }}
-    >
+    <AnimatePresence onExitComplete={() => setAnim(false)} mode="popLayout">
       <motion.div
+        key={`${idx}-${typeof current === "string" ? current : current.title}`}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 10,
-        }}
+        transition={{ type: "spring", stiffness: 100, damping: 10 }}
         exit={{
           opacity: 0,
           y: -20,
           x: 20,
           filter: "blur(4px)",
           position: "absolute",
-          transition: {
-            duration: 0.5, // half-second ease-out
-            ease: "easeInOut",
-          },
+          transition: { duration: 0.5, ease: "easeInOut" },
         }}
-        className={cn(
-          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2",
-          className
-        )}
-        key={currentWord}
+        className={cn("z-10 inline-block relative text-left px-2", className)}
       >
-        {/* edit suggested by Sajal: https://x.com/DewanganSajal */}
-        {currentWord.split(" ").map((word, wordIndex) => (
-          <motion.span
-            key={word + wordIndex}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{
-              delay: wordIndex * 0.3,
-              duration: 0.3,
-            }}
-            className="inline-block whitespace-nowrap"
-          >
-            {word.split("").map((letter, letterIndex) => (
-              <motion.span
-                key={word + letterIndex}
-                initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  delay: wordIndex * 0.3 + letterIndex * 0.05,
-                  duration: 0.2,
-                }}
-                className="inline-block  text-4xl"
-              >
-                {letter}
-              </motion.span>
-            ))}
-            <span className="inline-block">&nbsp;</span>
-          </motion.span>
-        ))}
+        <LineSplit text={spec.title} wordDelay={0.25} letterDelay={0.045} className={spec.titleClassName} />
+        {spec.subtitle ? (
+          <LineSplit text={spec.subtitle} wordDelay={0.12} letterDelay={0.03} className={cn("mt-1", spec.subtitleClassName)} />
+        ) : null}
       </motion.div>
     </AnimatePresence>
+  );
+};
+
+const LineSplit = ({
+  text,
+  wordDelay = 0.3,
+  letterDelay = 0.05,
+  className,
+}: {
+  text: string;
+  wordDelay?: number;
+  letterDelay?: number;
+  className?: string;
+}) => {
+  const words = useMemo(() => text.split(" "), [text]);
+  return (
+    <div className={cn("whitespace-nowrap", className)}>
+      {words.map((w, wi) => (
+        <motion.span
+          key={`${w}-${wi}`}
+          initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ delay: wi * wordDelay, duration: 0.3 }}
+          className="inline-block"
+        >
+          {w.split("").map((ch, ci) => (
+            <motion.span
+              key={`${w}-${ci}`}
+              initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ delay: wi * wordDelay + ci * letterDelay, duration: 0.2 }}
+              className="inline-block align-baseline"
+            >
+              {ch}
+            </motion.span>
+          ))}
+          <span className="inline-block">&nbsp;</span>
+        </motion.span>
+      ))}
+    </div>
   );
 };
