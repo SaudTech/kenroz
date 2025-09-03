@@ -64,7 +64,7 @@ export default function CareersPage() {
               <ButtonLink href="#open-roles">View open roles</ButtonLink>
               <OpenInformativeDialog
                 title="Refer a Candidate"
-                description="We're always on the lookout for exceptional talent. If you know someone who would be a strong addition to our team, we’d love to hear from you. Please send their details to hr@kenroz.com."
+                description="We're always on the lookout for exceptional talent. If you know someone who would be a strong addition to our team, we’d love to hear from you. Please send their details to support@kenroz.com."
               >
                 <ButtonLink variant="outline" className="text-white">
                   Refer a friend
@@ -158,7 +158,7 @@ export default function CareersPage() {
       {/* CTA */}
       <EngagementSection
         title="Ready to apply?"
-        description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to hr@kenroz.com."
+        description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to support@kenroz.com."
         button1Url="/contact-us"
         button1Text="Apply now"
       />

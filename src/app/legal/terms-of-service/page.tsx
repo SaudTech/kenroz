@@ -262,12 +262,12 @@ export default function TermsOfServicePage() {
         <h2 className="text-xl font-semibold">19. Contact Us</h2>
         <p>
           For questions about these Terms, please contact us at{" "}
-          <a href="mailto:legal@kenroz.com" className="underline">
-            legal@kenroz.com
+          <a href="mailto:support@kenroz.com" className="underline">
+            support@kenroz.com
           </a>
           . For data-protection inquiries, contact{" "}
-          <a href="mailto:privacy@kenroz.com" className="underline">
-            privacy@kenroz.com
+          <a href="mailto:support@kenroz.com" className="underline">
+            support@kenroz.com
           </a>
           .
         </p>

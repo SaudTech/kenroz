@@ -443,12 +443,12 @@ export default function AcceptableUsePolicyPage() {
           </h2>
           <p>
             To report abuse or suspected AUP violations, email{" "}
-            <a href="mailto:abuse@kenroz.com" className="underline">
-              abuse@kenroz.com
+            <a href="mailto:support@kenroz.com" className="underline">
+              support@kenroz.com
             </a>{" "}
             with relevant logs/headers/URLs. For security vulnerabilities, email{" "}
-            <a href="mailto:security@kenroz.com" className="underline">
-              security@kenroz.com
+            <a href="mailto:support@kenroz.com" className="underline">
+              support@kenroz.com
             </a>
             . Do not publicly disclose vulnerabilities until we confirm
             remediation or provide guidance.
@@ -462,8 +462,8 @@ export default function AcceptableUsePolicyPage() {
           <p>
             We respond to valid legal process consistent with applicable law.
             Requests should be addressed to{" "}
-            <a href="mailto:legal@kenroz.com" className="underline">
-              legal@kenroz.com
+            <a href="mailto:support@kenroz.com" className="underline">
+              support@kenroz.com
             </a>
             . Emergency disclosure requests must include sufficient context to
             assess imminent harm.
@@ -484,20 +484,20 @@ export default function AcceptableUsePolicyPage() {
           <ul className="list-disc pl-5 space-y-2">
             <li>
               Abuse Desk:{" "}
-              <a href="mailto:abuse@kenroz.com" className="underline">
-                abuse@kenroz.com
+              <a href="mailto:support@kenroz.com" className="underline">
+                support@kenroz.com
               </a>
             </li>
             <li>
               Security:{" "}
-              <a href="mailto:security@kenroz.com" className="underline">
-                security@kenroz.com
+              <a href="mailto:support@kenroz.com" className="underline">
+                support@kenroz.com
               </a>
             </li>
             <li>
               Legal:{" "}
-              <a href="mailto:legal@kenroz.com" className="underline">
-                legal@kenroz.com
+              <a href="mailto:support@kenroz.com" className="underline">
+                support@kenroz.com
               </a>
             </li>
           </ul>

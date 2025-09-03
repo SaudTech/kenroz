@@ -121,7 +121,7 @@ export default function RefundCancellationPolicyPage() {
       <section id="process" className="space-y-4 mb-8">
         <h2 className="text-xl font-semibold">8. How to Request a Refund/Cancellation</h2>
         <ol className="list-decimal pl-5 space-y-2">
-          <li>Email <a href="mailto:billing@kenroz.com" className="underline">billing@kenroz.com</a> or submit a ticket from your account.</li>
+          <li>Email <a href="mailto:support@kenroz.com" className="underline">support@kenroz.com</a> or submit a ticket from your account.</li>
           <li>Provide account email, invoice/order ID, and reason.</li>
           <li>For Services: include SOW/project name, milestone details, and acceptance notes.</li>
           <li>We may request logs/screenshots for Product issues. Reviews in 5–7 business days; approved refunds in 7–14 business days.</li>
@@ -146,9 +146,9 @@ export default function RefundCancellationPolicyPage() {
       <section id="contact" className="space-y-4">
         <h2 className="text-xl font-semibold">12. Contact</h2>
         <ul className="list-disc pl-5 space-y-2">
-          <li>Billing & Refunds: <a href="mailto:billing@kenroz.com" className="underline">billing@kenroz.com</a></li>
+          <li>Billing & Refunds: <a href="mailto:support@kenroz.com" className="underline">support@kenroz.com</a></li>
           <li>Support: <a href="mailto:support@kenroz.com" className="underline">support@kenroz.com</a></li>
-          <li>Legal: <a href="mailto:legal@kenroz.com" className="underline">legal@kenroz.com</a></li>
+          <li>Legal: <a href="mailto:support@kenroz.com" className="underline">support@kenroz.com</a></li>
         </ul>
       </section>
     </PageLayout>

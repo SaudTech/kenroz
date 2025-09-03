@@ -241,14 +241,14 @@ export default function PrivacyPolicyPage() {
           <ul className="list-disc pl-5 space-y-2">
             <li>
               By email (general inquiries):{" "}
-              <a href="mailto:privacy@kenroz.com" className="underline">
-                privacy@kenroz.com
+              <a href="mailto:support@kenroz.com" className="underline">
+                support@kenroz.com
               </a>
             </li>
             <li>
               By email (legal inquiries):{" "}
-              <a href="mailto:legal@kenroz.com" className="underline">
-                legal@kenroz.com
+              <a href="mailto:support@kenroz.com" className="underline">
+                support@kenroz.com
               </a>
             </li>
           </ul>
