@@ -159,7 +159,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${font.className} antialiased min-h-screen bg-white overflow-x-hidden`}
+        className={`${font.className} antialiased min-h-screen bg-background overflow-x-hidden`}
       >
         <Analytics />
         <PerformanceOptimizer />
@@ -167,7 +167,7 @@ export default function RootLayout({
           <Navbar />
           <main className="mt-[112px]">{children}</main>
 
-          <Section is="even" className="bg-black">
+          <Section is="even" className="bg-navbar">
             <Footer />
           </Section>
         </SiteGuard>

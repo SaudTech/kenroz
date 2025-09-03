@@ -254,7 +254,7 @@ export default function ProductsPage() {
                         </div>
 
                         {/* Subtle compliance / assurance line */}
-                        <p className="mt-4 text-xs text-muted-foreground/70">
+                        <p className="mt-4 text-sm text-foreground">
                           {product.footerText}
                         </p>
                       </div>

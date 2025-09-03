@@ -5,8 +5,9 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ButtonLink } from "../Navbar";
 import { ShieldUser } from "lucide-react";
-import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
+import { useSectionVariants, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
+import SectionHeading from "../typography/SectionHeading";
 
 type Partner = {
   id: "emvive" | "arcgen" | string;
@@ -112,22 +113,13 @@ function PartnerCard({ p, index }: { p: Partner; index: number }) {
 }
 
 export default function StrategicPartner() {
-  const { fromLeft } = useSectionVariants();
 
   return (
     <section className="w-full" id="strategic-partners">
       <div className="relative z-[4] mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* Title on top (kept) */}
-        <motion.h2
-          variants={fromLeft}
-          initial="hidden"
-          whileInView="show"
-          viewport={view}
-          whileHover={hoverScale}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
-        >
-          Strategic <span className="block text-primary">Partners</span>
-        </motion.h2>
+        <SectionHeading blackText="Strategic" primaryText="Partners" />
+
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* LEFT: Cards (kept left on desktop) */}

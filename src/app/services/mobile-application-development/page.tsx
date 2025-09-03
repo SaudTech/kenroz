@@ -138,7 +138,8 @@ const StoreBadge = ({
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
     useSectionVariants();
   const Icon = kind === "ios" ? AppleAppStore : GooglePlaystore;
-  const text = label ?? (kind === "ios" ? "iOS (App Store)" : "Android (Google Play)");
+  const text =
+    label ?? (kind === "ios" ? "iOS (App Store)" : "Android (Google Play)");
   const variants =
     kind === "ios"
       ? slideInFromLeftWithDelay(delay, 60, 0.6, true)
@@ -169,10 +170,8 @@ const StoreBadge = ({
 };
 
 export default function MobileApplicationDevelopmentPage() {
-  const {
-    slideInFromLeftWithDelay,
-    slideInFromRightWithDelay,
-  } = useSectionVariants();
+  const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
+    useSectionVariants();
 
   return (
     <main>
@@ -192,7 +191,8 @@ export default function MobileApplicationDevelopmentPage() {
                 custom={0}
                 whileHover={hoverScale}
               >
-                Mobile Application <span className="text-primary">Development</span>
+                Mobile Application{" "}
+                <span className="text-primary">Development</span>
               </motion.h1>
 
               <motion.p
@@ -216,7 +216,9 @@ export default function MobileApplicationDevelopmentPage() {
                   variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
                   custom={6}
                 >
-                  <ButtonLink href="/contact-us?p=mobile-apps">Get Started</ButtonLink>
+                  <ButtonLink href="/contact-us?p=mobile-apps">
+                    Get Started
+                  </ButtonLink>
                 </motion.div>
                 <motion.div
                   initial="hidden"
@@ -224,7 +226,11 @@ export default function MobileApplicationDevelopmentPage() {
                   variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
                   custom={7}
                 >
-                  <ButtonLink variant="outline" href="/contact-us" className="text-black">
+                  <ButtonLink
+                    variant="outline"
+                    href="/contact-us"
+                    className="text-black"
+                  >
                     Have inquiries?
                   </ButtonLink>
                 </motion.div>
@@ -330,7 +336,9 @@ export default function MobileApplicationDevelopmentPage() {
                 <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary">
                   <a.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <h3 className="mb-3 text-center text-2xl font-bold">{a.title}</h3>
+                <h3 className="mb-3 text-center text-2xl font-bold">
+                  {a.title}
+                </h3>
                 <p className="mb-6 text-center">{a.description}</p>
 
                 <h4 className="mb-2 font-semibold">Technologies</h4>
@@ -350,7 +358,9 @@ export default function MobileApplicationDevelopmentPage() {
                   {a.pros.map((p) => (
                     <li key={p} className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-primary-foreground">{p}</span>
+                      <span className="text-sm text-primary-foreground">
+                        {p}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -404,7 +414,9 @@ export default function MobileApplicationDevelopmentPage() {
                 <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                   <f.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="mb-2 text-center text-xl font-bold">{f.title}</h3>
+                <h3 className="mb-2 text-center text-xl font-bold">
+                  {f.title}
+                </h3>
                 <p className="text-center">{f.description}</p>
               </motion.li>
             ))}
@@ -415,178 +427,185 @@ export default function MobileApplicationDevelopmentPage() {
       <PageDividerTwo />
 
       {/* Platform Support */}
-<Section is="odd" id="platforms" className="py-20 pt-0">
-  <div className="container mx-auto px-4">
-    <div className="mb-12 text-center">
-      <motion.h2
-        className="mb-4 text-4xl font-bold text-foreground"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-        custom={0}
-        viewport={{ once: true }}
-        whileHover={hoverScale}
-      >
-        Supported Platforms
-      </motion.h2>
-      <motion.p
-        className="text-xl text-foreground"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-        custom={1}
-        viewport={{ once: true }}
-      >
-        We design, build, and ship for <b>iOS</b>, <b>Android</b>, or{" "}
-        <b>both</b>—native or cross-platform.
-      </motion.p>
-    </div>
+      <Section is="odd" id="platforms" className="py-20 pt-0">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 text-center">
+            <motion.h2
+              className="mb-4 text-4xl font-bold text-foreground"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+              custom={0}
+              viewport={{ once: true }}
+              whileHover={hoverScale}
+            >
+              Supported Platforms
+            </motion.h2>
+            <motion.p
+              className="text-xl text-foreground"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+              custom={1}
+              viewport={{ once: true }}
+            >
+              We design, build, and ship for <b>iOS</b>, <b>Android</b>, or{" "}
+              <b>both</b>—native or cross-platform.
+            </motion.p>
+          </div>
 
-    {/* Cards */}
-    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {/* iOS */}
-      <motion.div
-        className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-lg"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-        viewport={{ once: true, amount: 0.4 }}
-        whileHover={hoverScale}
-      >
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gray-900">
-          <AppleAppStore className="h-10 w-10" />
-        </div>
-        <h3 className="mb-2 text-2xl font-bold text-foreground">iOS Development</h3>
-        <p className="mb-6 text-foreground">
-          Native apps using Swift/SwiftUI for high performance and HIG-compliant UX.
-        </p>
-        <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
-          <span>iPhone</span>
-          <span>•</span>
-          <span>iPad</span>
-        </div>
-      </motion.div>
+          {/* Cards */}
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* iOS */}
+            <motion.div
+              className="rounded-2xl bg-card p-8 text-center shadow-lg"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
+              viewport={{ once: true, amount: 0.4 }}
+              whileHover={hoverScale}
+            >
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gray-900">
+                <AppleAppStore className="h-10 w-10" />
+              </div>
+              <h3 className="mb-2 text-2xl font-bold text-foreground">
+                iOS Development
+              </h3>
+              <p className="mb-6 text-foreground">
+                Native apps using Swift/SwiftUI for high performance and
+                HIG-compliant UX.
+              </p>
+              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+                <span>iPhone</span>
+                <span>•</span>
+                <span>iPad</span>
+              </div>
+            </motion.div>
 
-      {/* Android */}
-      <motion.div
-        className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-2xl"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-        viewport={{ once: true, amount: 0.4 }}
-        whileHover={hoverScale}
-      >
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-card">
-          <GooglePlaystore className="h-10 w-10" />
-        </div>
-        <h3 className="mb-2 text-2xl font-bold text-foreground">Android Development</h3>
-        <p className="mb-6 text-foreground">
-          Native apps using Kotlin/Jetpack for Material-compliant, device-ready UI.
-        </p>
-        <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
-          <span>Smartphones</span>
-          <span>•</span>
-          <span>Tablets</span>
-        </div>
-      </motion.div>
+            {/* Android */}
+            <motion.div
+              className="rounded-2xl bg-card p-8 text-center shadow-2xl"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
+              viewport={{ once: true, amount: 0.4 }}
+              whileHover={hoverScale}
+            >
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-card">
+                <GooglePlaystore className="h-10 w-10" />
+              </div>
+              <h3 className="mb-2 text-2xl font-bold text-foreground">
+                Android Development
+              </h3>
+              <p className="mb-6 text-foreground">
+                Native apps using Kotlin/Jetpack for Material-compliant,
+                device-ready UI.
+              </p>
+              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+                <span>Smartphones</span>
+                <span>•</span>
+                <span>Tablets</span>
+              </div>
+            </motion.div>
 
-      {/* Both */}
-      <motion.div
-        className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-lg"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromRightWithDelay(10, 80, 0.7, true)}
-        viewport={{ once: true, amount: 0.4 }}
-        whileHover={hoverScale}
-      >
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-gray-900 to-primary/90">
-          <div className="relative">
-            <AppleAppStore className="h-8 w-8 opacity-95" />
-            <GooglePlaystore className="h-8 w-8 absolute -right-4 -bottom-3 opacity-95" />
+            {/* Both */}
+            <motion.div
+              className="rounded-2xl bg-card p-8 text-center shadow-lg"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromRightWithDelay(10, 80, 0.7, true)}
+              viewport={{ once: true, amount: 0.4 }}
+              whileHover={hoverScale}
+            >
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-gray-900 to-primary/90">
+                <div className="relative">
+                  <AppleAppStore className="h-8 w-8 opacity-95" />
+                  <GooglePlaystore className="h-8 w-8 absolute -right-4 -bottom-3 opacity-95" />
+                </div>
+              </div>
+              <h3 className="mb-2 text-2xl font-bold text-foreground">
+                Both Platforms
+              </h3>
+              <p className="mb-6 text-foreground">
+                Single codebase (React Native/Flutter) design system, unified
+                analytics.
+              </p>
+              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+                <span>Reuseable code</span>
+                <span>•</span>
+                <span>Faster development</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Divider */}
+          <div className="mx-auto my-12 h-px w-full max-w-6xl bg-border" />
+
+          {/* Publishing & Distribution */}
+          <div className="mx-auto max-w-6xl">
+            <motion.h4
+              className="mb-4 text-center text-xl font-semibold text-foreground"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromLeftWithDelay(10, 60, 0.6)}
+              viewport={{ once: true }}
+            >
+              Publishing & Distribution
+            </motion.h4>
+
+            <motion.ul
+              className="mb-10 flex flex-wrap items-center justify-center gap-2"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromRightWithDelay(10, 60, 0.6)}
+              viewport={{ once: true }}
+            >
+              {[
+                "App Store Connect",
+                "TestFlight",
+                "Google Play Console",
+                "Firebase App Distribution",
+                "Fastlane CI/CD",
+              ].map((t, i) => (
+                <motion.li
+                  key={t}
+                  className="rounded-full bg-card px-3 py-1 text-sm text-card-foreground"
+                  variants={slideInFromLeftWithDelay(10 + i, 40, 0.5)}
+                >
+                  {t}
+                </motion.li>
+              ))}
+            </motion.ul>
+
+            {/* Store-readiness checklist */}
+            <motion.div
+              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              initial="hidden"
+              whileInView="visible"
+              variants={slideInFromLeftWithDelay(12, 60, 0.6)}
+              viewport={{ once: true }}
+            >
+              {[
+                "Privacy labels (iOS) & Data Safety (Play)",
+                "App signing, certs & provisioning",
+                "Push notifications & deep links",
+                "IAP / subscriptions & receipts",
+                "Screenshots, metadata & ASO",
+                "Crash/perf monitoring & alerts",
+              ].map((item, i) => (
+                <motion.div
+                  key={item}
+                  className="flex items-start gap-2 rounded-xl bg-card p-4 text-card-foreground"
+                  variants={slideInFromRightWithDelay(12 + i, 60, 0.6)}
+                >
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
+                  <span className="text-sm">{item}</span>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
-        <h3 className="mb-2 text-2xl font-bold text-foreground">Both Platforms</h3>
-        <p className="mb-6 text-foreground">
-          Single codebase (React Native/Flutter) design system, unified analytics.
-        </p>
-        <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
-          <span>Reuseable code</span>
-          <span>•</span>
-          <span>Faster development</span>
-        </div>
-      </motion.div>
-    </div>
-
-    {/* Divider */}
-    <div className="mx-auto my-12 h-px w-full max-w-6xl bg-border" />
-
-    {/* Publishing & Distribution */}
-    <div className="mx-auto max-w-6xl">
-      <motion.h4
-        className="mb-4 text-center text-xl font-semibold text-foreground"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromLeftWithDelay(10, 60, 0.6)}
-        viewport={{ once: true }}
-      >
-        Publishing & Distribution
-      </motion.h4>
-
-      <motion.ul
-        className="mb-10 flex flex-wrap items-center justify-center gap-2"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromRightWithDelay(10, 60, 0.6)}
-        viewport={{ once: true }}
-      >
-        {[
-          "App Store Connect",
-          "TestFlight",
-          "Google Play Console",
-          "Firebase App Distribution",
-          "Fastlane CI/CD",
-        ].map((t, i) => (
-          <motion.li
-            key={t}
-            className="rounded-full border border-border bg-card px-3 py-1 text-sm text-card-foreground"
-            variants={slideInFromLeftWithDelay(10 + i, 40, 0.5)}
-          >
-            {t}
-          </motion.li>
-        ))}
-      </motion.ul>
-
-      {/* Store-readiness checklist */}
-      <motion.div
-        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        initial="hidden"
-        whileInView="visible"
-        variants={slideInFromLeftWithDelay(12, 60, 0.6)}
-        viewport={{ once: true }}
-      >
-        {[
-          "Privacy labels (iOS) & Data Safety (Play)",
-          "App signing, certs & provisioning",
-          "Push notifications & deep links",
-          "IAP / subscriptions & receipts",
-          "Screenshots, metadata & ASO",
-          "Crash/perf monitoring & alerts",
-        ].map((item, i) => (
-          <motion.div
-            key={item}
-            className="flex items-start gap-2 rounded-xl border border-border bg-card p-4 text-card-foreground"
-            variants={slideInFromRightWithDelay(12 + i, 60, 0.6)}
-          >
-            <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
-            <span className="text-sm">{item}</span>
-          </motion.div>
-        ))}
-      </motion.div>
-
-    </div>
-  </div>
-</Section>
-
+      </Section>
 
       <PageDividerTwo />
 

@@ -8,6 +8,7 @@ import { Check } from "lucide-react";
 import { ButtonLink } from "../Navbar";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
+import SectionHeading from "../typography/SectionHeading";
 
 interface Company {
   name: string;
@@ -39,7 +40,7 @@ export default function OurClients() {
     >
       <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* ✅ Put border around actual content */}
-        <div className="rounded-2xl bg-gray-100 shadow-md border overflow-hidden border-solid border-black px-6 py-10 md:px-10 md:py-14 relative">
+        <div className="rounded-2xl bg-card-secondary shadow-md border overflow-hidden border-solid border-black px-6 py-10 md:px-10 md:py-14 relative">
           <svg className="absolute top-0 -left-[15%] h-[35rem] w-[35rem] " viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path
               fill="#ebebeb"
@@ -55,16 +56,8 @@ export default function OurClients() {
             />
           </svg>
 
-          <motion.h2
-            variants={fromLeft}
-            initial="hidden"
-            whileInView="show"
-            viewport={view}
-            whileHover={hoverScale}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
-          >
-            Our <span className="block text-primary">Clients</span>
-          </motion.h2>
+          
+          <SectionHeading blackText="Our" primaryText="Clients" />
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
             {/* LEFT: Text */}

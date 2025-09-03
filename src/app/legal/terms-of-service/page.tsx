@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function TermsOfServicePage() {
   return (
     <PageLayout title="Terms of Service Agreement" subtitle="Please read these terms carefully before using our services.">
-      <div className="text-sm text-muted-foreground mb-6">Last updated: August 26, 2025</div>
+      <div className="text-sm text-foreground mb-6">Last updated: August 26, 2025</div>
 
       {/* Quick nav */}
       <nav aria-label="Table of contents" className="mb-8 rounded-xl border bg-card/60 backdrop-blur-sm p-4">

@@ -21,7 +21,7 @@ export default function RefundCancellationPolicyPage() {
       title="Refund & Cancellation Policy"
       subtitle="How refunds, cancellations, and credits work for our products and services."
     >
-      <div className="text-sm text-muted-foreground mb-6">Last updated: August 26, 2025</div>
+      <div className="text-sm mb-6">Last updated: August 26, 2025</div>
 
       {/* Quick nav */}
       <nav aria-label="Table of contents" className="mb-8 rounded-xl border bg-card/60 backdrop-blur-sm p-4">
@@ -85,7 +85,7 @@ export default function RefundCancellationPolicyPage() {
         <p>Cancel any time; access continues until the end of the billing period. No pro-rated refunds for partial months.</p>
         <h3 className="font-medium">4.3 Annual Subscriptions</h3>
         <p>Cancel any time; access continues until term end. Pro-rated refunds are not provided by default once the term begins.</p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm">
           Exception: material service outage beyond 7 consecutive days (outside scheduled maintenance and not caused by your environment) may qualify for pro-rated credits at our discretion.
         </p>
         <h3 className="font-medium">4.4 Upgrades & Downgrades</h3>

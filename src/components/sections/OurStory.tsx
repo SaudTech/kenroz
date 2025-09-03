@@ -6,6 +6,7 @@ import { Brain, Handshake, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
+import SectionHeading from "../typography/SectionHeading";
 
 function SectionHeader({
   title,
@@ -66,17 +67,8 @@ export default function OurStory() {
     <section className="relative w-full">
       <div className="mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* Typewriter Heading */}
+        <SectionHeading blackText="Who" primaryText="We Are" />
 
-        <motion.h2
-          variants={fromLeft}
-          initial="hidden"
-          whileInView="show"
-          viewport={view}
-          whileHover={hoverScale}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
-        >
-          Who <span className="block text-primary">We Are</span>
-        </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Side */}

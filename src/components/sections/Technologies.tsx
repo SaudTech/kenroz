@@ -12,6 +12,7 @@ import {
 import { Check } from "lucide-react";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
+import SectionHeading from "../typography/SectionHeading";
 
 const EXCLUDED_EXPORTS = new Set(["default", "__esModule"]);
 
@@ -53,21 +54,13 @@ export default function Technologies() {
       .filter(([k, v]) => !EXCLUDED_EXPORTS.has(k) && typeof v === "function")
       .map(([name, Comp]) => [humanize(name), Comp]);
   }, []);
-  const { fromLeft, fromRight } = useSectionVariants();
+  const { fromLeft } = useSectionVariants();
 
   return (
     <section id="tech" className="py-20 md:py-24">
       <div className="relative mx-auto max-w-7xl text-center px-4">
-        <motion.h2
-          variants={fromLeft}
-          initial="hidden"
-          whileInView="show"
-          viewport={view}
-          whileHover={hoverScale}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
-        >
-          Our <span className="block text-primary">Technologies</span>
-        </motion.h2>
+        <SectionHeading blackText="Our" primaryText="Technologies" />
+
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20">
           {/* LEFT: Text */}

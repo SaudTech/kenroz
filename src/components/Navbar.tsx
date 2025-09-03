@@ -74,7 +74,7 @@ export default function Navbar(): JSX.Element {
       <motion.nav
         initial={false}
         animate={{
-          backgroundColor: scrolled ? "white" : "black",
+          backgroundColor: scrolled ? "var(--background)" : "var(--navbar)",
           transition: { duration: 0.3, ease: "easeInOut" },
         }}
         className="fixed top-0 left-0 right-0 z-[120] p-4 py-6 backdrop-blur-xl shadow-sm"
@@ -106,7 +106,7 @@ export default function Navbar(): JSX.Element {
             <div
               className={cn(
                 "hidden lg:flex text-xl items-center space-x-0",
-                scrolled ? "text-black" : "text-white"
+                scrolled ? "text-navbar-foreground" : "text-card-foreground"
               )}
             >
               {MAIN_LINKS.map((item, idx) => (
@@ -144,16 +144,16 @@ export default function Navbar(): JSX.Element {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen((v) => !v)}
-              className="lg:hidden p-2 rounded-lg hover:bg-[#fffde7] transition-colors duration-200"
+              className="lg:hidden p-2 rounded-lg hover:bg-background transition-colors duration-200"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-nav"
               type="button"
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6 text-gray-700" />
+                <X className="w-6 h-6 text-foreground" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className="w-6 h-6 text-foreground" />
               )}
             </button>
           </div>
@@ -169,7 +169,7 @@ export default function Navbar(): JSX.Element {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
                 className="lg:hidden overflow-hidden"
               >
-                <div className="py-4 space-y-2 border-t border-gray-200/50">
+                <div className="py-4 space-y-2 border-t border-border">
                   {MAIN_LINKS.map((item) =>
                     item.links?.length ? (
                       <MobileExpandable
@@ -238,30 +238,30 @@ function DesktopDropdown({
         className={cn(
           "px-1 py-2 font-bold text-md transition-colors duration-200 inline-flex items-center gap-1",
           scrolled
-            ? "text-black hover:text-primary"
-            : "bg-clip-text text-transparent bg-gradient-to-r from-white to-white hover:from-secondary hover:to-primary"
+            ? "text-navbar-foreground hover:text-primary"
+            : "bg-clip-text text-transparent bg-gradient-to-r from-card-foreground to-card-foreground hover:from-secondary hover:to-primary"
         )}
         aria-haspopup="menu"
         aria-expanded="false"
       >
         {item.label}
-        <ChevronDown className={cn("h-4 w-4 group-hover:text-primary", scrolled ? "text-black" : "text-card-foreground")} />
+        <ChevronDown className={cn("h-4 w-4 group-hover:text-primary", scrolled ? "text-navbar-foreground" : "text-card-foreground")} />
       </button>
 
       <div
         className={cn(
           "invisible opacity-0 z-[9999] group-hover:visible group-hover:opacity-100",
-          "absolute left-0 mt-2 w-96 rounded-xl border border-gray-200 bg-white shadow-xl transition-all duration-150"
+          "absolute left-0 mt-2 w-96 rounded-xl border border-border bg-background shadow-xl transition-all duration-150"
         )}
         role="menu"
       >
         <div className="py-4 px-2">
           {/* Column Titles in One Line */}
           <div className="flex justify-between mb-4 px-2">
-            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider">
+            <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
               About & Credibility
             </h3>
-            <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider">
+            <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
               Connections & Opportunities
             </h3>
           </div>
@@ -272,8 +272,8 @@ function DesktopDropdown({
               <ul className="space-y-1">
                 {item.links?.slice(0, 3).map((child) => {
                   const content = (
-                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-gray-50 rounded-md transition-colors">
-                      <span className="text-gray-700 group-hover:text-primary">
+                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-muted rounded-md transition-colors">
+                      <span className="text-foreground group-hover:text-primary">
                         {child.label}
                       </span>
                     </span>
@@ -309,8 +309,8 @@ function DesktopDropdown({
               <ul className="space-y-1">
                 {item.links?.slice(3).map((child) => {
                   const content = (
-                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-gray-50 rounded-md transition-colors">
-                      <span className="text-gray-700 group-hover:text-primary">
+                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-muted rounded-md transition-colors">
+                      <span className="text-foreground group-hover:text-primary">
                         {child.label}
                       </span>
                     </span>
@@ -364,7 +364,7 @@ function MobileExpandable({
       <button
         type="button"
         onClick={onToggle}
-        className="w-full text-left font-bold text-md text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-between"
+        className="w-full text-left font-bold text-md text-card-foreground hover:text-primary hover:bg-background px-4 py-3 text-base rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-between"
         aria-expanded={isOpen}
         aria-controls={`mobile-sub-${item.label}`}
       >
@@ -390,7 +390,7 @@ function MobileExpandable({
                   <Link
                     href={child.href}
                     onClick={() => onLeafClick(child)}
-                    className="block text-gray-700 hover:text-primary hover:bg-[#fffde7] px-4 py-2.5 text-base rounded-lg"
+                    className="block text-foreground hover:text-primary hover:bg-background px-4 py-2.5 text-base rounded-lg"
                   >
                     {child.label}
                   </Link>
@@ -398,7 +398,7 @@ function MobileExpandable({
                   <button
                     type="button"
                     onClick={() => onLeafClick(child)}
-                    className="w-full text-left text-gray-700 hover:text-primary hover:bg-[#fffde7] px-4 py-2.5 text-base rounded-lg"
+                    className="w-full text-left text-foreground hover:text-primary hover:bg-background px-4 py-2.5 text-base rounded-lg"
                   >
                     {child.label}
                   </button>
@@ -416,7 +416,7 @@ function MobileExpandable({
 function Separator(): JSX.Element {
   return (
     <span
-      className="mx-4 text-gray-300 select-none font-bold"
+      className="mx-4 text-muted-foreground select-none font-bold"
       aria-hidden="true"
     >
       |
@@ -445,8 +445,8 @@ function NavItem({
       className={cn(
         "px-1 py-2 text-sm font-bold text-md transition-colors duration-200",
         scrolled
-          ? "text-black hover:text-primary"
-          : "text-white hover:text-primary",
+          ? "text-navbar-foreground hover:text-primary"
+          : "text-card-foreground hover:text-primary",
         className
       )}
       onClick={onClick}
@@ -460,8 +460,8 @@ function NavItem({
       className={cn(
         "px-1 py-2 text-sm font-bold text-md transition-colors duration-200",
         scrolled
-          ? "text-black hover:text-primary"
-          : "text-white hover:text-primary",
+          ? "text-navbar-foreground hover:text-primary"
+          : "text-card-foreground hover:text-primary",
         className
       )}
     >
@@ -495,18 +495,18 @@ export function ButtonLink({
     variant === "default" &&
       `bg-gradient-to-r from-primary via-primary/90 to-secondary
        hover:from-transparent hover:via-transparent hover:to-transparent hover:text-primary hover:border-primary
-       text-white border border-primary/20 text-lg
+       text-primary-foreground border border-primary/20 text-lg
        hover:shadow-primary/25 shadow-primary/20 min-w-[235px]`,
     variant === "secondary" &&
       `bg-gradient-to-r from-primary/20 via-primary/10 to-primary/10 
        border-2 border-primary
-       text-white 
+       text-primary-foreground 
        shadow-inner hover:shadow-lg
        backdrop-blur-sm
        hover:from-primary/30 hover:via-primary/20 hover:to-primary/30`,
     variant === "outline" &&
       `bg-transparent border-2 border-primary
-       text-white hover:text-primary
+       text-card-foreground hover:text-primary
        shadow-none hover:shadow-lg hover:shadow-primary/25`,
     mobile && "w-full",
     className
@@ -543,7 +543,7 @@ function MobileNavItem({
   return href ? (
     <Link
       href={href}
-      className="flex text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] items-center"
+      className="flex text-card-foreground hover:text-primary hover:bg-background px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] items-center"
       onClick={onClick}
     >
       {text}
@@ -552,7 +552,7 @@ function MobileNavItem({
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left text-white hover:text-primary hover:bg-[#fffde7] px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className="w-full text-left text-card-foreground hover:text-primary hover:bg-background px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
     >
       {text}
     </button>

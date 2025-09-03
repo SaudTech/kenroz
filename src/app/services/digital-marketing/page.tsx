@@ -160,7 +160,7 @@ export default function DigitalMarketingPage() {
   ];
 
   return (
-    <main className="bg-white">
+    <main>
       {/* Hero */}
       <Section
         is="odd"

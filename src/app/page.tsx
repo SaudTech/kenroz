@@ -1,3 +1,4 @@
+"use client"
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Technologies from "@/components/sections/Technologies";
@@ -7,8 +8,34 @@ import OurStory from "@/components/sections/OurStory";
 import StrategicPartner from "@/components/sections/StrategicPartner";
 import OurClients from "@/components/sections/OurClients";
 import EngagementSection from "@/components/EngagementSection";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        // Remove the # from the hash
+        const elementId = hash.substring(1);
+        const element = document.getElementById(elementId);
+        if (element) {
+          // Small delay to ensure page is fully loaded
+          setTimeout(() => {
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+              inline: "nearest",
+            });
+          }, 100);
+        }
+      }
+    };
+    handleHashScroll();
+    window.addEventListener("hashchange", handleHashScroll);
+    return () => {
+      window.removeEventListener("hashchange", handleHashScroll);
+    };
+  }, []);
   return (
     <>
       <StructuredData
@@ -27,7 +54,6 @@ export default function HomePage() {
       />
 
       <div className="min-h-screen overflow-x-hidden relative">
-
         <Section is="even">
           <Hero />
         </Section>
@@ -73,7 +99,7 @@ export const Section = ({
     <section
       id={id}
       className={cn(
-        "w-full min-h-[calc(100vh-64px)] h-full overflow-hidden ",
+        "w-full min-h-[calc(100vh-64px)] h-full border-none overflow-hidden ",
         className
       )}
     >

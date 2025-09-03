@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { ButtonLink } from "../Navbar";
 import Paragraph from "../typography/Paragraph";
+import SectionHeading from "../typography/SectionHeading";
 
 // Small, focused types so props stay clean and consistent
 type ServiceItem = {
@@ -71,16 +72,8 @@ export default function Services() {
       aria-labelledby="services-heading"
     >
       <div className="relative mx-auto max-w-7xl text-center px-4  py-16 md:py-24">
-        <motion.h2
-          variants={fromLeft}
-          initial="hidden"
-          whileInView="show"
-          viewport={view}
-          whileHover={hoverScale}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center"
-        >
-          Our <span className="block text-primary">Services</span>
-        </motion.h2>
+        <SectionHeading blackText="Our" primaryText="Services" />
+
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
           {/* Cards (left on desktop) */}
@@ -126,7 +119,7 @@ export default function Services() {
           </div>
 
           {/* Text (right on desktop) */}
-          <div className="md:col-span-5 order-1 md:order-2  border-black border-solid border-2 rounded-md p-5 bg-gray-100 shadow-md">
+          <div className="md:col-span-5 order-1 md:order-2  border-black border-solid border-2 rounded-md p-5 bg-card-secondary shadow-md">
             <div className="md:sticky  text-start md:top-20">
               <motion.p
                 className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold"
@@ -145,7 +138,7 @@ export default function Services() {
               </Paragraph>
 
               {/* Added supporting content: quick value bullets + CTA */}
-              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+              <ul className="mt-6 space-y-3 text-sm text-foreground">
                 {[
                   "Enterprise-grade security & compliance",
                   "Pixel-perfect design consistency",

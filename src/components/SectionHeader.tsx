@@ -29,7 +29,7 @@ export default function SectionHeader({
       {description ? (
         <p
           className={cn(
-            "mt-4 text-base md:text-lg leading-relaxed text-muted-foreground max-w-prose",
+            "mt-4 text-base md:text-lg leading-relaxed text-foreground max-w-prose",
             descriptionClassName
           )}
         >
