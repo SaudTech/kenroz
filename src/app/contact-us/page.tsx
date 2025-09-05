@@ -41,8 +41,8 @@ const locations = [
   {
     city: "Hyderabad",
     flag: "/flags/ind.png",
-    location: "Madhura Colony, Gachibowli, Hyderabad, Telangana 500104",
-    phone: "+91-9849000000",
+    location: "Western Aqua, Hitech City, Hyderabad, Telangana",
+    phone: "+91-970-473-0500",
     operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
   },
   {
