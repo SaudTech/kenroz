@@ -355,7 +355,7 @@ export default function DigitalMarketingPage() {
       <ProcessAnimation
         steps={process}
         centerLabel="Delivery Process"
-        subtitle="From baseline to scale—transparent, iterative, and KPI-driven."
+        subtitle="From baseline to scale transparent, iterative, and KPI-driven."
         title="Process"
       />
 

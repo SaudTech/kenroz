@@ -74,7 +74,7 @@ export default function HomePage() {
         </Section>
         <EngagementSection
           title="Ready to Transform Your Business?"
-          description="Let’s explore your goals and craft the right IT solutions—whether it’s ERP, Cloud, Web, Mobile, Marketing, or Outsourcing. Partner with us to drive growth with confidence."
+          description="Let’s explore your goals and craft the right IT solutions whether it’s ERP, Cloud, Web, Mobile, Marketing, or Outsourcing. Partner with us to drive growth with confidence."
           button1Url="/contact-us"
           button1Text="Contact us"
         />

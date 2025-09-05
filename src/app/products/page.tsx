@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 import SectionHeader from "@/components/SectionHeader";
 import EngagementSection from "@/components/EngagementSection";
 
-import Paragraph from "@/components/typography/Paragraph";
+import SectionHeading from "@/components/typography/SectionHeading";
+import ProductCarousel from "./ProductCarousel";
 
 // ---------- Data ----------
 type Product = {
@@ -18,8 +19,7 @@ type Product = {
   slug: string;
   subtitle: string;
   description: string;
-  imageName: string;
-  footerText: string;
+  imageName: string | string[];
 };
 
 const products: Product[] = [
@@ -28,45 +28,40 @@ const products: Product[] = [
     slug: "people-sphere",
     subtitle: "All-in-one HR suite",
     description:
-      "Streamline the entire employee journey with an all-in-one HR platform — from hiring to offboarding, with analytics and self-service built in.",
-    imageName: "/HCM.png",
-    footerText: "Compliant • Secure • Scalable",
+      "Streamline the entire employee journey with an all-in-one HR platform   from hiring to offboarding, with analytics and self-service built in. Manage recruitment, onboarding, performance reviews, and employee data in one unified system. Reduce administrative overhead while improving employee satisfaction with self-service portals and automated workflows.",
+    imageName: ["/HCMProduct1.png", "/HCMProduct2.png", "/HCMProduct3.png"],
   },
   {
     name: "PayStream",
     slug: "pay-stream",
     subtitle: "Seamless payroll automation",
     description:
-      "Automate payroll, tax, and compliance with seamless calculations, bank integration, and transparent employee access.",
+      "Automate payroll, tax, and compliance with seamless calculations, bank integration, and transparent employee access. Handle complex salary structures, overtime calculations, and multi-country payroll requirements effortlessly. Ensure accuracy with real-time tax updates and automated compliance reporting for peace of mind.",
     imageName: "/Payroll.png",
-    footerText: "Accurate • Compliant • Reliable",
   },
   {
     name: "TaxNova",
     slug: "tax-nova",
     subtitle: "E-invoicing made effortless",
     description:
-      "Stay ZATCA-compliant with automated e-invoicing, QR codes, digital signatures, and real-time VAT submissions.",
+      "Stay ZATCA-compliant with automated e-invoicing, QR codes, digital signatures, and real-time VAT submissions. Generate compliant invoices instantly with built-in validation and automatic tax calculations. Streamline your billing process while maintaining full regulatory compliance across different jurisdictions and tax requirements.",
     imageName: "/Invoice.png",
-    footerText: "Regulation-ready • Trusted • Future-proof",
   },
   {
     name: "InsuraCore",
     slug: "insura-core",
     subtitle: "Smarter insurance operations",
     description:
-      "Simplify policy management, underwriting, claims, and customer service with a flexible, insurer-focused platform.",
+      "Simplify policy management, underwriting, claims, and customer service with a flexible, insurer-focused platform. Accelerate policy processing with intelligent automation and risk assessment tools. Enhance customer experience through streamlined claims handling and comprehensive policy management capabilities.",
     imageName: "/Insurance.png",
-    footerText: "Efficient • Integrated • Customer-centric",
   },
   {
     name: "Learnify",
     slug: "learnify",
     subtitle: "Empowering digital learning",
     description:
-      "Deliver and track engaging learning experiences with interactive courses, certifications, and mobile-first access.",
+      "Deliver and track engaging learning experiences with interactive courses, certifications, and mobile-first access. Create personalized learning paths with adaptive content and real-time progress tracking. Boost employee development with comprehensive analytics, gamification features, and seamless integration with existing HR systems.",
     imageName: "/LMS.png",
-    footerText: "Engaging • Flexible • Insight-driven",
   },
 ];
 
@@ -82,10 +77,10 @@ export default function ProductsPage() {
         if (element) {
           // Small delay to ensure page is fully loaded
           setTimeout(() => {
-            element.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'end',
-              inline: 'nearest'
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "end",
+              inline: "nearest",
             });
           }, 100);
         }
@@ -96,10 +91,10 @@ export default function ProductsPage() {
     handleHashScroll();
 
     // Handle hash changes (in case user navigates with hash)
-    window.addEventListener('hashchange', handleHashScroll);
+    window.addEventListener("hashchange", handleHashScroll);
 
     return () => {
-      window.removeEventListener('hashchange', handleHashScroll);
+      window.removeEventListener("hashchange", handleHashScroll);
     };
   }, []);
 
@@ -159,7 +154,7 @@ export default function ProductsPage() {
                 <p className="mx-auto mt-4 md:mt-6 max-w-3xl text-base md:text-lg text-white/90 leading-relaxed">
                   Powerful, flexible, and secure software that streamlines
                   operations, enhances employee experiences, and keeps you
-                  compliant — at scale.
+                  compliant at scale.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
                   <ButtonLink
@@ -185,17 +180,9 @@ export default function ProductsPage() {
       {/* ===== PRODUCTS ===== */}
       <Section is="odd" id="catalog" className="py-14 md:py-20">
         <main className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-10 md:mb-14 max-w-3xl text-center">
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight flex gap-2 justify-center">
-              Our product <span className="block text-primary">catalog</span>
-            </h2>
-            <Paragraph>
-              Select a solution to learn how it fits your organization’s
-              workflows and goals.
-            </Paragraph>
-          </div>
+          <SectionHeading blackText="Our product" primaryText="catalog" />
 
-          <div className="space-y-12 md:space-y-16">
+          <div>
             {products.map((product, idx) => {
               const imageLeft = idx % 2 === 0; // even index = left, odd index = right
               return (
@@ -212,16 +199,29 @@ export default function ProductsPage() {
                         imageLeft ? "order-1" : "order-2"
                       )}
                     >
-                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
-                        <Image
-                          src={product.imageName}
-                          alt={`${product.name} illustration`}
-                          fill
-                          className="object-cover transition-transform duration-700 hover:scale-105"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
-                        />
-                        {/* Subtle overlay for depth */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                      <div
+                        className={cn(
+                          "md:col-span-6",
+                          imageLeft ? "order-1" : "order-2"
+                        )}
+                      >
+                        {Array.isArray(product.imageName) ? (
+                          <ProductCarousel
+                            images={product.imageName}
+                            alt={product.name}
+                          />
+                        ) : (
+                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
+                            <Image
+                              src={product.imageName}
+                              alt={`${product.name} illustration`}
+                              fill
+                              className="object-cover transition-transform duration-700 hover:scale-105"
+                              sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -235,7 +235,6 @@ export default function ProductsPage() {
                       <div className="sticky top-20">
                         <div>
                           <SectionHeader
-                            subtitle={product.subtitle}
                             title={product.name}
                             description={product.description}
                             titleClassName="text-2xl md:text-4xl lg:text-5xl"
@@ -249,14 +248,9 @@ export default function ProductsPage() {
                             href={`/contact-us?p=inquire-${product.slug}`}
                             className="group relative overflow-hidden"
                           >
-                              Inquire about this product
+                            Inquire about this product
                           </ButtonLink>
                         </div>
-
-                        {/* Subtle compliance / assurance line */}
-                        <p className="mt-4 text-sm text-foreground">
-                          {product.footerText}
-                        </p>
                       </div>
                     </div>
                   </div>

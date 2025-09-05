@@ -35,7 +35,7 @@ const mobileProcess: ProcessStep[] = [
     step: "02",
     title: "Architecture & Setup",
     description:
-      "Native or cross-platform foundation, design system, environments, CI/CD (Fastlane/Gradle/Xcode Cloud).",
+      "Native or cross-platform foundation, design system, environments, CI/CD.",
     glowMs: 1200,
   },
   {
@@ -175,7 +175,7 @@ export default function MobileApplicationDevelopmentPage() {
 
   return (
     <main>
-      {/* Hero — concise value + how we work */}
+      {/* Hero   concise value + how we work */}
       <Section
         is="odd"
         className="relative grid place-items-center overflow-hidden py-20"
@@ -236,25 +236,6 @@ export default function MobileApplicationDevelopmentPage() {
                 </motion.div>
               </div>
 
-              {/* Platform badges — just to indicate capability (iOS / Android / both) */}
-              <div className="mt-6 space-y-2">
-                <motion.p
-                  className="text-sm text-foreground/70"
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={slideInFromLeftWithDelay(10, 40, 0.6)}
-                  viewport={{ once: true }}
-                >
-                  We build for <span className="font-semibold">iOS</span>,{" "}
-                  <span className="font-semibold">Android</span>, or{" "}
-                  <span className="font-semibold">both</span>.
-                </motion.p>
-
-                <div className="flex flex-wrap items-center gap-3">
-                  <StoreBadge kind="ios" delay={10} />
-                  <StoreBadge kind="android" delay={11} />
-                </div>
-              </div>
             </div>
 
             {/* Hero visual */}
@@ -450,12 +431,12 @@ export default function MobileApplicationDevelopmentPage() {
               viewport={{ once: true }}
             >
               We design, build, and ship for <b>iOS</b>, <b>Android</b>, or{" "}
-              <b>both</b>—native or cross-platform.
+              <b>both</b> native or cross-platform.
             </motion.p>
           </div>
 
           {/* Cards */}
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 text-card-foreground">
             {/* iOS */}
             <motion.div
               className="rounded-2xl bg-card p-8 text-center shadow-lg"
@@ -465,17 +446,17 @@ export default function MobileApplicationDevelopmentPage() {
               viewport={{ once: true, amount: 0.4 }}
               whileHover={hoverScale}
             >
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gray-900">
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl">
                 <AppleAppStore className="h-10 w-10" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold text-foreground">
+              <h3 className="mb-2 text-2xl font-bold">
                 iOS Development
               </h3>
-              <p className="mb-6 text-foreground">
+              <p className="mb-6">
                 Native apps using Swift/SwiftUI for high performance and
                 HIG-compliant UX.
               </p>
-              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm">
                 <span>iPhone</span>
                 <span>•</span>
                 <span>iPad</span>
@@ -494,14 +475,14 @@ export default function MobileApplicationDevelopmentPage() {
               <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-card">
                 <GooglePlaystore className="h-10 w-10" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold text-foreground">
+              <h3 className="mb-2 text-2xl font-bold">
                 Android Development
               </h3>
-              <p className="mb-6 text-foreground">
+              <p className="mb-6">
                 Native apps using Kotlin/Jetpack for Material-compliant,
                 device-ready UI.
               </p>
-              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm">
                 <span>Smartphones</span>
                 <span>•</span>
                 <span>Tablets</span>
@@ -523,14 +504,14 @@ export default function MobileApplicationDevelopmentPage() {
                   <GooglePlaystore className="h-8 w-8 absolute -right-4 -bottom-3 opacity-95" />
                 </div>
               </div>
-              <h3 className="mb-2 text-2xl font-bold text-foreground">
+              <h3 className="mb-2 text-2xl font-bold">
                 Both Platforms
               </h3>
-              <p className="mb-6 text-foreground">
+              <p className="mb-6">
                 Single codebase (React Native/Flutter) design system, unified
                 analytics.
               </p>
-              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm text-foreground/60">
+              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm">
                 <span>Reuseable code</span>
                 <span>•</span>
                 <span>Faster development</span>
@@ -609,7 +590,7 @@ export default function MobileApplicationDevelopmentPage() {
 
       <PageDividerTwo />
 
-      {/* Process Flow — near the last section */}
+      {/* Process Flow   near the last section */}
       <ProcessAnimation
         id="process"
         title="Our Delivery Process"
@@ -629,7 +610,7 @@ export default function MobileApplicationDevelopmentPage() {
       >
         <EngagementSection
           title="Ready to build your mobile app?"
-          description="Book a quick discovery call—walk out with a plan, estimate, and a clear path to launch."
+          description="Book a quick discovery call walk out with a plan, estimate, and a clear path to launch."
           button1Url="/contact-us?p=mobile-application-development"
           button1Text="Talk to us"
         />

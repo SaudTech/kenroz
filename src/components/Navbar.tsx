@@ -4,12 +4,13 @@ import React, { JSX, useCallback, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import logo from "@/../public/logo.png";
 import { cn } from "@/lib/utils";
-import PageDividerOne from "./pageDividers/PageDividerOne";
-
-type NavLink = {
+import DesktopDropdown from "./Navbar/DesktopDropdown";
+import MobileExpandable from "./Navbar/MobileExpandable";
+import MobileNavItem from "./Navbar/MobileNavItem";
+export type NavLink = {
   label: string;
   href?: string;
   sectionId?: string;
@@ -105,7 +106,7 @@ export default function Navbar(): JSX.Element {
             {/* Desktop Nav */}
             <div
               className={cn(
-                "hidden lg:flex text-xl items-center space-x-0",
+                "hidden min-[1222px]:flex text-xl items-center space-x-0",
                 scrolled ? "text-navbar-foreground" : "text-card-foreground"
               )}
             >
@@ -134,7 +135,7 @@ export default function Navbar(): JSX.Element {
             <div className="flex gap-5 items-center">
               <ButtonLink
                 href="/contact-us?p=hire"
-                className="hidden lg:inline-flex items-center font-semibold whitespace-nowrap px-8 py-3 border-primary transition-colors text-white rounded-full"
+                className="hidden min-[1222px]:inline-flex items-center font-semibold whitespace-nowrap px-8 py-3 border-primary transition-colors text-white rounded-full"
               >
                 Engage Our Experts
                 <Phone className="ms-2 h-5 w-5" />
@@ -144,16 +145,16 @@ export default function Navbar(): JSX.Element {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen((v) => !v)}
-              className="lg:hidden p-2 rounded-lg hover:bg-background transition-colors duration-200"
+              className="min-[1222px]:hidden p-2 rounded-lg hover:bg-background transition-colors duration-200"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-nav"
               type="button"
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6 text-foreground" />
+                <X className="w-6 h-6 text-white" />
               ) : (
-                <Menu className="w-6 h-6 text-foreground" />
+                <Menu className="w-6 h-6 text-white" />
               )}
             </button>
           </div>
@@ -167,7 +168,7 @@ export default function Navbar(): JSX.Element {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="lg:hidden overflow-hidden"
+                className="min-[1222px]:hidden overflow-hidden"
               >
                 <div className="py-4 space-y-2 border-t border-border">
                   {MAIN_LINKS.map((item) =>
@@ -210,205 +211,14 @@ export default function Navbar(): JSX.Element {
           </AnimatePresence>
         </div>
       </motion.nav>
-      <PageDividerOne
+      {/* <PageDividerOne
         color={"black"}
         className={cn(
           "w-full z-[60] fixed top-28 left-0 transition-all duration-300 shadow-none",
           scrolled && "opacity-0"
         )}
-      />
+      /> */}
     </>
-  );
-}
-
-/* ---------- Desktop Dropdown ---------- */
-function DesktopDropdown({
-  item,
-  onNavigate,
-  scrolled,
-}: {
-  item: NavLink;
-  onNavigate: (item: NavLink) => void;
-  scrolled: boolean;
-}) {
-  return (
-    <div className="relative group z-[9999]">
-      <button
-        type="button"
-        className={cn(
-          "px-1 py-2 font-bold text-md transition-colors duration-200 inline-flex items-center gap-1",
-          scrolled
-            ? "text-navbar-foreground hover:text-primary"
-            : "bg-clip-text text-transparent bg-gradient-to-r from-card-foreground to-card-foreground hover:from-secondary hover:to-primary"
-        )}
-        aria-haspopup="menu"
-        aria-expanded="false"
-      >
-        {item.label}
-        <ChevronDown className={cn("h-4 w-4 group-hover:text-primary", scrolled ? "text-navbar-foreground" : "text-card-foreground")} />
-      </button>
-
-      <div
-        className={cn(
-          "invisible opacity-0 z-[9999] group-hover:visible group-hover:opacity-100",
-          "absolute left-0 mt-2 w-96 rounded-xl border border-border bg-background shadow-xl transition-all duration-150"
-        )}
-        role="menu"
-      >
-        <div className="py-4 px-2">
-          {/* Column Titles in One Line */}
-          <div className="flex justify-between mb-4 px-2">
-            <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
-              About & Credibility
-            </h3>
-            <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
-              Connections & Opportunities
-            </h3>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-6">
-            {/* First Column - About & Credibility */}
-            <div>
-              <ul className="space-y-1">
-                {item.links?.slice(0, 3).map((child) => {
-                  const content = (
-                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-muted rounded-md transition-colors">
-                      <span className="text-foreground group-hover:text-primary">
-                        {child.label}
-                      </span>
-                    </span>
-                  );
-                  return (
-                    <li key={child.label} role="none">
-                      {child.href ? (
-                        <Link
-                          href={child.href}
-                          onClick={() => onNavigate(child)}
-                          role="menuitem"
-                        >
-                          {content}
-                        </Link>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() => onNavigate(child)}
-                          role="menuitem"
-                          className="w-full"
-                        >
-                          {content}
-                        </button>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            
-            {/* Second Column - Connections & Opportunities */}
-            <div>
-              <ul className="space-y-1">
-                {item.links?.slice(3).map((child) => {
-                  const content = (
-                    <span className="block group w-full text-left px-2 py-2 text-sm font-medium hover:bg-muted rounded-md transition-colors">
-                      <span className="text-foreground group-hover:text-primary">
-                        {child.label}
-                      </span>
-                    </span>
-                  );
-                  return (
-                    <li key={child.label} role="none">
-                      {child.href ? (
-                        <Link
-                          href={child.href}
-                          onClick={() => onNavigate(child)}
-                          role="menuitem"
-                        >
-                          {content}
-                        </Link>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() => onNavigate(child)}
-                          role="menuitem"
-                          className="w-full"
-                        >
-                          {content}
-                        </button>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ---------- Mobile Expandable ---------- */
-function MobileExpandable({
-  item,
-  isOpen,
-  onToggle,
-  onLeafClick,
-}: {
-  item: NavLink;
-  isOpen: boolean;
-  onToggle: () => void;
-  onLeafClick: (leaf: NavLink) => void;
-}) {
-  return (
-    <div className="rounded-lg">
-      <button
-        type="button"
-        onClick={onToggle}
-        className="w-full text-left font-bold text-md text-card-foreground hover:text-primary hover:bg-background px-4 py-3 text-base rounded-lg transition-all duration-200 min-h-[44px] flex items-center justify-between"
-        aria-expanded={isOpen}
-        aria-controls={`mobile-sub-${item.label}`}
-      >
-        <span>{item.label}</span>
-        <ChevronDown
-          className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")}
-        />
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.ul
-            id={`mobile-sub-${item.label}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="pl-2 pr-2"
-          >
-            {item.links?.map((child) => (
-              <li key={child.label} className="mt-1">
-                {child.href ? (
-                  <Link
-                    href={child.href}
-                    onClick={() => onLeafClick(child)}
-                    className="block text-foreground hover:text-primary hover:bg-background px-4 py-2.5 text-base rounded-lg"
-                  >
-                    {child.label}
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => onLeafClick(child)}
-                    className="w-full text-left text-foreground hover:text-primary hover:bg-background px-4 py-2.5 text-base rounded-lg"
-                  >
-                    {child.label}
-                  </button>
-                )}
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
-    </div>
   );
 }
 
@@ -477,12 +287,14 @@ type ButtonLinkProps = {
   variant?: "default" | "secondary" | "outline";
   mobile?: boolean;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 export function ButtonLink({
   href,
   children,
   className,
+  disabled,
   variant = "default",
   mobile = false,
   onClick,
@@ -496,7 +308,7 @@ export function ButtonLink({
       `bg-gradient-to-r from-primary via-primary/90 to-secondary
        hover:from-transparent hover:via-transparent hover:to-transparent hover:text-primary hover:border-primary
        text-primary-foreground border border-primary/20 text-lg
-       hover:shadow-primary/25 shadow-primary/20 min-w-[235px]`,
+       hover:shadow-primary/25 shadow-primary/20 max-w-[270px] w-[270px] min-w-[270px]`,
     variant === "secondary" &&
       `bg-gradient-to-r from-primary/20 via-primary/10 to-primary/10 
        border-2 border-primary
@@ -523,38 +335,13 @@ export function ButtonLink({
   }
 
   return (
-    <button type="button" onClick={onClick} className={baseClasses}>
-      <span className="relative z-10 flex items-center gap-2">{children}</span>
-    </button>
-  );
-}
-
-interface MobileNavItemProps {
-  href?: string;
-  text: string;
-  onClick?: () => void;
-}
-
-function MobileNavItem({
-  href,
-  text,
-  onClick,
-}: MobileNavItemProps): JSX.Element {
-  return href ? (
-    <Link
-      href={href}
-      className="flex text-card-foreground hover:text-primary hover:bg-background px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] items-center"
-      onClick={onClick}
-    >
-      {text}
-    </Link>
-  ) : (
     <button
       type="button"
       onClick={onClick}
-      className="w-full text-left text-card-foreground hover:text-primary hover:bg-background px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 min-h-[44px] flex items-center"
+      className={baseClasses}
+      disabled={disabled}
     >
-      {text}
+      <span className="relative z-10 flex items-center gap-2">{children}</span>
     </button>
   );
 }

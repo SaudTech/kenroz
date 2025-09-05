@@ -89,7 +89,7 @@ export default function WebApplicationDevelopmentPage() {
 
   return (
     <main>
-      {/* Hero — concise value + how we work */}
+      {/* Hero   concise value + how we work */}
       <Section
         is="odd"
         className="relative py-20 overflow-hidden grid place-items-center"
@@ -164,7 +164,7 @@ export default function WebApplicationDevelopmentPage() {
         </div>
       </Section>
 
-      {/* Features — center last row when it has only 2 items */}
+      {/* Features   center last row when it has only 2 items */}
       <Section is="odd" id="features" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
@@ -238,7 +238,7 @@ export default function WebApplicationDevelopmentPage() {
 
       <PageDividerTwo />
 
-      {/* Process Flow — near the last section */}
+      {/* Process Flow   near the last section */}
       <ProcessAnimation
         id="process"
         title="Our Delivery Process"
@@ -257,7 +257,7 @@ export default function WebApplicationDevelopmentPage() {
       >
         <EngagementSection
           title="Ready to build your web application?"
-          description="Book a quick discovery call—walk out with a plan, estimate, and a clear path to launch."
+          description="Book a quick discovery call walk out with a plan, estimate, and a clear path to launch."
           button1Url="/contact-us?p=web-application-development"
           button1Text="Talk to us"
         />

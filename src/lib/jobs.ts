@@ -14,7 +14,7 @@ export interface Job {
 }
 
 export const jobs: Job[] = [
-  // ——— Engineering ———
+  //     Engineering    
   {
     slug: "python-developer",
     title: "Python Developer",
@@ -113,7 +113,7 @@ export const jobs: Job[] = [
     department: "Engineering",
     location: "Dammam, Saudi Arabia",
     description:
-      "As a Mobile Engineer (React Native), you’ll deliver seamless, performant mobile applications across iOS and Android. You’ll own the full lifecycle of mobile development — from component design and API integration to performance tuning and release management. This role is ideal for developers passionate about mobile UX and app reliability at scale.",
+      "As a Mobile Engineer (React Native), you’ll deliver seamless, performant mobile applications across iOS and Android. You’ll own the full lifecycle of mobile development   from component design and API integration to performance tuning and release management. This role is ideal for developers passionate about mobile UX and app reliability at scale.",
     responsibilities: [
       "Design and implement new features and reusable components in React Native",
       "Integrate APIs and native modules for deep mobile platform functionality",
@@ -131,7 +131,7 @@ export const jobs: Job[] = [
     level: "Mid",
   },
 
-  // ——— Product ———
+  //     Product    
   {
     slug: "product-manager",
     title: "Product Manager",
@@ -179,7 +179,7 @@ export const jobs: Job[] = [
     level: "Senior",
   },
 
-  // ——— Design ———
+  //     Design    
   {
     slug: "product-designer",
     title: "Product Designer (UX/UI)",
@@ -227,7 +227,7 @@ export const jobs: Job[] = [
     level: "Mid",
   },
 
-  // ——— Marketing ———
+  //     Marketing    
   {
     slug: "growth-marketing-manager",
     title: "Growth Marketing Manager",
@@ -275,7 +275,7 @@ export const jobs: Job[] = [
     level: "Mid",
   },
 
-  // ——— Sales ———
+  //     Sales    
   {
     slug: "account-executive",
     title: "Account Executive (SaaS)",
@@ -323,7 +323,7 @@ export const jobs: Job[] = [
     level: "Junior",
   },
 
-  // ——— People & Talent ———
+  //     People & Talent    
   {
     slug: "hr-business-partner",
     title: "HR Business Partner",
@@ -348,7 +348,7 @@ export const jobs: Job[] = [
     level: "Senior",
   },
 
-  // ——— Operations ———
+  //     Operations    
   {
     slug: "project-manager",
     title: "Project Manager",

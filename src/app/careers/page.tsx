@@ -81,7 +81,7 @@ export default function CareersPage() {
           Why work with us
         </h2>
         <p className="mt-3 text-center text-slate-600 max-w-2xl mx-auto">
-          We empower small, focused teams to own outcomes — with the autonomy,
+          We empower small, focused teams to own outcomes   with the autonomy,
           tools, and support to do their best work.
         </p>
 
@@ -100,7 +100,7 @@ export default function CareersPage() {
             {
               icon: GraduationCap,
               title: "Learning Budget",
-              desc: "Courses, books, events — every year, no red tape.",
+              desc: "Courses, books, events   every year, no red tape.",
             },
             {
               icon: Users,

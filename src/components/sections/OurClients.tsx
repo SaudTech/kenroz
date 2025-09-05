@@ -75,16 +75,16 @@ export default function OurClients() {
                 </motion.p>
 
                 <Paragraph>
-                  Teams across construction, manufacturing, trading, and
-                  services rely on Kenroz to streamline operations and
-                  accelerate growth.
+                Delivering solutions that optimize operations and boost performance:
+
+
                 </Paragraph>
 
                 <ul className="mt-6 -space-y-5 w-full text-start">
                   {[
-                    "Robust, secure implementations with enterprise-grade standards",
-                    "Faster time-to-value with clean, scalable architecture",
-                    "Hands-on support from discovery to deployment—and beyond",
+                    "Secure, scalable systems designed for reliability",
+                    "Accelerated deployment with streamlined processes",
+                    "Comprehensive support from planning through execution and beyond",
                   ].map((item, i) => (
                     <div key={i} className="flex items-center mb-2 gap-2">
                       <span className="mt-1 rounded-full p-1">

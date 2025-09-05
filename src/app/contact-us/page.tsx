@@ -52,13 +52,13 @@ const locations = [
     phone: "+966-23-234-2342",
     operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
   },
-  {
-    city: "Houston",
-    flag: "/flags/usa.png",
-    location: "3100 Cleburne St, Houston, TX 77004, USA",
-    phone: "+1-642-234-2342",
-    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
-  },
+  // {
+  //   city: "Houston",
+  //   flag: "/flags/usa.png",
+  //   location: "3100 Cleburne St, Houston, TX 77004, USA",
+  //   phone: "+1-642-234-2342",
+  //   operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
+  // },
   {
     city: "Dubai",
     flag: "/flags/uae.png",
@@ -77,7 +77,7 @@ function LocationCard({
   operatingHours,
 }: (typeof locations)[number]) {
   return (
-    <div className="group relative rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow p-5">
+    <div className="group min-w-[280px] max-w-[280px] relative rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow p-5">
       <div className="flex items-center gap-3 mb-3">
         <div className="relative h-6 w-9 overflow-hidden rounded">
           <Image
@@ -141,7 +141,7 @@ export default async function ContactPage({
   } else if (intent === "become-a-partner") {
     heading = "Partner With Kenroz";
     description =
-      "Collaboration drives innovation. If you’re ready to partner with us, tell us about your business, and let’s explore how we can grow stronger—together.";
+      "Collaboration drives innovation. If you’re ready to partner with us, tell us about your business, and let’s explore how we can grow stronger together.";
   }  else if (intent === "work-with-kenroz") {
     heading = "Work with Kenroz";
     description = "Passionate about technology and innovation? Explore opportunities to work with us and be part of a team shaping the future of IT solutions across the globe."
@@ -185,7 +185,7 @@ export default async function ContactPage({
 
               {/* Location cards */}
               {!intent && (
-                <div className="grid sm:grid-cols-2 gap-5 mt-6">
+                <div className="flex flex-wrap justify-center gap-5 mt-6">
                   {locations.map((loc) => (
                     <LocationCard key={loc.city} {...loc} />
                   ))}
@@ -194,11 +194,11 @@ export default async function ContactPage({
             </div>
 
             {/* Right: contact form */}
-            <div className="w-full">
+            <div className="w-full h-full">
               <EnhancedContactForm
                 showContactInfo={false}
                 context={intent}
-                className="w-full"
+                className="w-full h-full"
               />
             </div>
           </div>

@@ -80,7 +80,12 @@ const deliveryModels = [
     description:
       "End-to-end delivery from discovery to go-live with proven accelerators.",
     icon: Settings,
-    features: ["Fit-Gap & Solution Design", "Configurations & Security", "Data Migration", "UAT & Go-Live"],
+    features: [
+      "Fit-Gap & Solution Design",
+      "Configurations & Security",
+      "Data Migration",
+      "UAT & Go-Live",
+    ],
     bestFor: "New rollouts, global programs, re-platforming",
   },
   {
@@ -88,15 +93,25 @@ const deliveryModels = [
     description:
       "Tailor Dynamics with plugins, PCF controls, workflows, and Power Platform.",
     icon: Wrench,
-    features: ["Plugins & PCF", "Power Automate", "Canvas/Model-Driven Apps", "Custom Reports"],
+    features: [
+      "Plugins & PCF",
+      "Power Automate",
+      "Canvas/Model-Driven Apps",
+      "Custom Reports",
+    ],
     bestFor: "Unique processes, UX, and reporting",
   },
   {
     title: "Integration & Migration",
     description:
-      "Connect Dynamics with ERPs, data lakes, and third-party apps—securely.",
+      "Connect Dynamics with ERPs, data lakes, and third-party apps securely.",
     icon: Link2,
-    features: ["Azure Integration Services", "APIs & Webhooks", "Master Data Strategy", "Legacy Data Migration"],
+    features: [
+      "Azure Integration Services",
+      "APIs & Webhooks",
+      "Master Data Strategy",
+      "Legacy Data Migration",
+    ],
     bestFor: "Hybrid stacks, phased modernization",
   },
   {
@@ -104,7 +119,12 @@ const deliveryModels = [
     description:
       "Proactive L2/L3 support, enhancements, and release management with SLAs.",
     icon: ShieldCheck,
-    features: ["SLA-backed Support", "Release/ALM", "Health & Security Reviews", "Roadmap & Enhancements"],
+    features: [
+      "SLA-backed Support",
+      "Release/ALM",
+      "Health & Security Reviews",
+      "Roadmap & Enhancements",
+    ],
     bestFor: "Run-ops, continuous improvement",
   },
 ];
@@ -118,7 +138,7 @@ export default function MicrosoftDynamic365Page() {
 
   return (
     <main>
-      {/* Hero — matches Outsourcing layout/animation */}
+      {/* Hero   matches Outsourcing layout/animation */}
       <Section
         is="odd"
         className="relative py-20 overflow-hidden grid place-items-center"
@@ -145,10 +165,12 @@ export default function MicrosoftDynamic365Page() {
                 custom={1}
                 whileHover={hoverScale}
               >
-                Unify CRM and ERP with implementations built for scale, security,
-                and measurable outcomes. Our certified consultants configure,
-                customize, and integrate Dynamics 365—backed by enterprise-grade
-                governance, DevOps, and change management.
+                Unify your CRM and ERP with solutions designed for scale,
+                security, and tangible results. Our certified consultants
+                configure, customize, and integrate Dynamics 365, reinforced by
+                enterprise-grade governance, DevOps best practices, and
+                structured change management for seamless, measurable business
+                impact.
               </motion.p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -166,7 +188,11 @@ export default function MicrosoftDynamic365Page() {
                   variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
                   custom={3}
                 >
-                  <ButtonLink variant="outline" href="/contact-us" className="text-black">
+                  <ButtonLink
+                    variant="outline"
+                    href="/contact-us"
+                    className="text-black"
+                  >
                     Have inquiries?
                   </ButtonLink>
                 </motion.div>
@@ -193,7 +219,7 @@ export default function MicrosoftDynamic365Page() {
         </div>
       </Section>
 
-      {/* “Modules” — styled like Engagement Models cards */}
+      {/* “Modules”   styled like Engagement Models cards */}
       <Section is="odd" id="d365-modules" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
@@ -219,7 +245,8 @@ export default function MicrosoftDynamic365Page() {
             viewport={{ once: true }}
             whileHover={hoverScale}
           >
-            Comprehensive capabilities across sales, service, finance, and marketing—implemented to fit your operating model.
+            Comprehensive capabilities across sales, service, finance, and
+            marketing implemented to fit your operating model.
           </motion.p>
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -277,7 +304,7 @@ export default function MicrosoftDynamic365Page() {
       {/* Decorative divider */}
       <PageDividerTwo />
 
-      {/* Delivery Services — mirrors “Engagement Models” style */}
+      {/* Delivery Services   mirrors “Engagement Models” style */}
       <Section is="odd" id="delivery-services" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
@@ -301,7 +328,8 @@ export default function MicrosoftDynamic365Page() {
             viewport={{ once: true }}
             whileHover={hoverScale}
           >
-            Choose the right path—new implementation, targeted customization, robust integrations, or SLA-backed managed services.
+            Choose the right path new implementation, targeted customization,
+            robust integrations, or SLA-backed managed services.
           </motion.p>
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -323,7 +351,9 @@ export default function MicrosoftDynamic365Page() {
                 <motion.h3 className="text-xl font-semibold mb-2 text-center">
                   {m.title}
                 </motion.h3>
-                <motion.p className="flex-1 text-center">{m.description}</motion.p>
+                <motion.p className="flex-1 text-center">
+                  {m.description}
+                </motion.p>
                 <ul className="mt-4 space-y-2 text-sm">
                   {m.features.map((f) => (
                     <motion.li key={f} className="flex items-center gap-2">
@@ -341,7 +371,7 @@ export default function MicrosoftDynamic365Page() {
         </div>
       </Section>
 
-      {/* CTA — same component/style as Outsourcing */}
+      {/* CTA   same component/style as Outsourcing */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

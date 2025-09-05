@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
+import { ButtonLink } from "../Navbar";
 
 interface FormData {
   fullName: string;
@@ -132,7 +133,7 @@ export default function EnhancedContactForm({
 
   if (isSubmitted) {
     return (
-      <div className={`w-full max-w-2xl mx-auto ${className}`}>
+      <div className={cn("w-full max-w-2xl mx-auto h-full bg-red-400", className)}>
         <Card className="border-0 shadow-2xl bg-gradient-to-br from-green-50 to-white">
           <CardContent className="text-center py-12">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
@@ -157,8 +158,8 @@ export default function EnhancedContactForm({
   }
 
   return (
-    <div className={`w-full mx-auto ${className}`} id="contact">
-      <div className={cn("grid grid-cols-2 gap-8 max-w-7xl mx-auto", !showContactInfo && "grid-cols-1")}>
+    <div className={cn("w-full mx-auto h-full", className)} id="contact">
+      <div className={cn("grid grid-cols-2 gap-8 max-w-7xl mx-auto h-full", !showContactInfo && "grid-cols-1")}>
         {/* Contact Form */}
         <Card className="border-0 w-full mx-auto shadow-2xl bg-gradient-to-br from-white to-gray-50">
           <CardHeader className="space-y-4">
@@ -168,7 +169,7 @@ export default function EnhancedContactForm({
           </CardHeader>
 
           <CardContent className="space-y-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
               {context && <input type="hidden" name="context" value={context} />}
               
               {/* Full Name Field */}
@@ -249,7 +250,7 @@ export default function EnhancedContactForm({
                   onChange={handleChange}
                   placeholder="Tell us more about your project or requirements..."
                   rows={5}
-                  className={`border-2 transition-all h-[123px] duration-200 ${
+                  className={`border-2 transition-all h-[123px] duration-200 resize-none ${
                     errors.message
                       ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                       : "border-gray-200 focus:border-primary focus:ring-primary/20"
@@ -272,27 +273,27 @@ export default function EnhancedContactForm({
                   </p>
                 </div>
               )}
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-14 rounded-full text-lg font-semibold bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Sending Message...
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    Send Message
-                    <Send className="w-5 h-5" />
-                  </div>
-                )}
-              </Button>
             </form>
           </CardContent>
+          
+          {/* Submit Button - Bottom Right */}
+          <div className="px-6 pb-6 flex justify-end">
+            <ButtonLink
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Sending Message...
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  Send Message
+                  <Send className="w-5 h-5" />
+                </div>
+              )}
+            </ButtonLink>
+          </div>
         </Card>
 
 

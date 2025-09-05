@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, AlertCircle, Upload } from "lucide-react";
+import { CheckCircle, AlertCircle, Upload, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FormData {
@@ -27,7 +27,10 @@ interface JobApplicationFormProps {
   job?: string;
 }
 
-export default function JobApplicationForm({ className = "", job }: JobApplicationFormProps) {
+export default function JobApplicationForm({
+  className = "",
+  job,
+}: JobApplicationFormProps) {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -78,8 +81,12 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
 
     if (!formData.resume) {
       newErrors.resume = "Resume is required";
-    } else {
-      const allowedTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    } else if (formData.resume) {
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
       if (!allowedTypes.includes(formData.resume.type)) {
         newErrors.resume = "Only PDF or Word documents are allowed";
       } else if (formData.resume.size > 5 * 1024 * 1024) {
@@ -91,31 +98,42 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    setFormData(prev => ({ ...prev, resume: file || null }));
+    setFormData((prev) => ({ ...prev, resume: file || null }));
     if (errors.resume) {
-      setErrors(prev => ({ ...prev, resume: "" }));
+      setErrors((prev) => ({ ...prev, resume: "" }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
     setIsSubmitting(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       console.log("Job application submitted:", formData);
       setIsSubmitted(true);
-      setFormData({ firstName: "", lastName: "", email: "", phone: "", coverLetter: "", resume: null, job });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        coverLetter: "",
+        resume: null,
+        job,
+      });
       setErrors({});
     } catch (error) {
       console.error(error);
@@ -131,9 +149,17 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
         <Card className="border-0 shadow-2xl bg-gradient-to-br from-green-50 to-white">
           <CardContent className="text-center py-12">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Application submitted!</h3>
-            <p className="text-gray-900 mb-6">We will review your profile and get back to you soon.</p>
-            <Button onClick={() => setIsSubmitted(false)} variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              Application submitted!
+            </h3>
+            <p className="text-gray-900 mb-6">
+              We will review your profile and get back to you soon.
+            </p>
+            <Button
+              onClick={() => setIsSubmitted(false)}
+              variant="outline"
+              className="border-green-500 text-green-600 hover:bg-green-50"
+            >
               Submit another response
             </Button>
           </CardContent>
@@ -143,10 +169,15 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn("w-full max-w-2xl mx-auto", className)}>
+    <form
+      onSubmit={handleSubmit}
+      className={cn("w-full max-w-2xl mx-auto", className)}
+    >
       <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-slate-50">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Job Application{job ? ` - ${job}` : ""}</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            Job Application{job ? ` - ${job}` : ""}
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -158,7 +189,9 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
                 onChange={handleChange}
                 aria-invalid={!!errors.firstName}
               />
-              {errors.firstName && <p className="text-sm text-red-600 mt-1">{errors.firstName}</p>}
+              {errors.firstName && (
+                <p className="text-sm text-red-600 mt-1">{errors.firstName}</p>
+              )}
             </div>
             <div>
               <Input
@@ -168,7 +201,9 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
                 onChange={handleChange}
                 aria-invalid={!!errors.lastName}
               />
-              {errors.lastName && <p className="text-sm text-red-600 mt-1">{errors.lastName}</p>}
+              {errors.lastName && (
+                <p className="text-sm text-red-600 mt-1">{errors.lastName}</p>
+              )}
             </div>
           </div>
           <div>
@@ -180,7 +215,9 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
               onChange={handleChange}
               aria-invalid={!!errors.email}
             />
-            {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
+            {errors.email && (
+              <p className="text-sm text-red-600 mt-1">{errors.email}</p>
+            )}
           </div>
           <div>
             <Input
@@ -191,7 +228,9 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
               onChange={handleChange}
               aria-invalid={!!errors.phone}
             />
-            {errors.phone && <p className="text-sm text-red-600 mt-1">{errors.phone}</p>}
+            {errors.phone && (
+              <p className="text-sm text-red-600 mt-1">{errors.phone}</p>
+            )}
           </div>
           <div>
             <Textarea
@@ -202,7 +241,9 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
               onChange={handleChange}
               aria-invalid={!!errors.coverLetter}
             />
-            {errors.coverLetter && <p className="text-sm text-red-600 mt-1">{errors.coverLetter}</p>}
+            {errors.coverLetter && (
+              <p className="text-sm text-red-600 mt-1">{errors.coverLetter}</p>
+            )}
           </div>
           <div>
             <Input
@@ -212,7 +253,9 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
               onChange={handleFileChange}
               aria-invalid={!!errors.resume}
             />
-            {errors.resume && <p className="text-sm text-red-600 mt-1">{errors.resume}</p>}
+            {errors.resume && (
+              <p className="text-sm text-red-600 mt-1">{errors.resume}</p>
+            )}
             {formData.resume && (
               <p className="text-sm text-gray-600 mt-1 flex items-center gap-1">
                 <Upload className="w-4 h-4" /> {formData.resume.name}
@@ -231,7 +274,27 @@ export default function JobApplicationForm({ className = "", job }: JobApplicati
           </div>
         </CardContent>
       </Card>
+      <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+        <div className="flex items-start gap-3">
+          <Mail className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-sm text-blue-800 font-medium mb-1">
+              Alternative submission method
+            </p>
+            <p className="text-sm text-blue-700">
+              You can also send your application details directly via email to{" "}
+              <a
+                href="mailto:career@kenroz.com"
+                className="font-semibold underline hover:text-blue-900"
+              >
+                career@kenroz.com
+              </a>
+              . Please include your resume, cover letter, and contact
+              information.
+            </p>
+          </div>
+        </div>
+      </div>
     </form>
   );
 }
-

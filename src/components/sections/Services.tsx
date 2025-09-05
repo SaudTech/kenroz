@@ -29,37 +29,37 @@ const services: ServiceItem[] = [
     icon: Settings,
     title: "Microsoft Dynamics 365",
     path: "microsoft-dynamic-365",
-    desc: "Smart ERP & CRM solutions tailored to your business.",
+    desc: "Smart ERP & CRM solutions to streamline your business.",
   },
   {
     icon: Cloud,
     title: "Cloud Solutions",
     path: "cloud-solutions",
-    desc: "Secure, scalable cloud infrastructure for your growth.",
+    desc: "Secure, scalable cloud infrastructure for seamless growth.",
   },
   {
     icon: Globe,
     title: "Web Application Development",
     path: "web-application-development",
-    desc: "High-performance web apps built for reliability.",
+    desc: "High-performance apps built for reliability and speed.",
   },
   {
     icon: Smartphone,
     title: "Mobile Application Development",
     path: "mobile-application-development",
-    desc: "User-friendly mobile apps that bring ideas to life.",
+    desc: "Intuitive mobile apps that bring ideas to life.",
   },
   {
     icon: Megaphone,
     title: "Digital Marketing",
     path: "digital-marketing",
-    desc: "Data-driven strategies to boost reach and engagement.",
+    desc: "Data-driven strategies to maximize reach and engagement.",
   },
   {
     icon: Users,
     title: "Outsourcing",
     path: "outsourcing",
-    desc: "Cost-efficient teams to scale operations easily.",
+    desc: "Flexible teams to scale operations efficiently.",
   },
 ] as const;
 

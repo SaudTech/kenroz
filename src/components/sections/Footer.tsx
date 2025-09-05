@@ -13,33 +13,31 @@ export default function Footer() {
 
   const handleLinkClick = useCallback((href: string) => {
     // Check if it's a hash link (starts with # or contains #)
-    if (href.includes('#')) {
-      const [path, hash] = href.split('#');
-      
+    if (href.includes("#")) {
+      const [path, hash] = href.split("#");
+
       // If it's just a hash (same page), scroll to element
-      if (path === '' || path === '/') {
+      if (path === "" || path === "/") {
         const element = document.getElementById(hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
           return;
         }
       }
-      
+
       // If it's a different page with hash, navigate and then scroll
       if (path && path !== window.location.pathname) {
         window.location.href = href;
         return;
       }
-      
+
       // Same page with hash, scroll to element
       const element = document.getElementById(hash);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
   }, []);
-
-
 
   const services = [
     { label: "Digital Marketing", href: "/services/digital-marketing" },
@@ -62,7 +60,7 @@ export default function Footer() {
     { label: "InsuraCore", href: "/products#insura-core" },
     { label: "Learnify", href: "/products#learnify" },
   ];
-  
+
   const resources = [
     { label: "About Us", href: "/#about-us" },
     { label: "Why Choose Us", href: "/#why-choose-us" },
@@ -70,7 +68,7 @@ export default function Footer() {
     { label: "Contact Us", href: "/contact-us" },
     { label: "Career", href: "/careers" },
   ];
-  
+
   const legalLinks = [
     { label: "Privacy Policy", href: "/legal/privacy-policy" },
     { label: "Terms of Service", href: "/legal/terms-of-service" },
@@ -105,7 +103,7 @@ export default function Footer() {
     >
       <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-20">
         {/* Top Grid */}
-        <div className="grid sm:gap-12 lg:gap-16 xl:gap-20 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="grid sm:gap-12  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {/* Col 1 */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-1 mb-8 sm:mb-12 lg:mb-0">
             <Image
@@ -113,7 +111,7 @@ export default function Footer() {
               alt="Kenroz Logo"
               width={200}
               height={200}
-              className="mb-6 h-auto w-auto"
+              className="mb-6 h-auto max-w-[230px] w-auto"
             />
 
             {/* Socials */}
@@ -139,7 +137,7 @@ export default function Footer() {
                 className="h-36 w-36"
               />
               <p className="text-lg text-white/80 leading-snug">
-                Grow your business by <br /> Leveraging Technology.
+                Accelerate with Technology.
               </p>
             </div>
           </div>
@@ -155,7 +153,7 @@ export default function Footer() {
                   <a
                     href={service.href}
                     onClick={(e) => {
-                      if (service.href.includes('#')) {
+                      if (service.href.includes("#")) {
                         e.preventDefault();
                         handleLinkClick(service.href);
                       }
@@ -181,7 +179,7 @@ export default function Footer() {
                     <a
                       href={product.href}
                       onClick={(e) => {
-                        if (product.href.includes('#')) {
+                        if (product.href.includes("#")) {
                           e.preventDefault();
                           handleLinkClick(product.href);
                         }
@@ -210,7 +208,7 @@ export default function Footer() {
                     <a
                       href={r.href}
                       onClick={(e) => {
-                        if (r.href.includes('#')) {
+                        if (r.href.includes("#")) {
                           e.preventDefault();
                           handleLinkClick(r.href);
                         }
@@ -238,7 +236,7 @@ export default function Footer() {
                   <a
                     href={legal.href}
                     onClick={(e) => {
-                      if (legal.href.includes('#')) {
+                      if (legal.href.includes("#")) {
                         e.preventDefault();
                         handleLinkClick(legal.href);
                       }
@@ -266,7 +264,7 @@ export default function Footer() {
                   <a
                     href={link.href}
                     onClick={(e) => {
-                      if (link.href.includes('#')) {
+                      if (link.href.includes("#")) {
                         e.preventDefault();
                         handleLinkClick(link.href);
                       }

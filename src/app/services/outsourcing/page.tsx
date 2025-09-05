@@ -128,7 +128,7 @@ export default function Page() {
                 whileHover={hoverScale}
               >
                 Accelerate delivery with dedicated teams and top-tier talent.
-                Choose a model that fits your goals—Dedicated Teams, Staff
+                Choose a model that fits your goals Dedicated Teams, Staff
                 Augmentation, or Project-Based Delivery. Our senior engineers,
                 PMs, and QA integrate with your workflows, uphold
                 enterprise-grade security, and drive measurable results across

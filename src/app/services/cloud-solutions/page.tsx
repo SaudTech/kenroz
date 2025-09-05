@@ -98,7 +98,7 @@ export default function CloudDevOpsPage() {
 
   return (
     <main>
-      {/* Hero — mirrors Outsourcing/D365 */}
+      {/* Hero   mirrors Outsourcing/D365 */}
       <Section
         is="odd"
         className="relative py-20 overflow-hidden grid place-items-center"
@@ -128,7 +128,7 @@ export default function CloudDevOpsPage() {
                 Migrate, build, and run on Azure/AWS/GCP with platform
                 engineering, GitOps, and SRE best practices. We codify your
                 infrastructure, automate delivery, and bake in security and
-                observability—so you ship faster, safer, and cheaper.
+                observability so you ship faster, safer, and cheaper.
               </motion.p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -173,7 +173,7 @@ export default function CloudDevOpsPage() {
         </div>
       </Section>
 
-      {/* Capabilities — styled like “Engagement Models” cards */}
+      {/* Capabilities   styled like “Engagement Models” cards */}
       <Section is="odd" id="cloud-capabilities" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
@@ -200,7 +200,7 @@ export default function CloudDevOpsPage() {
             whileHover={hoverScale}
           >
             Golden paths for teams, automated pipelines for apps, and paved
-            roads for infrastructure—implemented with enterprise guardrails.
+            roads for infrastructure implemented with enterprise guardrails.
           </motion.p>
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -247,7 +247,7 @@ export default function CloudDevOpsPage() {
       {/* Decorative divider */}
       <PageDividerTwo />
 
-      {/* Delivery Services — mirrors the reference grid */}
+      {/* Delivery Services   mirrors the reference grid */}
       <Section is="odd" id="delivery-services" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
@@ -271,7 +271,7 @@ export default function CloudDevOpsPage() {
             viewport={{ once: true }}
             whileHover={hoverScale}
           >
-            From first landing zone to a fully productized platform—with guardrails,
+            From first landing zone to a fully productized platform with guardrails,
             automation, and reliability baked in.
           </motion.p>
 
@@ -315,7 +315,7 @@ export default function CloudDevOpsPage() {
         </div>
       </Section>
 
-      {/* CTA — same component/style as reference */}
+      {/* CTA   same component/style as reference */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

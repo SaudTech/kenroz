@@ -113,13 +113,11 @@ function PartnerCard({ p, index }: { p: Partner; index: number }) {
 }
 
 export default function StrategicPartner() {
-
   return (
     <section className="w-full" id="strategic-partners">
       <div className="relative z-[4] mx-auto max-w-7xl px-4 py-16 md:py-24">
         {/* Title on top (kept) */}
         <SectionHeading blackText="Strategic" primaryText="Partners" />
-
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* LEFT: Cards (kept left on desktop) */}
@@ -133,17 +131,16 @@ export default function StrategicPartner() {
           <div className="order-1 md:order-2 md:pl-4">
             <div className="md:sticky md:top-28 text-center md:text-left">
               <Paragraph>
-                We partner with specialized platforms to deliver compliance,
-                automation, and intelligent customer experiences—so you launch
-                faster and scale with confidence.
+                We work with trusted strategic partners to deliver specialized
+                solutions that accelerate business growth.
               </Paragraph>
 
               {/* Value bullets (plain list, no card styling) */}
               <ul className="mt-6 -space-y-4 list-disc list-inside">
                 {[
-                  "Faster rollouts: battle-tested integrations & playbooks.",
-                  "Assured compliance: ZATCA, data privacy, and auditability.",
-                  "Lower risk: shared expertise, clear SLAs, predictable delivery.",
+                  "High On-Time Delivery",
+                  "Accelerated Go-Live",
+                  "Top Client Satisfaction",
                 ].map((text, i) => (
                   <li key={i}>
                     <Paragraph>{text}</Paragraph>
@@ -151,31 +148,11 @@ export default function StrategicPartner() {
                 ))}
               </ul>
 
-              {/* Inline stats (just text, no boxes) */}
-              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-                <Paragraph>
-                  <span className="text-2xl font-bold block">
-                    95%
-                  </span>
-                  On-time delivery
-                </Paragraph>
-                <Paragraph>
-                  <span className="text-2xl font-bold block">
-                    30%
-                  </span>
-                  Faster go-live
-                </Paragraph>
-                <Paragraph>
-                  <span className="text-2xl font-bold block">
-                    4.8 ★
-                  </span>
-                  Client rating
-                </Paragraph>
-              </div>
-
               {/* CTA */}
               <div className="mt-8 flex flex-wrap justify-end gap-3">
-                <ButtonLink href="/contact-us?p=become-a-partner">Become a partner</ButtonLink>
+                <ButtonLink href="/contact-us?p=become-a-partner">
+                  Become a partner
+                </ButtonLink>
               </div>
             </div>
           </div>

@@ -87,7 +87,7 @@ export default function CombinedShowcase() {
             viewport={view}
             whileHover={hoverScale}
           >
-            Partnerships built on delivery, security, and reliability — in their
+            Partnerships built on delivery, security, and reliability   in their
             own words.
           </motion.p>
         </div>

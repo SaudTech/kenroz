@@ -61,7 +61,6 @@ export default function Technologies() {
       <div className="relative mx-auto max-w-7xl text-center px-4">
         <SectionHeading blackText="Our" primaryText="Technologies" />
 
-
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-20">
           {/* LEFT: Text */}
           <div className="md:col-span-5 order-2 text-start md:order-1">
@@ -74,28 +73,25 @@ export default function Technologies() {
                 viewport={view}
                 whileHover={hoverScale}
               >
-                Technologies we use
+                Technologies We Rely On
               </motion.p>
 
               {/* Shorter subtitle */}
               <Paragraph>
-                Modern, scalable, and secure tools for building the future.
-              </Paragraph>
-
-              {/* Extra detail */}
-              <Paragraph>
-                From frontend frameworks to cloud-native services, we choose
-                technologies that ensure reliability, performance, and long-term
-                scalability for every project.
+                We leverage cutting-edge, scalable, and secure technologies to
+                craft solutions that perform flawlessly today and adapt
+                seamlessly for tomorrow. From modern frontend frameworks to
+                cloud-native services, every tool is chosen to maximize
+                reliability, speed, and long-term growth.
               </Paragraph>
 
               <ul className="mt-6 -space-y-4">
                 {[
-                  "Modern frameworks and libraries",
-                  "Cloud-native infrastructure",
-                  "Secure and scalable data solutions",
+                  "Next-gen frameworks & libraries",
+                  "Cloud-native, resilient infrastructure",
+                  "Secure, high-performance data solutions",
                 ].map((item, i) => (
-                  <Paragraph key={item} className="flex items-start gap-2">
+                  <Paragraph key={i} className="flex items-start gap-2">
                     <span className="mt-1 rounded-full border p-1">
                       <Check className="h-4 w-4 text-primary" />
                     </span>

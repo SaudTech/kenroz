@@ -178,7 +178,7 @@ export default function OurStory() {
               >
                 <Image
                   src="/photo-1521898284481-a5ec348cb555.avif"
-                  alt="Kenroz team collaborating — our story"
+                  alt="Kenroz team collaborating   our story"
                   fill
                   className="object-cover rounded-md"
                   priority
