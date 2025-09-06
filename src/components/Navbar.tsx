@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Phone, X } from "lucide-react";
-import logo from "@/../public/logo.png";
+import logo from "@/../public/logo_mini.png";
 import { cn } from "@/lib/utils";
 import DesktopDropdown from "./Navbar/DesktopDropdown";
 import MobileExpandable from "./Navbar/MobileExpandable";
@@ -40,7 +40,8 @@ export default function Navbar(): JSX.Element {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    // const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(false);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -78,10 +79,10 @@ export default function Navbar(): JSX.Element {
           backgroundColor: scrolled ? "var(--background)" : "var(--navbar)",
           transition: { duration: 0.3, ease: "easeInOut" },
         }}
-        className="fixed top-0 left-0 right-0 z-[120] p-4 py-6 backdrop-blur-xl shadow-sm"
+        className="fixed top-0 left-0 right-0 z-[80] p-4 px-4 py-6 backdrop-blur-xl shadow-sm"
       >
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="flex justify-between items-center h-16">
+        <div>
+          <div className="flex justify-between items-center h-10">
             {/* Logo */}
             <Link
               href="/"
@@ -97,7 +98,7 @@ export default function Navbar(): JSX.Element {
                   alt="Kenroz Logo"
                   width={200}
                   height={200}
-                  className="w-auto"
+                  className="h-auto max-w-[100px] w-auto"
                   priority
                 />
               </motion.div>

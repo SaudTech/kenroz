@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { Instagram, Facebook, Twitter, Linkedin, ArrowUp } from "lucide-react";
-import { useCallback } from "react";
+import { cloneElement, createElement, useCallback } from "react";
 
-import logo from "@/../public/logo.png";
+import logo from "@/../public/logo_full.png";
 
 export default function Footer() {
   const scrollToTop = useCallback(() => {
@@ -101,7 +101,7 @@ export default function Footer() {
       className="h-full text-white bg-black border-t border-white/10 z-[90] relative"
       aria-label="Site footer"
     >
-      <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-20">
+      <div className="container mx-auto px-4 pt-12 sm:pt-16 pb-0">
         {/* Top Grid */}
         <div className="grid sm:gap-12  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {/* Col 1 */}
@@ -111,35 +111,8 @@ export default function Footer() {
               alt="Kenroz Logo"
               width={200}
               height={200}
-              className="mb-6 h-auto max-w-[230px] w-auto"
+              className="mb-6 h-auto max-w-[230px] w-auto scale-[0.9]"
             />
-
-            {/* Socials */}
-            <div className="flex flex-wrap gap-3 mb-6">
-              {socials.map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="flex items-center justify-center w-9 h-9 rounded-full bg-white/10 hover:bg-primary transition"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-3 rounded-lg p-3 flex-col 3xl:flex-row 3xl:text-center">
-              <Image
-                src={"/certification.png"}
-                alt="certification Logo"
-                width={140}
-                height={10}
-                className="h-36 w-36"
-              />
-              <p className="text-lg text-white/80 leading-snug">
-                Accelerate with Technology.
-              </p>
-            </div>
           </div>
 
           {/* Col 2 - Services */}
@@ -225,13 +198,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 5 - Legal Center */}
+          {/* Col 5 - Connect with us */}
           <div>
             <h4 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-semibold">
-              Legal Center
+              Connect with us
             </h4>
             <ul className="space-y-3 sm:space-y-4 text-lg sm:text-xl">
-              {legalLinks.map((legal) => (
+              {socials.map((legal) => (
                 <li key={legal.label}>
                   <a
                     href={legal.href}
@@ -241,8 +214,9 @@ export default function Footer() {
                         handleLinkClick(legal.href);
                       }
                     }}
-                    className="inline-block text-white/70 hover:text-primary transition cursor-pointer"
+                    className="flex gap-2 text-white/70 hover:text-primary transition cursor-pointer"
                   >
+                    {createElement(legal.icon, { className: "h-6 w-6" })}
                     {legal.label}
                   </a>
                 </li>
@@ -252,50 +226,34 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 mt-16 sm:mt-20 pt-8 sm:pt-12">
-          {/* Quick Links */}
-          <div className="mb-8 sm:mb-10">
-            <h4 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-semibold">
-              Quick Links
-            </h4>
-            <ul className="flex flex-wrap gap-6 sm:gap-8 text-lg sm:text-xl">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      if (link.href.includes("#")) {
-                        e.preventDefault();
-                        handleLinkClick(link.href);
-                      }
-                    }}
-                    className="text-white/70 hover:text-primary transition cursor-pointer"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+        <div className="border-t border-white/10 mt-16 sm:mt-[14rem] pt-8 flex justify-center flex-col">
+          {/* Legal Center */}
+          <ul className="flex flex-wrap gap-6 sm:gap-8 text-lg sm:text-xl justify-center">
+            {legalLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={(e) => {
+                    if (link.href.includes("#")) {
+                      e.preventDefault();
+                      handleLinkClick(link.href);
+                    }
+                  }}
+                  className="text-white/70 hover:text-primary transition cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="text-lg text-white/60 flex flex-col sm:flex-row justify-center items-center">
+            <p>
+              © {new Date().getFullYear()} Kenroz Private Limited. All rights
+              reserved.
+            </p>
           </div>
         </div>
       </div>
-
-      {/* Bottom Note */}
-      <div className="text-xs sm:text-sm text-white/60 flex flex-col sm:flex-row justify-center items-center">
-        <p>
-          © {new Date().getFullYear()} Kenroz Private Limited. All rights
-          reserved.
-        </p>
-      </div>
-      {/* Scroll-to-top */}
-      <button
-        onClick={scrollToTop}
-        className="group absolute bottom-6 right-6 rounded-full border border-white/15 bg-white/10 p-3 text-white shadow-lg backdrop-blur transition-all hover:bg-primary hover:border-primary hover:shadow-xl"
-        aria-label="Back to top"
-        title="Back to top"
-      >
-        <ArrowUp className="h-5 w-5 transition group-hover:-translate-y-1" />
-      </button>
     </footer>
   );
 }

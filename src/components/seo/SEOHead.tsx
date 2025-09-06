@@ -14,7 +14,7 @@ export default function SEOHead({
   title,
   description,
   keywords = [],
-  image = '/logo.png',
+  image = '/logo_mini.png',
   url = 'https://kenroz.com',
   type = 'website',
   noindex = false
@@ -68,7 +68,7 @@ export default function SEOHead({
       
       {/* Favicon and Icons */}
       <link rel="icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" href="/logo.png" />
+      <link rel="apple-touch-icon" href="/logo_mini.png" />
     </Head>
   );
 }

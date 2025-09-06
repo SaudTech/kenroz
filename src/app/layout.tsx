@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo_mini.png",
         width: 1200,
         height: 630,
         alt: "Kenroz - IT Solutions Company",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
       "Empowering businesses to lead with clarity, transform with technology, and excel with confidence.",
     site: "@kenroz",
     creator: "@kenroz",
-    images: ["/logo.png"],
+    images: ["/logo_mini.png"],
   },
   robots: {
     index: true,
@@ -101,7 +101,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/logo.png",
+    apple: "/logo_mini.png",
   },
   manifest: "/manifest.json",
   category: "technology",
@@ -122,7 +122,7 @@ export default function RootLayout({
             description:
               "Leading IT solutions and software development company specializing in Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development, and custom software products.",
             url: "https://kenroz.com",
-            logo: "https://kenroz.com/logo.png",
+            logo: "https://kenroz.com/logo_mini.png",
             contactPoint: {
               "@type": "ContactPoint",
               telephone: "+966-XX-XXX-XXXX",
@@ -165,7 +165,7 @@ export default function RootLayout({
         <PerformanceOptimizer />
         <SiteGuard>
           <Navbar />
-          <main className="mt-[112px]">{children}</main>
+          <main className="mt-[88px]">{children}</main>
 
           <Section is="even" className="bg-navbar">
             <Footer />

@@ -15,7 +15,7 @@ export default function PerformanceOptimizer() {
       document.head.appendChild(fontLink);
 
       // Preload critical images
-      const criticalImages = ['/logo.png', '/HCM.png', '/Payroll.png'];
+      const criticalImages = ['/logo_mini.png', '/HCM.png', '/Payroll.png'];
       criticalImages.forEach(src => {
         const link = document.createElement('link');
         link.rel = 'preload';

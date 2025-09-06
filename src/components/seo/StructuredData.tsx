@@ -19,7 +19,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           "name": "Kenroz",
           "description": "Leading IT solutions and software development company specializing in Microsoft Dynamics 365, Cloud Solutions, Web & Mobile Development, and custom software products.",
           "url": "https://kenroz.com",
-          "logo": "https://kenroz.com/logo.png",
+          "logo": "https://kenroz.com/logo_mini.png",
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+966-XX-XXX-XXXX",
