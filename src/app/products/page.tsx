@@ -29,7 +29,7 @@ const products: Product[] = [
     subtitle: "All-in-one HR suite",
     description:
       "Streamline the entire employee journey with an all-in-one HR platform   from hiring to offboarding, with analytics and self-service built in. Manage recruitment, onboarding, performance reviews, and employee data in one unified system. Reduce administrative overhead while improving employee satisfaction with self-service portals and automated workflows.",
-    imageName: ["/HCMProduct1.png", "/HCMProduct2.png", "/HCMProduct3.png"],
+    imageName: "/HCM.png",
   },
   {
     name: "PayStream",

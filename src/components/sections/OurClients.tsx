@@ -4,10 +4,8 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
-import { ButtonLink } from "../Navbar";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
-import Paragraph from "../typography/Paragraph";
 import SectionHeading from "../typography/SectionHeading";
 
 interface Company {
@@ -27,11 +25,10 @@ const companies: Company[] = [
   { name: "NAJIM", logo: "/clients/NAJIM.png" },
   { name: "Premier global Trading", logo: "/clients/Premier.webp" },
   { name: "Musanadah", logo: "/clients/Musanadah.png" },
-  { name: "Arcgen", logo: "/Arcgen.png" },
 ];
 
 export default function OurClients() {
-  const { fromLeft, fromRight } = useSectionVariants();
+  const { fromRight } = useSectionVariants();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -59,7 +56,7 @@ export default function OurClients() {
           {/* Arrows */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full bg-primary text-primary-foreground shadow p-2 hover:bg-gray-100"
+            className="absolute left-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 hover:bg-gray-100"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -100,7 +97,7 @@ export default function OurClients() {
 
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full bg-primary text-primary-foreground shadow p-2 hover:bg-gray-100"
+            className="absolute right-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 hover:bg-gray-100"
           >
             <ChevronRight className="h-6 w-6" />
           </button>

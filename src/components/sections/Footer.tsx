@@ -1,16 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Instagram, Facebook, Twitter, Linkedin, ArrowUp } from "lucide-react";
-import { cloneElement, createElement, useCallback } from "react";
-
-import logo from "@/../public/logo_full.png";
+import { Instagram, Facebook, Twitter, Linkedin } from "lucide-react";
+import { createElement, useCallback } from "react";
+import logo from "@/../public/logo.png";
 
 export default function Footer() {
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
   const handleLinkClick = useCallback((href: string) => {
     // Check if it's a hash link (starts with # or contains #)
     if (href.includes("#")) {
@@ -74,7 +69,7 @@ export default function Footer() {
     { label: "Terms of Service", href: "/legal/terms-of-service" },
     // { label: "Cookie Policy", href: "/legal/cookie-policy" },
     {
-      label: "Refund & Cancellation Policy",
+      label: "Cancellation Policy",
       href: "/legal/refund-cancellation-policy",
     },
     // { label: "Acceptable Use Policy", href: "/legal/acceptable-use-policy" },
@@ -89,19 +84,13 @@ export default function Footer() {
       label: "LinkedIn",
     },
   ];
-  const quickLinks = [
-    { label: "Home", href: "/" },
-    { label: "Products", href: "/products" },
-    { label: "Contact Us", href: "/contact-us" },
-    { label: "Career", href: "/careers" },
-  ];
 
   return (
     <footer
       className="h-full text-white bg-black border-t border-white/10 z-[90] relative"
       aria-label="Site footer"
     >
-      <div className="container mx-auto px-4 pt-12 sm:pt-16 pb-0">
+      <div className=" px-4 pt-12 sm:pt-16 pb-0">
         {/* Top Grid */}
         <div className="grid sm:gap-12  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {/* Col 1 */}
@@ -111,7 +100,7 @@ export default function Footer() {
               alt="Kenroz Logo"
               width={200}
               height={200}
-              className="mb-6 h-auto max-w-[230px] w-auto scale-[0.9]"
+              className="mb-6 h-auto max-w-[200px] w-auto"
             />
           </div>
 
@@ -226,11 +215,11 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 mt-16 sm:mt-[14rem] pt-8 flex justify-center flex-col">
+        <div className="border-t border-white/10 mt-16 sm:mt-[7rem] pt-8 flex justify-center flex-col">
           {/* Legal Center */}
-          <ul className="flex flex-wrap gap-6 sm:gap-8 text-lg sm:text-xl justify-center">
-            {legalLinks.map((link) => (
-              <li key={link.href}>
+          <ul className="flex flex-wrap gap-6 sm:gap-8 text-lg sm:text-lg justify-center items-center">
+            {legalLinks.map((link, index) => (
+              <li key={link.href} className="flex items-center">
                 <a
                   href={link.href}
                   onClick={(e) => {
@@ -239,14 +228,18 @@ export default function Footer() {
                       handleLinkClick(link.href);
                     }
                   }}
-                  className="text-white/70 hover:text-primary transition cursor-pointer"
+                  className="text-background/60 hover:text-primary transition cursor-pointer"
                 >
                   {link.label}
                 </a>
+                {index < legalLinks.length - 1 && (
+                  <span className="ml-6 h-6 border-l border-background/40 self-center" />
+                )}
               </li>
             ))}
           </ul>
-          <div className="text-lg text-white/60 flex flex-col sm:flex-row justify-center items-center">
+
+          <div className="text-lg text-background/60 flex flex-col sm:flex-row justify-center items-center">
             <p>
               © {new Date().getFullYear()} Kenroz Private Limited. All rights
               reserved.

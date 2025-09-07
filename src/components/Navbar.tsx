@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Phone, X } from "lucide-react";
-import logo from "@/../public/logo_mini.png";
+import logo from "@/../public/logo.png";
 import { cn } from "@/lib/utils";
 import DesktopDropdown from "./Navbar/DesktopDropdown";
 import MobileExpandable from "./Navbar/MobileExpandable";
@@ -98,7 +98,7 @@ export default function Navbar(): JSX.Element {
                   alt="Kenroz Logo"
                   width={200}
                   height={200}
-                  className="h-auto max-w-[100px] w-auto"
+                  className="h-auto max-w-[200px] w-auto"
                   priority
                 />
               </motion.div>
