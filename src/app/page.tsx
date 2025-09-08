@@ -3,12 +3,12 @@ import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Technologies from "@/components/sections/Technologies";
 import StructuredData from "@/components/seo/StructuredData";
-import { cn } from "@/lib/utils";
 import OurStory from "@/components/sections/OurStory";
 import StrategicPartner from "@/components/sections/StrategicPartner";
 import OurClients from "@/components/sections/OurClients";
 import EngagementSection from "@/components/EngagementSection";
 import { useEffect } from "react";
+import { Section } from "@/components/Section";
 
 export default function HomePage() {
   useEffect(() => {
@@ -81,28 +81,3 @@ export default function HomePage() {
     </>
   );
 }
-
-export const Section = ({
-  children,
-  id,
-  className = "",
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  is: _is,
-}: {
-  children: React.ReactNode;
-  id?: string;
-  className?: string;
-  is: "odd" | "even";
-}) => {
-  return (
-    <section
-      id={id}
-      className={cn(
-        "w-full min-h-[calc(100vh-64px)] h-full border-none overflow-hidden scroll-mt-[64px]",
-        className
-      )}
-    >
-      {children}
-    </section>
-  );
-};

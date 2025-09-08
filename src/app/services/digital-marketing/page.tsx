@@ -16,7 +16,7 @@ import {
 import { motion } from "framer-motion";
 import useSectionVariants from "@/lib/useSectionVariants";
 import { hoverScale } from "@/lib/section-animations";
-import { Section } from "@/app/page";
+import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
 import EngagementSection from "@/components/EngagementSection";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";

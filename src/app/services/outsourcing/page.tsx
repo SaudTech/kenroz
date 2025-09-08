@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import useSectionVariants from "@/lib/useSectionVariants";
 import { hoverScale } from "@/lib/section-animations";
 import ProcessAnimation, { ProcessStep } from "./process";
-import { Section } from "@/app/page";
+import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
 import Image from "next/image";
 import { useEffect, useState } from "react";

@@ -4,7 +4,7 @@ import React, { useMemo, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { Section } from "@/app/page"; // keeping your Section wrapper
+import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import SectionHeader from "@/components/SectionHeader";
@@ -201,7 +201,7 @@ export default function ProductsPage() {
                         {Array.isArray(product.imageName) ? (
                           <ProductCarousel
                             images={product.imageName}
-                            alt={product.name}
+                            alt={product.name[0] + product.name[1] + " illustration"}
                           />
                         ) : (
                           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
