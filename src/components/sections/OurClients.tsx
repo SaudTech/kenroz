@@ -80,7 +80,7 @@ export default function OurClients() {
               >
                 <div
                   className={cn(
-                    "relative h-52 w-52 md:h-52 md:w-48 opacity-80 group-hover:opacity-100 transition",
+                    "relative h-52 w-52 md:h-52 md:w-48 opacity-80 group-hover:opacity-100 transition rounded-md shadow-lg p-2",
                     company.name === "Premier global Trading" && "md:h-52 w-52",
                     company.name === "Musanadah" && "md:h-52 w-52"
                   )}

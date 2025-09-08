@@ -9,7 +9,6 @@ import ProcessAnimation, { ProcessStep } from "./process";
 import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 const engagementModels = [
   {
@@ -90,15 +89,6 @@ export default function Page() {
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
     useSectionVariants();
 
-  const [clientScreenWidth, setClientScreenWidth] = useState(0);
-
-  useEffect(() => {
-    const update = () => setClientScreenWidth(window.innerWidth);
-    update(); // set once on mount
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
   return (
     <>
       {/* Hero Section */}
@@ -144,20 +134,6 @@ export default function Page() {
                 >
                   <ButtonLink href="/contact-us?p=outsourcing">
                     Get Started
-                  </ButtonLink>
-                </motion.div>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-                  custom={3}
-                >
-                  <ButtonLink
-                    variant="outline"
-                    href="/contact-us"
-                    className="text-black"
-                  >
-                    Have inquiries?
                   </ButtonLink>
                 </motion.div>
               </div>

@@ -8,7 +8,6 @@ import {
   Share2,
   BarChart3,
   ArrowRight,
-  CheckCircle2,
   Users,
   Globe,
   Eye,
@@ -36,7 +35,6 @@ export default function DigitalMarketingPage() {
       features: [
         "Keyword Research",
         "On-Page Optimization",
-        "Link Building",
         "Local SEO",
       ],
     },
@@ -62,7 +60,6 @@ export default function DigitalMarketingPage() {
       features: [
         "Campaign Design",
         "Automation Flows",
-        "Audience Segmentation",
         "Engagement Tracking",
       ],
     },
@@ -73,7 +70,6 @@ export default function DigitalMarketingPage() {
         "Engage audiences with compelling content that builds trust.",
       features: [
         "Blog & Article Writing",
-        "Video & Visual Content",
         "Infographics",
         "Content Distribution",
       ],
@@ -84,11 +80,9 @@ export default function DigitalMarketingPage() {
       description:
         "Measure performance and optimize campaigns with real insights.",
       features: [
-        "Google Analytics Setup",
         "Custom Dashboards",
         "ROI Analysis",
         "Funnel Insights",
-        "Data Visualization",
       ],
     },
   ];
@@ -205,20 +199,6 @@ export default function DigitalMarketingPage() {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </ButtonLink>
                 </motion.div>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-                  custom={3}
-                >
-                  <ButtonLink
-                    variant="outline"
-                    href="/contact-us"
-                    className="text-black"
-                  >
-                    Have inquiries?
-                  </ButtonLink>
-                </motion.div>
               </div>
             </div>
 
@@ -289,14 +269,6 @@ export default function DigitalMarketingPage() {
                   <h3 className="text-base font-semibold">{s.title}</h3>
                 </div>
                 <p className="mb-3 text-sm">{s.description}</p>
-                <ul className="space-y-1.5">
-                  {s.features.slice(0, 4).map((f) => (
-                    <li key={f} className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-primary/80" />
-                      <span className="text-sm">{f}</span>
-                    </li>
-                  ))}
-                </ul>
               </motion.li>
             ))}
           </ul>

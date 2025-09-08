@@ -10,7 +10,6 @@ import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 import ProcessAnimation, { ProcessStep } from "../outsourcing/process";
 import {
   Smartphone,
-  Tablet,
   Zap,
   Shield,
   Users,
@@ -21,6 +20,7 @@ import {
   Bell,
 } from "lucide-react";
 import { AppleAppStore, GooglePlaystore } from "./PlatformIcons";
+import Image from "next/image";
 
 /* ------------------- Process (mobile-focused) ------------------- */
 const mobileProcess: ProcessStep[] = [
@@ -123,52 +123,6 @@ const features = [
   },
 ];
 
-/* ------------------- Store Badge (for iOS / Android) ------------------- */
-const StoreBadge = ({
-  kind,
-  href = "/contact-us?p=mobile-apps",
-  label,
-  delay = 8,
-}: {
-  kind: "ios" | "android";
-  href?: string;
-  label?: string;
-  delay?: number;
-}) => {
-  const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
-    useSectionVariants();
-  const Icon = kind === "ios" ? AppleAppStore : GooglePlaystore;
-  const text =
-    label ?? (kind === "ios" ? "iOS (App Store)" : "Android (Google Play)");
-  const variants =
-    kind === "ios"
-      ? slideInFromLeftWithDelay(delay, 60, 0.6, true)
-      : slideInFromRightWithDelay(delay, 60, 0.6, true);
-
-  return (
-    <motion.a
-      href={href}
-      aria-label={`We build for ${text}`}
-      className="group inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-2 text-card-foreground shadow hover:shadow-md"
-      initial="hidden"
-      whileInView="visible"
-      variants={variants}
-      viewport={{ once: true, amount: 0.4 }}
-      whileHover={hoverScale}
-    >
-      <span className="grid place-items-center rounded-xl bg-white/90 p-1.5">
-        <Icon className="h-6 w-6" />
-      </span>
-      <span className="text-sm font-medium">
-        {text}
-        <span className="ml-1 text-foreground/60 group-hover:text-foreground/80">
-          • Build-ready
-        </span>
-      </span>
-    </motion.a>
-  );
-};
-
 export default function MobileApplicationDevelopmentPage() {
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
     useSectionVariants();
@@ -220,53 +174,25 @@ export default function MobileApplicationDevelopmentPage() {
                     Get Started
                   </ButtonLink>
                 </motion.div>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-                  custom={7}
-                >
-                  <ButtonLink
-                    variant="outline"
-                    href="/contact-us"
-                    className="text-black"
-                  >
-                    Have inquiries?
-                  </ButtonLink>
-                </motion.div>
               </div>
 
             </div>
 
             {/* Hero visual */}
             <motion.div
-              className="relative lg:w-2/5"
+              className="lg:w-2/5 relative"
               variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.4 }}
             >
-              <div className="relative flex items-center justify-center space-x-4">
-                <div className="transform rotate-12 rounded-3xl bg-white p-4 shadow-2xl">
-                  <div className="flex h-96 w-48 flex-col items-center justify-center space-y-4 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10">
-                    <Smartphone className="h-12 w-12 text-primary" />
-                    <div className="w-32 space-y-2">
-                      <div className="h-3 rounded bg-primary/20"></div>
-                      <div className="h-3 w-3/4 rounded bg-secondary/20"></div>
-                      <div className="h-3 w-1/2 rounded bg-primary/20"></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="transform -rotate-12 rounded-3xl bg-white p-4 shadow-2xl">
-                  <div className="flex h-96 w-48 flex-col items-center justify-center space-y-4 rounded-2xl bg-gradient-to-br from-secondary/10 to-primary/10">
-                    <Tablet className="h-12 w-12 text-secondary" />
-                    <div className="w-32 space-y-2">
-                      <div className="h-3 rounded bg-secondary/20"></div>
-                      <div className="h-3 w-3/4 rounded bg-primary/20"></div>
-                      <div className="h-3 w-1/2 rounded bg-secondary/20"></div>
-                    </div>
-                  </div>
-                </div>
+              <div>
+                <Image
+                  src="/mobile_app_development.webp"
+                  alt="Mobile Application Development"
+                  className="rounded-2xl filter brightness-90"
+                  width={1500}
+                  height={1000}
+                />
               </div>
             </motion.div>
           </div>

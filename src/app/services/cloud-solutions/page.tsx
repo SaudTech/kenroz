@@ -140,16 +140,6 @@ export default function CloudDevOpsPage() {
                 >
                   <ButtonLink href="/contact-us?p=cloud-devops">Get Started</ButtonLink>
                 </motion.div>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-                  custom={3}
-                >
-                  <ButtonLink variant="outline" href="/contact-us" className="text-black">
-                    Have inquiries?
-                  </ButtonLink>
-                </motion.div>
               </div>
             </div>
 

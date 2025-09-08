@@ -182,20 +182,6 @@ export default function MicrosoftDynamic365Page() {
                 >
                   <ButtonLink href="/contact-us?p=d365">Get Started</ButtonLink>
                 </motion.div>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-                  custom={3}
-                >
-                  <ButtonLink
-                    variant="outline"
-                    href="/contact-us"
-                    className="text-black"
-                  >
-                    Have inquiries?
-                  </ButtonLink>
-                </motion.div>
               </div>
             </div>
 
@@ -207,7 +193,7 @@ export default function MicrosoftDynamic365Page() {
               whileInView="visible"
             >
               <Image
-                src="/Microsoft Dynamic 365.webp"
+                src="/dynamic_365.png"
                 alt="Dynamics 365 dashboards"
                 width={800}
                 height={900}

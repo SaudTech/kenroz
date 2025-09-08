@@ -12,7 +12,7 @@ export default function Footer() {
     if (!href.includes("#")) return;
 
     const [path, hash] = href.split("#");
-    const urlPath = path === "" || path === "/" ? window.location.pathname : path;
+    const urlPath = path === "" ? window.location.pathname : path;
 
     if (urlPath !== window.location.pathname) {
       window.location.href = href;
