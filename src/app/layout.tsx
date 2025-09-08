@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
-import { Section } from "./page";
 import SiteGuard from "@/components/SiteGuard";
 import { Analytics } from "@vercel/analytics/next";
 
