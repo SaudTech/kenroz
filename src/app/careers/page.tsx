@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import Link from "next/link";
 import JobList from "@/components/careers/JobList";
 import {
   ShieldCheck,
@@ -9,11 +8,11 @@ import {
   GraduationCap,
   HeartHandshake,
   Globe2,
-  ArrowRight,
 } from "lucide-react";
 import { ButtonLink } from "@/components/Navbar";
-import { OpenInformativeDialog } from "@/components/OpenInformativeDialog";
 import EngagementSection from "@/components/EngagementSection";
+import SectionHeading from "@/components/typography/SectionHeading";
+import Paragraph from "@/components/typography/Paragraph";
 
 export const metadata: Metadata = {
   title: "Careers at Kenroz",
@@ -62,14 +61,14 @@ export default function CareersPage() {
             </p>
             <div className="mt-8 flex items-center justify-center gap-4">
               <ButtonLink href="#open-roles">View open roles</ButtonLink>
-              <OpenInformativeDialog
+              {/* <OpenInformativeDialog
                 title="Refer a Candidate"
-                description="We're always on the lookout for exceptional talent. If you know someone who would be a strong addition to our team, we’d love to hear from you. Please send their details to support@kenroz.com."
+                description="We're always on the lookout for exceptional talent. If you know someone who would be a strong addition to our team, we’d love to hear from you. Please send their details to career@kenroz.com."
               >
                 <ButtonLink variant="outline" className="text-white">
                   Refer a friend
                 </ButtonLink>
-              </OpenInformativeDialog>
+              </OpenInformativeDialog> */}
             </div>
           </div>
         </div>
@@ -77,13 +76,11 @@ export default function CareersPage() {
 
       {/* Why Kenroz */}
       <section className="container mx-auto px-4 py-16 md:py-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-center tracking-tight">
-          Why work with us
-        </h2>
-        <p className="mt-3 text-center text-slate-600 max-w-2xl mx-auto">
-          We empower small, focused teams to own outcomes   with the autonomy,
+        <SectionHeading blackText="Why work" primaryText="with us" />
+        <Paragraph className="text-center w-full">
+          We empower small, focused teams to own outcomes with the autonomy,
           tools, and support to do their best work.
-        </p>
+        </Paragraph>
 
         <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
@@ -120,7 +117,7 @@ export default function CareersPage() {
           ].map(({ icon: Icon, title, desc }) => (
             <li
               key={title}
-              className="group rounded-2xl border border-slate-200 bg-card p-6 shadow-sm hover:shadow-md transition"
+              className="group rounded-2xl bg-card p-6 shadow-sm transition hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
             >
               <div className="flex items-start gap-4">
                 <span className="rounded-xl bg-slate-900/5 p-3 ring-1 ring-slate-900/10">
@@ -140,14 +137,12 @@ export default function CareersPage() {
 
       {/* Open Roles */}
       <section id="open-roles" className="bg-slate-50">
-        <div className=" mx-auto px-4 py-16 md:py-20">
+        <div className="mx-auto px-4 py-16 md:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Open positions
-            </h2>
-            <p className="mt-3 text-slate-600">
+            <SectionHeading blackText="Open" primaryText="positions" />
+            <Paragraph>
               Browse teams and find your next role at Kenroz.
-            </p>
+            </Paragraph>
           </div>
           <div className="mt-10">
             <JobList />
@@ -158,7 +153,7 @@ export default function CareersPage() {
       {/* CTA */}
       <EngagementSection
         title="Ready to apply?"
-        description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to support@kenroz.com."
+        description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to career@kenroz.com."
         button1Url="/contact-us"
         button1Text="Apply now"
       />

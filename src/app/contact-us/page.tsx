@@ -1,8 +1,16 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
-import { MapPin, Phone, Clock } from "lucide-react";
+import {
+  Phone,
+  Clock,
+  Mail,
+  MessageSquare,
+  CheckCircle2,
+  Shield,
+} from "lucide-react";
+import EngagementSection from "@/components/EngagementSection";
+import SectionHeading from "@/components/typography/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch with Kenroz IT Solutions",
@@ -37,90 +45,25 @@ export const metadata: Metadata = {
   },
 };
 
-const locations = [
-  {
-    city: "Hyderabad",
-    flag: "/flags/ind.png",
-    location: "Western Aqua, Hitech City, Hyderabad, Telangana",
-    phone: "+91-970-473-0500",
-    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
-  },
-  {
-    city: "Dammam",
-    flag: "/flags/sau.png",
-    location: "Al Khobar Al Shamalia, Al Khobar 34428, Saudi Arabia",
-    phone: "+966-23-234-2342",
-    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
-  },
-  // {
-  //   city: "Houston",
-  //   flag: "/flags/usa.png",
-  //   location: "3100 Cleburne St, Houston, TX 77004, USA",
-  //   phone: "+1-642-234-2342",
-  //   operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
-  // },
-  {
-    city: "Dubai",
-    flag: "/flags/uae.png",
-    location:
-      "19 48A St - Al Barsha - Al Barsha 2 - Dubai - United Arab Emirates",
-    phone: "+971-18-923-2342",
-    operatingHours: "9:00 AM - 6:00 PM (Mon-Sat)",
-  },
-];
-
-function LocationCard({
-  city,
-  flag,
-  location,
-  phone,
-  operatingHours,
-}: (typeof locations)[number]) {
-  return (
-    <div className="group min-w-[280px] max-w-[280px] relative rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow p-5">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="relative h-6 w-9 overflow-hidden rounded">
-          <Image
-            src={flag}
-            alt={`${city} flag`}
-            fill
-            sizes="36px"
-            className="object-cover"
-            priority={false}
-          />
-        </div>
-        <h3 className="text-lg font-semibold">{city}</h3>
-      </div>
-
-      <div className="space-y-2 text-sm text-gray-700">
-        <div className="flex items-start gap-2">
-          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
-          <p className="leading-snug">{location}</p>
-        </div>
-        <div className="flex items-start gap-2">
-          <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
-          <a
-            href={`tel:${phone.replace(/[^\d+]/g, "")}`}
-            className="leading-snug hover:underline"
-          >
-            {phone}
-          </a>
-        </div>
-        <div className="flex items-start gap-2">
-          <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
-          <p className="leading-snug">{operatingHours}</p>
-        </div>
-      </div>
-
-      {/* subtle gradient accent */}
-      <div className="pointer-events-none absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-    </div>
-  );
-}
-
 type ContactSearchParams = {
   p?: string | string[];
 };
+function getHeadingParts(intent?: string) {
+  switch (intent) {
+    case "hire":
+      return { black: "Engage", primary: "Our Experts" };
+    case "become-a-partner":
+      return { black: "Partner", primary: "With Kenroz" };
+    case "work-with-kenroz":
+      return { black: "Work", primary: "with Kenroz" };
+    case undefined:
+    case "":
+      return { black: "Let’s", primary: "Connect" };
+    default:
+      return { black: "Service", primary: "Inquiry" };
+  }
+}
+
 export default async function ContactPage({
   searchParams,
 }: {
@@ -129,24 +72,21 @@ export default async function ContactPage({
   const resolved = (await searchParams) ?? {};
   const rawIntent = resolved.p;
   const intent = Array.isArray(rawIntent) ? rawIntent[0] : rawIntent;
+  const { black, primary } = getHeadingParts(intent);
 
-  let heading = "Let’s Connect";
   let description =
     "Have a project in mind or need expert guidance? Our team at Kenroz is here to listen, understand, and help you achieve your goals. Reach out today and let’s start building your success story.";
 
   if (intent === "hire") {
-    heading = "Engage Our Experts";
     description =
       "Looking for skilled professionals to strengthen your team? Share your requirements and we’ll match you with the right talent from Kenroz to accelerate your projects with confidence";
   } else if (intent === "become-a-partner") {
-    heading = "Partner With Kenroz";
     description =
       "Collaboration drives innovation. If you’re ready to partner with us, tell us about your business, and let’s explore how we can grow stronger together.";
-  }  else if (intent === "work-with-kenroz") {
-    heading = "Work with Kenroz";
-    description = "Passionate about technology and innovation? Explore opportunities to work with us and be part of a team shaping the future of IT solutions across the globe."
+  } else if (intent === "work-with-kenroz") {
+    description =
+      "Passionate about technology and innovation? Explore opportunities to work with us and be part of a team shaping the future of IT solutions across the globe.";
   } else if (intent) {
-    heading = "Service Inquiry";
     description =
       "Interested in our solutions? Whether it’s cloud, digital transformation, or custom development, tell us about your project and we’ll get back to you with the right approach.";
   }
@@ -171,30 +111,98 @@ export default async function ContactPage({
         }}
       />
 
-      <div className="min-h-screen flex items-center px-6 py-0 ">
+      <div className="min-h-screen flex items-center px-6 py-0">
         <div className="container mx-auto max-w-7xl py-0">
-          <h1 className="w-full text-center text-5xl md:text-7xl font-extrabold text-black">
-            {heading}
-          </h1>
-          <div className="grid lg:grid-cols-2 gap-20 mt-4 items-start">
-            {/* Left: heading + cards */}
+          <SectionHeading blackText={black} primaryText={primary} />
+
+          <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
+            {/* ---------- Left Column: filled + useful ---------- */}
             <div className="space-y-8">
+              {/* Intro */}
               <p className="text-lg md:text-xl text-gray-900 max-w-2xl leading-relaxed">
                 {description}
               </p>
 
-              {/* Location cards */}
-              {!intent && (
-                <div className="flex flex-wrap justify-center gap-5 mt-6">
-                  {locations.map((loc) => (
-                    <LocationCard key={loc.city} {...loc} />
-                  ))}
+              {/* Quick Channels */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <a
+                  href="tel:+919704730500"
+                  className="group flex items-center gap-2 rounded-xl bg-card text-card-foreground px-3 py-2 text-sm hover:shadow-sm transition"
+                >
+                  <Phone className="h-4 w-4" />
+                  <span>Call us</span>
+                </a>
+                <a
+                  href="https://wa.me/919704730500"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 rounded-xl bg-card text-card-foreground px-3 py-2 text-sm hover:shadow-sm transition"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  <span>WhatsApp</span>
+                </a>
+                <a
+                  href="mailto:hello@kenroz.com"
+                  className="group flex items-center gap-2 rounded-xl bg-card text-card-foreground px-3 py-2 text-sm hover:shadow-sm transition col-span-2 sm:col-span-1"
+                >
+                  <Mail className="h-4 w-4" />
+                  <span>Email</span>
+                </a>
+              </div>
+
+              {/* Info tiles */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="rounded-2xl bg-card text-card-foreground p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Clock className="h-4 w-4" />
+                    <h3 className="font-medium">Office Hours</h3>
+                  </div>
+                  <p className="text-sm">Mon–Sat, 9:00 AM – 6:00 PM</p>
                 </div>
-              )}
+                <div className="rounded-2xl bg-card text-card-foreground p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Shield className="h-4 w-4" />
+                    <h3 className="font-medium">Assurance</h3>
+                  </div>
+                  <ul className="space-y-1.5 text-sm">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5" />
+                      <span>Secure & confidential engagement</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5" />
+                      <span>Clear proposals & timelines</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Tiny FAQ */}
+              <div className="space-y-2">
+                {/* <h3 className="text-sm font-semibold">Quick FAQ</h3> */}
+                <div className="rounded-2xl bg-card text-card-foreground divide-y divide-black/5">
+                  <details className="p-4">
+                    <summary className="cursor-pointer text-sm font-medium">
+                      How soon will you respond?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      We usually reply within one business day.
+                    </p>
+                  </details>
+                  <details className="p-4">
+                    <summary className="cursor-pointer text-sm font-medium">
+                      Do you work with remote teams?
+                    </summary>
+                    <p className="mt-2 text-sm">
+                      Yes, engagements across India, KSA, and UAE are common.
+                    </p>
+                  </details>
+                </div>
+              </div>
             </div>
 
-            {/* Right: contact form */}
-            <div className="w-full h-full">
+            {/* ---------- Right Column: sticky form ---------- */}
+            <div className="w-full h-full lg:sticky lg:top-24">
               <EnhancedContactForm
                 showContactInfo={false}
                 context={intent}
@@ -204,6 +212,11 @@ export default async function ContactPage({
           </div>
         </div>
       </div>
+
+      <EngagementSection
+        title="Contact us now to get started"
+        description="We will help you understand your needs and provide a tailored solution."
+      />
     </>
   );
 }

@@ -68,7 +68,6 @@ export default function Services() {
   return (
     <section
       className="w-full"
-      id="services"
       aria-labelledby="services-heading"
     >
       <div className="relative mx-auto max-w-7xl text-center px-4  py-16 md:py-24">
@@ -93,7 +92,7 @@ export default function Services() {
                     viewport={view}
                     whileHover={hoverScale}
                     transition={{ delay: i * 0.15 }}
-                    className="h-full rounded-2xl border transition-colors duration-300 border-border bg-card backdrop-blur-md shadow-sm hover:shadow-lg focus-within:ring-2 focus-within:ring-ring"
+                    className="h-full rounded-2xl border border-border bg-card backdrop-blur-md shadow-sm transition-all duration-300  hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] focus-within:ring-2 focus-within:ring-ring"
                   >
                     <div className="flex h-full flex-col p-4">
                       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary shadow-md">

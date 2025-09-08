@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Technologies from "@/components/sections/Technologies";
@@ -23,7 +23,7 @@ export default function HomePage() {
           setTimeout(() => {
             element.scrollIntoView({
               behavior: "smooth",
-              block: "center",
+              block: "end",
               inline: "nearest",
             });
           }, 100);
@@ -57,19 +57,19 @@ export default function HomePage() {
         <Section is="even">
           <Hero />
         </Section>
-        <Section is="odd">
+        <Section is="odd" id="our-story">
           <OurStory />
         </Section>
-        <Section is="odd">
+        <Section is="odd" id="strategic-partners">
           <StrategicPartner />
         </Section>
-        <Section is="odd">
+        <Section is="odd" id="our-clients">
           <OurClients />
         </Section>
-        <Section is="odd">
+        <Section is="odd" id="services">
           <Services />
         </Section>
-        <Section is="odd">
+        <Section is="odd" id="tech">
           <Technologies />
         </Section>
         <EngagementSection

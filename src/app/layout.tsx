@@ -167,9 +167,9 @@ export default function RootLayout({
           <Navbar />
           <main className="mt-[88px]">{children}</main>
 
-          <Section is="even" className="bg-navbar">
+          {/* <Section is="even" className="bg-navbar"> */}
             <Footer />
-          </Section>
+          {/* </Section> */}
         </SiteGuard>
       </body>
     </html>

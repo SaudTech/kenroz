@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Instagram, Facebook, Twitter, Linkedin } from "lucide-react";
 import { createElement, useCallback } from "react";
 import logo from "@/../public/logo.png";
+import LocationCards from "../LocationCards/Cards";
+import Link from "next/link";
 
 export default function Footer() {
   const handleLinkClick = useCallback((href: string) => {
@@ -58,8 +60,8 @@ export default function Footer() {
 
   const resources = [
     { label: "About Us", href: "/#about-us" },
-    { label: "Why Choose Us", href: "/#why-choose-us" },
-    { label: "Strategic Partner", href: "/#strategic-partner" },
+    { label: "Why Choose Us", href: "/#about-us" },
+    { label: "Strategic Partner", href: "/#strategic-partners" },
     { label: "Contact Us", href: "/contact-us" },
     { label: "Career", href: "/careers" },
   ];
@@ -102,6 +104,7 @@ export default function Footer() {
               height={200}
               className="mb-6 h-auto max-w-[200px] w-auto"
             />
+            <LocationCards />
           </div>
 
           {/* Col 2 - Services */}
@@ -112,7 +115,7 @@ export default function Footer() {
             <ul className="space-y-3 sm:space-y-4 text-lg sm:text-xl">
               {services.map((service) => (
                 <li key={service.label}>
-                  <a
+                  <Link
                     href={service.href}
                     onClick={(e) => {
                       if (service.href.includes("#")) {
@@ -123,7 +126,7 @@ export default function Footer() {
                     className="inline-block text-white/70 hover:text-primary transition cursor-pointer"
                   >
                     {service.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -138,7 +141,7 @@ export default function Footer() {
               {products && products.length > 0 ? (
                 products.map((product) => (
                   <li key={product.label}>
-                    <a
+                    <Link
                       href={product.href}
                       onClick={(e) => {
                         if (product.href.includes("#")) {
@@ -149,7 +152,7 @@ export default function Footer() {
                       className="inline-block text-white/70 hover:text-primary transition cursor-pointer"
                     >
                       {product.label}
-                    </a>
+                    </Link>
                   </li>
                 ))
               ) : (
@@ -167,7 +170,7 @@ export default function Footer() {
               {resources && resources.length > 0 ? (
                 resources.map((r) => (
                   <li key={r.label}>
-                    <a
+                    <Link
                       href={r.href}
                       onClick={(e) => {
                         if (r.href.includes("#")) {
@@ -178,7 +181,7 @@ export default function Footer() {
                       className="inline-block text-white/70 hover:text-primary transition cursor-pointer"
                     >
                       {r.label}
-                    </a>
+                    </Link>
                   </li>
                 ))
               ) : (
@@ -215,12 +218,12 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 mt-16 sm:mt-[7rem] pt-8 flex justify-center flex-col">
+        <div className="border-t border-white/10 mt-16 sm:mt-[2rem] pt-8 flex justify-center flex-col">
           {/* Legal Center */}
           <ul className="flex flex-wrap gap-6 sm:gap-8 text-lg sm:text-lg justify-center items-center">
             {legalLinks.map((link, index) => (
               <li key={link.href} className="flex items-center">
-                <a
+                <Link
                   href={link.href}
                   onClick={(e) => {
                     if (link.href.includes("#")) {
@@ -231,7 +234,7 @@ export default function Footer() {
                   className="text-background/60 hover:text-primary transition cursor-pointer"
                 >
                   {link.label}
-                </a>
+                </Link>
                 {index < legalLinks.length - 1 && (
                   <span className="ml-6 h-6 border-l border-background/40 self-center" />
                 )}

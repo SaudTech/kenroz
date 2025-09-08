@@ -160,7 +160,7 @@ export default function JobList() {
           return (
             <Card
               key={job.slug}
-              className="group relative flex flex-col border-slate-200 bg-card shadow-sm transition hover:shadow-md"
+              className="group relative flex flex-col border-slate-200 bg-card shadow-sm transition hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
             >
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between gap-3">
@@ -215,7 +215,7 @@ export default function JobList() {
                   More details <ArrowRight className="h-4 w-4" />
                 </Link>
                 {/* <Link
-                  href={`mailto:support@kenroz.com?subject=Application: ${encodeURIComponent(job.title)}`}
+                  href={`mailto:career@kenroz.com?subject=Application: ${encodeURIComponent(job.title)}`}
                   className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-50"
                 >
                   Apply
@@ -236,7 +236,7 @@ export default function JobList() {
             <p className="mt-3 font-semibold">No positions match your search</p>
             <p className="mt-1 text-sm text-slate-600">
               Try different keywords, or{" "}
-              <Link href="mailto:support@kenroz.com" className="text-primary underline">
+              <Link href="mailto:career@kenroz.com" className="text-primary underline">
                 email us
               </Link>{" "}
               with your resume.

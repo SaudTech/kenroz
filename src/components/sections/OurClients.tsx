@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import SectionHeading from "../typography/SectionHeading";
+import Paragraph from "../typography/Paragraph";
 
 interface Company {
   name: string;
@@ -45,7 +46,7 @@ export default function OurClients() {
       id="our-clients"
       aria-labelledby="our-clients-heading"
     >
-      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-0 md:pb-24">
+      <div className="relative mx-auto max-w-7xl px-4 py-16">
         <div className="rounded-2xl overflow-hidden px-6 pb-10 pt-5 md:px-10 relative">
           {/* <SectionHeading blackText="Our" primaryText="Clients" /> */}
           <SectionHeading
@@ -56,7 +57,7 @@ export default function OurClients() {
           {/* Arrows */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 hover:bg-gray-100"
+            className="absolute left-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 border hover:bg-transparent hover:border-primary hover:text-primary"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -97,11 +98,18 @@ export default function OurClients() {
 
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 hover:bg-gray-100"
+            className="absolute right-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 border hover:bg-transparent hover:border-primary hover:text-primary"
           >
             <ChevronRight className="h-6 w-6" />
           </button>
         </div>
+
+        <Paragraph className="mt-6 text-center">
+          We are proud to have collaborated with a diverse range of clients,
+          delivering exceptional solutions tailored to their unique needs.
+          Here&apos;s a glimpse of some of the companies we&apos;ve had the
+          privilege to work with.
+        </Paragraph>
       </div>
     </section>
   );

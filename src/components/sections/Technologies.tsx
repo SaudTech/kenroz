@@ -57,7 +57,7 @@ export default function Technologies() {
   const { fromLeft } = useSectionVariants();
 
   return (
-    <section id="tech" className="py-20 md:py-24">
+    <section  className="py-20 md:py-24">
       <div className="relative mx-auto max-w-7xl text-center px-4">
         <SectionHeading blackText="Our" primaryText="Technologies" />
 

@@ -163,13 +163,6 @@ export default function ProductsPage() {
                   >
                     Explore products
                   </ButtonLink>
-                  <ButtonLink
-                    href="/contact-us"
-                    variant="outline"
-                    className="text-white group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                  >
-                    Talk to an expert
-                  </ButtonLink>
                 </div>
               </div>
             </div>

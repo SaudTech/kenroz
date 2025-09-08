@@ -1,3 +1,4 @@
+"use client"
 import { hoverScale, useSectionVariants, view } from "@/lib/section-animations";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -8,7 +9,7 @@ const Paragraph = ({ children, className }: { children: React.ReactNode, classNa
 
   return (
     <motion.div
-      className={cn("mt-4 md:text-lg leading-relaxed text-foreground cursor-pointer inline-block", className)}
+      className={cn("mt-4 md:text-base leading-relaxed text-foreground inline-block", className)}
       variants={fromRight}
       initial="hidden"
       whileInView="show"

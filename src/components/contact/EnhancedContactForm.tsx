@@ -9,6 +9,7 @@ import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "../Navbar";
+import SectionHeading from "../typography/SectionHeading";
 
 interface FormData {
   fullName: string;
@@ -133,7 +134,9 @@ export default function EnhancedContactForm({
 
   if (isSubmitted) {
     return (
-      <div className={cn("w-full max-w-2xl mx-auto h-full bg-red-400", className)}>
+      <div
+        className={cn("w-full max-w-2xl mx-auto h-full bg-red-400", className)}
+      >
         <Card className="border-0 shadow-2xl bg-gradient-to-br from-green-50 to-white">
           <CardContent className="text-center py-12">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
@@ -159,19 +162,28 @@ export default function EnhancedContactForm({
 
   return (
     <div className={cn("w-full mx-auto h-full", className)} id="contact">
-      <div className={cn("grid grid-cols-2 gap-8 max-w-7xl mx-auto h-full", !showContactInfo && "grid-cols-1")}>
+      <div
+        className={cn(
+          "grid grid-cols-2 gap-8 max-w-7xl mx-auto h-full",
+          !showContactInfo && "grid-cols-1"
+        )}
+      >
         {/* Contact Form */}
         <Card className="border-0 w-full mx-auto shadow-2xl bg-gradient-to-br from-white to-gray-50">
-          <CardHeader className="space-y-4">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
-              Send us a message
-            </CardTitle>
+          <CardHeader>
+            <SectionHeading blackText="Send us" primaryText="a message" />
           </CardHeader>
 
           <CardContent className="space-y-6">
-            <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
-              {context && <input type="hidden" name="context" value={context} />}
-              
+            <form
+              id="contact-form"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              {context && (
+                <input type="hidden" name="context" value={context} />
+              )}
+
               {/* Full Name Field */}
               <div className="space-y-2">
                 <Input
@@ -275,12 +287,10 @@ export default function EnhancedContactForm({
               )}
             </form>
           </CardContent>
-          
+
           {/* Submit Button - Bottom Right */}
           <div className="px-6 pb-6 flex justify-end">
-            <ButtonLink
-              disabled={isSubmitting}
-            >
+            <ButtonLink disabled={isSubmitting}>
               {isSubmitting ? (
                 <div className="flex items-center gap-2">
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -295,7 +305,6 @@ export default function EnhancedContactForm({
             </ButtonLink>
           </div>
         </Card>
-
 
         {/* Contact Information */}
         {showContactInfo && (

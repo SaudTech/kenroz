@@ -4,8 +4,8 @@ import { ButtonLink } from "./Navbar";
 interface EngagementSectionProps {
   title: string;
   description: string;
-  button1Url: string;
-  button1Text: string;
+  button1Url?: string;
+  button1Text?: string;
   button2Url?: string;
   button2Text?: string;
 }
@@ -27,7 +27,11 @@ const EngagementSection: React.FC<EngagementSectionProps> = ({
           </h2>
           <p className="mt-3 text-white/80">{description}</p>
           <div className="mt-8 flex items-center justify-center gap-4">
-            <ButtonLink href={button1Url}>{button1Text}</ButtonLink>
+            {button1Url && button1Text && (
+              <ButtonLink href={button1Url} variant="outline">
+                {button1Text}
+              </ButtonLink>
+            )}
             {button2Url && button2Text && (
               <ButtonLink href={button2Url} variant="outline">
                 {button2Text}
