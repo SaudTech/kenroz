@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ButtonLink } from "../Navbar";
 import { CheckCircle } from "lucide-react";
 import { useSectionVariants, hoverScale, view } from "@/lib/section-animations";
@@ -59,7 +59,7 @@ function Initials({ name }: { name: string }) {
 }
 
 /* ----- Stagger container + card variants ----- */
-const gridStagger = {
+const gridStagger: Variants = {
   hidden: { opacity: 1 }, // keep container visible; we stagger children
   show: {
     opacity: 1,
@@ -67,7 +67,7 @@ const gridStagger = {
   },
 };
 
-const cardVariant = {
+const cardVariant: Variants = {
   hidden: { opacity: 0, y: 24, scale: 0.98 },
   show: {
     opacity: 1,
