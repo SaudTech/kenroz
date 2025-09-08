@@ -15,7 +15,7 @@ import ProductCarousel from "./ProductCarousel";
 
 // ---------- Data ----------
 type Product = {
-  name: string;
+  name: string[];
   slug: string;
   subtitle: string;
   description: string;
@@ -24,7 +24,7 @@ type Product = {
 
 const products: Product[] = [
   {
-    name: "PeopleSphere",
+    name: ["People", "Sphere"],
     slug: "people-sphere",
     subtitle: "All-in-one HR suite",
     description:
@@ -32,7 +32,7 @@ const products: Product[] = [
     imageName: "/HCM.png",
   },
   {
-    name: "PayStream",
+    name: ["Pay","Stream"],
     slug: "pay-stream",
     subtitle: "Seamless payroll automation",
     description:
@@ -40,7 +40,7 @@ const products: Product[] = [
     imageName: "/Payroll.png",
   },
   {
-    name: "TaxNova",
+    name: ["Tax","Nova"],
     slug: "tax-nova",
     subtitle: "E-invoicing made effortless",
     description:
@@ -48,7 +48,7 @@ const products: Product[] = [
     imageName: "/Invoice.png",
   },
   {
-    name: "InsuraCore",
+    name: ["Insura","Core"],
     slug: "insura-core",
     subtitle: "Smarter insurance operations",
     description:
@@ -56,7 +56,7 @@ const products: Product[] = [
     imageName: "/Insurance.png",
   },
   {
-    name: "Learnify",
+    name: ["", "Learnify"],
     slug: "learnify",
     subtitle: "Empowering digital learning",
     description:
@@ -227,21 +227,24 @@ export default function ProductsPage() {
                     >
                       <div className="sticky top-20">
                         <div>
+                          <SectionHeading blackText={product.name[0]} primaryText={product.name[1]} className="justify-start" />
+
                           <SectionHeader
-                            title={product.name}
+                            title={""}
                             description={product.description}
                             titleClassName="text-2xl md:text-4xl lg:text-5xl"
                             descriptionClassName="text-sm leading-relaxed"
                           />
+
                         </div>
 
                         {/* CTAs */}
                         <div className="mt-8 flex flex-wrap items-center gap-3">
                           <ButtonLink
-                            href={`/contact-us?p=inquire-${product.slug}`}
+                            href={`/contact-us?p=book-a-demo-${product.slug}`}
                             className="group relative overflow-hidden"
                           >
-                            Inquire about this product
+                            Book a demo
                           </ButtonLink>
                         </div>
                       </div>

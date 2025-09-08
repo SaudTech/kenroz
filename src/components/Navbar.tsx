@@ -51,6 +51,7 @@ export default function Navbar(): JSX.Element {
       typeof document !== "undefined" ? document.getElementById(id) : null;
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `/#${id}`);
       setIsMenuOpen(false);
     } else {
       window.location.href = `/#${id}`;

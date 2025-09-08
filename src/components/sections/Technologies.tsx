@@ -73,7 +73,7 @@ export default function Technologies() {
                 viewport={view}
                 whileHover={hoverScale}
               >
-                Technologies We Rely On
+                Our Tech Stack
               </motion.p>
 
               {/* Shorter subtitle */}
@@ -127,7 +127,7 @@ export default function Technologies() {
                         <motion.div
                           aria-label={label as string}
                           title={label as string}
-                          className="w-18 h-18 md:w-20 md:h-20 p-2 rounded-lg bg-white shadow-md border border-gray-200 flex items-center justify-center transition-transform duration-300 hover:shadow-xl will-change-transform"
+                          className="w-18 h-18 md:w-20 md:h-20 p-2 rounded-lg bg-white shadow-md border border-gray-200 flex items-center justify-center transition-all duration-300 will-change-transform hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
                           style={{
                             transform: `rotate(${rot}deg)`,
                             animation: `float ${floatDuration}s ease-in-out infinite`,

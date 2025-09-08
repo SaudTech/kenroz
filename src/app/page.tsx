@@ -19,12 +19,11 @@ export default function HomePage() {
         const elementId = hash.substring(1);
         const element = document.getElementById(elementId);
         if (element) {
-          // Small delay to ensure page is fully loaded
           setTimeout(() => {
             element.scrollIntoView({
               behavior: "smooth",
-              block: "end",
-              inline: "nearest",
+              block: "start",
+              inline: "start",
             });
           }, 100);
         }
@@ -57,7 +56,7 @@ export default function HomePage() {
         <Section is="even">
           <Hero />
         </Section>
-        <Section is="odd" id="our-story">
+        <Section is="odd" id="about-us">
           <OurStory />
         </Section>
         <Section is="odd" id="strategic-partners">
@@ -99,7 +98,7 @@ export const Section = ({
     <section
       id={id}
       className={cn(
-        "w-full min-h-[calc(100vh-64px)] h-full border-none overflow-hidden ",
+        "w-full min-h-[calc(100vh-64px)] h-full border-none overflow-hidden scroll-mt-[64px]",
         className
       )}
     >

@@ -49,6 +49,13 @@ type ContactSearchParams = {
   p?: string | string[];
 };
 function getHeadingParts(intent?: string) {
+
+  // first letter capitalize each word after splitting by hyphen
+  const product = intent?.split("book-a-demo-")[1]?.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) || "Our Products";
+  const isBookDemo = intent?.startsWith("book-a-demo");
+  if (isBookDemo) {
+    return { black: "Book a demo for", primary: product };
+  }
   switch (intent) {
     case "hire":
       return { black: "Engage", primary: "Our Experts" };

@@ -9,31 +9,22 @@ import Link from "next/link";
 
 export default function Footer() {
   const handleLinkClick = useCallback((href: string) => {
-    // Check if it's a hash link (starts with # or contains #)
-    if (href.includes("#")) {
-      const [path, hash] = href.split("#");
+    if (!href.includes("#")) return;
 
-      // If it's just a hash (same page), scroll to element
-      if (path === "" || path === "/") {
-        const element = document.getElementById(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-          return;
-        }
-      }
+    const [path, hash] = href.split("#");
+    const urlPath = path === "" || path === "/" ? window.location.pathname : path;
 
-      // If it's a different page with hash, navigate and then scroll
-      if (path && path !== window.location.pathname) {
-        window.location.href = href;
-        return;
-      }
-
-      // Same page with hash, scroll to element
-      const element = document.getElementById(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+    if (urlPath !== window.location.pathname) {
+      window.location.href = href;
+      return;
     }
+
+    const element = document.getElementById(hash);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    window.history.pushState(null, "", `${urlPath}#${hash}`);
   }, []);
 
   const services = [

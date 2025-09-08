@@ -10,6 +10,7 @@ import { Section } from "@/app/page";
 import { ButtonLink } from "@/components/Navbar";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 const engagementModels = [
   {
     title: "Dedicated Team",
@@ -259,20 +260,9 @@ export default function Page() {
             ))}
           </ul>
         </div>
-        <Image
-          src="/bubble-side-divider.svg"
-          alt="Outsourcing"
-          className="absolute bottom-0 left-0 rotate-180"
-          width={clientScreenWidth}
-          height={100}
-        />
       </Section>
-      <Image
-        src="/intersecting-wave-layers2.svg"
-        alt="Outsourcing"
-        width={clientScreenWidth}
-        height={100}
-      />
+
+      <PageDividerTwo />
 
       <ProcessAnimation
         steps={process}
