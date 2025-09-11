@@ -1,46 +1,114 @@
 "use client";
-
 import Image from "next/image";
-import { Instagram, Facebook, Twitter, Linkedin } from "lucide-react";
+import { Instagram, Facebook, Twitter, Linkedin, MapPin, Phone, ExternalLink } from "lucide-react";
 import { createElement, useCallback } from "react";
 import logo from "@/../public/logo.png";
-import LocationCards from "../LocationCards/Cards";
 import Link from "next/link";
 
+// Location Cards Component
+const locations = [
+  {
+    city: "Hyderabad",
+    flag: "/flags/ind.png",
+    location: `Western Aqua, Hitech City, Hyderabad, Telangana`,
+    phone: "+91-970-473-0500",
+  },
+];
+
+const countryByCity: Record<string, string> = {
+  Hyderabad: "India",
+};
+
+function mapHref(addr: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`;
+}
+
+function LocationCard({ city, flag, location, phone }: (typeof locations)[number]) {
+  const country = countryByCity[city] ?? "Location";
+  const tel = `tel:${phone.replace(/[^\d+]/g, "")}`;
+
+  return (
+    <div className="group relative bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 hover:bg-white/10 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_10px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
+      {/* Header with flag and city */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <div className="relative h-5 w-8 overflow-hidden rounded border border-white/20">
+            <Image
+              src={flag}
+              alt={`${country} flag`}
+              fill
+              sizes="32px"
+              className="object-cover"
+            />
+          </div>
+          <h5 className="text-sm font-medium text-white">{city}, {country}</h5>
+        </div>
+      </div>
+
+      {/* Address */}
+      <div className="mb-3">
+        <a
+          href={mapHref(location)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-start gap-2 text-sm text-white/70 hover:text-primary transition-colors group/link"
+          aria-label={`Open ${city} location in Maps`}
+        >
+          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/50 group-hover/link:text-white/80" />
+          <span className="leading-relaxed">{location}</span>
+          <ExternalLink className="mt-0.5 h-3 w-3 shrink-0 text-white/40 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+        </a>
+      </div>
+
+      {/* Phone */}
+      <a
+        href={tel}
+        className="flex items-center gap-2 text-sm text-white/70 hover:text-primary transition-colors group/phone"
+        aria-label={`Call ${phone}`}
+      >
+        <Phone className="h-4 w-4 text-white/50 group-hover/phone:text-white/80" />
+        <span>{phone}</span>
+      </a>
+    </div>
+  );
+}
+
+function LocationCards() {
+  return (
+    <div className="grid gap-3 mt-4">
+      {locations.map((loc) => (
+        <LocationCard key={loc.city} {...loc} />
+      ))}
+    </div>
+  );
+}
+
+// Main Footer Component
 export default function Footer() {
   const handleLinkClick = useCallback((href: string) => {
     if (!href.includes("#")) return;
-
     const [path, hash] = href.split("#");
     const urlPath = path === "" ? window.location.pathname : path;
-
     if (urlPath !== window.location.pathname) {
       window.location.href = href;
       return;
     }
-
     const element = document.getElementById(hash);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-
     window.history.pushState(null, "", `${urlPath}#${hash}`);
   }, []);
 
   const services = [
     { label: "Digital Marketing", href: "/services/digital-marketing" },
-    {
-      label: "Website Development",
-      href: "/services/web-application-development",
-    },
-    {
-      label: "Mobile Development",
-      href: "/services/mobile-application-development",
-    },
+    { label: "Website Development", href: "/services/web-application-development" },
+    { label: "Mobile Development", href: "/services/mobile-application-development" },
     { label: "Microsoft Dynamic 365", href: "/services/microsoft-dynamic-365" },
     { label: "Outsourcing", href: "/services/outsourcing" },
     { label: "Cloud Solutions", href: "/services/cloud-solutions" },
   ];
+
   const products = [
     { label: "PeopleSphere", href: "/products#people-sphere" },
     { label: "PayStream", href: "/products#pay-stream" },
@@ -60,77 +128,76 @@ export default function Footer() {
   const legalLinks = [
     { label: "Privacy Policy", href: "/legal/privacy-policy" },
     { label: "Terms of Service", href: "/legal/terms-of-service" },
-    // { label: "Cookie Policy", href: "/legal/cookie-policy" },
-    {
-      label: "Cancellation Policy",
-      href: "/legal/refund-cancellation-policy",
-    },
-    // { label: "Acceptable Use Policy", href: "/legal/acceptable-use-policy" },
+    { label: "Cancellation Policy", href: "/legal/refund-cancellation-policy" },
   ];
+
   const socials = [
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Facebook, href: "#", label: "Facebook" },
     { icon: Twitter, href: "#", label: "Twitter" },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/company/kenroz",
-      label: "LinkedIn",
-    },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/kenroz", label: "LinkedIn" },
   ];
 
   return (
-    <footer
-      className="h-full text-white bg-black border-t border-white/10 z-[90] relative"
-      aria-label="Site footer"
-    >
-      <div className=" px-4 pt-12 sm:pt-16 pb-0">
-        {/* Top Grid */}
-        <div className="grid sm:gap-12  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {/* Col 1 */}
-          <div className="col-span-1 sm:col-span-2 lg:col-span-1 mb-8 sm:mb-12 lg:mb-0">
-            <Image
-              src={logo}
-              alt="Kenroz Logo"
-              width={200}
-              height={200}
-              className="mb-6 h-auto max-w-[200px] w-auto"
-            />
-            <LocationCards />
-          </div>
+    <footer className="bg-gradient-to-b from-card to-black text-white border-t border-white/10 relative z-[90]" aria-label="Site footer">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Footer Content */}
+        <div className="pt-12 lg:pt-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+            
+            {/* Company Info - Spans 4 columns on large screens */}
+            <div className="lg:col-span-4">
+              <div className="mb-6">
+                <Image
+                  src={logo}
+                  alt="Kenroz Logo"
+                  width={160}
+                  height={60}
+                  className="h-12 w-auto"
+                  priority
+                />
+              </div>
+              <p className="text-white/70 text-base leading-relaxed mb-6 max-w-sm">
+                Empowering businesses with innovative technology solutions. 
+                From digital transformation to cloud services, we deliver excellence.
+              </p>
+              <LocationCards />
+            </div>
 
-          {/* Col 2 - Services */}
-          <div>
-            <h4 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-semibold">
-              Services
-            </h4>
-            <ul className="space-y-3 sm:space-y-4 text-lg sm:text-xl">
-              {services.map((service) => (
-                <li key={service.label}>
-                  <Link
-                    href={service.href}
-                    onClick={(e) => {
-                      if (service.href.includes("#")) {
-                        e.preventDefault();
-                        handleLinkClick(service.href);
-                      }
-                    }}
-                    className="inline-block text-white/70 hover:text-primary transition cursor-pointer"
-                  >
-                    {service.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Services - Spans 2 columns */}
+            <div className="lg:col-span-2">
+              <h4 className="text-lg font-semibold text-white mb-6 relative">
+                Services
+                <div className="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-secondary"></div>
+              </h4>
+              <ul className="space-y-3">
+                {services.map((service) => (
+                  <li key={service.label}>
+                    <Link
+                      href={service.href}
+                      onClick={(e) => {
+                        if (service.href.includes("#")) {
+                          e.preventDefault();
+                          handleLinkClick(service.href);
+                        }
+                      }}
+                      className="text-white/70 hover:text-primary text-sm transition-colors duration-200 hover:translate-x-1 inline-block"
+                    >
+                      {service.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Col 3 - Products */}
-          <div>
-            <h4 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-semibold">
-              Products
-            </h4>
-            <ul className="space-y-3 sm:space-y-4 text-lg sm:text-xl">
-              {products && products.length > 0 ? (
-                products.map((product) => (
+            {/* Products - Spans 2 columns */}
+            <div className="lg:col-span-2">
+              <h4 className="text-lg font-semibold text-white mb-6 relative">
+                Products
+                <div className="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-secondary"></div>
+              </h4>
+              <ul className="space-y-3">
+                {products.map((product) => (
                   <li key={product.label}>
                     <Link
                       href={product.href}
@@ -140,80 +207,73 @@ export default function Footer() {
                           handleLinkClick(product.href);
                         }
                       }}
-                      className="inline-block text-white/70 hover:text-primary transition cursor-pointer"
+                      className="text-white/70 hover:text-primary text-sm transition-colors duration-200 hover:translate-x-1 inline-block"
                     >
                       {product.label}
                     </Link>
                   </li>
-                ))
-              ) : (
-                <li>No products available</li>
-              )}
-            </ul>
-          </div>
+                ))}
+              </ul>
+            </div>
 
-          {/* Col 4 - Resources */}
-          <div>
-            <h4 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-semibold">
-              Resources
-            </h4>
-            <ul className="space-y-3 sm:space-y-4 text-lg sm:text-xl">
-              {resources && resources.length > 0 ? (
-                resources.map((r) => (
-                  <li key={r.label}>
+            {/* Resources - Spans 2 columns */}
+            <div className="lg:col-span-2">
+              <h4 className="text-lg font-semibold text-white mb-6 relative">
+                Resources
+                <div className="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-secondary"></div>
+              </h4>
+              <ul className="space-y-3">
+                {resources.map((resource) => (
+                  <li key={resource.label}>
                     <Link
-                      href={r.href}
+                      href={resource.href}
                       onClick={(e) => {
-                        if (r.href.includes("#")) {
+                        if (resource.href.includes("#")) {
                           e.preventDefault();
-                          handleLinkClick(r.href);
+                          handleLinkClick(resource.href);
                         }
                       }}
-                      className="inline-block text-white/70 hover:text-primary transition cursor-pointer"
+                      className="text-white/70 hover:text-primary text-sm transition-colors duration-200 hover:translate-x-1 inline-block"
                     >
-                      {r.label}
+                      {resource.label}
                     </Link>
                   </li>
-                ))
-              ) : (
-                <li>No resources available</li>
-              )}
-            </ul>
-          </div>
+                ))}
+              </ul>
+            </div>
 
-          {/* Col 5 - Connect with us */}
-          <div>
-            <h4 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-semibold">
-              Connect with us
-            </h4>
-            <ul className="space-y-3 sm:space-y-4 text-lg sm:text-xl">
-              {socials.map((legal) => (
-                <li key={legal.label}>
+            {/* Social Links - Spans 2 columns */}
+            <div className="lg:col-span-2">
+              <h4 className="text-lg font-semibold text-white mb-6 relative">
+                Connect
+                <div className="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-secondary"></div>
+              </h4>
+              <div className="space-y-3">
+                {socials.map((social) => (
                   <a
-                    href={legal.href}
-                    onClick={(e) => {
-                      if (legal.href.includes("#")) {
-                        e.preventDefault();
-                        handleLinkClick(legal.href);
-                      }
-                    }}
-                    className="flex gap-2 text-white/70 hover:text-primary transition cursor-pointer"
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-white/70 hover:text-primary text-sm transition-all duration-200 hover:translate-x-1 group"
                   >
-                    {createElement(legal.icon, { className: "h-6 w-6" })}
-                    {legal.label}
+                    {createElement(social.icon, { 
+                      className: "h-5 w-5 group-hover:scale-110 transition-transform" 
+                    })}
+                    <span>{social.label}</span>
                   </a>
-                </li>
-              ))}
-            </ul>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/10 mt-16 sm:mt-[2rem] pt-8 flex justify-center flex-col">
-          {/* Legal Center */}
-          <ul className="flex flex-wrap gap-6 sm:gap-8 text-lg sm:text-lg justify-center items-center">
+        {/* Footer Bottom */}
+        <div className="border-t border-white/10 mt-12 pt-8 pb-6">
+          {/* Legal Links */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-4">
             {legalLinks.map((link, index) => (
-              <li key={link.href} className="flex items-center">
+              <div key={link.href} className="flex items-center">
                 <Link
                   href={link.href}
                   onClick={(e) => {
@@ -222,21 +282,21 @@ export default function Footer() {
                       handleLinkClick(link.href);
                     }
                   }}
-                  className="text-background/60 hover:text-primary transition cursor-pointer"
+                  className="text-white/60 hover:text-primary/90 text-sm transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
                 {index < legalLinks.length - 1 && (
-                  <span className="ml-6 h-6 border-l border-background/40 self-center" />
+                  <div className="hidden sm:block w-px h-4 bg-white/20 ml-8"></div>
                 )}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
 
-          <div className="text-lg text-background/60 flex flex-col sm:flex-row justify-center items-center">
-            <p>
-              © {new Date().getFullYear()} Kenroz Private Limited. All rights
-              reserved.
+          {/* Copyright */}
+          <div className="text-center">
+            <p className="text-white/50 text-sm">
+              © {new Date().getFullYear()} Kenroz Private Limited. All rights reserved.
             </p>
           </div>
         </div>

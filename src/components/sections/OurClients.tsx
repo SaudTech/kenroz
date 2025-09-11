@@ -47,8 +47,7 @@ export default function OurClients() {
       aria-labelledby="our-clients-heading"
     >
       <div className="relative mx-auto max-w-7xl px-4 py-16">
-        <div className="rounded-2xl overflow-hidden px-6 pb-10 pt-5 md:px-10 relative">
-          {/* <SectionHeading blackText="Our" primaryText="Clients" /> */}
+        <div className="rounded-2xl overflow-hidden px-4 sm:px-6 md:px-10 pb-10 pt-5 relative">
           <SectionHeading
             blackText="Trusted by"
             primaryText="leading companies"
@@ -57,19 +56,19 @@ export default function OurClients() {
           {/* Arrows */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 border hover:bg-transparent hover:border-primary hover:text-primary"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-primary text-primary-foreground shadow p-2 border hover:bg-transparent hover:border-primary hover:text-primary"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
 
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto no-scrollbar gap-6 px-10 mt-20 scroll-smooth overflow-y-hidden"
+            className="flex overflow-x-auto no-scrollbar gap-4 sm:gap-6 px-4 sm:px-10 mt-10 sm:mt-20 scroll-smooth overflow-y-hidden"
           >
             {companies.map((company, i) => (
               <motion.div
                 key={company.name}
-                className="group relative flex items-center justify-center min-w-[160px] md:min-w-[180px] p-4 md:p-6 rounded-2xl backdrop-blur-sm transition-all duration-300"
+                className="group relative flex items-center justify-center min-w-[120px] sm:min-w-[160px] md:min-w-[180px] p-3 sm:p-4 md:p-6 rounded-2xl backdrop-blur-sm transition-all duration-300"
                 title={company.name}
                 variants={fromRight}
                 initial="hidden"
@@ -80,9 +79,9 @@ export default function OurClients() {
               >
                 <div
                   className={cn(
-                    "relative h-52 w-52 md:h-52 md:w-48 opacity-80 group-hover:opacity-100 transition rounded-md shadow-lg p-2",
-                    company.name === "Premier global Trading" && "md:h-52 w-52",
-                    company.name === "Musanadah" && "md:h-52 w-52"
+                    "relative h-40 w-40 sm:h-52 sm:w-48 opacity-80 group-hover:opacity-100 transition rounded-md shadow-lg p-2",
+                    company.name === "Premier global Trading" && "sm:h-52 w-52",
+                    company.name === "Musanadah" && "sm:h-52 w-52"
                   )}
                 >
                   <Image
@@ -98,13 +97,13 @@ export default function OurClients() {
 
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 translate-y-[100%] z-10 rounded-full bg-primary text-primary-foreground shadow p-2 border hover:bg-transparent hover:border-primary hover:text-primary"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 rounded-full bg-primary text-primary-foreground shadow p-2 border hover:bg-transparent hover:border-primary hover:text-primary"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-5 w-5" />
           </button>
         </div>
 
-        <Paragraph className="mt-6 text-center">
+        <Paragraph className="mt-6 text-center text-sm sm:text-base">
           We are proud to have collaborated with a diverse range of clients,
           delivering exceptional solutions tailored to their unique needs.
           Here&apos;s a glimpse of some of the companies we&apos;ve had the

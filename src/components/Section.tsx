@@ -16,7 +16,7 @@ export const Section = ({
       <section
         id={id}
         className={cn(
-          "w-full min-h-[calc(100vh-64px)] h-full border-none overflow-hidden scroll-mt-[64px]",
+          "w-full min-h-[calc(100vh-64px)] h-full border-none overflow-hidden scroll-mt-[64px] z-10",
           className
         )}
       >
