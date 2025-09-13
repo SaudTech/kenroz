@@ -8,6 +8,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
 import SiteGuard from "@/components/SiteGuard";
 import { Analytics } from "@vercel/analytics/next";
+import ThemeCustomizer from "@/components/ThemeCustomizer";
 
 const font = Arimo({
   subsets: ["latin"],
@@ -169,6 +170,7 @@ export default function RootLayout({
           {/* <Section is="even" className="bg-navbar"> */}
             <Footer />
           {/* </Section> */}
+          <ThemeCustomizer />
         </SiteGuard>
       </body>
     </html>

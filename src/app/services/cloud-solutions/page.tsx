@@ -9,7 +9,6 @@ import EngagementSection from "@/components/EngagementSection";
 import { ButtonLink } from "@/components/Navbar";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 import {
-  CheckCircle2,
   Cloud,
   Layers,
   Repeat,
