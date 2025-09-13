@@ -40,7 +40,7 @@ SDK or low-code, retries/alerts/observability + RBAC.`,
     logo: "/logo_mini.png",
     description: `Digital transformation: Dynamics 365, Cloud & DevOps.
 Security-first with HRMS/Payroll/Insurance accelerators.`,
-    website: "https://kenrozconsulting.com",
+    website: "/contact-us?p=consulting",
   },
 ];
 
@@ -120,11 +120,6 @@ function PartnerCard({ p }: { p: Partner; index: number }) {
             {p.description}
           </p>
         </div>
-
-        {/* Optional footer CTA */}
-        {/* <div className="px-6 pb-5 w-full flex justify-center mt-auto">
-            {p.website && <ButtonLink href={p.website}>Visit website</ButtonLink>}
-          </div> */}
       </div>
     </motion.div>
   );

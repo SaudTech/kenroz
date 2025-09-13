@@ -239,7 +239,7 @@ export default function MicrosoftDynamic365Page() {
             {d365Modules.map((m, i) => (
               <motion.li
                 key={m.name}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
@@ -322,7 +322,7 @@ export default function MicrosoftDynamic365Page() {
             {deliveryModels.map((m, i) => (
               <motion.li
                 key={m.title}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"

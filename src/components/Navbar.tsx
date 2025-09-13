@@ -137,10 +137,9 @@ export default function Navbar(): JSX.Element {
             <div className="flex gap-5 items-center">
               <ButtonLink
                 href="/contact-us?p=hire"
-                className="hidden min-[1222px]:inline-flex items-center font-semibold whitespace-nowrap px-8 py-3 border-primary transition-colors text-white rounded-full"
               >
                 Engage Our Experts
-                <Phone className="ms-2 h-5 w-5" />
+                <Phone className="ms-2 h-4 w-4" />
               </ButtonLink>
             </div>
 
@@ -302,15 +301,15 @@ export function ButtonLink({
   onClick,
 }: ButtonLinkProps): JSX.Element {
   const baseClasses = cn(
-    `inline-flex items-center justify-center font-semibold text-lg whitespace-nowrap px-8 py-3
+    `inline-flex items-center justify-center font-semibold text-base whitespace-nowrap px-4 py-2
      rounded-full transition-all duration-300 ease-in-out transform
      hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl
      focus:outline-none focus:ring-8 ring-0 focus:ring-primary/20`,
     variant === "default" &&
       `bg-gradient-to-r from-primary via-primary/90 to-secondary
        hover:from-transparent hover:via-transparent hover:to-transparent hover:text-primary hover:border-primary
-       text-primary-foreground border border-primary/20 text-lg
-       hover:shadow-primary/25 shadow-primary/20 max-w-[270px] w-[270px] min-w-[270px]`,
+       text-primary-foreground border border-primary/20 
+       hover:shadow-primary/25 shadow-primary/20 max-w-[250px] w-[250px] min-w-[250px]`,
     variant === "secondary" &&
       `bg-gradient-to-r from-primary/20 via-primary/10 to-primary/10 
        border-2 border-primary

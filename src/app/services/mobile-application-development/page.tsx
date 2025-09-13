@@ -334,7 +334,7 @@ export default function MobileApplicationDevelopmentPage() {
       <PageDividerTwo />
 
       {/* Platform Support */}
-      <Section is="odd" id="platforms" className="py-20 pt-0">
+      <Section is="odd" id="platforms" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <motion.h2

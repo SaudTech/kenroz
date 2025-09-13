@@ -192,7 +192,7 @@ export default function WebApplicationDevelopmentPage() {
             {features.map((m, i) => (
               <motion.li
                 key={m.name}
-                className="p-8 bg-card max-w-[480px] max-h-[250px] min-w-[480px] min-h-[250px] text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                className="p-8 bg-card max-w-[480px] max-h-[250px] min-w-[480px] min-h-[250px] text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"

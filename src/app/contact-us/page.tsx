@@ -63,6 +63,8 @@ function getHeadingParts(intent?: string) {
       return { black: "Partner", primary: "With Kenroz" };
     case "work-with-kenroz":
       return { black: "Work", primary: "with Kenroz" };
+    case "consulting":
+      return { black: "Kenroz", primary: "Consulting" };
     case undefined:
     case "":
       return { black: "Let’s", primary: "Connect" };
@@ -93,6 +95,8 @@ export default async function ContactPage({
   } else if (intent === "work-with-kenroz") {
     description =
       "Passionate about technology and innovation? Explore opportunities to work with us and be part of a team shaping the future of IT solutions across the globe.";
+  } else if (intent === "consulting") {
+    description = "Need expert advice on digital transformation, cloud adoption, or Microsoft Dynamics 365? Our consultants are ready to understand your challenges and provide tailored solutions.";
   } else if (intent) {
     description =
       "Interested in our solutions? Whether it’s cloud, digital transformation, or custom development, tell us about your project and we’ll get back to you with the right approach.";
@@ -134,7 +138,7 @@ export default async function ContactPage({
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 <a
                   href="tel:+919704730500"
-                  className="group flex items-center gap-2 rounded-xl bg-card text-card-foreground px-3 py-2 text-sm hover:shadow-sm transition"
+                  className="group flex items-center gap-2 rounded-xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground px-3 py-2 text-sm"
                 >
                   <Phone className="h-4 w-4" />
                   <span>Call us</span>
@@ -143,14 +147,14 @@ export default async function ContactPage({
                   href="https://wa.me/919704730500"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 rounded-xl bg-card text-card-foreground px-3 py-2 text-sm hover:shadow-sm transition"
+                  className="group flex items-center gap-2 rounded-xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground px-3 py-2 text-sm"
                 >
                   <MessageSquare className="h-4 w-4" />
                   <span>WhatsApp</span>
                 </a>
                 <a
                   href="mailto:hello@kenroz.com"
-                  className="group flex items-center gap-2 rounded-xl bg-card text-card-foreground px-3 py-2 text-sm hover:shadow-sm transition col-span-2 sm:col-span-1"
+                  className="group flex items-center gap-2 rounded-xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground px-3 py-2 text-sm col-span-2 sm:col-span-1"
                 >
                   <Mail className="h-4 w-4" />
                   <span>Email</span>
@@ -159,14 +163,14 @@ export default async function ContactPage({
 
               {/* Info tiles */}
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-card text-card-foreground p-4">
+                <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Clock className="h-4 w-4" />
-                    <h3 className="font-medium">Office Hours</h3>
+                    <h3 className="font-medium">Business Hours</h3>
                   </div>
-                  <p className="text-sm">Mon–Sat, 9:00 AM – 6:00 PM</p>
+                  <p className="text-sm">Monday to Friday, <br /> 9:00 AM - 6:00 PM</p>
                 </div>
-                <div className="rounded-2xl bg-card text-card-foreground p-4">
+                <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Shield className="h-4 w-4" />
                     <h3 className="font-medium">Assurance</h3>
@@ -187,7 +191,7 @@ export default async function ContactPage({
               {/* Tiny FAQ */}
               <div className="space-y-2">
                 {/* <h3 className="text-sm font-semibold">Quick FAQ</h3> */}
-                <div className="rounded-2xl bg-card text-card-foreground divide-y divide-black/5">
+                <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground divide-y divide-black/5">
                   <details className="p-4">
                     <summary className="cursor-pointer text-sm font-medium">
                       How soon will you respond?
@@ -201,7 +205,7 @@ export default async function ContactPage({
                       Do you work with remote teams?
                     </summary>
                     <p className="mt-2 text-sm">
-                      Yes, engagements across India, KSA, and UAE are common.
+                      Yes.
                     </p>
                   </details>
                 </div>

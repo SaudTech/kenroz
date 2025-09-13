@@ -53,7 +53,7 @@ export default function HomePage() {
       />
 
       <div className="min-h-screen overflow-x-hidden relative">
-        <Section is="even">
+        <Section is="even" className="max-w-auto">
           <Hero />
         </Section>
         <Section is="odd" id="about-us">

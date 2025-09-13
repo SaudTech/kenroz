@@ -21,36 +21,36 @@ import {
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/* Content (Cloud & DevOps)                                           */
+/* Content (Cloud)                                           */
 /* ------------------------------------------------------------------ */
 const capabilities = [
   {
-    name: "Infrastructure as Code",
+    name: "Cloud Migration",
     description:
-      "Codify cloud environments for repeatable, auditable, and secure provisioning.",
+      "Plan and execute rehost/replatform/refactor moves to Azure/AWS/GCP with secure landing zones, zero-downtime cutovers, and automated validation.",
     icon: Layers,
-    features: ["Terraform/Bicep", "Landing Zones", "Immutable Patterns", "Policy-as-Code"],
+    features: ["TCO & Readiness", "Landing Zones", "DB & App Cutovers", "Rollback Playbooks"],
   },
   {
-    name: "CI/CD Pipelines",
+    name: "Cloud Optimization",
     description:
-      "Automate build, test, and deploy with gated releases and progressive delivery.",
+      "Continuous FinOps + performance tuning—right-size resources, autoscale workloads, and optimize network/storage to cut spend without hurting reliability.",
     icon: Repeat,
-    features: ["GitHub Actions/Azure DevOps", "Multi-env Promotion", "Blue/Green & Canary", "Artifact Mgmt"],
+    features: ["Cost Dashboards", "Rightsizing & Schedules", "Savings Plans/RIs", "Perf Tuning & Caching"],
   },
   {
-    name: "Containers & Kubernetes",
+    name: "Cloud Security",
     description:
-      "Operate resilient workloads with GitOps, autoscaling, and zero-downtime rollouts.",
+      "Defense-in-depth with identity-first access, encryption, secrets, and policy-as-code—produce audit evidence on demand for CIS/ISO/NIST.",
     icon: Cloud,
-    features: ["AKS/EKS/GKE", "Helm/Kustomize", "GitOps (ArgoCD/Flux)", "Service Mesh (Istio/Linkerd)"],
+    features: ["IAM & Zero-Trust", "KMS & Key Rotation", "Network Segmentation", "OPA/Conftest Policies"],
   },
   {
-    name: "Observability & Incidents",
+    name: "Automated CI/CD",
     description:
-      "Full-fidelity logs, metrics, and traces with on-call workflows baked in.",
+      "GitOps pipelines for apps & infra—build, test, scan, release, and roll back safely with supply-chain security baked in.",
     icon: ServerCrash,
-    features: ["OpenTelemetry", "Dashboards & SLOs", "Alerting & Runbooks", "On-call & Postmortems"],
+    features: ["GitOps & IaC", "SAST/DAST/Secrets Scan", "Progressive Delivery", "SBOM & Policy Gates"],
   },
 ];
 
@@ -58,36 +58,61 @@ const deliveryModels = [
   {
     title: "Cloud Migration & Foundations",
     description:
-      "Assess, migrate, and stabilize with secure landing zones and reference architectures.",
+      "Assess, design, and stand up secure landing zones; migrate apps and data via phased cutovers with operational handover.",
     icon: Settings,
-    features: ["Discovery & TCO", "Landing Zones", "Network/IAM Baselines", "Data & App Migration"],
+    features: [
+      "Discovery & TCO",
+      "Landing Zones & Guardrails",
+      "Network/IAM Baselines",
+      "Data/App Migration Factory",
+      "Validation & Cutover Playbooks",
+    ],
     bestFor: "Greenfield, re-platforming, phased modernization",
   },
   {
     title: "Platform Engineering",
     description:
-      "Build an Internal Developer Platform with golden paths and paved roads.",
+      "Internal Developer Platform that abstracts cloud complexity with golden paths, self-service, and paved-road pipelines.",
     icon: Wrench,
-    features: ["IDP Backstage", "Reusable Templates", "Self-Service Portals", "Golden Pipelines"],
+    features: [
+      "Backstage IDP",
+      "Reusable Golden Templates",
+      "Self-Service Portals",
+      "Golden Pipelines",
+      "Shared Observability",
+    ],
     bestFor: "Standardization, scaling teams, faster onboarding",
   },
   {
     title: "DevSecOps & Compliance",
     description:
-      "Shift-left security with policy-as-code and automated compliance evidence.",
+      "Shift-left security and automate evidence collection to meet CIS/ISO/NIST without slowing delivery.",
     icon: ShieldCheck,
-    features: ["SAST/DAST/Secret Scans", "CIS/ISO/NIST Controls", "SBOM & Supply Chain", "Policy-as-Code"],
+    features: [
+      "SAST/DAST/Secret Scans",
+      "SBOM & Supply Chain",
+      "CIS/NIST Controls",
+      "Policy-as-Code & Release Gates",
+      "Continuous Evidence",
+    ],
     bestFor: "Regulated industries, enterprise guardrails",
   },
   {
     title: "SRE & Managed Reliability",
     description:
-      "SLA-backed operations with SLOs, capacity, and continuous resilience testing.",
+      "Operate with SLOs and error budgets, proactive capacity/cost management, chaos + DR drills, and 24×7 incident response.",
     icon: Gauge,
-    features: ["SLO/Error Budgets", "Capacity & Cost Mgmt", "Chaos & DR Drills", "24×7 Incident Response"],
+    features: [
+      "SLOs & Error Budgets",
+      "Observability & On-Call",
+      "Capacity & Cost Mgmt",
+      "Chaos & DR Drills",
+      "Runbooks & Postmortems",
+    ],
     bestFor: "Business-critical apps, uptime guarantees",
   },
 ];
+
 
 /* ------------------------------------------------------------------ */
 /* Page                                                                */
@@ -114,7 +139,7 @@ export default function CloudDevOpsPage() {
                 custom={0}
                 whileHover={hoverScale}
               >
-                Cloud & DevOps <span className="text-primary">Solutions</span>
+                Cloud <span className="text-primary">Solutions</span>
               </motion.h1>
 
               <motion.p
@@ -152,7 +177,7 @@ export default function CloudDevOpsPage() {
             >
               <Image
                 src="/Cloud Solution.webp"
-                alt="Cloud & DevOps dashboards and pipelines"
+                alt="Cloud dashboards and pipelines"
                 width={800}
                 height={900}
                 className="rounded-2xl filter brightness-90"
@@ -176,7 +201,7 @@ export default function CloudDevOpsPage() {
             whileHover={hoverScale}
           >
             <div className="border-t-2 border-black max-w-[470px] mb-3 mx-auto" />
-            Cloud & DevOps Capabilities
+            Cloud Capabilities
             <div className="border-t-2 border-black max-w-[470px] mt-3 mx-auto" />
           </motion.h2>
 
@@ -197,7 +222,7 @@ export default function CloudDevOpsPage() {
             {capabilities.map((m, i) => (
               <motion.li
                 key={m.name}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
@@ -220,14 +245,14 @@ export default function CloudDevOpsPage() {
 
                 <motion.p className="flex-1 text-center">{m.description}</motion.p>
 
-                <ul className="mt-4 space-y-2 text-sm">
+                {/* <ul className="mt-4 space-y-2 text-sm">
                   {m.features.map((f) => (
                     <motion.li key={f} className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
                       <span>{f}</span>
                     </motion.li>
                   ))}
-                </ul>
+                </ul> */}
               </motion.li>
             ))}
           </ul>
@@ -269,7 +294,7 @@ export default function CloudDevOpsPage() {
             {deliveryModels.map((m, i) => (
               <motion.li
                 key={m.title}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left cursor-pointer border border-border shadow-lg"
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
@@ -287,14 +312,14 @@ export default function CloudDevOpsPage() {
                 </motion.h3>
                 <motion.p className="flex-1 text-center">{m.description}</motion.p>
 
-                <ul className="mt-4 space-y-2 text-sm">
+                {/* <ul className="mt-4 space-y-2 text-sm">
                   {m.features.map((f) => (
                     <motion.li key={f} className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
                       <span>{f}</span>
                     </motion.li>
                   ))}
-                </ul>
+                </ul> */}
 
                 <p className="mt-4 text-sm text-primary-foreground text-center">
                   {m.bestFor}
