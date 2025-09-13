@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, AlertCircle, Upload, Mail } from "lucide-react";
+import { CheckCircle, AlertCircle, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
+import SectionHeading from "../typography/SectionHeading";
 
 interface FormData {
   firstName: string;
@@ -173,11 +174,10 @@ export default function JobApplicationForm({
       onSubmit={handleSubmit}
       className={cn("w-full max-w-2xl mx-auto", className)}
     >
-      <Card className="border-0 shadow-2xl bg-gradient-to-br from-white to-slate-50">
+      <Card className="border-0 shadow-2xl bg-background">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">
-            Job Application{job ? ` - ${job}` : ""}
-          </CardTitle>
+          <SectionHeading className="text-xl md:text-2xl" blackText="Job Application" primaryText={job ? ` - ${job}` : ""} />
+
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -274,27 +274,6 @@ export default function JobApplicationForm({
           </div>
         </CardContent>
       </Card>
-      <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-        <div className="flex items-start gap-3">
-          <Mail className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-          <div>
-            <p className="text-sm text-blue-800 font-medium mb-1">
-              Alternative submission method
-            </p>
-            <p className="text-sm text-blue-700">
-              You can also send your application details directly via email to{" "}
-              <a
-                href="mailto:career@kenroz.com"
-                className="font-semibold underline hover:text-blue-900"
-              >
-                career@kenroz.com
-              </a>
-              . Please include your resume, cover letter, and contact
-              information.
-            </p>
-          </div>
-        </div>
-      </div>
     </form>
   );
 }
