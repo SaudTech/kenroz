@@ -22,6 +22,26 @@ import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 import ProcessAnimation, { ProcessStep } from "../outsourcing/process";
 import Image from "next/image";
 
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
+import ServiceJsonLd from "../ServiceJsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+const svc = {
+  slug: "digital-marketing",
+  name: "Digital Marketing",
+  summary: "Digital marketing solutions to grow your business.",
+};
+
+export const metadata: Metadata = buildMetadata({
+  title: svc.name,
+  description: svc.summary,
+  url: `${SITE.url}/services/${svc.slug}`,
+});
+
+export const revalidate = 1800;
+
 export default function DigitalMarketingPage() {
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
     useSectionVariants();
@@ -154,7 +174,15 @@ export default function DigitalMarketingPage() {
   ];
 
   return (
-    <main>
+    <>
+      <ServiceJsonLd svc={svc} />
+      <Breadcrumbs
+        items={[
+          { href: "/services", label: "Services" },
+          { href: `/services/${svc.slug}`, label: svc.name },
+        ]}
+      />
+      <main>
       {/* Hero */}
       <Section
         is="odd"
@@ -346,5 +374,6 @@ export default function DigitalMarketingPage() {
         />
       </motion.div>
     </main>
+    </>
   );
 }

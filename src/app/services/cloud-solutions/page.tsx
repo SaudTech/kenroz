@@ -18,6 +18,25 @@ import {
   Settings,
   Gauge,
 } from "lucide-react";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
+import ServiceJsonLd from "../ServiceJsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+const svc = {
+  slug: "cloud-solutions",
+  name: "Cloud Solutions",
+  summary: "Cloud migration, optimization, and DevSecOps services.",
+};
+
+export const metadata: Metadata = buildMetadata({
+  title: svc.name,
+  description: svc.summary,
+  url: `${SITE.url}/services/${svc.slug}`,
+});
+
+export const revalidate = 1800;
 
 /* ------------------------------------------------------------------ */
 /* Content (Cloud)                                           */
@@ -121,7 +140,15 @@ export default function CloudDevOpsPage() {
     useSectionVariants();
 
   return (
-    <main>
+    <>
+      <ServiceJsonLd svc={svc} />
+      <Breadcrumbs
+        items={[
+          { href: "/services", label: "Services" },
+          { href: `/services/${svc.slug}`, label: svc.name },
+        ]}
+      />
+      <main>
       {/* Hero   mirrors Outsourcing/D365 */}
       <Section
         is="odd"
@@ -343,5 +370,6 @@ export default function CloudDevOpsPage() {
         />
       </motion.div>
     </main>
+    </>
   );
 }

@@ -2,13 +2,40 @@
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
 import Technologies from "@/components/sections/Technologies";
-import StructuredData from "@/components/seo/StructuredData";
+import JsonLd from "@/lib/seo/jsonld";
+import { SITE } from "@/lib/seo/site";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: SITE.defaultTitle,
+  description: SITE.defaultDescription,
+  url: SITE.url,
+});
 import OurStory from "@/components/sections/OurStory";
 import StrategicPartner from "@/components/sections/StrategicPartner";
 import OurClients from "@/components/sections/OurClients";
 import EngagementSection from "@/components/EngagementSection";
 import { useEffect } from "react";
 import { Section } from "@/components/Section";
+
+function HomeJsonLd() {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: SITE.name,
+        url: SITE.url,
+        logo: `${SITE.url}/logo.png`,
+        sameAs: [
+          "https://twitter.com/kenroz",
+          "https://www.linkedin.com/company/kenroz",
+        ],
+      }}
+    />
+  );
+}
 
 export default function HomePage() {
   useEffect(() => {
@@ -37,20 +64,7 @@ export default function HomePage() {
   }, []);
   return (
     <>
-      <StructuredData
-        type="website"
-        data={{
-          "@type": "WebPage",
-          name: "Kenroz IT Solutions - Digital Transformation & Enterprise Software Company",
-          description:
-            "Kenroz empowers businesses with innovative IT solutions, from Microsoft Dynamics 365 and Cloud to Web & Mobile Development, Digital Marketing, and IT Outsourcing. Partner with us to transform your business with technology.",
-          url: "https://kenroz.com",
-          mainEntity: {
-            "@type": "Organization",
-            name: "Kenroz IT Solutions",
-          },
-        }}
-      />
+      <HomeJsonLd />
 
       <div className="min-h-screen overflow-x-hidden relative">
         <Section is="even" className="max-w-auto">

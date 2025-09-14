@@ -20,6 +20,26 @@ import {
 } from "lucide-react";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
+import ServiceJsonLd from "../ServiceJsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+const svc = {
+  slug: "microsoft-dynamic-365",
+  name: "Microsoft Dynamics 365",
+  summary: "Microsoft Dynamics 365 implementation and customization services.",
+};
+
+export const metadata: Metadata = buildMetadata({
+  title: svc.name,
+  description: svc.summary,
+  url: `${SITE.url}/services/${svc.slug}`,
+});
+
+export const revalidate = 1800;
+
 /* ------------------------------------------------------------------ */
 /* Content (Dynamics-focused)                                          */
 /* ------------------------------------------------------------------ */
@@ -137,7 +157,15 @@ export default function MicrosoftDynamic365Page() {
     useSectionVariants();
 
   return (
-    <main>
+    <>
+      <ServiceJsonLd svc={svc} />
+      <Breadcrumbs
+        items={[
+          { href: "/services", label: "Services" },
+          { href: `/services/${svc.slug}`, label: svc.name },
+        ]}
+      />
+      <main>
       {/* Hero   matches Outsourcing layout/animation */}
       <Section
         is="odd"
@@ -371,5 +399,6 @@ export default function MicrosoftDynamic365Page() {
         />
       </motion.div>
     </main>
+    </>
   );
 }

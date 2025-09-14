@@ -17,6 +17,26 @@ import {
   Shield,
 } from "lucide-react";
 
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
+import ServiceJsonLd from "../ServiceJsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+const svc = {
+  slug: "web-application-development",
+  name: "Web Application Development",
+  summary: "Modern web application development services.",
+};
+
+export const metadata: Metadata = buildMetadata({
+  title: svc.name,
+  description: svc.summary,
+  url: `${SITE.url}/services/${svc.slug}`,
+});
+
+export const revalidate = 1800;
+
 /* ------------ Your process steps (from current data) ------------ */
 const webProcess: ProcessStep[] = [
   {
@@ -88,7 +108,15 @@ export default function WebApplicationDevelopmentPage() {
     useSectionVariants();
 
   return (
-    <main>
+    <>
+      <ServiceJsonLd svc={svc} />
+      <Breadcrumbs
+        items={[
+          { href: "/services", label: "Services" },
+          { href: `/services/${svc.slug}`, label: svc.name },
+        ]}
+      />
+      <main>
       {/* Hero   concise value + how we work */}
       <Section
         is="odd"
@@ -253,5 +281,6 @@ export default function WebApplicationDevelopmentPage() {
         />
       </motion.div>
     </main>
+    </>
   );
 }

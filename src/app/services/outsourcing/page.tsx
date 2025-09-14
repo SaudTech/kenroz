@@ -10,6 +10,25 @@ import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
 import Image from "next/image";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
+import ServiceJsonLd from "../ServiceJsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+const svc = {
+  slug: "outsourcing",
+  name: "Outsourcing",
+  summary: "IT outsourcing services for scalable teams.",
+};
+
+export const metadata: Metadata = buildMetadata({
+  title: svc.name,
+  description: svc.summary,
+  url: `${SITE.url}/services/${svc.slug}`,
+});
+
+export const revalidate = 1800;
 const engagementModels = [
   {
     title: "Dedicated Team",
@@ -91,6 +110,13 @@ export default function Page() {
 
   return (
     <>
+      <ServiceJsonLd svc={svc} />
+      <Breadcrumbs
+        items={[
+          { href: "/services", label: "Services" },
+          { href: `/services/${svc.slug}`, label: svc.name },
+        ]}
+      />
       {/* Hero Section */}
       <Section
         is="odd"
