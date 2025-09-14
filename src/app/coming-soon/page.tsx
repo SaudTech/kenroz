@@ -3,6 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { Eye, EyeOff, Lock, Sparkles } from "lucide-react";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Coming Soon",
+  description: "Exclusive content coming soon. Unlock the site with a passcode.",
+  url: `${SITE.url}/coming-soon`,
+});
+
+export const revalidate = 1800;
 
 export default function ComingSoonPage() {
   const [password, setPassword] = useState("");

@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seo:check": "node ./scripts/check-seo.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",

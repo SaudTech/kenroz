@@ -22,6 +22,26 @@ import {
 import { AppleAppStore, GooglePlaystore } from "./PlatformIcons";
 import Image from "next/image";
 
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { SITE } from "@/lib/seo/site";
+import ServiceJsonLd from "../ServiceJsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
+const svc = {
+  slug: "mobile-application-development",
+  name: "Mobile Application Development",
+  summary: "Custom mobile app development services.",
+};
+
+export const metadata: Metadata = buildMetadata({
+  title: svc.name,
+  description: svc.summary,
+  url: `${SITE.url}/services/${svc.slug}`,
+});
+
+export const revalidate = 1800;
+
 /* ------------------- Process (mobile-focused) ------------------- */
 const mobileProcess: ProcessStep[] = [
   {
@@ -128,7 +148,15 @@ export default function MobileApplicationDevelopmentPage() {
     useSectionVariants();
 
   return (
-    <main>
+    <>
+      <ServiceJsonLd svc={svc} />
+      <Breadcrumbs
+        items={[
+          { href: "/services", label: "Services" },
+          { href: `/services/${svc.slug}`, label: svc.name },
+        ]}
+      />
+      <main>
       {/* Hero   concise value + how we work */}
       <Section
         is="odd"
@@ -542,5 +570,6 @@ export default function MobileApplicationDevelopmentPage() {
         />
       </motion.div>
     </main>
+    </>
   );
 }
