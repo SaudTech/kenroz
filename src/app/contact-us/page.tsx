@@ -170,7 +170,7 @@ export default async function ContactPage({
                   </div>
                   <p className="text-sm">Monday to Friday, <br /> 9:00 AM - 6:00 PM</p>
                 </div>
-                <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground p-4">
+                {/* <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Shield className="h-4 w-4" />
                     <h3 className="font-medium">Assurance</h3>
@@ -185,7 +185,7 @@ export default async function ContactPage({
                       <span>Clear proposals & timelines</span>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </div>
 
               {/* Tiny FAQ */}

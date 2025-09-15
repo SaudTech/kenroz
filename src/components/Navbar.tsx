@@ -108,9 +108,7 @@ export default function Navbar(): JSX.Element {
             {/* Desktop Nav */}
             <div
               className={cn(
-                "hidden min-[1222px]:flex text-xl items-center space-x-0",
-                scrolled ? "text-navbar-foreground" : "text-card-foreground"
-              )}
+                "hidden min-[1222px]:flex text-xl items-center space-x-0 text-background")}
             >
               {MAIN_LINKS.map((item, idx) => (
                 <React.Fragment key={item.label}>
@@ -304,12 +302,12 @@ export function ButtonLink({
     `inline-flex items-center justify-center font-semibold text-base whitespace-nowrap px-4 py-2
      rounded-full transition-all duration-300 ease-in-out transform
      hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl
-     focus:outline-none focus:ring-8 ring-0 focus:ring-primary/20`,
+     focus:outline-none focus:ring-8 ring-0 focus:ring-primary/20 max-w-[250px] w-[250px] min-w-[250px]`,
     variant === "default" &&
       `bg-gradient-to-r from-primary via-primary/90 to-secondary
        hover:from-transparent hover:via-transparent hover:to-transparent hover:text-primary hover:border-primary
        text-primary-foreground border border-primary/20 
-       hover:shadow-primary/25 shadow-primary/20 max-w-[250px] w-[250px] min-w-[250px]`,
+       hover:shadow-primary/25 shadow-primary/20`,
     variant === "secondary" &&
       `bg-gradient-to-r from-primary/20 via-primary/10 to-primary/10 
        border-2 border-primary

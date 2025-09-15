@@ -19,13 +19,13 @@ const EngagementSection: React.FC<EngagementSectionProps> = ({
   button2Text,
 }) => {
   return (
-    <section className="relative overflow-hidden bg-slate-900 text-white z-[90]">
+    <section className="relative overflow-hidden bg-card text-card-foreground z-[90]">
       <div className="container relative z-10 mx-auto px-4 py-14 md:py-16 text-center">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
             {title}
           </h2>
-          <p className="mt-3 text-white/80">{description}</p>
+          <p className="mt-3 text-card-foreground/80">{description}</p>
           <div className="mt-8 flex items-center justify-center gap-4">
             {button1Url && button1Text && (
               <ButtonLink href={button1Url} variant="outline">

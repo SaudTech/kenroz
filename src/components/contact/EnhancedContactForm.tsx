@@ -5,16 +5,44 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "../Navbar";
 import SectionHeading from "../typography/SectionHeading";
 
+const serviceOptions = [
+  "Microsoft Dynamics 365",
+  "Cloud Solutions",
+  "Web Application Development",
+  "Mobile Application Development",
+  "Digital Marketing",
+  "Outsourcing",
+];
+
+const productOptions = [
+  "People Sphere",
+  "Pay Stream",
+  "Tax Nova",
+  "Insura Core",
+  "Learnify",
+];
+
 interface FormData {
   fullName: string;
   email: string;
-  company: string;
+  phone: string;
+  interest: string;
   message: string;
   context?: string;
 }
@@ -40,7 +68,8 @@ export default function EnhancedContactForm({
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
-    company: "",
+    phone: "",
+    interest: "",
     message: "",
     context,
   });
@@ -55,11 +84,14 @@ export default function EnhancedContactForm({
       newErrors.fullName = "Name must be at least 2 characters";
     }
 
-    // Company validation
-    if (!formData.company.trim()) {
-      newErrors.company = "Company name is required";
-    } else if (formData.company.trim().length < 2) {
-      newErrors.company = "Company name must be at least 2 characters";
+    // Phone validation
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else {
+      const digitsOnlyLength = formData.phone.replace(/\D/g, "").length;
+      if (digitsOnlyLength < 7 || digitsOnlyLength > 15) {
+        newErrors.phone = "Please enter a valid phone number";
+      }
     }
 
     // Email validation
@@ -68,6 +100,11 @@ export default function EnhancedContactForm({
       newErrors.email = "Email address is required";
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
+    }
+
+    // Interest validation
+    if (!formData.interest.trim()) {
+      newErrors.interest = "Please select a service or product";
     }
 
     // Message validation
@@ -101,7 +138,8 @@ export default function EnhancedContactForm({
       setFormData({
         fullName: "",
         email: "",
-        company: "",
+        phone: "",
+        interest: "",
         message: "",
         context,
       });
@@ -128,6 +166,20 @@ export default function EnhancedContactForm({
       setErrors((prev) => ({
         ...prev,
         [name]: "",
+      }));
+    }
+  };
+
+  const handleInterestChange = (value: string) => {
+    console.log("Interest changed to:", value); // Debug log
+    setFormData((prev) => ({
+      ...prev,
+      interest: value,
+    }));
+    if (errors.interest) {
+      setErrors((prev) => ({
+        ...prev,
+        interest: "",
       }));
     }
   };
@@ -207,7 +259,7 @@ export default function EnhancedContactForm({
                 )}
               </div>
 
-              {/* Email and Company Row */}
+              {/* Email and Phone Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Input
@@ -233,24 +285,70 @@ export default function EnhancedContactForm({
 
                 <div className="space-y-2">
                   <Input
-                    id="company"
-                    name="company"
-                    value={formData.company}
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Tell us your company name"
+                    placeholder="Enter your phone number"
                     className={`h-12 border-2 transition-all duration-200 ${
-                      errors.company
+                      errors.phone
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                         : "border-gray-200 focus:border-primary focus:ring-primary/20"
                     }`}
                   />
-                  {errors.company && (
+                  {errors.phone && (
                     <p className="text-sm text-red-600 flex items-center gap-1">
                       <AlertCircle className="w-4 h-4" />
-                      {errors.company}
+                      {errors.phone}
                     </p>
                   )}
                 </div>
+              </div>
+
+              {/* Service/Product Dropdown */}
+              <div className="space-y-2">
+                <Select
+                  value={formData.interest}
+                  onValueChange={handleInterestChange}
+                >
+                  <SelectTrigger
+                    className={`h-14 w-full border-2 transition-all duration-200 text-left text-gray-900 ${
+                      errors.interest
+                        ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
+                    }`}
+                  >
+                    <SelectValue placeholder="Select a service or product" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white text-gray-900 max-h-[200px] scroll-y-scroll">
+                    <SelectGroup>
+                      <SelectLabel>Services</SelectLabel>
+                      {serviceOptions.map((service) => (
+                        <SelectItem key={service} value={service}>
+                          {service}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                    <SelectSeparator />
+                    <SelectGroup>
+                      <SelectLabel>Products</SelectLabel>
+                      {productOptions.map((product) => (
+                        <SelectItem key={product} value={product}>
+                          {product}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                    <SelectSeparator />
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+                {errors.interest && (
+                  <p className="text-sm text-red-600 flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    {errors.interest}
+                  </p>
+                )}
               </div>
 
               {/* Message Field */}
@@ -260,7 +358,7 @@ export default function EnhancedContactForm({
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell us more about your project or requirements..."
+                  placeholder="Additional Information (e.g., project details, timeline)"
                   rows={5}
                   className={`border-2 transition-all h-[123px] duration-200 resize-none ${
                     errors.message

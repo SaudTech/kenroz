@@ -118,7 +118,7 @@ export default function Services() {
           </div>
 
           {/* Text (right on desktop) */}
-          <div className="md:col-span-5 order-1 md:order-2  border-black border-solid border-2 rounded-md p-5 bg-card-secondary shadow-md">
+          <div className="md:col-span-5 order-1 md:order-2  border-black border-solid border-2 rounded-md p-5 bg-card/20 shadow-md">
             <div className="md:sticky  text-start md:top-20">
               <motion.p
                 className="text-3xl md:text-4xl tracking-widest uppercase text-foreground font-extrabold"

@@ -40,7 +40,6 @@
   --color-navbar: var(--navbar);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-card-secondary: var(--card-secondary);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -49,16 +48,15 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #fff;
-  --foreground: #000;
-  --card: #0f172b;
-  --card-secondary: #f6f3f4; /* Used for clients section background */
-  --card-foreground: #ffffff;
   --navbar: #000000;
   --navbar-foreground: #000000;
-  --primary: #f92029;
+  --background: #E5D9B6;
+  --foreground: #000;
+  --card: #0f172b;
+  --card-foreground: #ffffff;
+  --primary: #5F8D4E;
   --primary-foreground: #ffffff;
-  --secondary: #f92029;
+  --secondary: #285430;
   --secondary-foreground: #000000;
   --tertiary:#fffde7;
   --tertiary-foreground: #000000;

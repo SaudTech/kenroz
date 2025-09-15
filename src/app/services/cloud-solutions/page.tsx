@@ -175,7 +175,7 @@ export default function CloudDevOpsPage() {
               whileInView="visible"
             >
               <Image
-                src="/Cloud Solution.webp"
+                src="/CloudSolution.png"
                 alt="Cloud dashboards and pipelines"
                 width={800}
                 height={900}
