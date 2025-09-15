@@ -21,7 +21,7 @@ const partners: Partner[] = [
   {
     id: "emvive",
     name: "Emvive",
-    logo: "/emvive.png",
+    logo: "/Emvive.png",
     description: `ZATCA-compliant e-invoicing that automates QR/UBL/XML.
 ERP connectors & secure archiving.`,
     website: "https://emvive.com",
