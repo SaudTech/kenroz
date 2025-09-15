@@ -132,7 +132,7 @@ export default function Navbar(): JSX.Element {
             </div>
 
             {/* Right actions */}
-            <div className="flex gap-5 items-center">
+            <div className="flex gap-5 items-center max-[1222px]:hidden">
               <ButtonLink
                 href="/contact-us?p=hire"
               >

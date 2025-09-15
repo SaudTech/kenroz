@@ -1,4 +1,5 @@
-import { ChevronDown, Link } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 import { NavLink } from "../Navbar";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
@@ -31,7 +32,7 @@ function MobileExpandable({
 
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.ul    
+          <motion.ul
             id={`mobile-sub-${item.label}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -41,23 +42,13 @@ function MobileExpandable({
           >
             {item.links?.map((child) => (
               <li key={child.label} className="mt-1">
-                {child.href ? (
-                  <Link
-                    href={child.href}
-                    onClick={() => onLeafClick(child)}
-                    className="block text-foreground hover:text-primary hover:bg-black px-4 py-2.5 text-base rounded-lg"
-                  >
-                    {child.label}
-                  </Link>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => onLeafClick(child)}
-                    className="w-full text-left text-foreground hover:text-primary hover:bg-black px-4 py-2.5 text-base rounded-lg"
-                  >
-                    {child.label}
-                  </button>
-                )}
+                <Link
+                  href={child.href ?? "#"}
+                  onClick={() => onLeafClick(child)}
+                  className="block px-4 py-2 rounded-md text-card-foreground hover:text-primary hover:bg-background transition-colors"
+                >
+                  {child.label}
+                </Link>
               </li>
             ))}
           </motion.ul>
