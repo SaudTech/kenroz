@@ -2,12 +2,11 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, AlertCircle, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
-import SectionHeading from "../typography/SectionHeading";
 
 interface FormData {
   firstName: string;
@@ -175,10 +174,6 @@ export default function JobApplicationForm({
       className={cn("w-full max-w-2xl mx-auto", className)}
     >
       <Card className="border-0 shadow-2xl bg-background">
-        <CardHeader>
-          <SectionHeading className="text-xl md:text-2xl" blackText="Job Application" primaryText={job ? ` - ${job}` : ""} />
-
-        </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>

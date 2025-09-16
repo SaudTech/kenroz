@@ -77,7 +77,7 @@ export default function JobList() {
               placeholder="Search roles, teams, or keywords…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full"
+              className="w-full  bg-background text-foreground placeholder:text-foreground"
               aria-label="Search roles"
             />
             {search && (
@@ -92,10 +92,10 @@ export default function JobList() {
           </div>
 
           <Select value={dept} onValueChange={setDept}>
-            <SelectTrigger className="w-[180px]" aria-label="Filter by department">
+            <SelectTrigger className="w-[180px] bg-background" aria-label="Filter by department">
               <SelectValue placeholder="Department" />
             </SelectTrigger>
-            <SelectContent className="max-h-[260px]">
+            <SelectContent className="max-h-[260px] bg-background text-foreground">
               {departments.map((d) => (
                 <SelectItem key={d} value={d}>
                   {d}
@@ -105,10 +105,10 @@ export default function JobList() {
           </Select>
 
           <Select value={location} onValueChange={setLocation}>
-            <SelectTrigger className="w-[180px]" aria-label="Filter by location">
+            <SelectTrigger className="w-[180px] bg-background" aria-label="Filter by location">
               <SelectValue placeholder="Location" />
             </SelectTrigger>
-            <SelectContent className="max-h-[260px]">
+            <SelectContent className="max-h-[260px] bg-background text-foreground">
               {locations.map((loc) => (
                 <SelectItem key={loc} value={loc}>
                   {loc}
@@ -120,10 +120,10 @@ export default function JobList() {
 
         <div className="flex items-center gap-3">
           <Select value={sort} onValueChange={(v: "new" | "az") => setSort(v)}>
-            <SelectTrigger className="w-[160px]" aria-label="Sort roles">
+            <SelectTrigger className="w-[160px] bg-background" aria-label="Sort roles">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-background text-foreground">
               <SelectItem value="new">Newest first</SelectItem>
               <SelectItem value="az">A–Z</SelectItem>
             </SelectContent>
@@ -131,7 +131,7 @@ export default function JobList() {
 
           {(dept !== "All" || location !== "All" || search) && (
             <Button
-              variant="ghost"
+              variant="outline"
               onClick={() => {
                 setDept("All");
                 setLocation("All");

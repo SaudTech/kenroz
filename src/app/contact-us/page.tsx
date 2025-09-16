@@ -6,11 +6,10 @@ import {
   Clock,
   Mail,
   MessageSquare,
-  CheckCircle2,
-  Shield,
 } from "lucide-react";
 import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
+import Paragraph from "@/components/typography/Paragraph";
 
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch with Kenroz IT Solutions",
@@ -130,9 +129,9 @@ export default async function ContactPage({
             {/* ---------- Left Column: filled + useful ---------- */}
             <div className="space-y-8">
               {/* Intro */}
-              <p className="text-lg md:text-xl text-gray-900 max-w-2xl leading-relaxed">
+              <Paragraph>
                 {description}
-              </p>
+              </Paragraph>
 
               {/* Quick Channels */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -170,22 +169,6 @@ export default async function ContactPage({
                   </div>
                   <p className="text-sm">Monday to Friday, <br /> 9:00 AM - 6:00 PM</p>
                 </div>
-                {/* <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Shield className="h-4 w-4" />
-                    <h3 className="font-medium">Assurance</h3>
-                  </div>
-                  <ul className="space-y-1.5 text-sm">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5" />
-                      <span>Secure & confidential engagement</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5" />
-                      <span>Clear proposals & timelines</span>
-                    </li>
-                  </ul>
-                </div> */}
               </div>
 
               {/* Tiny FAQ */}

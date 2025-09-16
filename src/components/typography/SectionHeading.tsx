@@ -3,7 +3,22 @@ import { hoverScale, useSectionVariants, view } from "@/lib/section-animations";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
-const SectionHeading = ({ blackText, primaryText, className }: { blackText: string, primaryText: string, className?: React.HTMLAttributes<HTMLHeadingElement>['className'] }) => {
+const SectionHeading = ({
+  blackText,
+  primaryText,
+  className,
+  blackTextClassName,
+  variant = "default",
+}: {
+  blackText: string,
+  primaryText: string,
+  className?: React.HTMLAttributes<HTMLHeadingElement>["className"],
+  blackTextClassName?: React.HTMLAttributes<HTMLHeadingElement>["className"],
+  /**
+   * default: primary part uses brand color; foreground: both parts use foreground for better contrast on tinted backgrounds
+   */
+  variant?: "default" | "foreground";
+}) => {
   const { fromLeft } = useSectionVariants();
   return (
     <motion.h2
@@ -14,7 +29,8 @@ const SectionHeading = ({ blackText, primaryText, className }: { blackText: stri
       whileHover={hoverScale}
       className={cn("text-4xl md:text-5xl font-bold text-foreground leading-tight flex gap-2 justify-center", className)}
     >
-      {blackText} <span className="block text-primary">{primaryText}</span>
+      <span className={cn(blackTextClassName)}>{blackText}</span>{" "}
+      <span className={cn("block", variant === "default" ? "text-primary" : "text-foreground")}>{primaryText}</span>
     </motion.h2>
   );
 };

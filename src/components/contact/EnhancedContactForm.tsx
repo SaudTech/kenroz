@@ -221,9 +221,9 @@ export default function EnhancedContactForm({
         )}
       >
         {/* Contact Form */}
-        <Card className="border-0 w-full mx-auto shadow-2xl bg-gradient-to-br from-white to-gray-50">
+        <Card className="border-0 w-full mx-auto shadow-2xl bg-card">
           <CardHeader>
-            <SectionHeading blackText="Send us" primaryText="a message" />
+            <SectionHeading blackTextClassName="text-card-foreground" blackText="Send us" primaryText="a message" />
           </CardHeader>
 
           <CardContent className="space-y-6">
@@ -245,7 +245,7 @@ export default function EnhancedContactForm({
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="Enter your full name"
-                  className={`h-12 border-2 transition-all duration-200 ${
+                  className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
                     errors.fullName
                       ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                       : "border-gray-200 focus:border-primary focus:ring-primary/20"
@@ -269,7 +269,7 @@ export default function EnhancedContactForm({
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email address"
-                    className={`h-12 border-2 transition-all duration-200 ${
+                    className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
                       errors.email
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                         : "border-gray-200 focus:border-primary focus:ring-primary/20"
@@ -291,7 +291,7 @@ export default function EnhancedContactForm({
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Enter your phone number"
-                    className={`h-12 border-2 transition-all duration-200 ${
+                    className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
                       errors.phone
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                         : "border-gray-200 focus:border-primary focus:ring-primary/20"
@@ -313,15 +313,18 @@ export default function EnhancedContactForm({
                   onValueChange={handleInterestChange}
                 >
                   <SelectTrigger
-                    className={`h-14 w-full border-2 transition-all duration-200 text-left text-gray-900 ${
+                    className={`h-14 w-full border-2 transition-all duration-200 text-left text-card-foreground placeholder:text-card-foreground ${
                       errors.interest
                         ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                         : "border-gray-200 focus:border-primary focus:ring-primary/20"
                     }`}
                   >
-                    <SelectValue placeholder="Select a service or product" />
+                    {/* <SelectValue placeholder="Select a service or product" className="text-card-foreground" /> */}
+                    <span className={cn(!formData.interest && "text-card-foreground")}>
+                      {formData.interest || "Select a service or product"}
+                    </span>
                   </SelectTrigger>
-                  <SelectContent className="bg-white text-gray-900 max-h-[200px] scroll-y-scroll">
+                  <SelectContent className="bg-white text-black max-h-[200px] scroll-y-scroll">
                     <SelectGroup>
                       <SelectLabel>Services</SelectLabel>
                       {serviceOptions.map((service) => (
@@ -360,7 +363,7 @@ export default function EnhancedContactForm({
                   onChange={handleChange}
                   placeholder="Additional Information (e.g., project details, timeline)"
                   rows={5}
-                  className={`border-2 transition-all h-[123px] duration-200 resize-none ${
+                  className={`border-2 transition-all h-[123px] duration-200 resize-none text-card-foreground placeholder:text-card-foreground ${
                     errors.message
                       ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                       : "border-gray-200 focus:border-primary focus:ring-primary/20"

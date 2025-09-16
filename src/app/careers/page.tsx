@@ -136,11 +136,11 @@ export default function CareersPage() {
       </section>
 
       {/* Open Roles */}
-      <section id="open-roles" className="bg-slate-50">
+      <section id="open-roles" className="bg-primary/10">
         <div className="mx-auto px-4 py-16 md:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <SectionHeading blackText="Open" primaryText="positions" />
-            <Paragraph>
+            <SectionHeading blackTextClassName="text-foreground" blackText="Open" primaryText="positions" />
+            <Paragraph className="text-foreground/80">
               Browse teams and find your next role at Kenroz.
             </Paragraph>
           </div>
