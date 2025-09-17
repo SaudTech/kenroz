@@ -9,6 +9,7 @@ import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
 import SiteGuard from "@/components/SiteGuard";
 import { Analytics } from "@vercel/analytics/next";
 import ThemeCustomizer from "@/components/ThemeCustomizer";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const font = Arimo({
   subsets: ["latin"],
@@ -163,13 +164,11 @@ export default function RootLayout({
       >
         <Analytics />
         <PerformanceOptimizer />
+        <SpeedInsights />
         <SiteGuard>
           <Navbar />
           <main className="mt-[88px]">{children}</main>
-
-          {/* <Section is="even" className="bg-navbar"> */}
-            <Footer />
-          {/* </Section> */}
+          <Footer />
           <ThemeCustomizer />
         </SiteGuard>
       </body>
