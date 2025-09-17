@@ -72,13 +72,13 @@ export default function ThemeCustomizer() {
       <button
         ref={triggerRef}
         onClick={() => setOpen(!open)}
-        className="group flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/95 backdrop-blur-md border border-gray-200/50 shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+        className="group flex items-center gap-3 px-4 py-3 rounded-2xl bg-card backdrop-blur-md border border-primary shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
         aria-label="Select theme"
         aria-expanded={open}
       >
         <div className="flex items-center gap-2">
-          <Palette className="h-5 w-5 text-gray-700" />
-          <span className="text-sm font-medium text-gray-900">{activeThemeName}</span>
+          <Palette className="h-5 w-5 text-card-foreground" />
+          <span className="text-sm font-medium text-card-foreground">{activeThemeName}</span>
         </div>
         <ChevronDown 
           className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} 
