@@ -8,7 +8,7 @@ export default function SectionHeader({
   descriptionClassName
 }: {
   title: string;
-  description?: string;
+  description?: React.ReactNode;
   titleClassName?: React.HTMLAttributes<HTMLHeadingElement>["className"];
   descriptionClassName?: React.HTMLAttributes<HTMLHeadingElement>["className"];
 }) {
