@@ -3,26 +3,9 @@ export interface Theme {
   colors: Record<string, string>;
 }
 
-// {
-//   name: "Emerald Noir",
-//   colors: {
-//     primary: "#22C55E",
-//     "primary-foreground": "#071F12",
-//     secondary: "#84CC16",
-//     "secondary-foreground": "#081402",
-//     muted: "#0F172A",
-//     "muted-foreground": "#94A3B8",
-//     background: "#0B0F10",
-//     foreground: "#E5F6ED",
-//     card: "#111827",
-//     "card-foreground": "#D1FAE5",
-//     navbar: "#22C55E33",
-//   },
-// },
-
 export const themes: Theme[] = [
   {
-    name: "Original",
+    name: "Classic Red & Black",
     colors: {
       primary: "#f92029",
       "primary-foreground": "#ffffff",
@@ -38,7 +21,7 @@ export const themes: Theme[] = [
     },
   },
   {
-    name: "Theme 1",
+    name: "Royal Purple Glow",
     colors: {
       primary: "#7C3AED",
       "primary-foreground": "#ffffff",
@@ -54,7 +37,7 @@ export const themes: Theme[] = [
     },
   },
   {
-    name: "Theme 2",
+    name: "Fresh Forest",
     colors: {
       primary: "#22C55E",
       "primary-foreground": "#071F12",
@@ -70,7 +53,7 @@ export const themes: Theme[] = [
     },
   },
   {
-    name: "Theme 3",
+    name: "Mystic Sunset",
     colors: {
       primary: "#A855F7",
       "primary-foreground": "#1A0B2A",
