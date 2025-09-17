@@ -29,7 +29,7 @@ export default async function ApplyForJobPage({
 
         <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
           <div className="space-y-8">
-            <p className="text-lg md:text-xl text-gray-900 max-w-2xl leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground max-w-2xl leading-relaxed">
               Fill out the form below and we will get back to you shortly.
             </p>
             <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">

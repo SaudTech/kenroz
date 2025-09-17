@@ -1,16 +1,12 @@
 import { Metadata } from "next";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
-import {
-  Phone,
-  Clock,
-  Mail,
-  MessageSquare,
-} from "lucide-react";
+import { Phone, Clock, Mail, MessageSquare, CheckCircle } from "lucide-react";
 import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
-
+import { motion } from "framer-motion";
+import { hoverScale, useSectionVariants, view } from "@/lib/section-animations";
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch with Kenroz IT Solutions",
   description:
@@ -48,9 +44,12 @@ type ContactSearchParams = {
   p?: string | string[];
 };
 function getHeadingParts(intent?: string) {
-
   // first letter capitalize each word after splitting by hyphen
-  const product = intent?.split("book-a-demo-")[1]?.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) || "Our Products";
+  const product =
+    intent
+      ?.split("book-a-demo-")[1]
+      ?.replace(/-/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase()) || "Our Products";
   const isBookDemo = intent?.startsWith("book-a-demo");
   if (isBookDemo) {
     return { black: "Book a demo for", primary: product };
@@ -95,7 +94,8 @@ export default async function ContactPage({
     description =
       "Passionate about technology and innovation? Explore opportunities to work with us and be part of a team shaping the future of IT solutions across the globe.";
   } else if (intent === "consulting") {
-    description = "Need expert advice on digital transformation, cloud adoption, or Microsoft Dynamics 365? Our consultants are ready to understand your challenges and provide tailored solutions.";
+    description =
+      "Need expert advice on digital transformation, cloud adoption, or Microsoft Dynamics 365? Our consultants are ready to understand your challenges and provide tailored solutions.";
   } else if (intent) {
     description =
       "Interested in our solutions? Whether it’s cloud, digital transformation, or custom development, tell us about your project and we’ll get back to you with the right approach.";
@@ -129,36 +129,9 @@ export default async function ContactPage({
             {/* ---------- Left Column: filled + useful ---------- */}
             <div className="space-y-8">
               {/* Intro */}
-              <Paragraph>
-                {description}
-              </Paragraph>
+              <Paragraph>{description}</Paragraph>
 
               {/* Quick Channels */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <a
-                  href="tel:+919704730500"
-                  className="group flex items-center gap-2 rounded-xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground px-3 py-2 text-sm"
-                >
-                  <Phone className="h-4 w-4" />
-                  <span>Call us</span>
-                </a>
-                <a
-                  href="https://wa.me/919704730500"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 rounded-xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground px-3 py-2 text-sm"
-                >
-                  <MessageSquare className="h-4 w-4" />
-                  <span>WhatsApp</span>
-                </a>
-                <a
-                  href="mailto:hello@kenroz.com"
-                  className="group flex items-center gap-2 rounded-xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground px-3 py-2 text-sm col-span-2 sm:col-span-1"
-                >
-                  <Mail className="h-4 w-4" />
-                  <span>Email</span>
-                </a>
-              </div>
 
               {/* Info tiles */}
               <div className="grid sm:grid-cols-2 gap-4">
@@ -167,7 +140,33 @@ export default async function ContactPage({
                     <Clock className="h-4 w-4" />
                     <h3 className="font-medium">Business Hours</h3>
                   </div>
-                  <p className="text-sm">Monday to Friday, <br /> 9:00 AM - 6:00 PM</p>
+                  <p className="text-sm">
+                    Monday to Friday, <br /> 9:00 AM - 6:00 PM
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 gap-1">
+                  <a href="tel:+919704730500">
+                    <div className="group relative flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card hover:shadow-lg transition-all duration-300">
+                      <Phone className="w-4 h-4 text-card-foreground" />
+                      <span>Call us</span>
+                    </div>
+                  </a>
+                  <a
+                    href="https://wa.me/919704730500"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="group relative flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card hover:shadow-lg transition-all duration-300">
+                      <MessageSquare className="w-4 h-4 text-card-foreground" />
+                      <span>WhatsApp</span>
+                    </div>
+                  </a>
+                  <a href="mailto:support@kenroz.com">
+                    <div className="group relative flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card hover:shadow-lg transition-all duration-300">
+                      <Mail className="w-4 h-4 text-card-foreground" />
+                      <span>Email</span>
+                    </div>
+                  </a>
                 </div>
               </div>
 
@@ -187,9 +186,7 @@ export default async function ContactPage({
                     <summary className="cursor-pointer text-sm font-medium">
                       Do you work with remote teams?
                     </summary>
-                    <p className="mt-2 text-sm">
-                      Yes.
-                    </p>
+                    <p className="mt-2 text-sm">Yes.</p>
                   </details>
                 </div>
               </div>

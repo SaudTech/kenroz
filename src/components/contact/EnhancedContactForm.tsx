@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,13 +13,13 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
 import { ButtonLink } from "../Navbar";
 import SectionHeading from "../typography/SectionHeading";
+import CountryCodeSelection from "../ui/CountryCodeSelection";
 
 const serviceOptions = [
   "Microsoft Dynamics 365",
@@ -41,6 +41,7 @@ const productOptions = [
 interface FormData {
   fullName: string;
   email: string;
+  countryCode: string;
   phone: string;
   interest: string;
   message: string;
@@ -68,6 +69,7 @@ export default function EnhancedContactForm({
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
+    countryCode: "",
     phone: "",
     interest: "",
     message: "",
@@ -92,6 +94,11 @@ export default function EnhancedContactForm({
       if (digitsOnlyLength < 7 || digitsOnlyLength > 15) {
         newErrors.phone = "Please enter a valid phone number";
       }
+    }
+
+    // Country code validation
+    if (!formData.countryCode.trim()) {
+      newErrors.countryCode = "Country code is required";
     }
 
     // Email validation
@@ -138,6 +145,7 @@ export default function EnhancedContactForm({
       setFormData({
         fullName: "",
         email: "",
+        countryCode: "",
         phone: "",
         interest: "",
         message: "",
@@ -184,6 +192,20 @@ export default function EnhancedContactForm({
     }
   };
 
+  const handleCountryCodeChange = useCallback((countryCode: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      countryCode,
+    }));
+    if (errors.countryCode) {
+      setErrors((prev) => ({
+        ...prev,
+        countryCode: "",
+      }));
+    }
+  }, [errors.countryCode]);
+
+
   if (isSubmitted) {
     return (
       <div
@@ -223,7 +245,11 @@ export default function EnhancedContactForm({
         {/* Contact Form */}
         <Card className="border-0 w-full mx-auto shadow-2xl bg-card">
           <CardHeader>
-            <SectionHeading blackTextClassName="text-card-foreground" blackText="Send us" primaryText="a message" />
+            <SectionHeading
+              blackTextClassName="text-card-foreground"
+              blackText="Send us"
+              primaryText="a message"
+            />
           </CardHeader>
 
           <CardContent className="space-y-6">
@@ -284,19 +310,27 @@ export default function EnhancedContactForm({
                 </div>
 
                 <div className="space-y-2">
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Enter your phone number"
-                    className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                      errors.phone
-                        ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                    }`}
-                  />
+                  <div className="flex items-center gap-2">
+                     <CountryCodeSelection
+                       value={formData.countryCode}
+                       defaultCountry="+91"
+                       onChange={handleCountryCodeChange}
+                       error={!!errors.countryCode}
+                     />
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Enter your phone number"
+                      removeLeftBorderRadius={true}
+                      className={`h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
+                        errors.phone
+                          ? "border-red-300 focus:border-red-500 focus:ring-red-500/20" :""
+                      }`}
+                    />
+                  </div>
                   {errors.phone && (
                     <p className="text-sm text-red-600 flex items-center gap-1">
                       <AlertCircle className="w-4 h-4" />
@@ -320,7 +354,11 @@ export default function EnhancedContactForm({
                     }`}
                   >
                     {/* <SelectValue placeholder="Select a service or product" className="text-card-foreground" /> */}
-                    <span className={cn(!formData.interest && "text-card-foreground")}>
+                    <span
+                      className={cn(
+                        !formData.interest && "text-card-foreground"
+                      )}
+                    >
                       {formData.interest || "Select a service or product"}
                     </span>
                   </SelectTrigger>

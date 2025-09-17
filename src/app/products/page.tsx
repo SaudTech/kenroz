@@ -13,6 +13,21 @@ import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import ProductCarousel from "./ProductCarousel";
 
+// ---------- Highlighter ----------
+function highlightText(text: string, keywords: string[]) {
+  if (!keywords || keywords.length === 0) return text;
+  const regex = new RegExp(`(${keywords.join("|")})`, "gi");
+  return text.split(regex).map((part, idx) =>
+    keywords.some((kw) => kw.toLowerCase() === part.toLowerCase()) ? (
+      <span key={idx} className="font-semibold text-primary">
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
+}
+
 // ---------- Data ----------
 type Product = {
   name: string[];
@@ -20,6 +35,7 @@ type Product = {
   subtitle: string;
   description: string;
   imageName: string | string[];
+  highlights: string[];
 };
 
 const products: Product[] = [
@@ -28,32 +44,63 @@ const products: Product[] = [
     slug: "people-sphere",
     subtitle: "All-in-one HR suite",
     description:
-      "Streamline the entire employee journey with an all-in-one HR platform   from hiring to offboarding, with analytics and self-service built in. Manage recruitment, onboarding, performance reviews, and employee data in one unified system. Reduce administrative overhead while improving employee satisfaction with self-service portals and automated workflows.",
+      "Streamline the entire employee journey with an all-in-one HR platform from hiring to offboarding, with analytics and self-service built in. Manage recruitment, onboarding, performance reviews, and employee data in one unified system. Reduce administrative overhead while improving employee satisfaction with self-service portals and automated workflows.",
     imageName: "/HCM.png",
+    highlights: [
+      "hiring",
+      "offboarding",
+      "analytics",
+      "self-service",
+      "performance reviews",
+      "employee satisfaction",
+    ],
   },
   {
-    name: ["Pay","Stream"],
+    name: ["Pay", "Stream"],
     slug: "pay-stream",
     subtitle: "Seamless payroll automation",
     description:
       "Automate payroll, tax, and compliance with seamless calculations, bank integration, and transparent employee access. Handle complex salary structures, overtime calculations, and multi-country payroll requirements effortlessly. Ensure accuracy with real-time tax updates and automated compliance reporting for peace of mind.",
     imageName: "/Payroll.png",
+    highlights: [
+      "Automate payroll",
+      "compliance",
+      "salary structures",
+      "multi-country payroll",
+      "real-time tax",
+    ],
   },
   {
-    name: ["Tax","Nova"],
+    name: ["Tax", "Nova"],
     slug: "tax-nova",
     subtitle: "E-invoicing made effortless",
     description:
       "Stay ZATCA-compliant with automated e-invoicing, QR codes, digital signatures, and real-time VAT submissions. Generate compliant invoices instantly with built-in validation and automatic tax calculations. Streamline your billing process while maintaining full regulatory compliance across different jurisdictions and tax requirements.",
     imageName: "/Invoice.png",
+    highlights: [
+      "ZATCA-compliant",
+      "e-invoicing",
+      "QR codes",
+      "digital signatures",
+      "VAT submissions",
+      "regulatory compliance",
+    ],
   },
   {
-    name: ["Insura","Core"],
+    name: ["Insura", "Core"],
     slug: "insura-core",
     subtitle: "Smarter insurance operations",
     description:
       "Simplify policy management, underwriting, claims, and customer service with a flexible, insurer-focused platform. Accelerate policy processing with intelligent automation and risk assessment tools. Enhance customer experience through streamlined claims handling and comprehensive policy management capabilities.",
     imageName: "/Insurance.png",
+    highlights: [
+      "policy management",
+      "underwriting",
+      "claims",
+      "customer service",
+      "automation",
+      "risk assessment",
+    ],
   },
   {
     name: ["", "Learnify"],
@@ -62,6 +109,14 @@ const products: Product[] = [
     description:
       "Deliver and track engaging learning experiences with interactive courses, certifications, and mobile-first access. Create personalized learning paths with adaptive content and real-time progress tracking. Boost employee development with comprehensive analytics, gamification features, and seamless integration with existing HR systems.",
     imageName: "/LMS.png",
+    highlights: [
+      "interactive courses",
+      "certifications",
+      "mobile-first",
+      "personalized learning",
+      "real-time progress",
+      "gamification",
+    ],
   },
 ];
 
@@ -71,11 +126,9 @@ export default function ProductsPage() {
     const handleHashScroll = () => {
       const hash = window.location.hash;
       if (hash) {
-        // Remove the # from the hash
         const elementId = hash.substring(1);
         const element = document.getElementById(elementId);
         if (element) {
-          // Small delay to ensure page is fully loaded
           setTimeout(() => {
             element.scrollIntoView({
               behavior: "smooth",
@@ -87,10 +140,7 @@ export default function ProductsPage() {
       }
     };
 
-    // Handle initial load
     handleHashScroll();
-
-    // Handle hash changes (in case user navigates with hash)
     window.addEventListener("hashchange", handleHashScroll);
 
     return () => {
@@ -108,7 +158,7 @@ export default function ProductsPage() {
     return products.map((p) => ({
       "@context": "https://schema.org",
       "@type": "Product",
-      name: p.name,
+      name: p.name.join(" "),
       image: `${baseUrl}${p.imageName}`,
       description: p.description,
       brand: { "@type": "Brand", name: "Kenroz" },
@@ -118,9 +168,8 @@ export default function ProductsPage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {/* ===== HERO (full-bleed, no outside space) ===== */}
+      {/* ===== HERO ===== */}
       <section className="relative w-full">
-        {/* Full-bleed media */}
         <div className="relative h-[52vh] md:h-[64vh] w-full overflow-hidden">
           <Image
             src="/product-hero-image.avif"
@@ -130,9 +179,7 @@ export default function ProductsPage() {
             className="absolute inset-0 object-cover"
             sizes="100vw"
           />
-          {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/45" />
-          {/* Animated gradient wash */}
           <motion.div
             aria-hidden
             className="absolute inset-0"
@@ -144,7 +191,6 @@ export default function ProductsPage() {
             animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
-          {/* Content */}
           <div className="relative z-10 flex h-full items-center">
             <div className="w-full px-4 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-5xl text-center">
@@ -157,10 +203,7 @@ export default function ProductsPage() {
                   compliant at scale.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
-                  <ButtonLink
-                    href="#catalog"
-                    className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                  >
+                  <ButtonLink href="#catalog" className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     Explore products
                   </ButtonLink>
                 </div>
@@ -177,7 +220,7 @@ export default function ProductsPage() {
 
           <div>
             {products.map((product, idx) => {
-              const imageLeft = idx % 2 === 0; // even index = left, odd index = right
+              const imageLeft = idx % 2 === 0;
               return (
                 <div
                   key={product.slug}
@@ -185,40 +228,33 @@ export default function ProductsPage() {
                   className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-                    {/* Image Column - Positioned based on index */}
+                    {/* Image */}
                     <div
                       className={cn(
                         "md:col-span-6",
                         imageLeft ? "order-1" : "order-2"
                       )}
                     >
-                      <div
-                        className={cn(
-                          "md:col-span-6",
-                          imageLeft ? "order-1" : "order-2"
-                        )}
-                      >
-                        {Array.isArray(product.imageName) ? (
-                          <ProductCarousel
-                            images={product.imageName}
-                            alt={product.name[0] + product.name[1] + " illustration"}
+                      {Array.isArray(product.imageName) ? (
+                        <ProductCarousel
+                          images={product.imageName}
+                          alt={`${product.name.join(" ")} illustration`}
+                        />
+                      ) : (
+                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
+                          <Image
+                            src={product.imageName}
+                            alt={`${product.name.join(" ")} illustration`}
+                            fill
+                            className="object-cover transition-transform duration-700 hover:scale-105"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
                           />
-                        ) : (
-                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
-                            <Image
-                              src={product.imageName}
-                              alt={`${product.name} illustration`}
-                              fill
-                              className="object-cover transition-transform duration-700 hover:scale-105"
-                              sizes="(max-width: 1024px) 100vw, 50vw"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-                          </div>
-                        )}
-                      </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                        </div>
+                      )}
                     </div>
 
-                    {/* Content Column */}
+                    {/* Content */}
                     <div
                       className={cn(
                         "md:col-span-6",
@@ -226,19 +262,23 @@ export default function ProductsPage() {
                       )}
                     >
                       <div className="sticky top-20">
-                        <div>
-                          <SectionHeading blackText={product.name[0]} primaryText={product.name[1]} className="justify-start" />
+                        <SectionHeading
+                          blackText={product.name[0]}
+                          primaryText={product.name[1]}
+                          className="justify-start"
+                        />
 
-                          <SectionHeader
-                            title={""}
-                            description={product.description}
-                            titleClassName="text-2xl md:text-4xl lg:text-5xl"
-                            descriptionClassName="text-sm leading-relaxed"
-                          />
+                        <SectionHeader
+                          title=""
+                          description={
+                            <p className="text-sm leading-relaxed">
+                              {highlightText(product.description, product.highlights)}
+                            </p>
+                          }
+                          titleClassName="text-2xl md:text-4xl lg:text-5xl"
+                          descriptionClassName="text-sm leading-relaxed"
+                        />
 
-                        </div>
-
-                        {/* CTAs */}
                         <div className="mt-8 flex flex-wrap items-center gap-3">
                           <ButtonLink
                             href={`/contact-us?p=book-a-demo-${product.slug}`}
@@ -257,7 +297,7 @@ export default function ProductsPage() {
         </main>
       </Section>
 
-      {/* ===== CTA (tight bottom spacing) ===== */}
+      {/* ===== CTA ===== */}
       <EngagementSection
         title="Ready to transform your business?"
         description="Not sure which product fits best? We’ll help you evaluate options and design a rollout plan that sticks."
