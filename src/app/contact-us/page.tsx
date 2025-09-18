@@ -1,12 +1,10 @@
 import { Metadata } from "next";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
-import { Phone, Clock, Mail, MessageSquare, CheckCircle } from "lucide-react";
+import { Phone, Clock, Mail, MessageSquare } from "lucide-react";
 import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
-import { motion } from "framer-motion";
-import { hoverScale, useSectionVariants, view } from "@/lib/section-animations";
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch with Kenroz IT Solutions",
   description:
@@ -71,6 +69,36 @@ function getHeadingParts(intent?: string) {
   }
 }
 
+function getContactType(intent?: string) {
+  const normalizedIntent = intent?.toLowerCase() ?? "";
+
+  if (!normalizedIntent) {
+    return "General Contact";
+  }
+
+  if (normalizedIntent === "hire") {
+    return "Engage with Expert";
+  }
+
+  if (normalizedIntent.startsWith("book-a-demo")) {
+    return "Service Inquiry";
+  }
+
+  if (normalizedIntent === "consulting") {
+    return "Service Inquiry";
+  }
+
+  if (normalizedIntent === "become-a-partner") {
+    return "General Contact";
+  }
+
+  if (normalizedIntent === "work-with-kenroz") {
+    return "General Contact";
+  }
+
+  return "Service Inquiry";
+}
+
 export default async function ContactPage({
   searchParams,
 }: {
@@ -80,6 +108,7 @@ export default async function ContactPage({
   const rawIntent = resolved.p;
   const intent = Array.isArray(rawIntent) ? rawIntent[0] : rawIntent;
   const { black, primary } = getHeadingParts(intent);
+  const contactType = getContactType(intent);
 
   let description =
     "Have a project in mind or need expert guidance? Our team at Kenroz is here to listen, understand, and help you achieve your goals. Reach out today and let’s start building your success story.";
@@ -197,6 +226,7 @@ export default async function ContactPage({
               <EnhancedContactForm
                 showContactInfo={false}
                 context={intent}
+                contactType={contactType}
                 className="w-full h-full"
               />
             </div>
