@@ -32,18 +32,18 @@ export default async function ApplyForJobPage({
             <p className="text-lg md:text-xl text-foreground max-w-2xl leading-relaxed">
               Fill out the form below and we will get back to you shortly.
             </p>
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="p-4 bg-card rounded-lg border border-primary">
               <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-card-foreground mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-blue-800 font-medium mb-1">
+                  <p className="text-sm text-card-foreground font-medium mb-1">
                     Alternative submission method
                   </p>
-                  <p className="text-sm text-blue-700">
+                  <p className="text-sm text-card-foreground/80">
                     You can also send your application details directly via email to{" "}
                     <a
                       href="mailto:career@kenroz.com"
-                      className="font-semibold underline hover:text-blue-900"
+                      className="font-semibold underline hover:text-card-foreground"
                     >
                       career@kenroz.com
                     </a>

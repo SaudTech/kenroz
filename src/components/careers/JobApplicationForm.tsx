@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, AlertCircle, Upload } from "lucide-react";
+import { CheckCircle, AlertCircle, File, UploadCloud } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CountryCodeSelection from "@/components/ui/CountryCodeSelection";
 import SectionHeading from "@/components/typography/SectionHeading";
@@ -48,6 +48,9 @@ export default function JobApplicationForm({
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -55,6 +58,14 @@ export default function JobApplicationForm({
       job: jobLabel,
     }));
   }, [jobLabel]);
+
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -144,6 +155,37 @@ export default function JobApplicationForm({
       }));
     }
   }, [errors.countryCode]);
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+  
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+  
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    const dataTransfer = new DataTransfer();
+    if (file) {
+        dataTransfer.items.add(file);
+    }
+    if (fileInputRef.current) {
+      fileInputRef.current.files = dataTransfer.files;
+    }
+    handleFileChange({
+      target: fileInputRef.current,
+    } as React.ChangeEvent<HTMLInputElement>);
+  };
+
+  const handleClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -348,26 +390,51 @@ export default function JobApplicationForm({
           </div>
           
           <div className="space-y-2">
-            <Input
+            <label htmlFor="resume" className="text-sm font-medium text-card-foreground">
+              Upload Resume
+            </label>
+            <div 
+              onClick={handleClick}
+              onDragOver={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={cn(
+                "flex flex-col items-center justify-center h-48 w-full p-4 border-2 rounded-lg text-gray-500 transition-all duration-200 cursor-pointer",
+                isDragging && "border-primary bg-primary/10",
+                errors.resume && "border-red-300",
+                formData.resume && "border-primary bg-primary/10"
+              )}>
+              {formData.resume ? (
+                <div className="flex items-center gap-2 text-primary">
+                  <File className="w-6 h-6" />
+                  <span className="text-sm font-medium">{formData.resume.name}</span>
+                  <span className="text-xs text-primary">
+                    ({formatFileSize(formData.resume.size)})
+                  </span>
+                </div>
+              ) : (
+                <>
+                  <UploadCloud className={cn("w-12 h-12 mb-3 transition-colors duration-200", isDragging ? 'text-primary' : 'text-gray-400')} />
+                  <p className={cn("text-sm text-card-foreground/80 text-center", isDragging && "text-primary")}>
+                    <span className="font-semibold text-primary">Click to upload</span> or drag and drop
+                  </p>
+                  <p className="text-xs text-card-foreground/80 mt-1">PDF, DOC, or DOCX (max. 5MB)</p>
+                </>
+              )}
+            </div>
+            
+            <input
+              ref={fileInputRef}
               name="resume"
               type="file"
               accept=".pdf,.doc,.docx"
               onChange={handleFileChange}
-              className={`h-12 border-2 transition-all duration-200 text-card-foreground ${
-                errors.resume
-                  ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                  : "border-gray-200 focus:border-primary focus:ring-primary/20"
-              }`}
+              className="hidden"
             />
             {errors.resume && (
               <p className="text-sm text-red-600 flex items-center gap-1">
                 <AlertCircle className="w-4 h-4" />
                 {errors.resume}
-              </p>
-            )}
-            {formData.resume && (
-              <p className="text-sm text-gray-600 mt-1 flex items-center gap-1">
-                <Upload className="w-4 h-4" /> {formData.resume.name}
               </p>
             )}
           </div>
