@@ -113,8 +113,8 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey);
 
     await resend.emails.send({
-      from: "Kenroz Careers <careers@kenroz.com>",
-      to: ["careers@kenroz.com"],
+      from: "Kenroz Careers <career@kenroz.com>",
+      to: ["career@kenroz.com"],
       replyTo: emailValue || undefined,
       subject: `New Job Application: ${job}`,
       html: `
