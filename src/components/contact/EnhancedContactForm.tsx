@@ -150,7 +150,7 @@ export default function EnhancedContactForm({
     setErrors((prev) => ({ ...prev, submit: "" }));
 
     try {
-      const res = await fetch("/contact-us-form-submit", {
+      const res = await fetch("/api/contact-us-form-submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -160,7 +160,6 @@ export default function EnhancedContactForm({
           phone: formData.phone,
           interest: formData.interest,
           message: formData.message,
-          context: formData.context,
           contactType: formData.contactType,
         }),
       });

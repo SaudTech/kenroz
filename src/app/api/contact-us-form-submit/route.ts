@@ -1,129 +1,63 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const ALLOWED_RESUME_TYPES = new Set([
-  "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-]);
+// Use Edge runtime
+export const runtime = "edge";
 
-const MAX_RESUME_SIZE = 5 * 1024 * 1024; // 5MB
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const runtime = "nodejs";
-
-export async function POST(request: Request) {
-  const formData = await request.formData();
-
-  const requiredFields = [
-    "fullName",
-    "email",
-    "countryCode",
-    "phone",
-    "description",
-    "job",
-  ];
-
-  const missing = requiredFields.filter((field) => {
-    const value = formData.get(field);
-    if (typeof value === "string") {
-      return value.trim() === "";
-    }
-    return !value;
-  });
-
-  if (missing.length > 0) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: `Missing required fields: ${missing.join(", ")}`,
-      },
-      { status: 400 },
-    );
-  }
-
-  const email = formData.get("email");
-  const emailValue = typeof email === "string" ? email.trim() : "";
-  if (emailValue) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailValue)) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Please provide a valid email address.",
-        },
-        { status: 400 },
-      );
-    }
-  }
-
-  const resume = formData.get("resume");
-  if (!resume || typeof resume === "string") {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Resume is required.",
-      },
-      { status: 400 },
-    );
-  }
-
-  const resumeBlob = resume as Blob;
-  if (resumeBlob.size > MAX_RESUME_SIZE) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Resume file must be less than 5MB.",
-      },
-      { status: 400 },
-    );
-  }
-
-  if (!ALLOWED_RESUME_TYPES.has(resumeBlob.type)) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Only PDF or Word documents are allowed.",
-      },
-      { status: 400 },
-    );
-  }
-
-  const fullName = String(formData.get("fullName") ?? "").trim();
-  const job = String(formData.get("job") ?? "").trim();
-  const countryCode = String(formData.get("countryCode") ?? "").trim();
-  const phone = String(formData.get("phone") ?? "").trim();
-  const description = String(formData.get("description") ?? "").trim();
-  const linkedin = String(formData.get("linkedin") ?? "").trim();
-
-  const resendApiKey = process.env.RESEND_API_KEY;
-  if (!resendApiKey) {
-    console.error("RESEND_API_KEY is not configured");
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Application service is unavailable. Please try again later.",
-      },
-      { status: 500 },
-    );
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    const resumeFile = resume as File;
-    const resumeBuffer = Buffer.from(await resumeFile.arrayBuffer());
-    const resend = new Resend(resendApiKey);
+    const body = await req.json();
+    const {
+      fullName,
+      email,
+      countryCode,
+      phone,
+      interest,
+      message,
+      contactType,
+    } = body || {};
 
+    if (
+      !fullName ||
+      !email ||
+      !countryCode ||
+      !phone ||
+      !interest ||
+      !message ||
+      !contactType
+    ) {
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    }
+
+    const allowedContactTypes = new Map<
+      string,
+      "Service Inquiry" | "Engage with Expert" | "General Contact"
+    >([
+      ["service inquiry", "Service Inquiry"],
+      ["engage with expert", "Engage with Expert"],
+      ["general contact", "General Contact"],
+    ]);
+
+    const normalizedContactType = String(contactType).trim().toLowerCase();
+    const resolvedContactType =
+      allowedContactTypes.get(normalizedContactType) ?? "General Contact";
+    
+    // Send the email with the dynamic HTML content directly as a string
     await resend.emails.send({
-      from: "Kenroz Careers <careers@kenroz.com>",
+      from: "Kenroz Contact <support@kenroz.com>",
       to: ["saud.zubedi@kenroz.com"],
-      replyTo: emailValue || undefined,
-      subject: `New Job Application: ${job}`,
+      subject: `New ${resolvedContactType}: ${fullName}`,
+      replyTo: email,
       html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>New Job Application</title>
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>New Website Inquiry</title>
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
                 body {
@@ -234,12 +168,12 @@ export async function POST(request: Request) {
 
         <div class="container">
             <div class="header">
-                <h1>New Job Application</h1>
+                <h1>New Website Inquiry</h1>
             </div>
             <div class="content">
-                <p>A new application has been submitted on the **Kenroz** website for the **${job}** role. Please review the applicant's details and attached resume below.</p>
+                <p>A new message has been submitted through the contact form on the **Kenroz** website. Please review the details below to follow up with the user.</p>
 
-                <div class="section-title">Applicant Information</div>
+                <div class="section-title">Contact Information</div>
                 <div class="info-card">
                     <div class="info-item">
                         <span class="label">Full Name</span>
@@ -247,70 +181,46 @@ export async function POST(request: Request) {
                     </div>
                     <div class="info-item">
                         <span class="label">Email Address</span>
-                        <span class="value">${emailValue}</span>
+                        <span class="value">${email}</span>
                     </div>
                     <div class="info-item">
                         <span class="label">Phone Number</span>
                         <span class="value">${countryCode} ${phone}</span>
                     </div>
-                    ${linkedin ? `
                     <div class="info-item">
-                        <span class="label">LinkedIn Profile</span>
-                        <span class="value"><a href="${linkedin}" style="color: #1a237e; text-decoration: none;">Link</a></span>
+                        <span class="label">Contact Type</span>
+                        <span class="value">${resolvedContactType}</span>
                     </div>
-                    ` : ''}
+                    <div class="info-item">
+                        <span class="label">Interest in</span>
+                        <span class="value">${interest}</span>
+                    </div>
                 </div>
 
-                <div class="section-title">Application Details</div>
+                <div class="section-title">Message Details</div>
                 <div class="message-section">
-                    <p style="margin: 0 0 16px; font-weight: 600;">Message from Applicant:</p>
                     <div class="message-content">
-                        ${description}
+                        ${message}
                     </div>
                 </div>
-
-                <p style="text-align: center; margin-top: 24px; font-size: 14px; color: #475569;">
-                    The applicant's resume is attached to this email.
-                </p>
                 
                 <div class="button-container">
-                    <a href="mailto:${emailValue}" class="reply-button">Reply to Applicant</a>
+                    <a href="mailto:${email}" class="reply-button">Reply to User</a>
                 </div>
             </div>
             <div class="footer">
-                Powered by your website careers form.
+                Powered by your website contact form.
             </div>
         </div>
 
         </body>
         </html>
       `,
-      attachments: [
-        {
-          filename:
-            resumeFile.name ||
-            `${fullName.replace(/\s+/g, "-")}-resume.${
-              resumeFile.type === "application/pdf"
-                ? "pdf"
-                : resumeFile.type === "application/msword"
-                  ? "doc"
-                  : "docx"
-            }`,
-          content: resumeBuffer.toString("base64"),
-          contentType: resumeFile.type || "application/octet-stream",
-        },
-      ],
     });
-  } catch (error) {
-    console.error("Failed to send job application email", error);
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Failed to submit application. Please try again later.",
-      },
-      { status: 500 },
-    );
-  }
 
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+  }
 }
