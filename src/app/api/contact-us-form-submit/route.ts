@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     
     // Send the email with the dynamic HTML content directly as a string
     await resend.emails.send({
-      from: "Saud <saud.zubedi@kenroz.com>",
+      from: "Kenroz Contact <support@kenroz.com>",
       to: ["support@kenroz.com"],
       subject: `New ${resolvedContactType}: ${fullName}`,
       replyTo: email,
