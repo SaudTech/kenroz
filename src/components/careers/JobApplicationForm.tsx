@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -34,6 +34,7 @@ export default function JobApplicationForm({
   className = "",
   job,
 }: JobApplicationFormProps) {
+  const jobLabel = job ?? "General Application";
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
@@ -42,11 +43,18 @@ export default function JobApplicationForm({
     linkedin: "",
     description: "",
     resume: null,
-    job,
+    job: jobLabel,
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      job: jobLabel,
+    }));
+  }, [jobLabel]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -143,8 +151,30 @@ export default function JobApplicationForm({
 
     setIsSubmitting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Job application submitted:", formData);
+      const submission = new FormData();
+      submission.append("fullName", formData.fullName.trim());
+      submission.append("email", formData.email.trim());
+      submission.append("countryCode", formData.countryCode.trim());
+      submission.append("phone", formData.phone.trim());
+      submission.append("description", formData.description.trim());
+      submission.append("job", jobLabel);
+      if (formData.linkedin) {
+        submission.append("linkedin", formData.linkedin.trim());
+      }
+      if (formData.resume) {
+        submission.append("resume", formData.resume);
+      }
+
+      const res = await fetch("/api/job-application", {
+        method: "POST",
+        body: submission,
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Failed to submit application. Please try again.");
+      }
+
       setIsSubmitted(true);
       setFormData({
         fullName: "",
@@ -154,12 +184,15 @@ export default function JobApplicationForm({
         linkedin: "",
         description: "",
         resume: null,
-        job,
+        job: jobLabel,
       });
       setErrors({});
     } catch (error) {
-      console.error(error);
-      setErrors({ submit: "Failed to submit application. Please try again." });
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Failed to submit application. Please try again.";
+      setErrors({ submit: errorMessage });
     } finally {
       setIsSubmitting(false);
     }

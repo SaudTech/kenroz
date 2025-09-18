@@ -17,51 +17,39 @@ export async function POST(req: NextRequest) {
       interest,
       message,
       context,
+      contactType,
     } = body || {};
 
-    if (!fullName || !email || !countryCode || !phone || !interest || !message) {
+    if (
+      !fullName ||
+      !email ||
+      !countryCode ||
+      !phone ||
+      !interest ||
+      !message ||
+      !contactType
+    ) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    // Derive contact type based on interest/context
-    const normalizedContext = (context || "").toLowerCase();
-    const normalizedInterest = (interest || "").toLowerCase();
-    let derivedContactType = "General Contact";
+    const allowedContactTypes = new Map<
+      string,
+      "Service Inquiry" | "Engage with Expert" | "General Contact"
+    >([
+      ["service inquiry", "Service Inquiry"],
+      ["engage with expert", "Engage with Expert"],
+      ["general contact", "General Contact"],
+    ]);
 
-    const serviceKeywords = [
-      "microsoft dynamics",
-      "dynamics 365",
-      "cloud",
-      "web",
-      "mobile",
-      "digital marketing",
-      "outsourcing",
-      "people sphere",
-      "pay stream",
-      "tax nova",
-      "insura core",
-      "learnify",
-      "service",
-      "product",
-    ];
-    const expertKeywords = ["expert", "consult", "consultation", "engage", "advice"];
-
-    const looksLikeService = serviceKeywords.some(
-      (k) => normalizedInterest.includes(k) || normalizedContext.includes(k)
-    );
-    const looksLikeExpert = expertKeywords.some((k) => normalizedContext.includes(k));
-
-    if (looksLikeExpert) {
-      derivedContactType = "Engage with Expert";
-    } else if (looksLikeService) {
-      derivedContactType = "Service Inquiry";
-    }
+    const normalizedContactType = String(contactType).trim().toLowerCase();
+    const resolvedContactType =
+      allowedContactTypes.get(normalizedContactType) ?? "General Contact";
 
     // Send the email
     await resend.emails.send({
       from: "Kenroz Contact <support@kenroz.com>",
       to: ["saud.zubedi@kenroz.com"],
-      subject: `New ${derivedContactType}: ${fullName}`,
+      subject: `New ${resolvedContactType}: ${fullName}`,
       replyTo: email,
       html: `
         <div style="font-family: Inter, Roboto, Arial, sans-serif; color: #0f172a;">
@@ -83,7 +71,7 @@ export async function POST(req: NextRequest) {
               </tr>
               <tr>
                 <td style="padding:8px 0; font-weight:600;">Contact Type</td>
-                <td style="padding:8px 0;">${derivedContactType}</td>
+                <td style="padding:8px 0;">${resolvedContactType}</td>
               </tr>
               <tr>
                 <td style="padding:8px 0; font-weight:600;">Interest</td>

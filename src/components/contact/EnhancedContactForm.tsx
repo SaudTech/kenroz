@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -38,7 +38,7 @@ const productOptions = [
   "Learnify",
 ];
 
-// Contact type is derived on the server based on context/interest
+// Contact type is provided via props based on the page context
 
 interface FormData {
   fullName: string;
@@ -48,6 +48,7 @@ interface FormData {
   interest: string;
   message: string;
   context?: string;
+  contactType?: string;
 }
 
 interface FormErrors {
@@ -58,12 +59,14 @@ interface EnhancedContactFormProps {
   className?: string;
   showContactInfo?: boolean;
   context?: string;
+  contactType?: string;
 }
 
 export default function EnhancedContactForm({
   className = "",
   showContactInfo = true,
   context,
+  contactType = "General Contact",
 }: EnhancedContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -76,7 +79,16 @@ export default function EnhancedContactForm({
     interest: "",
     message: "",
     context,
+    contactType,
   });
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      context,
+      contactType,
+    }));
+  }, [context, contactType]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -149,6 +161,7 @@ export default function EnhancedContactForm({
           interest: formData.interest,
           message: formData.message,
           context: formData.context,
+          contactType: formData.contactType,
         }),
       });
 
@@ -166,6 +179,7 @@ export default function EnhancedContactForm({
         interest: "",
         message: "",
         context,
+        contactType,
       });
       setErrors({});
     } catch (error) {
