@@ -17,7 +17,7 @@ import {
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
-import { ButtonLink } from "../Navbar";
+// import { ButtonLink } from "../Navbar";
 import SectionHeading from "../typography/SectionHeading";
 import CountryCodeSelection from "../ui/CountryCodeSelection";
 
@@ -37,6 +37,8 @@ const productOptions = [
   "Insura Core",
   "Learnify",
 ];
+
+// Contact type is derived on the server based on context/interest
 
 interface FormData {
   fullName: string;
@@ -133,13 +135,27 @@ export default function EnhancedContactForm({
     }
 
     setIsSubmitting(true);
+    setErrors((prev) => ({ ...prev, submit: "" }));
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const res = await fetch("/contact-us-form-submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          countryCode: formData.countryCode,
+          phone: formData.phone,
+          interest: formData.interest,
+          message: formData.message,
+          context: formData.context,
+        }),
+      });
 
-      // Here you would typically send the data to your backend
-      console.log("Form submitted:", formData);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "Failed to send message");
+      }
 
       setIsSubmitted(true);
       setFormData({
@@ -153,8 +169,8 @@ export default function EnhancedContactForm({
       });
       setErrors({});
     } catch (error) {
-      console.error("Form submission error:", error);
-      setErrors({ submit: "Failed to send message. Please try again." });
+      const errorMessage = error instanceof Error ? error.message : "Failed to send message. Please try again.";
+      setErrors({ submit: errorMessage });
     } finally {
       setIsSubmitting(false);
     }
@@ -209,11 +225,11 @@ export default function EnhancedContactForm({
   if (isSubmitted) {
     return (
       <div
-        className={cn("w-full max-w-2xl mx-auto h-full bg-red-400", className)}
+        className={cn("w-full max-w-2xl mx-auto h-full", className)}
       >
-        <Card className="border-0 shadow-2xl bg-gradient-to-br from-green-50 to-white">
+        <Card className="border-0 shadow-2xl bg-gradient-to-br from-primary/10 to-background">
           <CardContent className="text-center py-12">
-            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            <CheckCircle className="w-16 h-16 text-primary mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               Message Sent Successfully!
             </h3>
@@ -224,7 +240,7 @@ export default function EnhancedContactForm({
             <Button
               onClick={() => setIsSubmitted(false)}
               variant="outline"
-              className="border-green-500 text-green-600 hover:bg-green-50"
+              className="border-primary text-primary hover:bg-primary/10"
             >
               Send Another Message
             </Button>
@@ -429,7 +445,7 @@ export default function EnhancedContactForm({
 
           {/* Submit Button - Bottom Right */}
           <div className="px-6 pb-6 flex justify-end">
-            <ButtonLink disabled={isSubmitting}>
+            <Button type="submit" form="contact-form" disabled={isSubmitting}>
               {isSubmitting ? (
                 <div className="flex items-center gap-2">
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -441,7 +457,7 @@ export default function EnhancedContactForm({
                   <Send className="w-5 h-5" />
                 </div>
               )}
-            </ButtonLink>
+            </Button>
           </div>
         </Card>
 
