@@ -247,8 +247,7 @@ export default function EnhancedContactForm({
               Message Sent Successfully!
             </h3>
             <p className="text-gray-900 mb-6">
-              Thank you for contacting us. We&apos;ll get back to you within 24
-              hours.
+              Thank you for contacting us. We&apos;ll get back to you within one business day.
             </p>
             <Button
               onClick={() => setIsSubmitted(false)}

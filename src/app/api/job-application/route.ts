@@ -114,7 +114,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: "Kenroz Careers <careers@kenroz.com>",
-      to: ["saud.zubedi@kenroz.com"],
+      to: ["careers@kenroz.com"],
       replyTo: emailValue || undefined,
       subject: `New Job Application: ${job}`,
       html: `
@@ -237,7 +237,7 @@ export async function POST(request: Request) {
                 <h1>New Job Application</h1>
             </div>
             <div class="content">
-                <p>A new application has been submitted on the **Kenroz** website for the **${job}** role. Please review the applicant's details and attached resume below.</p>
+                <p>A new application has been submitted on the <b>Kenroz</b> website for the **${job}** role. Please review the applicant's details and attached resume below.</p>
 
                 <div class="section-title">Applicant Information</div>
                 <div class="info-card">
@@ -278,7 +278,7 @@ export async function POST(request: Request) {
                 </div>
             </div>
             <div class="footer">
-                Powered by your website careers form.
+                © ${new Date().getFullYear()} Kenroz. All rights reserved.
             </div>
         </div>
 

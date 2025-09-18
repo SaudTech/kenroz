@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     // Send the email with the dynamic HTML content directly as a string
     await resend.emails.send({
       from: "Kenroz Contact <support@kenroz.com>",
-      to: ["saud.zubedi@kenroz.com"],
+      to: ["support@kenroz.com"],
       subject: `New ${resolvedContactType}: ${fullName}`,
       replyTo: email,
       html: `
@@ -171,7 +171,7 @@ export async function POST(req: NextRequest) {
                 <h1>New Website Inquiry</h1>
             </div>
             <div class="content">
-                <p>A new message has been submitted through the contact form on the **Kenroz** website. Please review the details below to follow up with the user.</p>
+                <p>A new message has been submitted through the contact form on the <b>Kenroz</b> website. Please review the details below to follow up with the user.</p>
 
                 <div class="section-title">Contact Information</div>
                 <div class="info-card">
@@ -205,11 +205,11 @@ export async function POST(req: NextRequest) {
                 </div>
                 
                 <div class="button-container">
-                    <a href="mailto:${email}" class="reply-button">Reply to User</a>
+                    <a href="mailto:${email}" class="reply-button">Reply to ${fullName}</a>
                 </div>
             </div>
             <div class="footer">
-                Powered by your website contact form.
+                © ${new Date().getFullYear()} Kenroz. All rights reserved.
             </div>
         </div>
 
