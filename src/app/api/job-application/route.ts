@@ -14,14 +14,7 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   const formData = await request.formData();
 
-  const requiredFields = [
-    "fullName",
-    "email",
-    "countryCode",
-    "phone",
-    "description",
-    "job",
-  ];
+  const requiredFields = ["fullName", "phone", "job"];
 
   const missing = requiredFields.filter((field) => {
     const value = formData.get(field);
@@ -39,21 +32,6 @@ export async function POST(request: Request) {
       },
       { status: 400 },
     );
-  }
-
-  const email = formData.get("email");
-  const emailValue = typeof email === "string" ? email.trim() : "";
-  if (emailValue) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailValue)) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Please provide a valid email address.",
-        },
-        { status: 400 },
-      );
-    }
   }
 
   const resume = formData.get("resume");
@@ -90,10 +68,9 @@ export async function POST(request: Request) {
 
   const fullName = String(formData.get("fullName") ?? "").trim();
   const job = String(formData.get("job") ?? "").trim();
-  const countryCode = String(formData.get("countryCode") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
-  const description = String(formData.get("description") ?? "").trim();
-  const linkedin = String(formData.get("linkedin") ?? "").trim();
+
+  const jobTitle = job || "General Application";
 
   const resendApiKey = process.env.RESEND_API_KEY;
   if (!resendApiKey) {
@@ -115,8 +92,7 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: "Kenroz Careers <career@kenroz.com>",
       to: ["career@kenroz.com"],
-      replyTo: emailValue || undefined,
-      subject: `New Job Application: ${job}`,
+      subject: `New Job Application: ${jobTitle}`,
       html: `
         <!DOCTYPE html>
         <html lang="en">
@@ -191,35 +167,11 @@ export async function POST(request: Request) {
                     text-align: right;
                     color: #64748b;
                 }
-                .message-section {
-                    background-color: #f8fafc;
-                    border-radius: 6px;
-                    padding: 20px;
-                    border: 1px solid #e2e8f0;
-                }
-                .message-content {
-                    background-color: #ffffff;
-                    padding: 16px;
-                    border-radius: 4px;
-                    white-space: pre-wrap;
-                    line-height: 1.5;
-                    border: 1px solid #d1d5db;
-                    color: #334155;
-                }
-                .button-container {
+                .resume-note {
                     text-align: center;
                     margin-top: 24px;
-                }
-                .reply-button {
-                    display: inline-block;
-                    background-color: #1a237e;
-                    color: #ffffff;
-                    text-decoration: none;
-                    padding: 12px 24px;
-                    border-radius: 6px;
-                    font-weight: 600;
-                    font-size: 16px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    font-size: 14px;
+                    color: #475569;
                 }
                 .footer {
                     text-align: center;
@@ -237,7 +189,7 @@ export async function POST(request: Request) {
                 <h1>New Job Application</h1>
             </div>
             <div class="content">
-                <p>A new application has been submitted on the <b>Kenroz</b> website for the **${job}** role. Please review the applicant's details and attached resume below.</p>
+                <p>A new application has been submitted on the <b>Kenroz</b> website for the <strong>${jobTitle}</strong> role. Please review the applicant's details and attached resume below.</p>
 
                 <div class="section-title">Applicant Information</div>
                 <div class="info-card">
@@ -246,36 +198,12 @@ export async function POST(request: Request) {
                         <span class="value">${fullName}</span>
                     </div>
                     <div class="info-item">
-                        <span class="label">Email Address</span>
-                        <span class="value">${emailValue}</span>
-                    </div>
-                    <div class="info-item">
                         <span class="label">Phone Number</span>
-                        <span class="value">${countryCode} ${phone}</span>
-                    </div>
-                    ${linkedin ? `
-                    <div class="info-item">
-                        <span class="label">LinkedIn Profile</span>
-                        <span class="value"><a href="${linkedin}" style="color: #1a237e; text-decoration: none;">Link</a></span>
-                    </div>
-                    ` : ''}
-                </div>
-
-                <div class="section-title">Application Details</div>
-                <div class="message-section">
-                    <p style="margin: 0 0 16px; font-weight: 600;">Message from Applicant:</p>
-                    <div class="message-content">
-                        ${description}
+                        <span class="value">${phone}</span>
                     </div>
                 </div>
 
-                <p style="text-align: center; margin-top: 24px; font-size: 14px; color: #475569;">
-                    The applicant's resume is attached to this email.
-                </p>
-                
-                <div class="button-container">
-                    <a href="mailto:${emailValue}" class="reply-button">Reply to Applicant</a>
-                </div>
+                <p class="resume-note">The applicant's resume is attached to this email.</p>
             </div>
             <div class="footer">
                 © ${new Date().getFullYear()} Kenroz. All rights reserved.

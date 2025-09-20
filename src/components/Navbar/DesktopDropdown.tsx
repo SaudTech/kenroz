@@ -132,7 +132,7 @@ function DesktopDropdown({
                 {item.links?.slice(0, 3).map((child) => {
                   const content = (
                     <span className="block group w-full text-left px-2 py-2 text-sm font-medium rounded-md transition-colors hover:bg-black">
-                      <span className="text-primary group-hover:text-primary">
+                    <span className="text-primary group-hover:text-primary font-semibold">
                         {child.label}
                       </span>
                     </span>
@@ -163,7 +163,7 @@ function DesktopDropdown({
                 {item.links?.slice(3).map((child) => {
                   const content = (
                     <span className="block group w-full text-left px-2 py-2 text-sm font-medium rounded-md transition-colors hover:bg-black">
-                      <span className="text-primary group-hover:text-primary">
+                    <span className="text-primary group-hover:text-primary font-semibold">
                         {child.label}
                       </span>
                     </span>

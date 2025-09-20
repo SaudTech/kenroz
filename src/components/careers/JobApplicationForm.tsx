@@ -1,22 +1,16 @@
 "use client";
 
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, AlertCircle, File, UploadCloud } from "lucide-react";
 import { cn } from "@/lib/utils";
-import CountryCodeSelection from "@/components/ui/CountryCodeSelection";
 import SectionHeading from "@/components/typography/SectionHeading";
 
 interface FormData {
   fullName: string;
-  email: string;
-  countryCode: string;
   phone: string;
-  linkedin?: string;
-  description: string;
   resume: File | null;
   job?: string;
 }
@@ -37,11 +31,7 @@ export default function JobApplicationForm({
   const jobLabel = job ?? "General Application";
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
-    email: "",
-    countryCode: "", // Will be set automatically by CountryCodeSelection component
     phone: "",
-    linkedin: "",
-    description: "",
     resume: null,
     job: jobLabel,
   });
@@ -76,14 +66,6 @@ export default function JobApplicationForm({
       newErrors.fullName = "Name must be at least 2 characters";
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
-    }
-
-    // Phone validation
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
     } else {
@@ -93,22 +75,9 @@ export default function JobApplicationForm({
       }
     }
 
-    // Country code validation
-    if (!formData.countryCode.trim()) {
-      newErrors.countryCode = "Country code is required";
-    }
-
-    // LinkedIn URL validation (optional field)
-    if (formData.linkedin && formData.linkedin.trim()) {
-      const linkedinRegex = /^(https?:\/\/)?([a-z]{2,3}\.)?linkedin\.com\/(in|pub|company)\/[\w-_.%]+\/?$/i;
-      if (!linkedinRegex.test(formData.linkedin.trim())) {
-        newErrors.linkedin = "Please enter a valid LinkedIn URL";
-      }
-    }
-
     if (!formData.resume) {
       newErrors.resume = "Resume is required";
-    } else if (formData.resume) {
+    } else {
       const allowedTypes = [
         "application/pdf",
         "application/msword",
@@ -126,7 +95,7 @@ export default function JobApplicationForm({
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -142,19 +111,6 @@ export default function JobApplicationForm({
       setErrors((prev) => ({ ...prev, resume: "" }));
     }
   };
-
-  const handleCountryCodeChange = useCallback((countryCode: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      countryCode,
-    }));
-    if (errors.countryCode) {
-      setErrors((prev) => ({
-        ...prev,
-        countryCode: "",
-      }));
-    }
-  }, [errors.countryCode]);
 
   const handleDragEnter = (e: React.DragEvent) => {
     e.preventDefault();
@@ -195,14 +151,8 @@ export default function JobApplicationForm({
     try {
       const submission = new FormData();
       submission.append("fullName", formData.fullName.trim());
-      submission.append("email", formData.email.trim());
-      submission.append("countryCode", formData.countryCode.trim());
       submission.append("phone", formData.phone.trim());
-      submission.append("description", formData.description.trim());
       submission.append("job", jobLabel);
-      if (formData.linkedin) {
-        submission.append("linkedin", formData.linkedin.trim());
-      }
       if (formData.resume) {
         submission.append("resume", formData.resume);
       }
@@ -220,11 +170,7 @@ export default function JobApplicationForm({
       setIsSubmitted(true);
       setFormData({
         fullName: "",
-        email: "",
-        countryCode: "", // Will be automatically set by CountryCodeSelection component
         phone: "",
-        linkedin: "",
-        description: "",
         resume: null,
         job: jobLabel,
       });
@@ -267,8 +213,8 @@ export default function JobApplicationForm({
         <CardContent className="space-y-6">
           <SectionHeading 
             blackTextClassName="text-card-foreground" 
-            blackText="Apply for" 
-            primaryText="this position" 
+            blackText="Fill out" 
+            primaryText="this form" 
           />
           <div className="space-y-2">
             <Input
@@ -289,102 +235,23 @@ export default function JobApplicationForm({
               </p>
             )}
           </div>
-          {/* Email and Phone on the same row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email address"
-                value={formData.email}
-                onChange={handleChange}
-                className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                  errors.email
-                    ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                    : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                }`}
-              />
-              {errors.email && (
-                <p className="text-sm text-red-600 flex items-center gap-1">
-                  <AlertCircle className="w-4 h-4" />
-                  {errors.email}
-                </p>
-              )}
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <CountryCodeSelection
-                  value={formData.countryCode}
-                  defaultCountry="+91"
-                  onChange={handleCountryCodeChange}
-                  error={!!errors.countryCode}
-                />
-                <Input
-                  name="phone"
-                  type="tel"
-                  placeholder="Enter your phone number"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  removeLeftBorderRadius={true}
-                  className={`h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                    errors.phone
-                      ? "border-red-300 focus:border-red-500 focus:ring-red-500/20" :""
-                  }`}
-                />
-              </div>
-              {errors.phone && (
-                <p className="text-sm text-red-600 flex items-center gap-1">
-                  <AlertCircle className="w-4 h-4" />
-                  {errors.phone}
-                </p>
-              )}
-              {errors.countryCode && (
-                <p className="text-sm text-red-600 flex items-center gap-1">
-                  <AlertCircle className="w-4 h-4" />
-                  {errors.countryCode}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* LinkedIn URL */}
           <div className="space-y-2">
             <Input
-              name="linkedin"
-              type="url"
-              placeholder="LinkedIn profile URL (optional)"
-              value={formData.linkedin}
+              name="phone"
+              type="tel"
+              placeholder="Phone number"
+              value={formData.phone}
               onChange={handleChange}
               className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                errors.linkedin
+                errors.phone
                   ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
                   : "border-gray-200 focus:border-primary focus:ring-primary/20"
               }`}
             />
-            {errors.linkedin && (
+            {errors.phone && (
               <p className="text-sm text-red-600 flex items-center gap-1">
                 <AlertCircle className="w-4 h-4" />
-                {errors.linkedin}
-              </p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <Textarea
-              name="description"
-              placeholder="Description (e.g., how soon can you join, similar work experience, etc.)"
-              rows={10}
-              value={formData.description}
-              onChange={handleChange}
-              className={`border-2 transition-all duration-200 resize-none text-card-foreground placeholder:text-card-foreground ${
-                errors.description
-                  ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                  : "border-gray-200 focus:border-primary focus:ring-primary/20"
-              }`}
-            />
-            {errors.description && (
-              <p className="text-sm text-red-600 flex items-center gap-1">
-                <AlertCircle className="w-4 h-4" />
-                {errors.description}
+                {errors.phone}
               </p>
             )}
           </div>

@@ -19,6 +19,8 @@ import {
   Wrench,
 } from "lucide-react";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
+import Paragraph from "@/components/typography/Paragraph";
+import SectionHeading from "@/components/typography/SectionHeading";
 
 /* ------------------------------------------------------------------ */
 /* Content (Dynamics-focused)                                          */
@@ -141,29 +143,24 @@ export default function MicrosoftDynamic365Page() {
       {/* Hero   matches Outsourcing layout/animation */}
       <Section
         is="odd"
-        className="relative py-20 overflow-hidden grid place-items-center"
+        className="max-w-auto py-20 overflow-hidden grid place-items-center"
       >
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <motion.h1
-                className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
                 initial="hidden"
                 animate="visible"
                 variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
                 custom={0}
-                whileHover={hoverScale}
               >
+                <Paragraph className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
                 Microsoft <span className="text-primary">Dynamics 365</span>
+                </Paragraph>
               </motion.h1>
 
-              <motion.p
+              <Paragraph
                 className="text-xl text-foreground mb-8 leading-relaxed"
-                initial="hidden"
-                animate="visible"
-                variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
-                custom={1}
-                whileHover={hoverScale}
               >
                 Unify your CRM and ERP with solutions designed for scale,
                 security, and tangible results. Our certified consultants
@@ -171,7 +168,7 @@ export default function MicrosoftDynamic365Page() {
                 enterprise-grade governance, DevOps best practices, and
                 structured change management for seamless, measurable business
                 impact.
-              </motion.p>
+              </Paragraph>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
@@ -185,27 +182,36 @@ export default function MicrosoftDynamic365Page() {
               </div>
             </div>
 
-            {/* Hero visual / stats card */}
+            {/* Hero visual / stats card with glow effect */}
             <motion.div
               className="lg:w-2/5 relative"
               variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
               initial="hidden"
               whileInView="visible"
             >
-              <Image
-                src="/dynamic_365.png"
-                alt="Dynamics 365 dashboards"
-                width={800}
-                height={900}
-                className="rounded-2xl filter brightness-90"
-                priority
-              />
+              
+              {/* Image container with relative positioning */}
+              <div className="relative z-10">
+              {/* Large glow effect behind the image */}
+              <div className="absolute inset-0 -m-16 bg-gradient-to-r from-blue-400 via-secondary/40 to-primary/30 rounded-full blur-3xl opacity-75 animate-pulse"></div>
+              
+              {/* Additional colored glow layers for more depth */}
+              <div className="absolute inset-0 -m-12 bg-gradient-to-br from-blue-400/20 via-purple-500/30 to-cyan-400/20 rounded-full blur-2xl opacity-60"></div>
+                <Image
+                  src="/dynamic_365.png"
+                  alt="Dynamics 365 dashboards"
+                  width={800}
+                  height={900}
+                  className="rounded-2xl filter brightness-90"
+                  priority
+                />
+              </div>
             </motion.div>
           </div>
         </div>
       </Section>
 
-      {/* “Modules”   styled like Engagement Models cards */}
+      {/* "Modules" styled like Engagement Models cards */}
       <Section is="odd" id="d365-modules" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <motion.h2
@@ -217,36 +223,32 @@ export default function MicrosoftDynamic365Page() {
             viewport={{ once: true }}
             whileHover={hoverScale}
           >
-            <div className="border-t-2 border-black max-w-[470px] mb-3 mx-auto"></div>
-            Dynamics 365 Modules
-            <div className="border-t-2 border-black max-w-[470px] mt-3 mx-auto"></div>
+            <div className="border-t-2 border-foreground max-w-[470px] mb-3 mx-auto"></div>
+            <SectionHeading
+              blackText="Dynamics 365"
+              primaryText="Modules"
+            />
+            <div className="border-t-2 border-foreground max-w-[470px] mt-3 mx-auto"></div>
           </motion.h2>
 
-          <motion.p
+          <Paragraph
             className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-            custom={1}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
           >
             Comprehensive capabilities across sales, service, finance, and
             marketing implemented to fit your operating model.
-          </motion.p>
+          </Paragraph>
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {d365Modules.map((m, i) => (
               <motion.li
                 key={m.name}
                 className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
-                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                variants={slideInFromLeftWithDelay(2 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
                 whileHover={hoverScale}
                 viewport={{ once: true }}
-                whileTap={{ scale: 0.97 }}
               >
                 <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
                   <m.icon className="w-6 h-6 text-primary-foreground" />
@@ -290,46 +292,27 @@ export default function MicrosoftDynamic365Page() {
       {/* Decorative divider */}
       <PageDividerTwo />
 
-      {/* Delivery Services   mirrors “Engagement Models” style */}
+      {/* Delivery Services   mirrors "Engagement Models" style */}
       <Section is="odd" id="delivery-services" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="text-5xl font-bold text-foreground mb-4"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-            custom={0}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            Delivery Services
-          </motion.h2>
+          <SectionHeading blackText="Delivery" primaryText="Services"/>
 
-          <motion.p
-            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-            custom={1}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
+          <Paragraph className="mb-6">
             Choose the right path new implementation, targeted customization,
             robust integrations, or SLA-backed managed services.
-          </motion.p>
+          </Paragraph>
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {deliveryModels.map((m, i) => (
               <motion.li
                 key={m.title}
                 className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
-                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                variants={slideInFromLeftWithDelay(2 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
                 whileHover={hoverScale}
                 viewport={{ once: true }}
-                whileTap={{ scale: 0.97 }}
               >
                 <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
                   <m.icon className="w-6 h-6 text-primary-foreground" />

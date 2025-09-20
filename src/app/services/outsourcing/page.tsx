@@ -8,7 +8,9 @@ import { hoverScale } from "@/lib/section-animations";
 import ProcessAnimation, { ProcessStep } from "./process";
 import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
-import Image from "next/image";
+import Paragraph from "@/components/typography/Paragraph";
+import SectionHeading from "@/components/typography/SectionHeading";
+import GlowImage from "@/components/GlowImage";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 const engagementModels = [
   {
@@ -99,32 +101,20 @@ export default function Page() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
-              <motion.h1
-                className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
-                initial="hidden"
-                animate="visible"
-                variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
-                custom={0}
-                whileHover={hoverScale}
-              >
-                Outsourcing <span className="text-primary">Services</span>
-              </motion.h1>
+              <SectionHeading
+                className="justify-start"
+                blackText="Outsourcing"
+                primaryText="Services"
+              />
 
-              <motion.p
-                className="text-xl text-foreground mb-8 leading-relaxed"
-                initial="hidden"
-                animate="visible"
-                variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
-                custom={1}
-                whileHover={hoverScale}
-              >
+              <Paragraph className="mb-6 text-xl leading-relaxed text-foreground">
                 Accelerate delivery with dedicated teams and top-tier talent.
                 Choose a model that fits your goals Dedicated Teams, Staff
                 Augmentation, or Project-Based Delivery. Our senior engineers,
                 PMs, and QA integrate with your workflows, uphold
                 enterprise-grade security, and drive measurable results across
                 Dynamics 365, Cloud/DevOps, and Web & Mobile.
-              </motion.p>
+              </Paragraph>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
                   initial="hidden"
@@ -146,13 +136,20 @@ export default function Page() {
               initial="hidden"
               whileInView="visible"
             >
-              <Image
+              <GlowImage
+                src="/outsourcing.webp"
+                alt="Outsourcing"
+                width={800}
+                height={900}
+                priority
+              />
+              {/* <Image
                 src="/outsourcing.webp"
                 alt="Outsourcing"
                 width={800}
                 height={900}
                 className="rounded-2xl filter brightness-90"
-              />
+              /> */}
             </motion.div>
           </div>
         </div>
@@ -161,36 +158,20 @@ export default function Page() {
       {/* Engagement Models */}
       <Section is="odd" id="engagement-models" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="text-5xl font-bold text-foreground mb-4 "
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-            custom={0}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            <div className="border-t-2 border-black max-w-[470px] mb-3 mx-auto"></div>
+          <Paragraph className="text-5xl font-bold text-foreground">
+            <div className="border-t-2 border-foreground max-w-[470px] mb-3 mx-auto"></div>
             Engagement Models
-            <div className="border-t-2 border-black max-w-[470px] mt-3 mx-auto"></div>
-          </motion.h2>
-          <motion.p
-            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-            custom={1}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
+            <div className="border-t-2 border-foreground max-w-[470px] mt-3 mx-auto"></div>
+          </Paragraph>
+          <Paragraph className="w-full block mx-auto mb-12 max-w-3xl text-xl text-foreground">
             Flexible engagement options tailored to your project scope,
             timeline, and budget.
-          </motion.p>
+          </Paragraph>
           <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {engagementModels.map((m, i) => (
               <motion.li
                 key={i}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
+                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"

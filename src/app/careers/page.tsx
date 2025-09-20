@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import JobList from "@/components/careers/JobList";
 import {
@@ -9,10 +8,11 @@ import {
   HeartHandshake,
   Globe2,
 } from "lucide-react";
-import { ButtonLink } from "@/components/Navbar";
 import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
+import CareersHero from "@/components/careers/CareersHero";
+import { jobs } from "@/lib/jobs";
 
 export const metadata: Metadata = {
   title: "Careers at Kenroz",
@@ -39,40 +39,7 @@ export default function CareersPage() {
   return (
     <div className="bg-transparent">
       {/* Hero */}
-      <section className="relative min-h-[60vh] overflow-hidden">
-        <Image
-          src="/team.jpg"
-          alt="Kenroz team at work"
-          fill
-          priority
-          className="absolute inset-0 object-cover"
-        />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/40 backdrop-blur-[1px]" />
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 py-28 md:py-36 text-white">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mt-6 text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-              Build the future with Kenroz
-            </h1>
-            <p className="mt-4 text-lg text-white/90">
-              Join a team that ships meaningful products, learns fast, and cares
-              about craft.
-            </p>
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <ButtonLink href="#open-roles">View open roles</ButtonLink>
-              {/* <OpenInformativeDialog
-                title="Refer a Candidate"
-                description="We're always on the lookout for exceptional talent. If you know someone who would be a strong addition to our team, we’d love to hear from you. Please send their details to career@kenroz.com."
-              >
-                <ButtonLink variant="outline" className="text-white">
-                  Refer a friend
-                </ButtonLink>
-              </OpenInformativeDialog> */}
-            </div>
-          </div>
-        </div>
-      </section>
+      <CareersHero jobs={jobs} />
 
       {/* Why Kenroz */}
       <section className="container mx-auto px-4 py-16 md:py-20">

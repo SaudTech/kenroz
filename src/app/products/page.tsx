@@ -7,11 +7,11 @@ import { motion } from "framer-motion";
 import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
-import SectionHeader from "@/components/SectionHeader";
 import EngagementSection from "@/components/EngagementSection";
 
 import SectionHeading from "@/components/typography/SectionHeading";
 import ProductCarousel from "./ProductCarousel";
+import Paragraph from "@/components/typography/Paragraph";
 
 // ---------- Highlighter ----------
 function highlightText(text: string, keywords: string[]) {
@@ -268,16 +268,9 @@ export default function ProductsPage() {
                           className="justify-start"
                         />
 
-                        <SectionHeader
-                          title=""
-                          description={
-                            <p className="text-sm leading-relaxed">
-                              {highlightText(product.description, product.highlights)}
-                            </p>
-                          }
-                          titleClassName="text-2xl md:text-4xl lg:text-5xl"
-                          descriptionClassName="text-sm leading-relaxed"
-                        />
+                        <Paragraph className="!block text-sm leading-relaxed text-foreground/80 md:text-base">
+                          {highlightText(product.description, product.highlights)}
+                        </Paragraph>
 
                         <div className="mt-8 flex flex-wrap items-center gap-3">
                           <ButtonLink

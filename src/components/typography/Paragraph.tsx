@@ -9,7 +9,7 @@ const Paragraph = ({ children, className }: { children: React.ReactNode, classNa
 
   return (
     <motion.div
-      className={cn("mt-4 md:text-base leading-relaxed text-foreground inline-block", className)}
+      className={cn("mt-4 text-base leading-relaxed text-foreground inline-block", className)}
       variants={fromRight}
       initial="hidden"
       whileInView="show"

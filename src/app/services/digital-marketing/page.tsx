@@ -21,6 +21,8 @@ import EngagementSection from "@/components/EngagementSection";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 import ProcessAnimation, { ProcessStep } from "../outsourcing/process";
 import Image from "next/image";
+import Paragraph from "@/components/typography/Paragraph";
+import SectionHeading from "@/components/typography/SectionHeading";
 
 export default function DigitalMarketingPage() {
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
@@ -32,11 +34,7 @@ export default function DigitalMarketingPage() {
       title: "Search Engine Optimization (SEO)",
       description:
         "Boost visibility and drive organic traffic with smart SEO strategies.",
-      features: [
-        "Keyword Research",
-        "On-Page Optimization",
-        "Local SEO",
-      ],
+      features: ["Keyword Research", "On-Page Optimization", "Local SEO"],
     },
     {
       icon: Target,
@@ -57,11 +55,7 @@ export default function DigitalMarketingPage() {
       title: "Email Marketing",
       description:
         "Convert leads and retain customers with personalized campaigns.",
-      features: [
-        "Campaign Design",
-        "Automation Flows",
-        "Engagement Tracking",
-      ],
+      features: ["Campaign Design", "Automation Flows", "Engagement Tracking"],
     },
     {
       icon: BarChart3,
@@ -79,11 +73,7 @@ export default function DigitalMarketingPage() {
       title: "Analytics & Reporting",
       description:
         "Measure performance and optimize campaigns with real insights.",
-      features: [
-        "Custom Dashboards",
-        "ROI Analysis",
-        "Funnel Insights",
-      ],
+      features: ["Custom Dashboards", "ROI Analysis", "Funnel Insights"],
     },
   ];
 
@@ -163,29 +153,13 @@ export default function DigitalMarketingPage() {
         <div className="container relative z-10 mx-auto px-4">
           <div className="flex flex-col items-center gap-12 lg:flex-row">
             <div className="lg:w-2/4">
-              <motion.h1
-                className="mb-6 text-5xl font-bold leading-tight text-foreground lg:text-6xl"
-                initial="hidden"
-                animate="visible"
-                variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
-                custom={0}
-                whileHover={hoverScale}
-              >
-                Digital <span className="text-primary">Marketing</span>
-              </motion.h1>
+              <SectionHeading className="justify-start" blackText="Digital" primaryText="Marketing" />
 
-              <motion.p
-                className="mb-6 text-xl leading-relaxed text-foreground"
-                initial="hidden"
-                animate="visible"
-                variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
-                custom={1}
-                whileHover={hoverScale}
-              >
+              <Paragraph className="mb-6 text-xl leading-relaxed text-foreground">
                 Grow your business with comprehensive strategies across SEO,
                 PPC, social, content, and email. We align on outcomes, launch
                 fast, and optimize continuously for measurable growth.
-              </motion.p>
+              </Paragraph>
 
               <div className="flex flex-col gap-4 sm:flex-row">
                 <motion.div
@@ -224,36 +198,20 @@ export default function DigitalMarketingPage() {
       {/* Services */}
       <Section is="odd" id="services" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="mb-4 text-5xl font-bold text-foreground"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-            custom={0}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-black" />
+          <Paragraph className="text-5xl font-bold text-foreground">
+            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-foreground" />
             Services
-            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-black" />
-          </motion.h2>
-          <motion.p
-            className="mx-auto mb-12 max-w-3xl text-xl text-foreground"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-            custom={1}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
+            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-foreground" />
+          </Paragraph>
+          <Paragraph className="w-full block mx-auto mb-12 max-w-3xl text-xl text-foreground">
             Comprehensive solutions to grow your presence and drive results.
-          </motion.p>
+          </Paragraph>
 
           <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 text-left">
             {services.map((s, i) => (
               <motion.li
                 key={s.title}
-                className="rounded-xl border border-border bg-card p-6 text-card-foreground shadow"
+                className="rounded-xl border border-border bg-card p-6 text-card-foreground shadow hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
@@ -280,19 +238,11 @@ export default function DigitalMarketingPage() {
       {/* Benefits (renamed + no “Why choose” copy) */}
       <Section is="odd" id="benefits" className="py-20 pt-0">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="mb-4 text-5xl font-bold text-foreground"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-            custom={0}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-black" />
+          <Paragraph className="text-5xl mb-10 font-bold text-foreground">
+            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-foreground" />
             Benefits
-            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-black" />
-          </motion.h2>
+            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-foreground" />
+          </Paragraph>
 
           {/* removed the descriptive paragraph per your request */}
 
@@ -300,7 +250,7 @@ export default function DigitalMarketingPage() {
             {benefits.map((b, i) => (
               <motion.li
                 key={b.title}
-                className="rounded-xl border border-border bg-card p-6 text-card-foreground shadow"
+                className="rounded-xl border border-border bg-card p-6 text-card-foreground shadow hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
