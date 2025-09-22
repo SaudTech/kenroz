@@ -170,7 +170,7 @@ export default function StrategicPartner() {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="group relative flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 text-foreground text-sm font-medium border border-card hover:shadow-lg transition-all duration-300"
+                  className="group relative flex items-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 text-foreground text-sm font-medium border border-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300"
                   variants={fromLeft}
                   initial="hidden"
                   whileInView="show"
