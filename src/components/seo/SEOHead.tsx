@@ -67,7 +67,7 @@ export default function SEOHead({
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       
       {/* Favicon and Icons */}
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" type="image/png" href="/favicon.png" />
       <link rel="apple-touch-icon" href="/logo_mini.png" />
     </Head>
   );
