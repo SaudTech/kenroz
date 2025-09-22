@@ -2,8 +2,8 @@
 import Image from "next/image";
 import { Instagram, Facebook, Linkedin, MapPin, Phone, ExternalLink, X } from "lucide-react";
 import { createElement, useCallback } from "react";
-import logo from "@/../public/logo.png";
 import Link from "next/link";
+import { useThemeLogo } from "@/hooks/useThemeLogo";
 
 // Location Cards Component
 const locations = [
@@ -85,6 +85,7 @@ function LocationCards() {
 
 // Main Footer Component
 export default function Footer() {
+  const logo = useThemeLogo();
   const handleLinkClick = useCallback((href: string) => {
     if (!href.includes("#")) return;
     const [path, hash] = href.split("#");

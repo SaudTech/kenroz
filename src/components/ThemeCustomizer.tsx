@@ -27,6 +27,8 @@ export default function ThemeCustomizer() {
     // Save to localStorage
     localStorage.setItem("selectedTheme", theme.name);
 
+    window.dispatchEvent(new CustomEvent("themechange", { detail: theme.name }));
+
     setOpen(false);
   };
 
@@ -38,6 +40,9 @@ export default function ThemeCustomizer() {
       if (theme) {
         setActiveThemeName(theme.name);
         applyColors(theme.colors);
+        window.dispatchEvent(
+          new CustomEvent("themechange", { detail: theme.name }),
+        );
       }
     }
   }, []);

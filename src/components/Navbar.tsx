@@ -5,13 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, Phone, X } from "lucide-react";
-import logo from "@/../public/logo/logo_red.png";
-// import logo from "@/../public/logo/logo_green.png";
-// import logo from "@/../public/logo/logo_purple.png";
 import { cn } from "@/lib/utils";
 import DesktopDropdown from "./Navbar/DesktopDropdown";
 import MobileExpandable from "./Navbar/MobileExpandable";
 import MobileNavItem from "./Navbar/MobileNavItem";
+import { useThemeLogo } from "@/hooks/useThemeLogo";
 export type NavLink = {
   label: string;
   href?: string;
@@ -39,6 +37,7 @@ export default function Navbar(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileOpenKey, setMobileOpenKey] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const logo = useThemeLogo();
 
   useEffect(() => {
     // const handleScroll = () => setScrolled(window.scrollY > 50);
