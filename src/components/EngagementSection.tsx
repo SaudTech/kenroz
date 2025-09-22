@@ -23,7 +23,7 @@ const EngagementSection: React.FC<EngagementSectionProps> = ({
     <section className="relative overflow-hidden bg-card text-card-foreground z-[90]">
       <div className="container relative z-10 mx-auto px-4 py-14 md:py-16 text-center">
         <div className="mx-auto max-w-3xl">
-          <Paragraph className="text-3xl md:text-4xl font-bold tracking-tight">
+          <Paragraph className="text-3xl md:text-4xl text-card-foreground font-bold tracking-tight">
             {title}
           </Paragraph>
           <Paragraph className="mt-3 text-card-foreground/80">{description}</Paragraph>
