@@ -42,7 +42,7 @@ const products: Product[] = [
   {
     name: ["People", "Sphere"],
     slug: "people-sphere",
-    subtitle: "All-in-one HR suite",
+    subtitle: "All-in-One HR Management Suite",
     description:
       "Streamline the entire employee journey with an all-in-one HR platform from hiring to offboarding, with analytics and self-service built in. Manage recruitment, onboarding, performance reviews, and employee data in one unified system. Reduce administrative overhead while improving employee satisfaction with self-service portals and automated workflows.",
     imageName: "/HCM.png",
@@ -58,7 +58,7 @@ const products: Product[] = [
   {
     name: ["Pay", "Stream"],
     slug: "pay-stream",
-    subtitle: "Seamless payroll automation",
+    subtitle: "Payroll & Compliance Automation",
     description:
       "Automate payroll, tax, and compliance with seamless calculations, bank integration, and transparent employee access. Handle complex salary structures, overtime calculations, and multi-country payroll requirements effortlessly. Ensure accuracy with real-time tax updates and automated compliance reporting for peace of mind.",
     imageName: "/Payroll.png",
@@ -73,7 +73,7 @@ const products: Product[] = [
   {
     name: ["Tax", "Nova"],
     slug: "tax-nova",
-    subtitle: "E-invoicing made effortless",
+    subtitle: "E-Invoicing & Tax Compliance",
     description:
       "Stay ZATCA-compliant with automated e-invoicing, QR codes, digital signatures, and real-time VAT submissions. Generate compliant invoices instantly with built-in validation and automatic tax calculations. Streamline your billing process while maintaining full regulatory compliance across different jurisdictions and tax requirements.",
     imageName: "/Invoice.png",
@@ -89,7 +89,7 @@ const products: Product[] = [
   {
     name: ["Insura", "Core"],
     slug: "insura-core",
-    subtitle: "Smarter insurance operations",
+    subtitle: "Insurance Policy & Claims Management",
     description:
       "Simplify policy management, underwriting, claims, and customer service with a flexible, insurer-focused platform. Accelerate policy processing with intelligent automation and risk assessment tools. Enhance customer experience through streamlined claims handling and comprehensive policy management capabilities.",
     imageName: "/Insurance.png",
@@ -105,7 +105,7 @@ const products: Product[] = [
   {
     name: ["", "Learnify"],
     slug: "learnify",
-    subtitle: "Empowering digital learning",
+    subtitle: "Learning Management System (LMS)",
     description:
       "Deliver and track engaging learning experiences with interactive courses, certifications, and mobile-first access. Create personalized learning paths with adaptive content and real-time progress tracking. Boost employee development with comprehensive analytics, gamification features, and seamless integration with existing HR systems.",
     imageName: "/LMS.png",
@@ -194,14 +194,14 @@ export default function ProductsPage() {
           <div className="relative z-10 flex h-full items-center">
             <div className="w-full px-4 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-5xl text-center">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-2xl">
+                <Paragraph className="text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-white drop-shadow-2xl">
                   Products built for modern business
-                </h1>
-                <p className="mx-auto mt-4 md:mt-6 max-w-3xl text-base md:text-lg text-white/90 leading-relaxed">
+                </Paragraph>
+                <Paragraph className="text-white">
                   Powerful, flexible, and secure software that streamlines
                   operations, enhances employee experiences, and keeps you
                   compliant at scale.
-                </p>
+                </Paragraph>
                 <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
                   <ButtonLink href="#catalog" className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     Explore products
@@ -268,7 +268,11 @@ export default function ProductsPage() {
                           className="justify-start"
                         />
 
-                        <Paragraph className="!block text-sm leading-relaxed text-foreground/80 md:text-base">
+                        <Paragraph className="mt-1 text-primary font-medium">
+                        {product.subtitle}
+                        </Paragraph>
+
+                        <Paragraph>
                           {highlightText(product.description, product.highlights)}
                         </Paragraph>
 
