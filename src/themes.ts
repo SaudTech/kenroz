@@ -20,22 +20,6 @@ export const themes: Theme[] = [
       navbar: "#000000",
     },
   },
-  // {
-  //   name: "Royal Purple Glow",
-  //   colors: {
-  //     primary: "#7C3AED",
-  //     "primary-foreground": "#ffffff",
-  //     secondary: "#A78BFA",
-  //     "secondary-foreground": "#1b1035",
-  //     muted: "#EDE9FE",
-  //     "muted-foreground": "#3B2B63",
-  //     background: "#F5F3FF",
-  //     foreground: "#1F1636",
-  //     card: "#2E1065",
-  //     "card-foreground": "#F5F3FF",
-  //     navbar: "#7C3AED40",
-  //   },
-  // },
   {
     name: "Fresh Forest",
     colors: {

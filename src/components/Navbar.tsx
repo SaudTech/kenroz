@@ -210,13 +210,6 @@ export default function Navbar(): JSX.Element {
           </AnimatePresence>
         </div>
       </motion.nav>
-      {/* <PageDividerOne
-        color={"black"}
-        className={cn(
-          "w-full z-[60] fixed top-28 left-0 transition-all duration-300 shadow-none",
-          scrolled && "opacity-0"
-        )}
-      /> */}
     </>
   );
 }

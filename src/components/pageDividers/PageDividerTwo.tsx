@@ -1,7 +1,12 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-
+// import topGreen from "@/../public/PageDivider/top_green.svg"
+// import bottomGreen from "@/../public/PageDivider/bottom_green.svg"
+// import topRed from "@/../public/PageDivider/top_red.svg"
+// import bottomRed from "@/../public/PageDivider/bottom_red.svg"
+// import topPurple from "@/../public/PageDivider/top_purple.svg"
+// import bottomPurple from "@/../public/PageDivider/bottom_purple.svg"
 const PageDividerTwo = ({ className = "" }) => {
   const [clientScreenWidth, setClientScreenWidth] = useState(0);
 

@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { AppleAppStore, GooglePlaystore } from "./PlatformIcons";
 import Image from "next/image";
+import Paragraph from "@/components/typography/Paragraph";
 
 /* ------------------- Process (mobile-focused) ------------------- */
 const mobileProcess: ProcessStep[] = [
@@ -175,7 +176,6 @@ export default function MobileApplicationDevelopmentPage() {
                   </ButtonLink>
                 </motion.div>
               </div>
-
             </div>
 
             {/* Hero visual */}
@@ -202,31 +202,14 @@ export default function MobileApplicationDevelopmentPage() {
       {/* Development Approaches (cards) */}
       <Section is="odd" id="approaches" className="relative py-20 pt-0">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="mb-4 text-5xl font-bold text-foreground"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-            custom={0}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            <div className="mx-auto mb-3 max-w-[470px] border-t-2 border-black"></div>
+          <Paragraph className="text-5xl font-bold text-foreground">
+            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-foreground" />
             Development Approaches
-            <div className="mx-auto mt-3 max-w-[470px] border-t-2 border-black"></div>
-          </motion.h2>
-
-          <motion.p
-            className="mx-auto mb-12 max-w-3xl text-xl text-foreground"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-            custom={1}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            Choose the route that fits your goals, budget, and timeline.
-          </motion.p>
+            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-foreground" />
+          </Paragraph>
+          <Paragraph className="w-full block mx-auto mb-12 max-w-3xl text-xl text-foreground">
+            Choose the route that fits your goals, budget, and timeline.{" "}
+          </Paragraph>
 
           <ul className="grid grid-cols-1 gap-6 text-left lg:grid-cols-3">
             {developmentApproaches.map((a, i) => (
@@ -280,31 +263,14 @@ export default function MobileApplicationDevelopmentPage() {
       {/* Features */}
       <Section is="odd" id="features" className="relative py-20 pt-0">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="mb-4 text-5xl font-bold text-foreground"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-            custom={0}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            <div className="mx-auto mb-3 max-w-[470px] border-t-2 border-black"></div>
+          <Paragraph className="text-5xl font-bold text-foreground">
+            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-foreground" />
             Capabilities
-            <div className="mx-auto mt-3 max-w-[470px] border-t-2 border-black"></div>
-          </motion.h2>
-
-          <motion.p
-            className="mx-auto mb-12 max-w-3xl text-xl text-foreground"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-            custom={1}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            Practical features we build into modern mobile apps.
-          </motion.p>
+            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-foreground" />
+          </Paragraph>
+          <Paragraph className="w-full block mx-auto mb-12 max-w-3xl text-xl text-foreground">
+            Practical features we build into modern mobile apps.{" "}
+          </Paragraph>
 
           <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.map((f, i) => (
@@ -375,9 +341,7 @@ export default function MobileApplicationDevelopmentPage() {
               <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl">
                 <AppleAppStore className="h-10 w-10" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold">
-                iOS Development
-              </h3>
+              <h3 className="mb-2 text-2xl font-bold">iOS Development</h3>
               <p className="mb-6">
                 Native apps using Swift/SwiftUI for high performance and
                 HIG-compliant UX.
@@ -401,9 +365,7 @@ export default function MobileApplicationDevelopmentPage() {
               <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-card">
                 <GooglePlaystore className="h-10 w-10" />
               </div>
-              <h3 className="mb-2 text-2xl font-bold">
-                Android Development
-              </h3>
+              <h3 className="mb-2 text-2xl font-bold">Android Development</h3>
               <p className="mb-6">
                 Native apps using Kotlin/Jetpack for Material-compliant,
                 device-ready UI.
@@ -430,9 +392,7 @@ export default function MobileApplicationDevelopmentPage() {
                   <GooglePlaystore className="h-8 w-8 absolute -right-4 -bottom-3 opacity-95" />
                 </div>
               </div>
-              <h3 className="mb-2 text-2xl font-bold">
-                Both Platforms
-              </h3>
+              <h3 className="mb-2 text-2xl font-bold">Both Platforms</h3>
               <p className="mb-6">
                 Single codebase (React Native/Flutter) design system, unified
                 analytics.

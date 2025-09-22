@@ -16,6 +16,7 @@ import {
   Layers as LayersIcon,
   Shield,
 } from "lucide-react";
+import Paragraph from "@/components/typography/Paragraph";
 
 /* ------------ Your process steps (from current data) ------------ */
 const webProcess: ProcessStep[] = [
@@ -105,7 +106,8 @@ export default function WebApplicationDevelopmentPage() {
                 custom={0}
                 whileHover={hoverScale}
               >
-                Web Application <span className="text-primary">Development</span>
+                Web Application{" "}
+                <span className="text-primary">Development</span>
               </motion.h1>
 
               <motion.p
@@ -128,7 +130,9 @@ export default function WebApplicationDevelopmentPage() {
                   variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
                   custom={6}
                 >
-                  <ButtonLink href="/contact-us?p=web-apps">Get Started</ButtonLink>
+                  <ButtonLink href="/contact-us?p=web-apps">
+                    Get Started
+                  </ButtonLink>
                 </motion.div>
               </div>
             </div>
@@ -157,38 +161,16 @@ export default function WebApplicationDevelopmentPage() {
       {/* Features   center last row when it has only 2 items */}
       <Section is="odd" id="features" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2
-            className="text-5xl font-bold text-foreground mb-4"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-            custom={0}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            <div className="border-t-2 border-black max-w-[470px] mb-3 mx-auto"></div>
+          <Paragraph className="text-5xl font-bold text-foreground">
+            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-foreground" />
             Features
-            <div className="border-t-2 border-black max-w-[470px] mt-3 mx-auto"></div>
-          </motion.h2>
+            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-foreground" />
+          </Paragraph>
+          <Paragraph className="w-full block mx-auto mb-12 max-w-3xl text-xl text-foreground">
+            Some of the features we offer for web application development.{" "}
+          </Paragraph>
 
-          <motion.p
-            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-            custom={1}
-            viewport={{ once: true }}
-            whileHover={hoverScale}
-          >
-            Some of the features we offer for web application development.
-          </motion.p>
-
-          <ul
-              // grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6
-              className="
-              flex flex-wrap gap-6 justify-center items-center
-            "
-          >
+          <ul className="flex flex-wrap gap-6 justify-center items-center">
             {features.map((m, i) => (
               <motion.li
                 key={m.name}
