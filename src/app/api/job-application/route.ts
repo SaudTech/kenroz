@@ -90,8 +90,8 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey);
 
     await resend.emails.send({
-      from: "Kenroz Careers <career@kenroz.com>",
-      to: ["career@kenroz.com"],
+      from: "Kenroz Support <support@kenroz.com>",
+      to: ["support@kenroz.com"],
       subject: `New Job Application: ${jobTitle}`,
       html: `
         <!DOCTYPE html>

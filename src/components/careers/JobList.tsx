@@ -215,7 +215,7 @@ export default function JobList() {
                   More details <ArrowRight className="h-4 w-4" />
                 </Link>
                 {/* <Link
-                  href={`mailto:career@kenroz.com?subject=Application: ${encodeURIComponent(job.title)}`}
+                  href={`mailto:support@kenroz.com?subject=Application: ${encodeURIComponent(job.title)}`}
                   className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-50"
                 >
                   Apply
@@ -236,7 +236,7 @@ export default function JobList() {
             <p className="mt-3 font-semibold">No positions match your search</p>
             <p className="mt-1 text-sm text-slate-600">
               Try different keywords, or{" "}
-              <Link href="mailto:career@kenroz.com" className="text-primary underline">
+              <Link href="mailto:support@kenroz.com" className="text-primary underline">
                 email us
               </Link>{" "}
               with your resume.

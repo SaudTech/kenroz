@@ -41,6 +41,56 @@ export const metadata: Metadata = {
 type ContactSearchParams = {
   p?: string | string[];
 };
+
+function formatTitleFromSlug(slug: string) {
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+function getInterest(intent?: string) {
+  if (!intent) {
+    return "General Contact";
+  }
+
+  const normalized = intent.toLowerCase();
+
+  const interestMap: Record<string, string> = {
+    d365: "Microsoft Dynamics 365",
+    "digital-marketing": "Digital Marketing",
+    "cloud-devops": "Cloud Solutions",
+    "mobile-apps": "Mobile Application Development",
+    "mobile-application-development": "Mobile Application Development",
+    "web-apps": "Web Application Development",
+    "web-application-development": "Web Application Development",
+    outsourcing: "Outsourcing",
+    hire: "Engage with Expert",
+    consulting: "Consulting Services",
+    "become-a-partner": "Partnership Inquiry",
+    "work-with-kenroz": "Careers at Kenroz",
+  };
+
+  if (interestMap[normalized]) {
+    return interestMap[normalized];
+  }
+
+  if (normalized.startsWith("book-a-demo-")) {
+    const productSlug = normalized.replace("book-a-demo-", "");
+    const productMap: Record<string, string> = {
+      "people-sphere": "People Sphere",
+      "pay-stream": "Pay Stream",
+      "tax-nova": "Tax Nova",
+      "insura-core": "Insura Core",
+      learnify: "Learnify",
+    };
+
+    return productMap[productSlug] ?? formatTitleFromSlug(productSlug);
+  }
+
+  return formatTitleFromSlug(normalized) || "General Contact";
+}
 function getHeadingParts(intent?: string) {
   // first letter capitalize each word after splitting by hyphen
   const product =
@@ -109,6 +159,7 @@ export default async function ContactPage({
   const intent = Array.isArray(rawIntent) ? rawIntent[0] : rawIntent;
   const { black, primary } = getHeadingParts(intent);
   const contactType = getContactType(intent);
+  const interest = getInterest(intent);
 
   let description =
     "Have a project in mind or need expert guidance? Our team at Kenroz is here to listen, understand, and help you achieve your goals. Reach out today and let’s start building your success story.";
@@ -227,6 +278,7 @@ export default async function ContactPage({
                 showContactInfo={false}
                 context={intent}
                 contactType={contactType}
+                interest={interest}
                 className="w-full h-full"
               />
             </div>

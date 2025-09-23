@@ -44,10 +44,10 @@ export default async function ApplyForJobPage({
                   You can also send your application details directly via email
                   to{" "}
                   <a
-                    href="mailto:career@kenroz.com"
+                    href="mailto:support@kenroz.com"
                     className="font-semibold underline hover:text-card-foreground"
                   >
-                    career@kenroz.com
+                    support@kenroz.com
                   </a>
                   .
                   <br />

@@ -120,7 +120,7 @@ export default function CareersPage() {
       {/* CTA */}
       <EngagementSection
         title="Ready to apply?"
-        description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to career@kenroz.com."
+        description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to support@kenroz.com."
       />
 
       {/* JSON-LD */}

@@ -37,7 +37,7 @@ export default async function JobDetailPage({ params }: Props) {
         ← Back to Careers
       </Link>
       <h1 className="text-4xl font-bold mb-4">{job.title}</h1>
-      <p className="text-gray-600 mb-8">
+      <p className="text-foreground mb-8">
         {job.department} · {job.location}
       </p>
       <p className="mb-8">{job.description}</p>
