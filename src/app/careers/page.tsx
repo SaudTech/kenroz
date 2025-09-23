@@ -121,8 +121,6 @@ export default function CareersPage() {
       <EngagementSection
         title="Ready to apply?"
         description="Are you ready to join our team? We're always looking for talented individuals to join our team. If you're interested in working with us, please send your resume to career@kenroz.com."
-        button1Url="/contact-us"
-        button1Text="Apply now"
       />
 
       {/* JSON-LD */}

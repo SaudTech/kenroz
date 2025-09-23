@@ -123,10 +123,10 @@ export default function EnhancedContactForm({
       newErrors.email = "Please enter a valid email address";
     }
 
-    // Interest validation
-    if (!formData.interest.trim()) {
-      newErrors.interest = "Please select a service or product";
-    }
+    // // Interest validation
+    // if (!formData.interest.trim()) {
+    //   newErrors.interest = "Please select a service or product";
+    // }
 
     // Message validation
     if (!formData.message.trim()) {
@@ -237,30 +237,22 @@ export default function EnhancedContactForm({
 
   if (isSubmitted) {
     return (
-      <div
-        className={cn("w-full max-w-2xl mx-auto h-full", className)}
-      >
-        <Card className="border-0 shadow-2xl bg-gradient-to-br from-primary/10 to-background">
+      <div className={cn("w-full max-w-2xl mx-auto", className)}>
+        <Card className="border-0 shadow-2xl bg-card">
           <CardContent className="text-center py-12">
-            <CheckCircle className="w-16 h-16 text-primary mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">
-              Message Sent Successfully!
+            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-card-foreground mb-2">
+              Message submitted!
             </h3>
-            <p className="text-gray-900 mb-6">
-              Thank you for contacting us. We&apos;ll get back to you within one business day.
+            <p className="text-card-foreground mb-6">
+              We will get back to you.
             </p>
-            <Button
-              onClick={() => setIsSubmitted(false)}
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary/10"
-            >
-              Send Another Message
-            </Button>
           </CardContent>
         </Card>
       </div>
     );
   }
+
 
   return (
     <div className={cn("w-full mx-auto h-full", className)} id="contact">

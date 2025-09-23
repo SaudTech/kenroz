@@ -1,15 +1,17 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { CheckCircle, AlertCircle, File, UploadCloud } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/typography/SectionHeading";
+import CountryCodeSelection from "../ui/CountryCodeSelection";
 
 interface FormData {
   fullName: string;
+  countryCode: string;
   phone: string;
   resume: File | null;
   job?: string;
@@ -31,6 +33,7 @@ export default function JobApplicationForm({
   const jobLabel = job ?? "General Application";
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
+    countryCode: "",
     phone: "",
     resume: null,
     job: jobLabel,
@@ -41,7 +44,6 @@ export default function JobApplicationForm({
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
@@ -50,11 +52,11 @@ export default function JobApplicationForm({
   }, [jobLabel]);
 
   const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return "0 Bytes";
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB'];
+    const sizes = ["Bytes", "KB", "MB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   const validateForm = (): boolean => {
@@ -94,9 +96,7 @@ export default function JobApplicationForm({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
@@ -116,18 +116,18 @@ export default function JobApplicationForm({
     e.preventDefault();
     setIsDragging(true);
   };
-  
+
   const handleDragLeave = () => {
     setIsDragging(false);
   };
-  
+
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
     const dataTransfer = new DataTransfer();
     if (file) {
-        dataTransfer.items.add(file);
+      dataTransfer.items.add(file);
     }
     if (fileInputRef.current) {
       fileInputRef.current.files = dataTransfer.files;
@@ -142,6 +142,22 @@ export default function JobApplicationForm({
       fileInputRef.current.click();
     }
   };
+
+  const handleCountryCodeChange = useCallback(
+    (countryCode: string) => {
+      setFormData((prev) => ({
+        ...prev,
+        countryCode,
+      }));
+      if (errors.countryCode) {
+        setErrors((prev) => ({
+          ...prev,
+          countryCode: "",
+        }));
+      }
+    },
+    [errors.countryCode]
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -164,12 +180,15 @@ export default function JobApplicationForm({
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data?.error || "Failed to submit application. Please try again.");
+        throw new Error(
+          data?.error || "Failed to submit application. Please try again."
+        );
       }
 
       setIsSubmitted(true);
       setFormData({
         fullName: "",
+        countryCode: "91",
         phone: "",
         resume: null,
         job: jobLabel,
@@ -211,10 +230,10 @@ export default function JobApplicationForm({
     >
       <Card className="border-0 shadow-2xl bg-card">
         <CardContent className="space-y-6">
-          <SectionHeading 
-            blackTextClassName="text-card-foreground" 
-            blackText="Fill out" 
-            primaryText="this form" 
+          <SectionHeading
+            blackTextClassName="text-card-foreground"
+            blackText="Fill out"
+            primaryText="this form"
           />
           <div className="space-y-2">
             <Input
@@ -236,18 +255,28 @@ export default function JobApplicationForm({
             )}
           </div>
           <div className="space-y-2">
-            <Input
-              name="phone"
-              type="tel"
-              placeholder="Phone number"
-              value={formData.phone}
-              onChange={handleChange}
-              className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                errors.phone
-                  ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                  : "border-gray-200 focus:border-primary focus:ring-primary/20"
-              }`}
-            />
+            <div className="flex items-center gap-2">
+              <CountryCodeSelection
+                value={formData.countryCode}
+                defaultCountry="+91"
+                onChange={handleCountryCodeChange}
+                error={!!errors.countryCode}
+              />
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                removeLeftBorderRadius={true}
+                className={`h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
+                  errors.phone
+                    ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                    : ""
+                }`}
+              />
+            </div>
             {errors.phone && (
               <p className="text-sm text-red-600 flex items-center gap-1">
                 <AlertCircle className="w-4 h-4" />
@@ -255,12 +284,15 @@ export default function JobApplicationForm({
               </p>
             )}
           </div>
-          
+
           <div className="space-y-2">
-            <label htmlFor="resume" className="text-sm font-medium text-card-foreground">
+            <label
+              htmlFor="resume"
+              className="text-sm font-medium text-card-foreground"
+            >
               Upload Resume
             </label>
-            <div 
+            <div
               onClick={handleClick}
               onDragOver={handleDragEnter}
               onDragLeave={handleDragLeave}
@@ -270,26 +302,44 @@ export default function JobApplicationForm({
                 isDragging && "border-primary bg-primary/10",
                 errors.resume && "border-red-300",
                 formData.resume && "border-primary bg-primary/10"
-              )}>
+              )}
+            >
               {formData.resume ? (
                 <div className="flex items-center gap-2 text-primary">
                   <File className="w-6 h-6" />
-                  <span className="text-sm font-medium">{formData.resume.name}</span>
+                  <span className="text-sm font-medium">
+                    {formData.resume.name}
+                  </span>
                   <span className="text-xs text-primary">
                     ({formatFileSize(formData.resume.size)})
                   </span>
                 </div>
               ) : (
                 <>
-                  <UploadCloud className={cn("w-12 h-12 mb-3 transition-colors duration-200", isDragging ? 'text-primary' : 'text-gray-400')} />
-                  <p className={cn("text-sm text-card-foreground/80 text-center", isDragging && "text-primary")}>
-                    <span className="font-semibold text-primary">Click to upload</span> or drag and drop
+                  <UploadCloud
+                    className={cn(
+                      "w-12 h-12 mb-3 transition-colors duration-200",
+                      isDragging ? "text-primary" : "text-gray-400"
+                    )}
+                  />
+                  <p
+                    className={cn(
+                      "text-sm text-card-foreground/80 text-center",
+                      isDragging && "text-primary"
+                    )}
+                  >
+                    <span className="font-semibold text-primary">
+                      Click to upload
+                    </span>{" "}
+                    or drag and drop
                   </p>
-                  <p className="text-xs text-card-foreground/80 mt-1">PDF, DOC, or DOCX (max. 5MB)</p>
+                  <p className="text-xs text-card-foreground/80 mt-1">
+                    PDF, DOC, or DOCX (max. 5MB)
+                  </p>
                 </>
               )}
             </div>
-            
+
             <input
               ref={fileInputRef}
               name="resume"

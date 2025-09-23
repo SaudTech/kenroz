@@ -93,9 +93,9 @@ export default function CareersHero({ jobs }: CareersHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/90"
+            className=""
           >
-            <Paragraph className="md:text-xl">
+            <Paragraph className="md:text-xl text-white/90">
               Join a team that ships meaningful products, learns fast, and cares
               deeply about craft.
             </Paragraph>
@@ -126,9 +126,6 @@ export default function CareersHero({ jobs }: CareersHeroProps) {
             className="flex items-center justify-center gap-4"
           >
             <ButtonLink href="#open-roles">View open roles</ButtonLink>
-            <ButtonLink href="/apply-for-job" variant="outline" className="text-white border-white/60 hover:border-white">
-              Apply now
-            </ButtonLink>
           </motion.div>
         </div>
       </div>

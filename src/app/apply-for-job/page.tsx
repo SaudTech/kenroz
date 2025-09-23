@@ -1,13 +1,13 @@
-import { Metadata } from 'next';
-import { jobs } from '@/lib/jobs';
-import JobApplicationForm from '@/components/careers/JobApplicationForm';
-import SectionHeading from '@/components/typography/SectionHeading';
-import { Mail } from "lucide-react";
+import { Metadata } from "next";
+import { jobs } from "@/lib/jobs";
+import JobApplicationForm from "@/components/careers/JobApplicationForm";
+import SectionHeading from "@/components/typography/SectionHeading";
+import Paragraph from "@/components/typography/Paragraph";
 
 export const metadata: Metadata = {
-  title: 'Apply for a Job - Kenroz',
-  description: 'Submit your application to join the Kenroz team.',
-  alternates: { canonical: '/apply-for-job' },
+  title: "Apply for a Job - Kenroz",
+  description: "Submit your application to join the Kenroz team.",
+  alternates: { canonical: "/apply-for-job" },
 };
 
 export default async function ApplyForJobPage({
@@ -32,25 +32,28 @@ export default async function ApplyForJobPage({
             <p className="text-lg md:text-xl text-foreground max-w-2xl leading-relaxed">
               Fill out the form below and we will get back to you shortly.
             </p>
-            <div className="p-4 bg-card rounded-lg border border-primary">
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-card-foreground mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-sm text-card-foreground font-medium mb-1">
-                    Alternative submission method
-                  </p>
-                  <p className="text-sm text-card-foreground/80">
-                    You can also send your application details directly via email to{" "}
-                    <a
-                      href="mailto:career@kenroz.com"
-                      className="font-semibold underline hover:text-card-foreground"
-                    >
-                      career@kenroz.com
-                    </a>
-                    . Please include your resume, cover letter, and contact
-                    information.
-                  </p>
-                </div>
+            <div className="p-10 bg-card rounded-lg border border-primary">
+              <SectionHeading
+                blackTextClassName="text-2xl"
+                primaryTextClassName="text-2xl"
+                blackText="Alternative submission"
+                primaryText="method"
+              />
+              <div className="text-center">
+                <Paragraph className="text-lg">
+                  You can also send your application details directly via email
+                  to{" "}
+                  <a
+                    href="mailto:career@kenroz.com"
+                    className="font-semibold underline hover:text-card-foreground"
+                  >
+                    career@kenroz.com
+                  </a>
+                  .
+                  <br />
+                  <br />
+                  Please include your full name, contact information and resume.
+                </Paragraph>
               </div>
             </div>
           </div>
@@ -63,4 +66,3 @@ export default async function ApplyForJobPage({
     </div>
   );
 }
-
