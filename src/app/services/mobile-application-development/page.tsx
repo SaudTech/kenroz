@@ -248,7 +248,7 @@ export default function MobileApplicationDevelopmentPage() {
                   {a.pros.map((p) => (
                     <li key={p} className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-primary-foreground">
+                      <span className="text-sm text-card-foreground">
                         {p}
                       </span>
                     </li>

@@ -119,8 +119,7 @@ export default function Footer() {
   ];
 
   const resources = [
-    { label: "About Us", href: "/#about-us" },
-    { label: "Why Choose Us", href: "/#about-us" },
+    { label: "Who we are", href: "/#about-us" },
     { label: "Strategic Partner", href: "/#strategic-partners" },
     { label: "Contact Us", href: "/contact-us" },
     { label: "Career", href: "/careers" },
