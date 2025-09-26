@@ -5,38 +5,44 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import { Blob } from "@/components/Blob";
+
 type CarouselProps = {
   images: string[];
   alt: string;
+  glowAlign?: "left" | "right";
 };
 
-export default function ProductCarousel({ images, alt }: CarouselProps) {
+export default function ProductCarousel({ images, alt, glowAlign = "left" }: CarouselProps) {
   const [index, setIndex] = useState(0);
 
   const next = () => setIndex((i) => (i + 1) % images.length);
   const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
 
   return (
-    <div className="relative w-full h-full">
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={images[index]}
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={images[index]}
-              alt={alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </motion.div>
-        </AnimatePresence>
+    <div className="relative w-full">
+      <div className="relative aspect-[4/3] w-full">
+        <Blob align={glowAlign} />
+        <div className="relative h-full w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={images[index]}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={images[index]}
+                alt={alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Controls */}

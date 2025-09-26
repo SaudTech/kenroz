@@ -201,12 +201,19 @@ export default async function ContactPage({
         }}
       />
 
-      <div className="min-h-screen flex items-center px-6 py-0">
+      <div className="min-h-[80vh] px-6 py-10">
         <div className="container mx-auto max-w-7xl py-0">
           <SectionHeading blackText={black} primaryText={primary} />
 
           <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
-            {/* ---------- Left Column: filled + useful ---------- */}
+            <EnhancedContactForm
+              showContactInfo={false}
+              context={intent}
+              contactType={contactType}
+              interest={interest}
+              className="w-full h-full"
+            />
+
             <div className="space-y-8">
               {/* Intro */}
               <Paragraph>{description}</Paragraph>
@@ -226,7 +233,7 @@ export default async function ContactPage({
                 </div>
                 <div className="grid grid-cols-1 gap-1">
                   <a href="tel:+919704730500">
-                    <div className="group relative flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card hover:shadow-lg transition-all duration-300">
+                    <div className="group relative hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card transition-all duration-300">
                       <Phone className="w-4 h-4 text-card-foreground" />
                       <span>Call us</span>
                     </div>
@@ -236,13 +243,13 @@ export default async function ContactPage({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div className="group relative flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card hover:shadow-lg transition-all duration-300">
+                    <div className="group relative hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card transition-all duration-300">
                       <MessageSquare className="w-4 h-4 text-card-foreground" />
                       <span>WhatsApp</span>
                     </div>
                   </a>
                   <a href="mailto:support@kenroz.com">
-                    <div className="group relative flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card hover:shadow-lg transition-all duration-300">
+                    <div className="group relative hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card transition-all duration-300">
                       <Mail className="w-4 h-4 text-card-foreground" />
                       <span>Email</span>
                     </div>
@@ -270,17 +277,6 @@ export default async function ContactPage({
                   </details>
                 </div>
               </div>
-            </div>
-
-            {/* ---------- Right Column: sticky form ---------- */}
-            <div className="w-full h-full lg:sticky lg:top-24">
-              <EnhancedContactForm
-                showContactInfo={false}
-                context={intent}
-                contactType={contactType}
-                interest={interest}
-                className="w-full h-full"
-              />
             </div>
           </div>
         </div>

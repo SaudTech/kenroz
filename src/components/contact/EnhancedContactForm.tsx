@@ -1,19 +1,13 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
-// import { ButtonLink } from "../Navbar";
-import SectionHeading from "../typography/SectionHeading";
-import CountryCodeSelection from "../ui/CountryCodeSelection";
-
-// Contact type is provided via props based on the page context
-
 interface FormData {
   fullName: string;
   email: string;
@@ -100,11 +94,6 @@ export default function EnhancedContactForm({
       newErrors.email = "Please enter a valid email address";
     }
 
-    // // Interest validation
-    // if (!formData.interest.trim()) {
-    //   newErrors.interest = "Please select a service or product";
-    // }
-
     // Message validation
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
@@ -159,7 +148,10 @@ export default function EnhancedContactForm({
       });
       setErrors({});
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to send message. Please try again.";
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Failed to send message. Please try again.";
       setErrors({ submit: errorMessage });
     } finally {
       setIsSubmitting(false);
@@ -184,19 +176,21 @@ export default function EnhancedContactForm({
     }
   };
 
-  const handleCountryCodeChange = useCallback((countryCode: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      countryCode,
-    }));
-    if (errors.countryCode) {
-      setErrors((prev) => ({
-        ...prev,
-        countryCode: "",
-      }));
-    }
-  }, [errors.countryCode]);
-
+  // const handleCountryCodeChange = useCallback(
+  //   (countryCode: string) => {
+  //     setFormData((prev) => ({
+  //       ...prev,
+  //       countryCode,
+  //     }));
+  //     if (errors.countryCode) {
+  //       setErrors((prev) => ({
+  //         ...prev,
+  //         countryCode: "",
+  //       }));
+  //     }
+  //   },
+  //   [errors.countryCode]
+  // );
 
   if (isSubmitted) {
     return (
@@ -216,7 +210,6 @@ export default function EnhancedContactForm({
     );
   }
 
-
   return (
     <div className={cn("w-full mx-auto h-full", className)} id="contact">
       <div
@@ -227,13 +220,13 @@ export default function EnhancedContactForm({
       >
         {/* Contact Form */}
         <Card className="border-0 w-full mx-auto shadow-2xl bg-card">
-          <CardHeader>
+          {/* <CardHeader>
             <SectionHeading
               blackTextClassName="text-card-foreground"
               blackText="Send us"
               primaryText="a message"
             />
-          </CardHeader>
+          </CardHeader> */}
 
           <CardContent className="space-y-6">
             <form
@@ -270,29 +263,28 @@ export default function EnhancedContactForm({
               </div>
 
               {/* Email and Phone Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email address"
-                    className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                      errors.email
-                        ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                    }`}
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
-
+              <div className="space-y-2">
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email address"
+                  className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
+                    errors.email
+                      ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                      : "border-gray-200 focus:border-primary focus:ring-primary/20"
+                  }`}
+                />
+                {errors.email && (
+                  <p className="text-sm text-red-600 flex items-center gap-1">
+                    <AlertCircle className="w-4 h-4" />
+                    {errors.email}
+                  </p>
+                )}
+              </div>
+              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <CountryCodeSelection
@@ -311,7 +303,8 @@ export default function EnhancedContactForm({
                       removeLeftBorderRadius={true}
                       className={`h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
                         errors.phone
-                          ? "border-red-300 focus:border-red-500 focus:ring-red-500/20" :""
+                          ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                          : ""
                       }`}
                     />
                   </div>
@@ -322,7 +315,7 @@ export default function EnhancedContactForm({
                     </p>
                   )}
                 </div>
-              </div>
+              </div>  */}
 
               {/* Message Field */}
               <div className="space-y-2">
@@ -361,25 +354,11 @@ export default function EnhancedContactForm({
 
           {/* Submit Button - Bottom Right */}
           <div className="px-6 pb-6 ">
-            {/* <Button type="submit" form="contact-form" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Sending Message...
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 w-full">
-                  Send Message
-                  <Send className="w-5 h-5" />
-                </div>
-              )}
-            </Button> */}
-
             <div className="pt-2">
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Sending Message..." : "Send Message"}
-            </Button>
-          </div>
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Sending Message..." : "Send Message"}
+              </Button>
+            </div>
           </div>
         </Card>
 

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Instagram, Facebook, Linkedin, MapPin, Phone, ExternalLink, X } from "lucide-react";
+import { Instagram, Facebook, Linkedin, MapPin, Phone, ExternalLink, X, Twitter } from "lucide-react";
 import { createElement, useCallback } from "react";
 import Link from "next/link";
 import { useThemeLogo } from "@/hooks/useThemeLogo";
@@ -134,7 +134,7 @@ export default function Footer() {
   const socials = [
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: X, href: "#", label: "X" },
+    { icon: Twitter, href: "#", label: "Twitter" },
     { icon: Linkedin, href: "https://www.linkedin.com/company/kenroz", label: "LinkedIn" },
   ];
 

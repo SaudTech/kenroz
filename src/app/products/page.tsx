@@ -12,6 +12,7 @@ import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import ProductCarousel from "./ProductCarousel";
 import Paragraph from "@/components/typography/Paragraph";
+import { Blob } from "@/components/Blob";
 
 // ---------- Highlighter ----------
 function highlightText(text: string, keywords: string[]) {
@@ -239,17 +240,21 @@ export default function ProductsPage() {
                         <ProductCarousel
                           images={product.imageName}
                           alt={`${product.name.join(" ")} illustration`}
+                          glowAlign={imageLeft ? "left" : "right"}
                         />
                       ) : (
-                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
-                          <Image
-                            src={product.imageName}
-                            alt={`${product.name.join(" ")} illustration`}
-                            fill
-                            className="object-cover transition-transform duration-700 hover:scale-105"
-                            sizes="(max-width: 1024px) 100vw, 50vw"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                        <div className="relative aspect-[4/3] w-full">
+                          <Blob align={imageLeft ? "left" : "right"} />
+                          <div className="relative h-full w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
+                            <Image
+                              src={product.imageName}
+                              alt={`${product.name.join(" ")} illustration`}
+                              fill
+                              className="object-cover transition-transform duration-700 hover:scale-105"
+                              sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                          </div>
                         </div>
                       )}
                     </div>
@@ -269,7 +274,7 @@ export default function ProductsPage() {
                         />
 
                         <Paragraph className="mt-1 text-primary font-medium">
-                        {product.subtitle}
+                          {product.subtitle}
                         </Paragraph>
 
                         <Paragraph>

@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { CheckCircle, AlertCircle, File, UploadCloud } from "lucide-react";
 import { cn } from "@/lib/utils";
-import SectionHeading from "@/components/typography/SectionHeading";
 import CountryCodeSelection from "../ui/CountryCodeSelection";
 
 interface FormData {
@@ -230,11 +229,6 @@ export default function JobApplicationForm({
     >
       <Card className="border-0 shadow-2xl bg-card">
         <CardContent className="space-y-6">
-          <SectionHeading
-            blackTextClassName="text-card-foreground"
-            blackText="Fill out"
-            primaryText="this form"
-          />
           <div className="space-y-2">
             <Input
               name="fullName"

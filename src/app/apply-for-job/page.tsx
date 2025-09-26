@@ -20,7 +20,7 @@ export default async function ApplyForJobPage({
   const job = jobSlug ? jobs.find((j) => j.slug === jobSlug) : null;
 
   return (
-    <div className="min-h-screen flex items-center px-6 py-0">
+    <div className="min-h-[80vh] flex items-start px-6 py-10">
       <div className="container mx-auto max-w-7xl py-0">
         <SectionHeading
           blackText="Apply for"
@@ -28,19 +28,19 @@ export default async function ApplyForJobPage({
         />
 
         <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
+          <div className="w-full h-full lg:sticky lg:top-24">
+            <JobApplicationForm job={job?.title} className="w-full h-full" />
+          </div>
           <div className="space-y-8">
             <p className="text-lg md:text-xl text-foreground max-w-2xl leading-relaxed">
               Fill out the form below and we will get back to you shortly.
             </p>
             <div className="p-10 bg-card rounded-lg border border-primary">
-              <SectionHeading
-                blackTextClassName="text-2xl"
-                primaryTextClassName="text-2xl"
-                blackText="Alternative submission"
-                primaryText="method"
-              />
+              <Paragraph className="text-2xl text-card-foreground font-semibold mb-4 text-center w-full">
+                Alternative Submission Method
+              </Paragraph>
               <div className="text-center">
-                <Paragraph className="text-lg">
+                <Paragraph className="text-lg text-card-foreground">
                   You can also send your application details directly via email
                   to{" "}
                   <a
@@ -56,10 +56,6 @@ export default async function ApplyForJobPage({
                 </Paragraph>
               </div>
             </div>
-          </div>
-
-          <div className="w-full h-full lg:sticky lg:top-24">
-            <JobApplicationForm job={job?.title} className="w-full h-full" />
           </div>
         </div>
       </div>
