@@ -9,6 +9,7 @@ import OurClients from "@/components/sections/OurClients";
 import EngagementSection from "@/components/EngagementSection";
 import { useEffect } from "react";
 import { Section } from "@/components/Section";
+import { Blob } from "@/components/Blob";
 
 export default function HomePage() {
   useEffect(() => {
@@ -52,7 +53,11 @@ export default function HomePage() {
         }}
       />
 
-      <div className="min-h-screen overflow-x-hidden relative">
+        <Blob className="opacity-25 absolute top-[60%] left-0" />
+        <Blob className="opacity-25 absolute top-[220%] -left-[20%]" />
+        <Blob className="opacity-25 absolute top-[350%] right-0 left-[70%]" />
+        <Blob className="opacity-25 absolute top-[510%] -left-[10%]" />
+      <div className="min-h-screen overflow-hidden relative">
         <Section is="even" className="max-w-auto">
           <Hero />
         </Section>
