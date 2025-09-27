@@ -10,8 +10,9 @@ import { Section } from "@/components/Section";
 import { ButtonLink } from "@/components/Navbar";
 import Paragraph from "@/components/typography/Paragraph";
 import SectionHeading from "@/components/typography/SectionHeading";
-import GlowImage from "@/components/GlowImage";
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
+import { Blob } from "@/components/Blob";
+import Image from "next/image";
 const engagementModels = [
   {
     title: "Dedicated Team",
@@ -96,9 +97,9 @@ export default function Page() {
       {/* Hero Section */}
       <Section
         is="odd"
-        className="relative py-20 overflow-hidden grid place-items-center"
+        className="max-w-auto py-20 overflow-hidden grid place-items-center"
       >
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <SectionHeading
@@ -107,7 +108,7 @@ export default function Page() {
                 primaryText="Services"
               />
 
-              <Paragraph className="mb-6 text-xl leading-relaxed text-foreground">
+              <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
                 Accelerate delivery with dedicated teams and top-tier talent.
                 Choose a model that fits your goals Dedicated Teams, Staff
                 Augmentation, or Project-Based Delivery. Our senior engineers,
@@ -115,6 +116,7 @@ export default function Page() {
                 enterprise-grade security, and drive measurable results across
                 Dynamics 365, Cloud/DevOps, and Web & Mobile.
               </Paragraph>
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
                   initial="hidden"
@@ -129,27 +131,25 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Stats Card */}
+            {/* Hero visual / stats card with glow effect */}
             <motion.div
               className="lg:w-2/5 relative"
               variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
               initial="hidden"
               whileInView="visible"
             >
-              <GlowImage
-                src="/outsourcing.webp"
-                alt="Outsourcing"
-                width={800}
-                height={900}
-                priority
-              />
-              {/* <Image
-                src="/outsourcing.webp"
-                alt="Outsourcing"
-                width={800}
-                height={900}
-                className="rounded-2xl filter brightness-90"
-              /> */}
+              {/* Image container with relative positioning */}
+              <div className="relative z-10">
+                <Blob className="bottom-10" />
+                <Image
+                  src="/outsourcing.webp"
+                  alt="Outsourcing"
+                  width={800}
+                  height={900}
+                  className="rounded-2xl filter brightness-90"
+                  priority
+                />
+              </div>
             </motion.div>
           </div>
         </div>

@@ -19,6 +19,7 @@ import {
   Gauge,
 } from "lucide-react";
 import Paragraph from "@/components/typography/Paragraph";
+import { Blob } from "@/components/Blob";
 
 /* ------------------------------------------------------------------ */
 /* Content (Cloud)                                           */
@@ -143,25 +144,26 @@ export default function CloudDevOpsPage() {
   return (
     <main>
       {/* Hero   mirrors Outsourcing/D365 */}
+
       <Section
         is="odd"
-        className="relative py-20 overflow-hidden grid place-items-center"
+        className="max-w-auto py-20 overflow-hidden grid place-items-center"
       >
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <motion.h1
-                className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
                 initial="hidden"
                 animate="visible"
                 variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
                 custom={0}
-                whileHover={hoverScale}
               >
+                <Paragraph className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
                 Cloud <span className="text-primary">Solutions</span>
+                </Paragraph>
               </motion.h1>
 
-              <Paragraph className="mb-8">
+              <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
                 Migrate, build, and run on Azure/AWS/GCP with platform
                 engineering, GitOps, and SRE best practices. We codify your
                 infrastructure, automate delivery, and bake in security and
@@ -175,28 +177,30 @@ export default function CloudDevOpsPage() {
                   variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
                   custom={2}
                 >
-                  <ButtonLink href="/contact-us?p=cloud-devops">
-                    Get Started
-                  </ButtonLink>
+                  <ButtonLink href="/contact-us?p=cloud-devops">Get Started</ButtonLink>
                 </motion.div>
               </div>
             </div>
 
-            {/* Hero visual */}
+            {/* Hero visual / stats card with glow effect */}
             <motion.div
               className="lg:w-2/5 relative"
               variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
               initial="hidden"
               whileInView="visible"
             >
-              <Image
-                src="/CloudSolution.png"
-                alt="Cloud dashboards and pipelines"
-                width={800}
-                height={900}
-                className="rounded-2xl filter brightness-90"
-                priority
-              />
+              {/* Image container with relative positioning */}
+              <div className="relative z-10">
+                <Blob className="bottom-10" />
+                <Image
+                  src="/CloudSolution.png"
+                  alt="Cloud Solutions"
+                  width={800}
+                  height={900}
+                  className="rounded-2xl filter brightness-90"
+                  priority
+                />
+              </div>
             </motion.div>
           </div>
         </div>

@@ -168,7 +168,7 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen overflow-hidden">
       {/* ===== HERO ===== */}
       <section className="relative w-full">
         <div className="relative h-[52vh] md:h-[64vh] w-full overflow-hidden">
@@ -215,7 +215,11 @@ export default function ProductsPage() {
       </section>
 
       {/* ===== PRODUCTS ===== */}
-      <Section is="odd" id="catalog" className="py-14 md:py-20">
+      <Section
+        is="odd"
+        id="catalog"
+        className="py-14 md:py-20 max-w-auto overflow-visible"
+      >
         <main className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading blackText="Our product" primaryText="catalog" />
 

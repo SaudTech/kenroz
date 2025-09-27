@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Instagram, Facebook, Linkedin, MapPin, Phone, ExternalLink, X, Twitter } from "lucide-react";
+import { Instagram, Facebook, Linkedin, MapPin, ExternalLink, Twitter, Mail } from "lucide-react";
 import { createElement, useCallback } from "react";
 import Link from "next/link";
 import { useThemeLogo } from "@/hooks/useThemeLogo";
@@ -11,7 +11,7 @@ const locations = [
     city: "Hyderabad",
     flag: "/flags/ind.png",
     location: `Western Aqua, Hitech City, Hyderabad, Telangana`,
-    phone: "+91-970-473-0500",
+    email: "support@kenroz.com",
   },
 ];
 
@@ -23,9 +23,9 @@ function mapHref(addr: string) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`;
 }
 
-function LocationCard({ city, flag, location, phone }: (typeof locations)[number]) {
+function LocationCard({ city, flag, location, email }: (typeof locations)[number]) {
   const country = countryByCity[city] ?? "Location";
-  const tel = `tel:${phone.replace(/[^\d+]/g, "")}`;
+  const mail = `mail:${email}`;
 
   return (
     <div className="group relative bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 hover:bg-white/10 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_10px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
@@ -62,12 +62,12 @@ function LocationCard({ city, flag, location, phone }: (typeof locations)[number
 
       {/* Phone */}
       <a
-        href={tel}
+        href={mail}
         className="flex items-center gap-2 text-sm text-white/70 hover:text-primary transition-colors group/phone"
-        aria-label={`Call ${phone}`}
+        aria-label={`Mail ${mail}`}
       >
-        <Phone className="h-4 w-4 text-white/50 group-hover/phone:text-white/80" />
-        <span>{phone}</span>
+        <Mail className="h-4 w-4 text-white/50 group-hover/phone:text-white/80" />
+        <span>{email}</span>
       </a>
     </div>
   );

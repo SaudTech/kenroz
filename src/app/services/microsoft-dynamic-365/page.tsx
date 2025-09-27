@@ -21,6 +21,7 @@ import {
 import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 import Paragraph from "@/components/typography/Paragraph";
 import SectionHeading from "@/components/typography/SectionHeading";
+import { Blob } from "@/components/Blob";
 
 /* ------------------------------------------------------------------ */
 /* Content (Dynamics-focused)                                          */
@@ -155,13 +156,11 @@ export default function MicrosoftDynamic365Page() {
                 custom={0}
               >
                 <Paragraph className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Microsoft <span className="text-primary">Dynamics 365</span>
+                  Microsoft <span className="text-primary">Dynamics 365</span>
                 </Paragraph>
               </motion.h1>
 
-              <Paragraph
-                className="text-xl text-foreground mb-8 leading-relaxed"
-              >
+              <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
                 Unify your CRM and ERP with solutions designed for scale,
                 security, and tangible results. Our certified consultants
                 configure, customize, and integrate Dynamics 365, reinforced by
@@ -189,14 +188,9 @@ export default function MicrosoftDynamic365Page() {
               initial="hidden"
               whileInView="visible"
             >
-              
               {/* Image container with relative positioning */}
               <div className="relative z-10">
-              {/* Large glow effect behind the image */}
-              <div className="absolute inset-0 -m-16 bg-gradient-to-r from-blue-400 via-secondary/40 to-primary/30 rounded-full blur-3xl opacity-75 animate-pulse"></div>
-              
-              {/* Additional colored glow layers for more depth */}
-              <div className="absolute inset-0 -m-12 bg-gradient-to-br from-blue-400/20 via-purple-500/30 to-cyan-400/20 rounded-full blur-2xl opacity-60"></div>
+                <Blob className="bottom-10" />
                 <Image
                   src="/dynamic_365.png"
                   alt="Dynamics 365 dashboards"
@@ -224,16 +218,11 @@ export default function MicrosoftDynamic365Page() {
             whileHover={hoverScale}
           >
             <div className="border-t-2 border-foreground max-w-[470px] mb-3 mx-auto"></div>
-            <SectionHeading
-              blackText="Dynamics 365"
-              primaryText="Modules"
-            />
+            <SectionHeading blackText="Dynamics 365" primaryText="Modules" />
             <div className="border-t-2 border-foreground max-w-[470px] mt-3 mx-auto"></div>
           </motion.h2>
 
-          <Paragraph
-            className="text-xl text-foreground mb-12 max-w-3xl mx-auto"
-          >
+          <Paragraph className="text-xl text-foreground mb-12 max-w-3xl mx-auto">
             Comprehensive capabilities across sales, service, finance, and
             marketing implemented to fit your operating model.
           </Paragraph>
@@ -295,7 +284,7 @@ export default function MicrosoftDynamic365Page() {
       {/* Delivery Services   mirrors "Engagement Models" style */}
       <Section is="odd" id="delivery-services" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
-          <SectionHeading blackText="Delivery" primaryText="Services"/>
+          <SectionHeading blackText="Delivery" primaryText="Services" />
 
           <Paragraph className="mb-6">
             Choose the right path new implementation, targeted customization,

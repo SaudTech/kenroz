@@ -17,6 +17,7 @@ import {
   Shield,
 } from "lucide-react";
 import Paragraph from "@/components/typography/Paragraph";
+import { Blob } from "@/components/Blob";
 
 /* ------------ Your process steps (from current data) ------------ */
 const webProcess: ProcessStep[] = [
@@ -93,64 +94,57 @@ export default function WebApplicationDevelopmentPage() {
       {/* Hero   concise value + how we work */}
       <Section
         is="odd"
-        className="relative py-20 overflow-hidden grid place-items-center"
+        className="max-w-auto py-20 overflow-hidden grid place-items-center"
       >
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-3/5">
               <motion.h1
-                className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
                 initial="hidden"
                 animate="visible"
                 variants={slideInFromLeftWithDelay(4, 100, 0.7, true)}
                 custom={0}
-                whileHover={hoverScale}
               >
-                Web Application{" "}
-                <span className="text-primary">Development</span>
+                <Paragraph className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                Web Application <span className="text-primary">Development</span>
+                </Paragraph>
               </motion.h1>
 
-              <motion.p
-                className="text-xl text-foreground mb-6 leading-relaxed"
-                initial="hidden"
-                animate="visible"
-                variants={slideInFromLeftWithDelay(6, 80, 0.7, true)}
-                custom={1}
-                whileHover={hoverScale}
-              >
+              <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
                 Ship a polished web app without guesswork. We align on outcomes,
                 lock a realistic plan, and deliver usable increments every week
                 so stakeholders see progress and go live with confidence.
-              </motion.p>
+              </Paragraph>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
                   variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-                  custom={6}
+                  custom={2}
                 >
-                  <ButtonLink href="/contact-us?p=web-apps">
-                    Get Started
-                  </ButtonLink>
+                  <ButtonLink href="/contact-us?p=web-apps">Get Started</ButtonLink>
                 </motion.div>
               </div>
             </div>
 
-            {/* Hero visual */}
+            {/* Hero visual / stats card with glow effect */}
             <motion.div
               className="lg:w-2/5 relative"
               variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
               initial="hidden"
               whileInView="visible"
             >
-              <div>
+              {/* Image container with relative positioning */}
+              <div className="relative z-10">
+                <Blob className="bottom-10" />
                 <Image
                   src="/web_development.avif"
                   alt="Web Application Development"
+                  width={800}
+                  height={900}
                   className="rounded-2xl filter brightness-90"
-                  width={1500}
-                  height={1000}
+                  priority
                 />
               </div>
             </motion.div>

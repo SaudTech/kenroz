@@ -7,7 +7,6 @@ import {
   Mail,
   Share2,
   BarChart3,
-  ArrowRight,
   Users,
   Globe,
   Eye,
@@ -23,6 +22,7 @@ import ProcessAnimation, { ProcessStep } from "../outsourcing/process";
 import Image from "next/image";
 import Paragraph from "@/components/typography/Paragraph";
 import SectionHeading from "@/components/typography/SectionHeading";
+import { Blob } from "@/components/Blob";
 
 export default function DigitalMarketingPage() {
   const { slideInFromLeftWithDelay, slideInFromRightWithDelay } =
@@ -148,20 +148,24 @@ export default function DigitalMarketingPage() {
       {/* Hero */}
       <Section
         is="odd"
-        className="relative grid place-items-center overflow-hidden py-20"
+        className="max-w-auto py-20 overflow-hidden grid place-items-center"
       >
-        <div className="container relative z-10 mx-auto px-4">
-          <div className="flex flex-col items-center gap-12 lg:flex-row">
-            <div className="lg:w-2/4">
-              <SectionHeading className="justify-start" blackText="Digital" primaryText="Marketing" />
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="lg:w-3/5">
+              <SectionHeading
+                className="justify-start"
+                blackText="Digital"
+                primaryText="Marketing"
+              />
 
-              <Paragraph className="mb-6 text-xl leading-relaxed text-foreground">
+              <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
                 Grow your business with comprehensive strategies across SEO,
                 PPC, social, content, and email. We align on outcomes, launch
                 fast, and optimize continuously for measurable growth.
               </Paragraph>
 
-              <div className="flex flex-col gap-4 sm:flex-row">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
@@ -169,27 +173,31 @@ export default function DigitalMarketingPage() {
                   custom={2}
                 >
                   <ButtonLink href="/contact-us?p=digital-marketing">
-                    Get in Touch
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    Get Started
                   </ButtonLink>
                 </motion.div>
               </div>
             </div>
 
-            {/* Stat card */}
+            {/* Hero visual / stats card with glow effect */}
             <motion.div
-              className="lg:w-2/4 relative"
+              className="lg:w-2/5 relative"
               variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
               initial="hidden"
               whileInView="visible"
             >
-              <Image
-                src="/DigitalMarketing.jpg"
-                alt="Team planning a digital marketing campaign covering SEO, PPC, social, content, and email"
-                width={900}
-                height={900}
-                className="rounded-2xl filter brightness-90"
-              />
+              {/* Image container with relative positioning */}
+              <div className="relative z-10">
+                <Blob className="bottom-10" />
+                <Image
+                  src="/DigitalMarketing.jpg"
+                  alt="Digital Marketing"
+                  width={800}
+                  height={900}
+                  className="rounded-2xl filter brightness-90"
+                  priority
+                />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -235,8 +243,8 @@ export default function DigitalMarketingPage() {
 
       <PageDividerTwo />
 
-      {/* Benefits (renamed + no “Why choose” copy) */}
-      <Section is="odd" id="benefits" className="py-20 pt-0">
+      {/* Services */}
+      <Section is="odd" id="benefits" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
           <Paragraph className="text-5xl mb-10 font-bold text-foreground">
             <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-foreground" />
@@ -271,6 +279,7 @@ export default function DigitalMarketingPage() {
         </div>
       </Section>
 
+      {". "} {/*  DO NOT REMOVE, As removing this is causing a line over the page divider */}
       <PageDividerTwo />
 
       {/* How we work (process) */}

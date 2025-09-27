@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
 import SectionHeading from "../typography/SectionHeading";
+import { Blob } from "../Blob";
 
 function SectionHeader({
   title,
@@ -170,6 +171,7 @@ export default function OurStory() {
                 whileHover={{ filter: "brightness(1.15) contrast(1.05)" }}
                 transition={{ duration: 0.4 }}
               >
+                <Blob className="scale-75 -top-20 -right-24" />
                 <Image
                   src="/photo-1521898284481-a5ec348cb555.avif"
                   alt="Kenroz team collaborating our story"
