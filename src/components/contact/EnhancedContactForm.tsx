@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, AlertCircle } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
+import CountryCodeSelection from "../ui/CountryCodeSelection";
 interface FormData {
   fullName: string;
   email: string;
@@ -176,21 +177,21 @@ export default function EnhancedContactForm({
     }
   };
 
-  // const handleCountryCodeChange = useCallback(
-  //   (countryCode: string) => {
-  //     setFormData((prev) => ({
-  //       ...prev,
-  //       countryCode,
-  //     }));
-  //     if (errors.countryCode) {
-  //       setErrors((prev) => ({
-  //         ...prev,
-  //         countryCode: "",
-  //       }));
-  //     }
-  //   },
-  //   [errors.countryCode]
-  // );
+  const handleCountryCodeChange = useCallback(
+    (countryCode: string) => {
+      setFormData((prev) => ({
+        ...prev,
+        countryCode,
+      }));
+      if (errors.countryCode) {
+        setErrors((prev) => ({
+          ...prev,
+          countryCode: "",
+        }));
+      }
+    },
+    [errors.countryCode]
+  );
 
   if (isSubmitted) {
     return (
@@ -284,7 +285,7 @@ export default function EnhancedContactForm({
                   </p>
                 )}
               </div>
-              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <CountryCodeSelection
@@ -315,7 +316,7 @@ export default function EnhancedContactForm({
                     </p>
                   )}
                 </div>
-              </div>  */}
+              </div> 
 
               {/* Message Field */}
               <div className="space-y-2">
