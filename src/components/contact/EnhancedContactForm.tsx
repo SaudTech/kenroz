@@ -107,6 +107,7 @@ export default function EnhancedContactForm({
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log("Test")
     e.preventDefault();
 
     if (!validateForm()) {
@@ -354,7 +355,7 @@ export default function EnhancedContactForm({
           {/* Submit Button - Bottom Right */}
           <div className="px-6 pb-6 ">
             <div className="pt-2">
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
+              <Button type="submit" form="contact-form" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? "Sending Message..." : "Send Message"}
               </Button>
             </div>
