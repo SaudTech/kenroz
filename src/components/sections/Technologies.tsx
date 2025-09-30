@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, createElement } from "react";
+import { useMemo, createElement, useState } from "react";
 import { motion } from "framer-motion";
 import * as TechIcons from "../Icons";
 import {
@@ -9,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 import Paragraph from "../typography/Paragraph";
@@ -49,15 +50,17 @@ function humanize(name: string) {
 }
 
 export default function Technologies() {
+  const [showAll, setShowAll] = useState(false);
+
   const iconEntries = useMemo(() => {
     return Object.entries(TechIcons)
       .filter(([k, v]) => !EXCLUDED_EXPORTS.has(k) && typeof v === "function")
-      .map(([name, Comp]) => [humanize(name), Comp]);
+      .map(([name, Comp]) => [humanize(name), Comp] as const);
   }, []);
   const { fromLeft } = useSectionVariants();
 
   return (
-    <section  className="py-20 md:py-24">
+    <section className="py-20 md:py-24">
       <div className="relative mx-auto max-w-7xl text-center px-4">
         <SectionHeading blackText="Our" primaryText="Technologies" />
 
@@ -76,13 +79,10 @@ export default function Technologies() {
                 Our Tech Stack
               </motion.p>
 
-              {/* Shorter subtitle */}
               <Paragraph>
                 We leverage cutting-edge, scalable, and secure technologies to
                 craft solutions that perform flawlessly today and adapt
-                seamlessly for tomorrow. From modern frontend frameworks to
-                cloud-native services, every tool is chosen to maximize
-                reliability, speed, and long-term growth.
+                seamlessly for tomorrow.
               </Paragraph>
 
               <ul className="mt-6 -space-y-4">
@@ -104,60 +104,60 @@ export default function Technologies() {
 
           {/* RIGHT: Icons */}
           <div className="md:col-span-7 order-1 md:order-2">
-            <style>{`
-              @keyframes float {
-                0% { transform: translateY(0); }
-                50% { transform: translateY(-10px); }
-                100% { transform: translateY(0); }
-              }
-            `}</style>
-
             <TooltipProvider delayDuration={80}>
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 place-items-center">
-                {iconEntries.map(([label, Comp], i) => {
-                  const seed = hashString(label as string);
-                  const rand = seededRand(seed);
-                  const rot = (rand() * 10 - 5).toFixed(2);
-                  const floatDuration = 2.5 + rand() * 6;
-                  const floatDelay = rand() * 2;
+                {(showAll ? iconEntries : iconEntries.slice(0, 6)).map(
+                  ([label, Comp], i) => {
+                    const seed = hashString(label);
+                    const rand = seededRand(seed);
+                    const rot = (rand() * 10 - 5).toFixed(2);
+                    const floatDuration = 2.5 + rand() * 6;
+                    const floatDelay = rand() * 2;
 
-                  return (
-                    <Tooltip key={label as string}>
-                      <TooltipTrigger asChild>
-                        <motion.div
-                          aria-label={label as string}
-                          title={label as string}
-                          className="w-18 h-18 md:w-20 md:h-20 p-2 rounded-lg bg-white shadow-md border border-gray-200 flex items-center justify-center transition-all duration-300 will-change-transform hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
-                          style={{
-                            transform: `rotate(${rot}deg)`,
-                            animation: `float ${floatDuration}s ease-in-out infinite`,
-                            animationDelay: `${floatDelay}s`,
-                          }}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true, amount: 0.3 }}
-                          whileHover={hoverScale}
-                          transition={{
-                            duration: 0.4,
-                            delay: i * 0.05,
-                            ease: "easeOut",
-                          }}
-                        >
-                          {createElement(Comp, {
-                            className: "w-full h-full object-contain",
-                            "aria-hidden": true,
-                          })}
-                        </motion.div>
-                      </TooltipTrigger>
-                      <TooltipContent
-                        side="top"
-                        className="text-xs font-medium"
-                      >
-                        {label as string}
-                      </TooltipContent>
-                    </Tooltip>
-                  );
-                })}
+                    return (
+                      <Tooltip key={label}>
+                        <TooltipTrigger asChild>
+                          <motion.div
+                            aria-label={label}
+                            className="w-18 h-18 md:w-20 md:h-20 p-2 rounded-lg bg-white shadow-md border border-gray-200 flex items-center justify-center transition-all duration-300 hover:shadow-[0_0_26px_0_var(--primary)]"
+                            style={{
+                              transform: `rotate(${rot}deg)`,
+                              animation: `float ${floatDuration}s ease-in-out infinite`,
+                              animationDelay: `${floatDelay}s`,
+                            }}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            whileHover={hoverScale}
+                            transition={{
+                              duration: 0.4,
+                              delay: i * 0.05,
+                              ease: "easeOut",
+                            }}
+                          >
+                            {createElement(Comp, {
+                              className: "w-full h-full object-contain",
+                            })}
+                          </motion.div>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="text-xs font-medium">
+                          {label}
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  }
+                )}
+              </div>
+
+              {/* Show More / Less Button for small screens */}
+              <div className="mt-6 text-center sm:hidden">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowAll((p) => !p)}
+                >
+                  {showAll ? "Show less" : "Show more"}
+                </Button>
               </div>
             </TooltipProvider>
           </div>

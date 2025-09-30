@@ -157,7 +157,7 @@ export default function OurStory() {
           </div>
 
           {/* Right Side */}
-          <div className="lg:col-span-6 relative h-full flex gap-6 pt-3 items-start">
+          <div className="lg:col-span-6 relative h-full items-center flex gap-6 pt-3">
             <motion.div
               className="relative aspect-[4/5] w-[60%] overflow-visible rounded-2xl border shadow-lg"
               variants={fromRight}
@@ -184,7 +184,7 @@ export default function OurStory() {
             </motion.div>
 
             {/* Stats */}
-            <div className="flex flex-col justify-between h-full py-10 w-1/4 right-32 top-0">
+            <div className="flex flex-col justify-between h-full sm:py-10 sm:gap-0 gap-3 w-1/4 right-32 top-0">
               {stats.map(({ label, icon: Icon }, i) => (
                 <motion.div
                   key={label}

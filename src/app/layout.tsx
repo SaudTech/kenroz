@@ -9,7 +9,7 @@ import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
 import SiteGuard from "@/components/SiteGuard";
 import { Analytics } from "@vercel/analytics/next";
 import ThemeCustomizer from "@/components/ThemeCustomizer";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const font = Arimo({
   subsets: ["latin"],
