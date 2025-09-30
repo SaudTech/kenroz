@@ -53,10 +53,10 @@ export default function HomePage() {
         }}
       />
 
-        <Blob className="opacity-25 absolute top-[60%] left-0" />
-        <Blob className="opacity-25 absolute top-[220%] -left-[20%]" />
-        <Blob className="opacity-25 absolute top-[350%] right-0 left-[70%]" />
-        <Blob className="opacity-25 absolute top-[510%] -left-[10%]" />
+      <Blob className="opacity-25 absolute top-[60%] left-0" />
+      <Blob className="opacity-25 absolute top-[220%] -left-[20%]" />
+      <Blob className="opacity-25 absolute top-[350%] right-0 left-[70%]" />
+      <Blob className="opacity-25 absolute top-[510%] -left-[10%]" />
       <div className="min-h-screen overflow-hidden relative">
         <Section is="even" className="max-w-auto">
           <Hero />

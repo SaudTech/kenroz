@@ -13,6 +13,7 @@ import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
 import CareersHero from "@/components/careers/CareersHero";
 import { jobs } from "@/lib/jobs";
+import { Blob } from "@/components/Blob";
 
 export const metadata: Metadata = {
   title: "Careers at Kenroz",
@@ -42,6 +43,7 @@ export default function CareersPage() {
       <CareersHero jobs={jobs} />
 
       {/* Why Kenroz */}
+      <Blob className="opacity-25 absolute top-[70%] left-[-25%]" />
       <section className="container mx-auto px-4 py-16 md:py-20">
         <SectionHeading blackText="Why work" primaryText="with us" />
         <Paragraph className="text-center w-full">

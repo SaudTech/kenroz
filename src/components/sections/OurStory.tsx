@@ -66,6 +66,7 @@ export default function OurStory() {
 
   return (
     <section className="relative w-full">
+
       <div className="mx-auto max-w-7xl px-4 py-16">
         {/* Typewriter Heading */}
         <SectionHeading blackText="Who" primaryText="We Are" />
@@ -171,7 +172,7 @@ export default function OurStory() {
                 whileHover={{ filter: "brightness(1.15) contrast(1.05)" }}
                 transition={{ duration: 0.4 }}
               >
-                <Blob className="scale-75 -top-20 -right-24" />
+                <Blob className="scale-75 -top-20 left-[-50%]" />
                 <Image
                   src="/photo-1521898284481-a5ec348cb555.avif"
                   alt="Kenroz team collaborating our story"

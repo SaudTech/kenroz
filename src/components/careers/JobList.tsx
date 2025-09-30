@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import Paragraph from "../typography/Paragraph";
 
 type Job = {
   slug: string;
@@ -146,10 +147,10 @@ export default function JobList() {
       </div>
 
       {/* Status */}
-      <div className="mt-3 text-sm text-slate-600">
-        Showing <span className="font-medium">{count}</span> of{" "}
+      <Paragraph className="text-foreground/80">
+      Showing <span className="font-medium">{count}</span> of{" "}
         <span className="font-medium">{total}</span> positions
-      </div>
+            </Paragraph>
 
       {/* Grid */}
       <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -231,16 +232,15 @@ export default function JobList() {
         })}
 
         {filtered.length === 0 && (
-          <div className="col-span-full rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
-            <Building2 className="mx-auto h-8 w-8 text-slate-400" />
-            <p className="mt-3 font-semibold">No positions match your search</p>
-            <p className="mt-1 text-sm text-slate-600">
-              Try different keywords, or{" "}
+          <div className="col-span-full rounded-2xl border border-dashed border-slate-300 bg-card p-10 text-center">
+            <Building2 className="mx-auto h-8 w-8 text-card-foreground/80" />
+            <Paragraph className="mt-3 font-semibold text-card-foreground/80">No positions match your search</Paragraph>
+            <Paragraph className="mt-1 block text-sm text-card-foreground/80">
+              Try different keywords, or email us with your resume at{" "} 
               <Link href="mailto:support@kenroz.com" className="text-primary underline">
-                email us
-              </Link>{" "}
-              with your resume.
-            </p>
+                support@kenroz.com
+              </Link>
+            </Paragraph>
           </div>
         )}
       </div>

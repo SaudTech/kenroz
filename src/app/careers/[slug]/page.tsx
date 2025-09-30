@@ -1,3 +1,4 @@
+import { Blob } from '@/components/Blob';
 import { ButtonLink } from '@/components/Navbar';
 import { jobs } from '@/lib/jobs';
 import { Metadata } from 'next';
@@ -33,6 +34,9 @@ export default async function JobDetailPage({ params }: Props) {
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-3xl">
+      <Blob className="opacity-25 absolute top-[0%] left-[-25%]" />
+      <Blob className="opacity-25 absolute top-[70%] right-[-40%]" />
+
       <Link href="/careers" className="text-primary font-semibold mb-6 inline-block">
         ← Back to Careers
       </Link>

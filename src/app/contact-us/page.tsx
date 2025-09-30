@@ -5,6 +5,7 @@ import { Clock, Mail } from "lucide-react";
 import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
+import { Blob } from "@/components/Blob";
 export const metadata: Metadata = {
   title: "Contact Us - Get in Touch with Kenroz IT Solutions",
   description:
@@ -202,6 +203,8 @@ export default async function ContactPage({
       />
 
       <div className="min-h-[80vh] px-6 py-10">
+        <Blob className="opacity-25 absolute top-[30%] left-[10%]" />
+
         <div className="container mx-auto max-w-7xl py-0">
           <SectionHeading blackText={black} primaryText={primary} />
 

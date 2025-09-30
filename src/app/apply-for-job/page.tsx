@@ -3,6 +3,7 @@ import { jobs } from "@/lib/jobs";
 import JobApplicationForm from "@/components/careers/JobApplicationForm";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
+import { Blob } from "@/components/Blob";
 
 export const metadata: Metadata = {
   title: "Apply for a Job - Kenroz",
@@ -21,6 +22,7 @@ export default async function ApplyForJobPage({
 
   return (
     <div className="min-h-[80vh] flex items-start px-6 py-10">
+      <Blob className="opacity-25 absolute top-[0%] left-[-25%]" />
       <div className="container mx-auto max-w-7xl py-0">
         <SectionHeading
           blackText="Apply for"
