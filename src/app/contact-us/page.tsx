@@ -202,11 +202,14 @@ export default async function ContactPage({
         }}
       />
 
-      <div className="min-h-[80vh] px-6 py-10">
+      <div className="min-h-[80vh] px-6 py-7">
         <Blob className="opacity-25 absolute top-[30%] left-[10%]" />
 
         <div className="container mx-auto max-w-7xl py-0">
           <SectionHeading blackText={black} primaryText={primary} />
+          <div className="w-full text-center">
+          <Paragraph className="max-w-3xl text-center">{description}</Paragraph>
+          </div>
 
           <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
             <EnhancedContactForm
@@ -218,11 +221,6 @@ export default async function ContactPage({
             />
 
             <div className="space-y-8">
-              {/* Intro */}
-              <Paragraph>{description}</Paragraph>
-
-              {/* Quick Channels */}
-
               {/* Info tiles */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground p-4">

@@ -17,6 +17,7 @@ function Input({ className, type, removeLeftBorderRadius = false, customBorderCl
         "focus-visible:border-primary focus-visible:ring-primary/50 focus-visible:ring-[3px]",
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
         removeLeftBorderRadius ? "rounded-r-md border-l-transparent" : "rounded-md",
+        type === "number" && "[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none",
         customBorderClasses,
         className
       )}

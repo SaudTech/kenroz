@@ -174,10 +174,10 @@ export default function CountryCodeSelection({
         className={cn(
           "w-full h-12 px-3 py-2 text-left border-2 transition-all duration-200",
           "bg-transparent rounded-l-md flex items-center justify-between",
-          "hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/20",
+          "hover:border-primary/50  focus:outline-none focus:ring-2 focus:ring-primary/20",
           error
             ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-            : "border-gray-200 focus:border-primary focus:ring-primary/20",
+            : "border-gray-200 border-r-0 focus:border-primary focus:ring-primary/20",
         )}
       >
         <div className="flex items-center gap-3">

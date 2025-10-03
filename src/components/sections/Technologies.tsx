@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, createElement, useState } from "react";
+import { useMemo, createElement, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import * as TechIcons from "../Icons";
 import {
@@ -51,6 +51,21 @@ function humanize(name: string) {
 
 export default function Technologies() {
   const [showAll, setShowAll] = useState(false);
+
+  // 👇 Auto-enable showAll if screen >= sm
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 640px)"); // sm breakpoint
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
+      setShowAll(e.matches); // true if >= sm, false if < sm
+    };
+
+    // Set initial value
+    handler(mediaQuery);
+
+    // Listen for changes
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
 
   const iconEntries = useMemo(() => {
     return Object.entries(TechIcons)
@@ -140,7 +155,10 @@ export default function Technologies() {
                             })}
                           </motion.div>
                         </TooltipTrigger>
-                        <TooltipContent side="top" className="text-xs font-medium">
+                        <TooltipContent
+                          side="top"
+                          className="text-xs font-medium"
+                        >
                           {label}
                         </TooltipContent>
                       </Tooltip>
@@ -149,16 +167,18 @@ export default function Technologies() {
                 )}
               </div>
 
-              {/* Show More / Less Button for small screens */}
-              <div className="mt-6 text-center sm:hidden">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowAll((p) => !p)}
-                >
-                  {showAll ? "Show less" : "Show more"}
-                </Button>
-              </div>
+              {/* Toggle button only on small screens */}
+              {!showAll && (
+                <div className="mt-6 text-center sm:hidden">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowAll((p) => !p)}
+                  >
+                    {showAll ? "Show less" : "Show more"}
+                  </Button>
+                </div>
+              )}
             </TooltipProvider>
           </div>
         </div>

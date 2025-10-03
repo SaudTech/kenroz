@@ -71,8 +71,8 @@ export default function JobApplicationForm({
       newErrors.phone = "Phone number is required";
     } else {
       const digitsOnlyLength = formData.phone.replace(/\D/g, "").length;
-      if (digitsOnlyLength < 7 || digitsOnlyLength > 15) {
-        newErrors.phone = "Please enter a valid phone number";
+      if (digitsOnlyLength == 10) {
+        newErrors.phone = "Please enter a 10 digit phone number";
       }
     }
 
@@ -259,7 +259,7 @@ export default function JobApplicationForm({
               <Input
                 id="phone"
                 name="phone"
-                type="tel"
+                type="number"
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Enter your phone number"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -42,25 +42,27 @@ export default function EnhancedContactForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    email: "",
-    countryCode: "",
-    phone: "",
-    interest,
-    message: "",
-    context,
-    contactType,
-  });
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
+  const initialFormState = useMemo(
+    () => ({
+      fullName: "",
+      email: "",
+      countryCode: "",
+      phone: "",
+      interest,
+      message: "",
       context,
       contactType,
-      interest,
-    }));
-  }, [context, contactType, interest]);
+    }),
+    [context, contactType, interest]
+  );
+
+  const [formData, setFormData] = useState<FormData>(initialFormState);
+
+  useEffect(() => {
+    setFormData(initialFormState);
+    setIsSubmitted(false);
+    setErrors({});
+  }, [initialFormState]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -77,8 +79,8 @@ export default function EnhancedContactForm({
       newErrors.phone = "Phone number is required";
     } else {
       const digitsOnlyLength = formData.phone.replace(/\D/g, "").length;
-      if (digitsOnlyLength < 7 || digitsOnlyLength > 15) {
-        newErrors.phone = "Please enter a valid phone number";
+      if (digitsOnlyLength == 10) {
+        newErrors.phone = "Please enter a 10 digit phone number";
       }
     }
 
@@ -107,7 +109,6 @@ export default function EnhancedContactForm({
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log("Test")
     e.preventDefault();
 
     if (!validateForm()) {
@@ -138,16 +139,7 @@ export default function EnhancedContactForm({
       }
 
       setIsSubmitted(true);
-      setFormData({
-        fullName: "",
-        email: "",
-        countryCode: "",
-        phone: "",
-        interest,
-        message: "",
-        context,
-        contactType,
-      });
+      setFormData(initialFormState);
       setErrors({});
     } catch (error) {
       const errorMessage =
@@ -222,14 +214,6 @@ export default function EnhancedContactForm({
       >
         {/* Contact Form */}
         <Card className="border-0 w-full mx-auto shadow-2xl bg-card">
-          {/* <CardHeader>
-            <SectionHeading
-              blackTextClassName="text-card-foreground"
-              blackText="Send us"
-              primaryText="a message"
-            />
-          </CardHeader> */}
-
           <CardContent className="space-y-6">
             <form
               id="contact-form"
@@ -265,42 +249,44 @@ export default function EnhancedContactForm({
               </div>
 
               {/* Email and Phone Row */}
-              <div className="space-y-2">
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email address"
-                  className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                    errors.email
-                      ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                      : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                  }`}
-                />
-                {errors.email && (
-                  <p className="text-sm text-red-600 flex items-center gap-1">
-                    <AlertCircle className="w-4 h-4" />
-                    {errors.email}
-                  </p>
-                )}
-              </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
+              <div className="grid grid-cols-12 gap-4">
+                <div className="space-y-2 col-span-6">
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email address"
+                    className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
+                      errors.email
+                        ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
+                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
+                    }`}
+                  />
+                  {errors.email && (
+                    <p className="text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2 col-span-6">
+                  <div className="flex items-center">
                     <CountryCodeSelection
                       value={formData.countryCode}
                       defaultCountry="+91"
+                      className="border-r-none"
                       onChange={handleCountryCodeChange}
                       error={!!errors.countryCode}
                     />
                     <Input
                       id="phone"
                       name="phone"
-                      type="tel"
+                      type="number"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Enter your phone number"
+                      placeholder="Enter phone number"
                       removeLeftBorderRadius={true}
                       className={`h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
                         errors.phone
@@ -316,6 +302,7 @@ export default function EnhancedContactForm({
                     </p>
                   )}
                 </div>
+              </div>
 
               {/* Message Field */}
               <div className="space-y-2">
@@ -355,7 +342,12 @@ export default function EnhancedContactForm({
           {/* Submit Button - Bottom Right */}
           <div className="px-6 pb-6 ">
             <div className="pt-2">
-              <Button type="submit" form="contact-form" className="w-full" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                form="contact-form"
+                className="w-full"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Sending Message..." : "Send Message"}
               </Button>
             </div>
