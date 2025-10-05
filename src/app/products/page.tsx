@@ -124,24 +124,34 @@ const products: Product[] = [
 export default function ProductsPage() {
   // Handle hash scrolling on page load
   useEffect(() => {
-    const handleHashScroll = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        const elementId = hash.substring(1);
-        const element = document.getElementById(elementId);
-        if (element) {
-          setTimeout(() => {
-            element.scrollIntoView({
-              behavior: "smooth",
-              block: "end",
-              inline: "nearest",
-            });
-          }, 100);
-        }
-      }
+    const scrollToHash = (hash: string, smooth = true) => {
+      if (!hash) return;
+      const elementId = hash.slice(1);
+      if (!elementId) return;
+
+      const element = document.getElementById(elementId);
+      if (!element) return;
+
+      requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect();
+        const top = rect.top + window.scrollY - 96;
+
+        window.scrollTo({
+          top,
+          left: 0,
+          behavior: smooth ? "smooth" : "auto",
+        });
+      });
     };
 
-    handleHashScroll();
+    if (window.location.hash) {
+      scrollToHash(window.location.hash, false);
+    }
+
+    const handleHashScroll = () => {
+      scrollToHash(window.location.hash);
+    };
+
     window.addEventListener("hashchange", handleHashScroll);
 
     return () => {
@@ -230,7 +240,7 @@ export default function ProductsPage() {
                 <div
                   key={product.slug}
                   id={product.slug}
-                  className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+                  className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 scroll-mt-32"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
                     {/* Image */}
