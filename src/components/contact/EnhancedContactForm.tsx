@@ -213,7 +213,7 @@ export default function EnhancedContactForm({
         )}
       >
         {/* Contact Form */}
-        <Card className="border-0 w-full mx-auto shadow-2xl bg-card">
+        <Card className="border border-border/60 w-full mx-auto shadow-2xl bg-card">
           <CardContent className="space-y-6">
             <form
               id="contact-form"
@@ -340,7 +340,7 @@ export default function EnhancedContactForm({
           </CardContent>
 
           {/* Submit Button - Bottom Right */}
-          <div className="px-6 pb-6 ">
+          <div className="px-6">
             <div className="pt-2">
               <Button
                 type="submit"

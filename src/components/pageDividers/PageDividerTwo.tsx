@@ -25,7 +25,9 @@ const DEFAULT_THEME: ThemeName = "Classic Red & Black";
 const STORAGE_KEY = "selectedTheme";
 
 const isThemeName = (value: string | null): value is ThemeName =>
-  Boolean(value && Object.prototype.hasOwnProperty.call(THEME_IMAGE_MAP, value));
+  Boolean(
+    value && Object.prototype.hasOwnProperty.call(THEME_IMAGE_MAP, value)
+  );
 
 const PageDividerTwo = ({ className = "" }) => {
   const [clientScreenWidth, setClientScreenWidth] = useState(0);
@@ -69,25 +71,30 @@ const PageDividerTwo = ({ className = "" }) => {
     };
   }, []);
 
-  const themeImages = THEME_IMAGE_MAP[activeTheme] ?? THEME_IMAGE_MAP[DEFAULT_THEME];
+  const themeImages =
+    THEME_IMAGE_MAP[activeTheme] ?? THEME_IMAGE_MAP[DEFAULT_THEME];
   const computedWidth = clientScreenWidth || 1920;
 
   return (
-    <div className={cn("-mt-[10rem] z-[-10]", className)}>
-      <Image
-        src={themeImages.top}
-        alt="Decorative top page divider"
-        className="w-full h-auto rotate-180"
-        width={computedWidth}
-        height={100}
-      />
-      <Image
-        src={themeImages.bottom}
-        alt="Decorative bottom page divider"
-        className="w-full h-auto"
-        width={computedWidth}
-        height={100}
-      />
+    <div className={cn("-mt-[10rem] z-[-10] overflow-hidden", className)}>
+      <div className="relative w-full">
+        <Image
+          src={themeImages.top}
+          alt="Decorative top page divider"
+          className="w-full h-auto rotate-180 block"
+          width={computedWidth}
+          height={100}
+          priority
+        />
+        <Image
+          src={themeImages.bottom}
+          alt="Decorative bottom page divider"
+          className="w-full h-auto -mt-[2px] block" // 👈 overlap by 2px
+          width={computedWidth}
+          height={100}
+          priority
+        />
+      </div>
     </div>
   );
 };

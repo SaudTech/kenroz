@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import Paragraph from "@/components/typography/Paragraph";
 import { Blob } from "@/components/Blob";
+import ServiceCard, { ServiceCardIcon } from "@/components/ui/service-card";
 
 /* ------------------------------------------------------------------ */
 /* Content (Cloud)                                           */
@@ -144,6 +145,7 @@ export default function CloudDevOpsPage() {
   return (
     <main>
       {/* Hero   mirrors Outsourcing/D365 */}
+      <Blob className="absolute -top-[-15%] -right-[5%] w-[48rem] h-[48rem] -z-10 opacity-60 blur-3xl" />
 
       <Section
         is="odd"
@@ -191,7 +193,6 @@ export default function CloudDevOpsPage() {
             >
               {/* Image container with relative positioning */}
               <div className="relative z-10">
-                <Blob className="bottom-10" />
                 <Image
                   src="/CloudSolution.png"
                   alt="Cloud Solutions"
@@ -222,21 +223,16 @@ export default function CloudDevOpsPage() {
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {capabilities.map((m, i) => (
-              <motion.li
+              <ServiceCard
                 key={m.name}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
-                whileHover={hoverScale}
-                viewport={{ once: true }}
-                whileTap={{ scale: 0.97 }}
               >
-                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
-                  <m.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-
+                <ServiceCardIcon>
+                  <m.icon className="h-6 w-6 text-primary-foreground" />
+                </ServiceCardIcon>
                 <motion.h3
                   className="text-xl font-semibold mb-2 text-center"
                   whileHover={hoverScale}
@@ -257,7 +253,7 @@ export default function CloudDevOpsPage() {
                     </motion.li>
                   ))}
                 </ul> */}
-              </motion.li>
+              </ServiceCard>
             ))}
           </ul>
         </div>
@@ -281,21 +277,16 @@ export default function CloudDevOpsPage() {
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {deliveryModels.map((m, i) => (
-              <motion.li
+              <ServiceCard
                 key={m.title}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
-                whileHover={hoverScale}
-                viewport={{ once: true }}
-                whileTap={{ scale: 0.97 }}
               >
-                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
-                  <m.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-
+                <ServiceCardIcon>
+                  <m.icon className="h-6 w-6 text-primary-foreground" />
+                </ServiceCardIcon>
                 <motion.h3 className="text-xl font-semibold mb-2 text-center">
                   {m.title}
                 </motion.h3>
@@ -315,7 +306,7 @@ export default function CloudDevOpsPage() {
                 <p className="mt-4 text-sm text-primary-foreground text-center">
                   {m.bestFor}
                 </p>
-              </motion.li>
+              </ServiceCard>
             ))}
           </ul>
         </div>

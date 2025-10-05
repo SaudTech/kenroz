@@ -58,6 +58,24 @@ export default function JobApplicationForm({
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
+  const validateFile = (file: File | null): string => {
+    if (!file) return "Resume is required";
+
+    const allowedTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+      return "Only PDF or Word documents are allowed";
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      return "File size must be less than 5MB";
+    }
+    return "";
+  };
+
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
@@ -71,25 +89,13 @@ export default function JobApplicationForm({
       newErrors.phone = "Phone number is required";
     } else {
       const digitsOnlyLength = formData.phone.replace(/\D/g, "").length;
-      if (digitsOnlyLength == 10) {
-        newErrors.phone = "Please enter a 10 digit phone number";
+      if (digitsOnlyLength !== 10) {
+        newErrors.phone = "Please enter a 10-digit phone number";
       }
     }
 
-    if (!formData.resume) {
-      newErrors.resume = "Resume is required";
-    } else {
-      const allowedTypes = [
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      ];
-      if (!allowedTypes.includes(formData.resume.type)) {
-        newErrors.resume = "Only PDF or Word documents are allowed";
-      } else if (formData.resume.size > 5 * 1024 * 1024) {
-        newErrors.resume = "File size must be less than 5MB";
-      }
-    }
+    const fileError = validateFile(formData.resume);
+    if (fileError) newErrors.resume = fileError;
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -104,9 +110,14 @@ export default function JobApplicationForm({
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    setFormData((prev) => ({ ...prev, resume: file || null }));
-    if (errors.resume) {
+    const file = e.target.files?.[0] || null;
+    const fileError = validateFile(file);
+
+    if (fileError) {
+      setErrors((prev) => ({ ...prev, resume: fileError }));
+      setFormData((prev) => ({ ...prev, resume: null }));
+    } else {
+      setFormData((prev) => ({ ...prev, resume: file }));
       setErrors((prev) => ({ ...prev, resume: "" }));
     }
   };
@@ -124,22 +135,18 @@ export default function JobApplicationForm({
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
-    const dataTransfer = new DataTransfer();
-    if (file) {
-      dataTransfer.items.add(file);
-    }
     if (fileInputRef.current) {
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
       fileInputRef.current.files = dataTransfer.files;
     }
     handleFileChange({
-      target: fileInputRef.current,
+      target: fileInputRef.current!,
     } as React.ChangeEvent<HTMLInputElement>);
   };
 
   const handleClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+    fileInputRef.current?.click();
   };
 
   const handleCountryCodeChange = useCallback(
@@ -168,9 +175,7 @@ export default function JobApplicationForm({
       submission.append("fullName", formData.fullName.trim());
       submission.append("phone", formData.phone.trim());
       submission.append("job", jobLabel);
-      if (formData.resume) {
-        submission.append("resume", formData.resume);
-      }
+      if (formData.resume) submission.append("resume", formData.resume);
 
       const res = await fetch("/api/job-application", {
         method: "POST",
@@ -194,11 +199,12 @@ export default function JobApplicationForm({
       });
       setErrors({});
     } catch (error) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "Failed to submit application. Please try again.";
-      setErrors({ submit: errorMessage });
+      setErrors({
+        submit:
+          error instanceof Error
+            ? error.message
+            : "Failed to submit application. Please try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -207,14 +213,14 @@ export default function JobApplicationForm({
   if (isSubmitted) {
     return (
       <div className={cn("w-full max-w-2xl mx-auto", className)}>
-        <Card className="border-0 shadow-2xl bg-card">
-          <CardContent className="text-center py-12">
+        <Card className="border border-border/60 shadow-2xl bg-card">
+          <CardContent className="text-center py-5">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-card-foreground mb-2">
               Application submitted!
             </h3>
             <p className="text-card-foreground mb-6">
-              We will review your profile and get back to you soon.
+              We’ll review your profile and reach out soon.
             </p>
           </CardContent>
         </Card>
@@ -227,12 +233,14 @@ export default function JobApplicationForm({
       onSubmit={handleSubmit}
       className={cn("w-full max-w-2xl mx-auto", className)}
     >
-      <Card className="border-0 shadow-2xl bg-card">
+      <Card className="border border-border/60 shadow-2xl bg-card">
         <CardContent className="space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+          {/* Full name */}
           <div className="space-y-2">
             <Input
               name="fullName"
-              placeholder="Full name"
+              placeholder="Enter your full name"
               value={formData.fullName}
               onChange={handleChange}
               className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
@@ -248,8 +256,10 @@ export default function JobApplicationForm({
               </p>
             )}
           </div>
+
+          {/* Phone */}
           <div className="space-y-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center">
               <CountryCodeSelection
                 value={formData.countryCode}
                 defaultCountry="+91"
@@ -278,7 +288,9 @@ export default function JobApplicationForm({
               </p>
             )}
           </div>
+          </div>
 
+          {/* Resume upload */}
           <div className="space-y-2">
             <label
               htmlFor="resume"
@@ -292,19 +304,18 @@ export default function JobApplicationForm({
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               className={cn(
-                "flex flex-col items-center justify-center h-48 w-full p-4 border-2 rounded-lg text-gray-500 transition-all duration-200 cursor-pointer",
-                isDragging && "border-primary bg-primary/10",
-                errors.resume && "border-red-300",
-                formData.resume && "border-primary bg-primary/10"
+                "flex flex-col items-center justify-center h-42 w-full p-4 border-2 rounded-lg text-gray-500 transition-all duration-200 cursor-pointer bg-transparent",
+                isDragging && "border-primary/80",
+                errors.resume && "border-red-300"
               )}
             >
               {formData.resume ? (
-                <div className="flex items-center gap-2 text-primary">
+                <div className="flex items-center gap-2 text-card-foreground">
                   <File className="w-6 h-6" />
                   <span className="text-sm font-medium">
                     {formData.resume.name}
                   </span>
-                  <span className="text-xs text-primary">
+                  <span className="text-xs text-gray-500">
                     ({formatFileSize(formData.resume.size)})
                   </span>
                 </div>
@@ -349,11 +360,13 @@ export default function JobApplicationForm({
               </p>
             )}
           </div>
+
           {errors.submit && (
             <p className="text-sm text-red-600 flex items-center gap-1">
               <AlertCircle className="w-4 h-4" /> {errors.submit}
             </p>
           )}
+
           <div className="pt-2">
             <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Send Application"}

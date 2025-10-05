@@ -208,7 +208,9 @@ export default async function ContactPage({
         <div className="container mx-auto max-w-7xl py-0">
           <SectionHeading blackText={black} primaryText={primary} />
           <div className="w-full text-center">
-          <Paragraph className="max-w-3xl text-center">{description}</Paragraph>
+            <Paragraph className="max-w-3xl text-center">
+              {description}
+            </Paragraph>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
@@ -222,22 +224,31 @@ export default async function ContactPage({
 
             <div className="space-y-8">
               {/* Info tiles */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Clock className="h-4 w-4" />
-                    <h3 className="font-medium">Business Hours</h3>
-                  </div>
-                  <p className="text-sm">
-                    Monday to Friday, <br /> 9:00 AM - 6:00 PM
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 gap-1">
-                  <a href="mailto:support@kenroz.com">
-                    <div className="group relative hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 backdrop-blur-sm rounded-full px-4 py-2 bg-card text-card-foreground text-sm font-medium border border-card transition-all duration-300">
-                      <Mail className="w-4 h-4 text-card-foreground" />
-                      <span>Email</span>
+              <div className="rounded-2xl border border-border/60 bg-card backdrop-blur supports-[backdrop-filter]:bg-card/60 p-5 sm:p-6 shadow-sm transition-shadow hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
+                <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
+                  {/* Hours */}
+                  <div className="flex items-start gap-3">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Clock className="h-4 w-4" />
+                    </span>
+                    <div>
+                      <h3 className="font-medium leading-none">
+                        Business Hours
+                      </h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        Mon–Fri • 9:00 AM – 6:00 PM
+                      </p>
                     </div>
+                  </div>
+
+                  {/* Primary action */}
+                  <a
+                    href="mailto:support@kenroz.com"
+                    aria-label="Email Kenroz support"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 text-sm font-medium text-card-foreground transition-all hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>Email Support</span>
                   </a>
                 </div>
               </div>
@@ -245,7 +256,7 @@ export default async function ContactPage({
               {/* Tiny FAQ */}
               <div className="space-y-2">
                 {/* <h3 className="text-sm font-semibold">Quick FAQ</h3> */}
-                <div className="rounded-2xl bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground divide-y divide-black/5">
+                <div className="rounded-2xl border border-border/60 bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground divide-y divide-black/5">
                   <details className="p-4">
                     <summary className="cursor-pointer text-sm font-medium">
                       How soon will you respond?

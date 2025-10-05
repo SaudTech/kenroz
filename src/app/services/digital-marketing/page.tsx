@@ -145,6 +145,7 @@ export default function DigitalMarketingPage() {
 
   return (
     <main>
+      <Blob className="absolute -top-[-15%] -right-[5%] w-[48rem] h-[48rem] -z-10 opacity-60 blur-3xl" />
       {/* Hero */}
       <Section
         is="odd"
@@ -188,7 +189,6 @@ export default function DigitalMarketingPage() {
             >
               {/* Image container with relative positioning */}
               <div className="relative z-10">
-                <Blob className="bottom-10" />
                 <Image
                   src="/DigitalMarketing.jpg"
                   alt="Digital Marketing"

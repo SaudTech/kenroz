@@ -22,6 +22,7 @@ import PageDividerTwo from "@/components/pageDividers/PageDividerTwo";
 import Paragraph from "@/components/typography/Paragraph";
 import SectionHeading from "@/components/typography/SectionHeading";
 import { Blob } from "@/components/Blob";
+import ServiceCard, { ServiceCardIcon } from "@/components/ui/service-card";
 
 /* ------------------------------------------------------------------ */
 /* Content (Dynamics-focused)                                          */
@@ -141,6 +142,7 @@ export default function MicrosoftDynamic365Page() {
 
   return (
     <main>
+      <Blob className="absolute -top-[-15%] -right-[5%] w-[48rem] h-[48rem] -z-10 opacity-60 blur-3xl" />
       {/* Hero   matches Outsourcing layout/animation */}
       <Section
         is="odd"
@@ -183,22 +185,26 @@ export default function MicrosoftDynamic365Page() {
 
             {/* Hero visual / stats card with glow effect */}
             <motion.div
-              className="lg:w-2/5 relative"
+              className="lg:w-2/5"
               variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
               initial="hidden"
               whileInView="visible"
             >
-              {/* Image container with relative positioning */}
-              <div className="relative z-10">
-                <Blob className="bottom-10" />
-                <Image
-                  src="/dynamic_365.png"
-                  alt="Dynamics 365 dashboards"
-                  width={800}
-                  height={900}
-                  className="rounded-2xl filter brightness-90"
-                  priority
-                />
+              {/* One stacking context for both */}
+              <div className="relative isolate">
+                {/* Blob behind */}
+
+                {/* Image above */}
+                <div className="relative z-10">
+                  <Image
+                    src="/dynamic_365.png"
+                    alt="Dynamics 365 dashboards"
+                    width={800}
+                    height={900}
+                    className="rounded-2xl brightness-90" // filter is fine here
+                    priority
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
@@ -229,20 +235,16 @@ export default function MicrosoftDynamic365Page() {
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {d365Modules.map((m, i) => (
-              <motion.li
+              <ServiceCard
                 key={m.name}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(2 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
-                whileHover={hoverScale}
-                viewport={{ once: true }}
               >
-                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
-                  <m.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-
+                <ServiceCardIcon>
+                  <m.icon className="h-6 w-6 text-primary-foreground" />
+                </ServiceCardIcon>
                 <motion.h3
                   className="text-xl font-semibold mb-2 text-center"
                   whileHover={hoverScale}
@@ -272,7 +274,7 @@ export default function MicrosoftDynamic365Page() {
                     </motion.li>
                   ))}
                 </ul>
-              </motion.li>
+              </ServiceCard>
             ))}
           </ul>
         </div>
@@ -293,19 +295,16 @@ export default function MicrosoftDynamic365Page() {
 
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {deliveryModels.map((m, i) => (
-              <motion.li
+              <ServiceCard
                 key={m.title}
-                className="p-8 bg-card text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
                 variants={slideInFromLeftWithDelay(2 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
-                whileHover={hoverScale}
-                viewport={{ once: true }}
               >
-                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
-                  <m.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
+                <ServiceCardIcon>
+                  <m.icon className="h-6 w-6 text-primary-foreground" />
+                </ServiceCardIcon>
                 <motion.h3 className="text-xl font-semibold mb-2 text-center">
                   {m.title}
                 </motion.h3>
@@ -323,7 +322,7 @@ export default function MicrosoftDynamic365Page() {
                 <p className="mt-4 text-sm text-primary-foreground text-center">
                   {m.bestFor}
                 </p>
-              </motion.li>
+              </ServiceCard>
             ))}
           </ul>
         </div>

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Paragraph from "@/components/typography/Paragraph";
 import { Blob } from "@/components/Blob";
+import ServiceCard, { ServiceCardIcon } from "@/components/ui/service-card";
 
 /* ------------ Your process steps (from current data) ------------ */
 const webProcess: ProcessStep[] = [
@@ -91,6 +92,7 @@ export default function WebApplicationDevelopmentPage() {
 
   return (
     <main>
+      <Blob className="absolute -top-[-15%] -right-[5%] w-[48rem] h-[48rem] -z-10 opacity-60 blur-3xl" />
       {/* Hero   concise value + how we work */}
       <Section
         is="odd"
@@ -137,7 +139,6 @@ export default function WebApplicationDevelopmentPage() {
             >
               {/* Image container with relative positioning */}
               <div className="relative z-10">
-                <Blob className="bottom-10" />
                 <Image
                   src="/web_development.avif"
                   alt="Web Application Development"
@@ -164,23 +165,19 @@ export default function WebApplicationDevelopmentPage() {
             Some of the features we offer for web application development.{" "}
           </Paragraph>
 
-          <ul className="flex flex-wrap gap-6 justify-center items-center">
+          <ul className="flex flex-wrap items-center justify-center gap-6">
             {features.map((m, i) => (
-              <motion.li
+              <ServiceCard
                 key={m.name}
-                className="p-8 bg-card max-w-[480px] max-h-[250px] min-w-[480px] min-h-[250px] text-card-foreground rounded-2xl flex flex-col text-left border border-border shadow-lg"
+                className="max-h-[250px] max-w-[480px] min-h-[250px] min-w-[480px]"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
-                whileHover={hoverScale}
-                viewport={{ once: true }}
-                whileTap={{ scale: 0.97 }}
               >
-                <div className="inline-flex items-center justify-center mx-auto w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary mb-4">
-                  <m.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-
+                <ServiceCardIcon>
+                  <m.icon className="h-6 w-6 text-primary-foreground" />
+                </ServiceCardIcon>
                 <motion.h3
                   className="text-xl font-semibold mb-2 text-center"
                   whileHover={hoverScale}
@@ -190,13 +187,13 @@ export default function WebApplicationDevelopmentPage() {
                 </motion.h3>
 
                 <motion.p
-                  className="flex-1 text-center whitespace-pre-line"
+                  className="flex-1 whitespace-pre-line text-center"
                   whileHover={hoverScale}
                   viewport={{ once: true }}
                 >
                   {m.description}
                 </motion.p>
-              </motion.li>
+              </ServiceCard>
             ))}
           </ul>
         </div>

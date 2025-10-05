@@ -181,7 +181,7 @@ const ProcessAnimation: React.FC<ProcessAnimationProps> = ({
                   </div>
                   <motion.div
                     className={cn(
-                      "w-20 h-20 bg-primary absolute -right-8 z-10 hover:bg-card hover:text-card-foreground group transition-colors duration-500 border-4 border-primary rounded-full flex items-center justify-center font-bold text-xl text-primary-foreground shadow-md flex-shrink-0",
+                      "w-20 h-20 bg-primary absolute -right-8 z-10 hover:bg-card text-card-foreground group transition-colors duration-500 border-4 border-primary rounded-full flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0",
                       i === 0 ? "-bottom-5" : i === left.length - 1 ? "-top-5" : "bottom-2/4 translate-y-2/4"
                     )}
                     variants={stepCircleVariants}
@@ -197,7 +197,7 @@ const ProcessAnimation: React.FC<ProcessAnimationProps> = ({
           {/* Central Circle */}
           <div className="relative my-12 lg:my-0 lg:w-1/5 flex justify-center">
             <motion.div
-              className="bg-primary text-white w-40 h-40 md:w-60 md:h-60 rounded-full flex items-center justify-center font-semibold shadow-lg text-center p-6 relative z-10"
+              className="bg-primary hover:bg-card border-4 border-primary transition-colors duration-500 text-card-foreground w-40 h-40 md:w-60 md:h-60 rounded-full flex items-center justify-center font-semibold shadow-lg text-center p-6 relative z-10"
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               variants={circleVariants}
@@ -225,7 +225,7 @@ const ProcessAnimation: React.FC<ProcessAnimationProps> = ({
                 <motion.div key={`${p.step}-${p.title}`} className="flex items-center relative gap-6" variants={rowVariants} viewport={{ once: true }}>
                   <motion.div
                     className={cn(
-                      "w-20 h-20 bg-primary absolute -left-8 z-10 hover:bg-card hover:text-card-foreground group transition-colors duration-500 border-4 border-primary rounded-full flex items-center justify-center font-bold text-xl text-primary-foreground shadow-md flex-shrink-0",
+                      "w-20 h-20 bg-primary absolute -left-8 z-10 hover:bg-card text-card-foreground group transition-colors duration-500 border-4 border-primary rounded-full flex items-center justify-center font-bold text-xl shadow-md flex-shrink-0",
                       i === 0 ? "-bottom-5" : i === right.length - 1 ? "-top-5" : "bottom-2/4 translate-y-2/4"
                     )}
                     variants={stepCircleVariants}

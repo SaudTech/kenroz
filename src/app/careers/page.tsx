@@ -86,9 +86,9 @@ export default function CareersPage() {
           ].map(({ icon: Icon, title, desc }) => (
             <li
               key={title}
-              className="group rounded-2xl bg-card p-6 shadow-sm transition hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
+              className="group border border-border/60 rounded-2xl bg-card p-6 shadow-sm transition hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-3">
                 <span className="rounded-xl bg-slate-900/5 p-3 ring-1 ring-slate-900/10">
                   <Icon className="h-5 w-5 text-card-foreground" />
                 </span>

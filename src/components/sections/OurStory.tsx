@@ -188,7 +188,7 @@ export default function OurStory() {
               {stats.map(({ label, icon: Icon }, i) => (
                 <motion.div
                   key={label}
-                  className={"h-[100px] w-[120px] flex flex-col items-center justify-center rounded-lg border border-primary bg-primary hover:bg-transparent text-primary-foreground hover:text-primary backdrop-blur-sm p-4 shadow-sm hover:shadow-md transition-shadow text-center"}
+                  className={"h-[100px] w-[120px] flex flex-col items-center justify-center rounded-lg border border-primary bg-primary hover:bg-transparent text-primary-foreground hover:text-primary backdrop-blur-sm p-4 shadow-sm hover:shadow-md text-center transition-colors duration-300"}
                   variants={i % 2 === 0 ? fromLeft : fromRight}
                   initial="hidden"
                   whileInView="show"

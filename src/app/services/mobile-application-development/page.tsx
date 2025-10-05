@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import useSectionVariants from "@/lib/useSectionVariants";
-import { hoverScale } from "@/lib/section-animations";
 import { Section } from "@/components/Section";
 import EngagementSection from "@/components/EngagementSection";
 import { ButtonLink } from "@/components/Navbar";
@@ -23,6 +22,7 @@ import { AppleAppStore, GooglePlaystore } from "./PlatformIcons";
 import Image from "next/image";
 import Paragraph from "@/components/typography/Paragraph";
 import { Blob } from "@/components/Blob";
+import ServiceCard, { ServiceCardIcon } from "@/components/ui/service-card";
 
 /* ------------------- Process (mobile-focused) ------------------- */
 const mobileProcess: ProcessStep[] = [
@@ -61,7 +61,7 @@ const developmentApproaches = [
   {
     title: "Native Development",
     description: "Platform-specific apps for optimal performance and UX",
-    technologies: ["Swift/SwiftUI", "Objective-C", "Kotlin", "Java"],
+    technologies: ["Swift/SwiftUI", "Kotlin"],
     pros: [
       "Best Performance",
       "Full Platform Features",
@@ -80,7 +80,7 @@ const developmentApproaches = [
   {
     title: "Hybrid / PWA",
     description: "Web tech in a native shell, ideal for content and utilities",
-    technologies: ["Capacitor", "Ionic", "PWA"],
+    technologies: ["Capacitor", "PWA"],
     pros: ["Quick Launch", "Web Skills", "Easy Updates", "Lower Cost"],
     icon: Code,
   },
@@ -131,6 +131,7 @@ export default function MobileApplicationDevelopmentPage() {
 
   return (
     <main>
+      <Blob className="absolute -top-[-15%] -right-[5%] w-[48rem] h-[48rem] -z-10 opacity-60 blur-3xl" />
       {/* Hero   concise value + how we work */}
       <Section
         is="odd"
@@ -146,7 +147,8 @@ export default function MobileApplicationDevelopmentPage() {
                 custom={0}
               >
                 <Paragraph className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Mobile Application <span className="text-primary">Development</span>
+                  Mobile Application{" "}
+                  <span className="text-primary">Development</span>
                 </Paragraph>
               </motion.h1>
 
@@ -164,7 +166,9 @@ export default function MobileApplicationDevelopmentPage() {
                   variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
                   custom={2}
                 >
-                  <ButtonLink href="/contact-us?p=mobile-apps">Get Started</ButtonLink>
+                  <ButtonLink href="/contact-us?p=mobile-apps">
+                    Get Started
+                  </ButtonLink>
                 </motion.div>
               </div>
             </div>
@@ -178,7 +182,6 @@ export default function MobileApplicationDevelopmentPage() {
             >
               {/* Image container with relative positioning */}
               <div className="relative z-10">
-                <Blob className="bottom-10" />
                 <Image
                   src="/mobile_app_development.webp"
                   alt="Mobile Application Development"
@@ -207,19 +210,16 @@ export default function MobileApplicationDevelopmentPage() {
 
           <ul className="grid grid-cols-1 gap-6 text-left lg:grid-cols-3">
             {developmentApproaches.map((a, i) => (
-              <motion.li
+              <ServiceCard
                 key={a.title}
-                className="rounded-2xl border border-border bg-card p-8 text-card-foreground shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
-                whileHover={hoverScale}
-                viewport={{ once: true }}
               >
-                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary">
-                  <a.icon className="h-6 w-6 text-primary-foreground" />
-                </div>
+                <ServiceCardIcon className="bg-primary text-primary-foreground">
+                  <a.icon className="h-6 w-6" />
+                </ServiceCardIcon>
                 <h3 className="mb-3 text-center text-2xl font-bold">
                   {a.title}
                 </h3>
@@ -242,13 +242,11 @@ export default function MobileApplicationDevelopmentPage() {
                   {a.pros.map((p) => (
                     <li key={p} className="flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-card-foreground">
-                        {p}
-                      </span>
+                      <span className="text-sm text-card-foreground">{p}</span>
                     </li>
                   ))}
                 </ul>
-              </motion.li>
+              </ServiceCard>
             ))}
           </ul>
         </div>
@@ -268,24 +266,21 @@ export default function MobileApplicationDevelopmentPage() {
 
           <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.map((f, i) => (
-              <motion.li
+              <ServiceCard
                 key={f.title}
-                className="rounded-2xl border border-border bg-card p-8 text-card-foreground shadow-lg"
                 variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
                 initial="hidden"
                 whileInView="visible"
                 custom={i + 2}
-                whileHover={hoverScale}
-                viewport={{ once: true }}
               >
-                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <ServiceCardIcon className="bg-primary/10">
                   <f.icon className="h-6 w-6 text-primary" />
-                </div>
+                </ServiceCardIcon>
                 <h3 className="mb-2 text-center text-xl font-bold">
                   {f.title}
                 </h3>
                 <p className="text-center">{f.description}</p>
-              </motion.li>
+              </ServiceCard>
             ))}
           </ul>
         </div>
@@ -293,183 +288,107 @@ export default function MobileApplicationDevelopmentPage() {
 
       <PageDividerTwo />
 
-      {/* Platform Support */}
+      {/* Supported Platforms */}
       <Section is="odd" id="platforms" className="py-20 pt-0 relative">
-        <div className="container mx-auto px-4">
-          <div className="mb-12 text-center">
-            <motion.h2
-              className="mb-4 text-4xl font-bold text-foreground"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-              custom={0}
-              viewport={{ once: true }}
-              whileHover={hoverScale}
-            >
-              Supported Platforms
-            </motion.h2>
-            <motion.p
-              className="text-xl text-foreground"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-              custom={1}
-              viewport={{ once: true }}
-            >
-              We design, build, and ship for <b>iOS</b>, <b>Android</b>, or{" "}
-              <b>both</b> native or cross-platform.
-            </motion.p>
-          </div>
+        <div className="container mx-auto px-4 text-center">
+          <Paragraph className="text-5xl font-bold text-foreground">
+            <div className="mx-auto mb-3 max-w-[140px] border-t-2 border-foreground" />
+            Supported Platforms
+            <div className="mx-auto mt-3 max-w-[140px] border-t-2 border-foreground" />
+          </Paragraph>
 
-          {/* Cards */}
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 text-card-foreground">
-            {/* iOS */}
-            <motion.div
-              className="rounded-2xl bg-card p-8 text-center shadow-lg"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
-              viewport={{ once: true, amount: 0.4 }}
-              whileHover={hoverScale}
-            >
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl">
-                <AppleAppStore className="h-10 w-10" />
-              </div>
-              <h3 className="mb-2 text-2xl font-bold">iOS Development</h3>
-              <p className="mb-6">
-                Native apps using Swift/SwiftUI for high performance and
-                HIG-compliant UX.
-              </p>
-              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm">
-                <span>iPhone</span>
-                <span>•</span>
-                <span>iPad</span>
-              </div>
-            </motion.div>
+          <Paragraph className="w-full block mx-auto mb-12 max-w-3xl text-xl text-foreground">
+            We design, build, and ship for <b>iOS</b>, <b>Android</b>, or{" "}
+            <b>both</b> — native or cross-platform.
+          </Paragraph>
 
-            {/* Android */}
-            <motion.div
-              className="rounded-2xl bg-card p-8 text-center shadow-2xl"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromRightWithDelay(8, 80, 0.7, true)}
-              viewport={{ once: true, amount: 0.4 }}
-              whileHover={hoverScale}
-            >
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-card">
-                <GooglePlaystore className="h-10 w-10" />
-              </div>
-              <h3 className="mb-2 text-2xl font-bold">Android Development</h3>
-              <p className="mb-6">
-                Native apps using Kotlin/Jetpack for Material-compliant,
-                device-ready UI.
-              </p>
-              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm">
-                <span>Smartphones</span>
-                <span>•</span>
-                <span>Tablets</span>
-              </div>
-            </motion.div>
+          {/* Platform Cards */}
+          <ul className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 text-card-foreground">
+            {[
+              {
+                title: "iOS Development",
+                description:
+                  "Native apps using Swift/SwiftUI for high performance and HIG-compliant UX.",
+                platforms: ["iPhone", "iPad"],
+                icon: AppleAppStore,
+              },
+              {
+                title: "Android Development",
+                description:
+                  "Native apps using Kotlin/Jetpack for Material-compliant, device-ready UI.",
+                platforms: ["Smartphones", "Tablets"],
+                icon: GooglePlaystore,
+              },
+              {
+                title: "Both Platforms",
+                description:
+                  "Single codebase (React Native/Flutter), design system, unified analytics.",
+                platforms: ["Reusable code", "Faster development"],
+                icon: null,
+              },
+            ].map((p, i) => (
+              <ServiceCard
+                key={p.title}
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                className="text-center"
+              >
+                <ServiceCardIcon className="bg-primary/10">
+                  {p.icon ? (
+                    <p.icon className="h-8 w-8 text-primary" />
+                  ) : (
+                    <div className="relative">
+                      <AppleAppStore className="h-7 w-7 text-primary" />
+                      <GooglePlaystore className="h-7 w-7 absolute -right-4 -bottom-3 text-primary" />
+                    </div>
+                  )}
+                </ServiceCardIcon>
 
-            {/* Both */}
-            <motion.div
-              className="rounded-2xl bg-card p-8 text-center shadow-lg"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromRightWithDelay(10, 80, 0.7, true)}
-              viewport={{ once: true, amount: 0.4 }}
-              whileHover={hoverScale}
-            >
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-gray-900 to-primary/90">
-                <div className="relative">
-                  <AppleAppStore className="h-8 w-8 opacity-95" />
-                  <GooglePlaystore className="h-8 w-8 absolute -right-4 -bottom-3 opacity-95" />
+                <h3 className="mb-2 text-2xl font-bold">{p.title}</h3>
+                <p className="mb-6">{p.description}</p>
+
+                <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm">
+                  {p.platforms.map((plat) => (
+                    <span key={plat}>{plat}</span>
+                  ))}
                 </div>
-              </div>
-              <h3 className="mb-2 text-2xl font-bold">Both Platforms</h3>
-              <p className="mb-6">
-                Single codebase (React Native/Flutter) design system, unified
-                analytics.
-              </p>
-              <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 text-sm">
-                <span>Reuseable code</span>
-                <span>•</span>
-                <span>Faster development</span>
-              </div>
-            </motion.div>
-          </div>
+              </ServiceCard>
+            ))}
+          </ul>
 
-          {/* Divider */}
+          {/* Checklist */}
           <div className="mx-auto my-12 h-px w-full max-w-6xl bg-border" />
+          <Paragraph className="text-4xl font-bold text-foreground mb-8">
+            Store-Readiness Checklist
+          </Paragraph>
 
-          {/* Publishing & Distribution */}
-          <div className="mx-auto max-w-6xl">
-            <motion.h4
-              className="mb-4 text-center text-xl font-semibold text-foreground"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromLeftWithDelay(10, 60, 0.6)}
-              viewport={{ once: true }}
-            >
-              Publishing & Distribution
-            </motion.h4>
-
-            <motion.ul
-              className="mb-10 flex flex-wrap items-center justify-center gap-2"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromRightWithDelay(10, 60, 0.6)}
-              viewport={{ once: true }}
-            >
-              {[
-                "App Store Connect",
-                "TestFlight",
-                "Google Play Console",
-                "Firebase App Distribution",
-                "Fastlane CI/CD",
-              ].map((t, i) => (
-                <motion.li
-                  key={t}
-                  className="rounded-full bg-card px-3 py-1 text-sm text-card-foreground"
-                  variants={slideInFromLeftWithDelay(10 + i, 40, 0.5)}
-                >
-                  {t}
-                </motion.li>
-              ))}
-            </motion.ul>
-
-            {/* Store-readiness checklist */}
-            <motion.div
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-              initial="hidden"
-              whileInView="visible"
-              variants={slideInFromLeftWithDelay(12, 60, 0.6)}
-              viewport={{ once: true }}
-            >
-              {[
-                "Privacy labels (iOS) & Data Safety (Play)",
-                "App signing, certs & provisioning",
-                "Push notifications & deep links",
-                "IAP / subscriptions & receipts",
-                "Screenshots, metadata & ASO",
-                "Crash/perf monitoring & alerts",
-              ].map((item, i) => (
-                <motion.div
-                  key={item}
-                  className="flex items-start gap-2 rounded-xl bg-card p-4 text-card-foreground"
-                  variants={slideInFromRightWithDelay(12 + i, 60, 0.6)}
-                >
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
-                  <span className="text-sm">{item}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+            {[
+              "Privacy labels (iOS) & Data Safety (Play)",
+              "App signing, certs & provisioning",
+              "Push notifications & deep links",
+              "IAP / subscriptions & receipts",
+              "Screenshots, metadata & ASO",
+              "Crash/perf monitoring & alerts",
+            ].map((item, i) => (
+              <ServiceCard
+                key={item}
+                variants={slideInFromLeftWithDelay(4 * i, 80, 0.7, true)}
+                initial="hidden"
+                whileInView="visible"
+                custom={i + 2}
+                className="flex items-center gap-2 p-4"
+              >
+                <CheckCircle2 className="h-5 w-5 text-primary" />
+                <span className="text-sm text-left">{item}</span>
+              </ServiceCard>
+            ))}
+          </ul>
         </div>
       </Section>
-
       <PageDividerTwo />
-
       {/* Process Flow   near the last section */}
       <ProcessAnimation
         id="process"
