@@ -35,7 +35,7 @@ export default async function ApplyForJobPage({
             your resume to{" "}
             <a
               href="mailto:support@kenroz.com"
-              className="text-sm underline decoration-border/60 underline-offset-4 hover:decoration-primary"
+              className="underline decoration-border/60 underline-offset-4 hover:decoration-primary"
             >
               <span className="font-semibold">support@kenroz.com</span>
             </a>
@@ -48,7 +48,7 @@ export default async function ApplyForJobPage({
             <JobApplicationForm job={job?.title} className="w-full h-full" />
           </div>
           <div className="space-y-8">
-            <div className="p-6 md:p-8 rounded-2xl border border-border/60 bg-card/70 backdrop-blur supports-[backdrop-filter]:bg-card/60 shadow-sm">
+            <div className="p-6 md:p-8 rounded-2xl border border-border/60 bg-card backdrop-blur hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
               <div className="flex items-start gap-3">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
                   {/* lucide-react */}
@@ -68,9 +68,9 @@ export default async function ApplyForJobPage({
                   <h3 className="text-base md:text-lg font-semibold text-card-foreground">
                     Apply by Email
                   </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
+                  <p className="mt-1 text-sm text-card-foreground">
                     Prefer email? Send your application directly. We respond
-                    within 2–3 business days.
+                    within 2-3 business days.
                   </p>
                 </div>
               </div>
@@ -97,10 +97,10 @@ Thanks,`
                 const mailHref = `mailto:support@kenroz.com?subject=${subject}&body=${body}`;
 
                 return (
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <div className="mt-5 flex flex-wrap items-center gap-3 text-card-foreground">
                     <a
                       href={mailHref}
-                      className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 text-sm font-medium transition-all hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                      className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card  px-4 py-2 text-sm font-medium transition-all hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                       aria-label="Email Kenroz with a pre-filled application"
                     >
                       <svg
@@ -129,13 +129,13 @@ Thanks,`
               })()}
 
               {/* Checklist */}
-              <div className="mt-6 rounded-xl border border-border/50 bg-background/40">
+              <div className="mt-6 rounded-xl border border-border/50 bg-card">
                 <div className="px-4 py-3 border-b border-border/50">
                   <p className="text-sm font-medium text-card-foreground">
                     Include these in your email
                   </p>
                 </div>
-                <ul className="p-4 grid sm:grid-cols-2 gap-3 text-sm">
+                <ul className="p-4 grid sm:grid-cols-2 gap-3 text-sm text-card-foreground">
                   <li className="flex items-center gap-2">
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary">
                       ✓
@@ -164,9 +164,9 @@ Thanks,`
               </div>
 
               {/* Fine print */}
-              <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+              <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-card-foreground">
                 <div className="inline-flex items-center gap-2">
-                  <File className="h-3.5 w-3.5 text-muted-foreground" />
+                  <File className="h-3.5 w-3.5 text-card-foreground" />
                   Attachments up to 20&nbsp;MB
                 </div>
                 <span aria-hidden="true">•</span>
