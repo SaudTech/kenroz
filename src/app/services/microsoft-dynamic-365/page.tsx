@@ -163,12 +163,15 @@ export default function MicrosoftDynamic365Page() {
               </motion.h1>
 
               <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
-                Unify your CRM and ERP with solutions designed for scale,
-                security, and tangible results. Our certified consultants
-                configure, customize, and integrate Dynamics 365, reinforced by
-                enterprise-grade governance, DevOps best practices, and
-                structured change management for seamless, measurable business
-                impact.
+                Unify your CRM and ERP with solutions designed for{" "}
+                <span className="text-primary">scale</span>,{" "}
+                <span className="text-primary">security</span>, and tangible
+                results. Our certified consultants configure, customize, and
+                integrate <span className="text-primary">Dynamics 365</span>,
+                reinforced by enterprise-grade governance, DevOps best
+                practices, and structured change management for seamless,
+                measurable <span className="text-primary">business impact</span>
+                .
               </Paragraph>
 
               <div className="flex flex-col sm:flex-row gap-4">

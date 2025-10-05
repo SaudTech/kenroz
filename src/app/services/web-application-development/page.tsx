@@ -108,14 +108,19 @@ export default function WebApplicationDevelopmentPage() {
                 custom={0}
               >
                 <Paragraph className="text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Web Application <span className="text-primary">Development</span>
+                  Web Application{" "}
+                  <span className="text-primary">Development</span>
                 </Paragraph>
               </motion.h1>
 
               <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
-                Ship a polished web app without guesswork. We align on outcomes,
-                lock a realistic plan, and deliver usable increments every week
-                so stakeholders see progress and go live with confidence.
+                Ship a <span className="text-primary">polished web app</span>{" "}
+                without guesswork. We align on{" "}
+                <span className="text-primary">outcomes</span>, lock a realistic
+                plan, and deliver usable{" "}
+                <span className="text-primary">increments every week</span> so
+                stakeholders see progress and go live with{" "}
+                <span className="text-primary">confidence</span>.
               </Paragraph>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -125,7 +130,9 @@ export default function WebApplicationDevelopmentPage() {
                   variants={slideInFromLeftWithDelay(8, 80, 0.7, true)}
                   custom={2}
                 >
-                  <ButtonLink href="/contact-us?p=web-apps">Get Started</ButtonLink>
+                  <ButtonLink href="/contact-us?p=web-apps">
+                    Get Started
+                  </ButtonLink>
                 </motion.div>
               </div>
             </div>

@@ -153,10 +153,15 @@ export default function MobileApplicationDevelopmentPage() {
               </motion.h1>
 
               <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
-                Ship polished iOS and Android apps without guesswork. We align
-                on outcomes, set a realistic plan, and deliver usable increments
-                each sprint so stakeholders see progress and go live with
-                confidence.
+                Ship{" "}
+                <span className="text-primary">
+                  polished iOS and Android apps
+                </span>{" "}
+                without guesswork. We align on{" "}
+                outcomes, set a realistic
+                plan, and deliver usable increments each sprint so
+                stakeholders see progress and go live with{" "}
+                <span className="text-primary">confidence</span>.
               </Paragraph>
 
               <div className="flex flex-col sm:flex-row gap-4">

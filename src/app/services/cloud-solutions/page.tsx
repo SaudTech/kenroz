@@ -166,7 +166,7 @@ export default function CloudDevOpsPage() {
               </motion.h1>
 
               <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
-                Migrate, build, and run on Azure/AWS/GCP with platform
+                Migrate, build, and run on <span className="text-primary">Azure/AWS/GCP</span> with platform
                 engineering, GitOps, and SRE best practices. We codify your
                 infrastructure, automate delivery, and bake in security and
                 observability so you ship faster, safer, and cheaper.

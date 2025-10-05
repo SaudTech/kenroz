@@ -161,9 +161,12 @@ export default function DigitalMarketingPage() {
               />
 
               <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
-                Grow your business with comprehensive strategies across SEO,
-                PPC, social, content, and email. We align on outcomes, launch
-                fast, and optimize continuously for measurable growth.
+                Grow your business with comprehensive strategies across{" "}
+                <span className="text-primary">
+                  SEO, PPC, social, content, and email
+                </span>
+                . We align on outcomes, launch fast, and optimize continuously
+                for measurable <span className="text-primary">growth</span>.
               </Paragraph>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -202,7 +205,6 @@ export default function DigitalMarketingPage() {
           </div>
         </div>
       </Section>
-
       {/* Services */}
       <Section is="odd" id="services" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
@@ -240,9 +242,7 @@ export default function DigitalMarketingPage() {
           </ul>
         </div>
       </Section>
-
       <PageDividerTwo />
-
       {/* Services */}
       <Section is="odd" id="benefits" className="py-20 pt-0 relative">
         <div className="container mx-auto px-4 text-center">
@@ -278,10 +278,9 @@ export default function DigitalMarketingPage() {
           </ul>
         </div>
       </Section>
-
-      {". "} {/*  DO NOT REMOVE, As removing this is causing a line over the page divider */}
+      {". "}{" "}
+      {/*  DO NOT REMOVE, As removing this is causing a line over the page divider */}
       <PageDividerTwo />
-
       {/* How we work (process) */}
       <ProcessAnimation
         steps={process}
@@ -289,7 +288,6 @@ export default function DigitalMarketingPage() {
         subtitle="From baseline to scale transparent, iterative, and KPI-driven."
         title="Process"
       />
-
       {/* CTA */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}

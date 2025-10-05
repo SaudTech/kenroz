@@ -112,12 +112,14 @@ export default function Page() {
               />
 
               <Paragraph className="text-xl text-foreground mb-8 leading-relaxed">
-                Accelerate delivery with dedicated teams and top-tier talent.
-                Choose a model that fits your goals Dedicated Teams, Staff
+                Accelerate delivery with dedicated teams and{" "}
+                <span className="text-primary">top-tier talent</span>. Choose a
+                model that fits your goals - Dedicated Teams, Staff
                 Augmentation, or Project-Based Delivery. Our senior engineers,
-                PMs, and QA integrate with your workflows, uphold
-                enterprise-grade security, and drive measurable results across
-                Dynamics 365, Cloud/DevOps, and Web & Mobile.
+                PMs, and QA integrate with your workflows, uphold{" "}
+                <span className="text-primary">enterprise-grade security</span>,
+                and drive measurable results across Dynamics 365, Cloud/DevOps,
+                and <span className="text-primary">Web & Mobile</span>.
               </Paragraph>
 
               <div className="flex flex-col sm:flex-row gap-4">
