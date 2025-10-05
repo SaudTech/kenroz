@@ -21,7 +21,7 @@ export default function RefundCancellationPolicyPage() {
       title="Refund & Cancellation Policy"
       subtitle="How refunds, cancellations, and credits work for our products and services."
     >
-      <div className="text-sm mb-6">Last updated: August 26, 2025</div>
+      <div className="text-sm mb-6">Last updated: April 19, 2025</div>
 
       {/* Quick nav */}
       <nav

@@ -22,7 +22,7 @@ export default function AcceptableUsePolicyPage() {
       subtitle="Rules to protect our customers, infrastructure, and the wider Internet."
     >
       <div className="text-sm text-foreground mb-6">
-        Last updated: August 26, 2025
+        Last updated: April 19, 2025
       </div>
 
       {/* Quick nav */}

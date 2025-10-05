@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
       subtitle="How we collect, use, and protect your information."
     >
       <div className="text-sm text-foreground mb-6">
-        Last updated: August 26, 2025
+        Last updated: April 19, 2025
       </div>
 
       {/* Quick nav */}

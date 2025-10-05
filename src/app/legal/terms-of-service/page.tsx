@@ -22,7 +22,7 @@ export default function TermsOfServicePage() {
       subtitle="Please read these terms carefully before using our services."
     >
       <div className="text-sm text-foreground mb-6">
-        Last updated: August 26, 2025
+        Last updated: April 19, 2025
       </div>
 
       {/* Quick nav */}
