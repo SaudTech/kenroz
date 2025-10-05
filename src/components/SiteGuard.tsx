@@ -6,10 +6,15 @@ import { usePathname, useRouter } from "next/navigation";
 export default function SiteGuard({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [allowed, setAllowed] = useState(pathname === "/coming-soon");
+  const comingSoonDisabled =
+    process.env.NEXT_PUBLIC_DISABLE_COMING_SOON === "true";
+  const [allowed, setAllowed] = useState(
+    comingSoonDisabled || pathname === "/coming-soon"
+  );
 
   useEffect(() => {
-    if (pathname === "/coming-soon") {
+    if (comingSoonDisabled || pathname === "/coming-soon") {
+      setAllowed(true);
       return;
     }
     const unlocked = localStorage.getItem("site-unlocked");
@@ -19,7 +24,7 @@ export default function SiteGuard({ children }: { children: ReactNode }) {
       // router.push("/coming-soon");
       window.location.href = "/coming-soon";
     }
-  }, [pathname, router]);
+  }, [comingSoonDisabled, pathname, router]);
 
   if (!allowed) {
     return null;

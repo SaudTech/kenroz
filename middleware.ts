@@ -3,7 +3,11 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const password = process.env.SITE_PASSWORD;
-  if (!password) {
+  const comingSoonDisabled =
+    process.env.DISABLE_COMING_SOON === "true" ||
+    process.env.NEXT_PUBLIC_DISABLE_COMING_SOON === "true";
+
+  if (!password || comingSoonDisabled) {
     return NextResponse.next();
   }
 

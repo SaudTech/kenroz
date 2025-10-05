@@ -43,4 +43,4 @@ To require a password before accessing the site, set the `SITE_PASSWORD` environ
 SITE_PASSWORD=your-password-here
 ```
 
-Remove the variable to disable the password wall.
+Remove the variable to disable the password wall. Alternatively, set either `DISABLE_COMING_SOON=true` or `NEXT_PUBLIC_DISABLE_COMING_SOON=true` to temporarily bypass the Coming Soon experience without unsetting the password.
