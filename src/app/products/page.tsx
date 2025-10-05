@@ -258,7 +258,7 @@ export default function ProductsPage() {
                         />
                       ) : (
                         <div className="relative aspect-[4/3] w-full">
-                          <Blob align={imageLeft ? "left" : "right"} />
+                          <Blob align={imageLeft ? "left" : "right"} className="scale-125" />
                           <div className="relative h-full w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-2xl">
                             <Image
                               src={product.imageName}
