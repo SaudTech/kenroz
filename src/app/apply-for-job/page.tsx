@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { jobs } from "@/lib/jobs";
 import JobApplicationForm from "@/components/careers/JobApplicationForm";
 import SectionHeading from "@/components/typography/SectionHeading";
-import Paragraph from "@/components/typography/Paragraph";
 import { Blob } from "@/components/Blob";
 import { File } from "lucide-react";
 
@@ -29,19 +28,6 @@ export default async function ApplyForJobPage({
           blackText="Apply for"
           primaryText={job ? job.title : "a Position"}
         />
-        <div className="w-full text-center">
-          <Paragraph className="max-w-3xl text-center">
-            Interested in <b>{job?.title ?? "a role"}</b>? Apply via the form or email
-            your resume to{" "}
-            <a
-              href="mailto:support@kenroz.com"
-              className="underline decoration-border/60 underline-offset-4 hover:decoration-primary"
-            >
-              <span className="font-semibold">support@kenroz.com</span>
-            </a>
-            .
-          </Paragraph>
-        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
           <div className="w-full h-full lg:sticky lg:top-24">
@@ -97,7 +83,7 @@ Thanks,`
                 const mailHref = `mailto:support@kenroz.com?subject=${subject}&body=${body}`;
 
                 return (
-                  <div className="mt-5 flex flex-wrap items-center gap-3 text-card-foreground">
+                  <div className="mt-5 flex flex-col gap-3 text-card-foreground sm:flex-row sm:items-center sm:justify-between">
                     <a
                       href={mailHref}
                       className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card  px-4 py-2 text-sm font-medium transition-all hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
@@ -119,7 +105,7 @@ Thanks,`
 
                     <a
                       href="mailto:support@kenroz.com"
-                      className="text-sm underline decoration-border/60 underline-offset-4 hover:decoration-primary"
+                      className="text-sm underline decoration-border/60 underline-offset-4 hover:decoration-primary sm:ml-auto sm:text-right"
                     >
                       Or use{" "}
                       <span className="font-semibold">support@kenroz.com</span>

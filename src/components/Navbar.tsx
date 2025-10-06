@@ -80,7 +80,7 @@ export default function Navbar(): JSX.Element {
           backgroundColor: scrolled ? "var(--background)" : "var(--navbar)",
           transition: { duration: 0.3, ease: "easeInOut" },
         }}
-        className="fixed top-0 left-0 right-0 max-w-screen z-[80] p-4 px-4 py-6 backdrop-blur-xl shadow-sm"
+        className="fixed top-0 left-0 right-0 max-w-screen z-[100] p-4 px-4 py-6 backdrop-blur-xl shadow-sm"
       >
         <div>
           <div className="flex justify-between items-center h-10">

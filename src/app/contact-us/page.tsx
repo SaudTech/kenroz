@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
-import { Clock, Mail } from "lucide-react";
+import { Clock } from "lucide-react";
 import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
@@ -223,54 +223,58 @@ export default async function ContactPage({
             />
 
             <div className="space-y-8">
-              {/* Info tiles */}
-              <div className="rounded-2xl border border-border/60 bg-card backdrop-blur supports-[backdrop-filter]:bg-card/60 p-5 sm:p-6 shadow-sm transition-shadow hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
-                <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
-                  {/* Hours */}
-                  <div className="flex items-start gap-3">
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Clock className="h-4 w-4" />
-                    </span>
-                    <div>
-                      <h3 className="font-medium leading-none">
-                        Business Hours
-                      </h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        Mon–Fri • 9:00 AM – 6:00 PM
-                      </p>
+              <div className="rounded-2xl border border-border/60 bg-card backdrop-blur p-5 sm:p-6 shadow-sm transition-shadow hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
+                <div className="flex flex-col gap-6 text-card-foreground">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex items-start gap-3">
+                        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                          <Clock className="h-4 w-4" />
+                        </span>
+                        <div>
+                          <h3 className="font-medium leading-none">
+                            Business Hours
+                          </h3>
+                          <p className="mt-1 text-sm text-card-foreground">
+                            Mon - Fri • 9:00 AM - 5:00 PM
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-sm text-card-foreground sm:ml-auto sm:text-right">
+                        Support email:
+                        <a
+                          href="mailto:support@kenroz.com"
+                          className="ml-1 font-semibold underline decoration-border/60 underline-offset-4 hover:decoration-primary"
+                        >
+                          support@kenroz.com
+                        </a>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Primary action */}
-                  <a
-                    href="mailto:support@kenroz.com"
-                    aria-label="Email Kenroz support"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 text-sm font-medium text-card-foreground transition-all hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>Email Support</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Tiny FAQ */}
-              <div className="space-y-2">
-                {/* <h3 className="text-sm font-semibold">Quick FAQ</h3> */}
-                <div className="rounded-2xl border border-border/60 bg-card hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] transition-all duration-300 text-card-foreground divide-y divide-black/5">
-                  <details className="p-4">
-                    <summary className="cursor-pointer text-sm font-medium">
-                      How soon will you respond?
-                    </summary>
-                    <p className="mt-2 text-sm">
-                      We usually reply within one business day.
-                    </p>
-                  </details>
-                  <details className="p-4">
-                    <summary className="cursor-pointer text-sm font-medium">
-                      Do you work with remote teams?
-                    </summary>
-                    <p className="mt-2 text-sm">Yes.</p>
-                  </details>
+                  <div className="border-t border-border/50 pt-4">
+                    <h3 className="text-sm font-semibold uppercase tracking-wide text-card-foreground">
+                      Quick FAQ
+                    </h3>
+                    <div className="mt-3 space-y-2">
+                      <details className="group rounded-xl border border-border/50 bg-card/80 p-4 transition-all duration-300 hover:border-primary/50">
+                        <summary className="cursor-pointer text-sm font-medium">
+                          How soon will you respond?
+                        </summary>
+                        <p className="mt-2 text-sm text-card-foreground">
+                          We usually reply within one business day.
+                        </p>
+                      </details>
+                      <details className="group rounded-xl border border-border/50 bg-card/80 p-4 transition-all duration-300 hover:border-primary/50">
+                        <summary className="cursor-pointer text-sm font-medium">
+                          Do you work with remote teams?
+                        </summary>
+                        <p className="mt-2 text-sm text-card-foreground">
+                          Yes.
+                        </p>
+                      </details>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

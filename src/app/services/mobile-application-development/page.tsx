@@ -231,11 +231,11 @@ export default function MobileApplicationDevelopmentPage() {
                 <p className="mb-6 text-center">{a.description}</p>
 
                 <h4 className="mb-2 font-semibold">Technologies</h4>
-                <div className="mb-6 flex flex-wrap gap-2">
+                <div className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {a.technologies.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full bg-primary px-3 py-1 text-sm text-primary-foreground"
+                      className="inline-flex w-full items-center justify-center rounded-full bg-primary px-3 py-1 text-sm text-primary-foreground"
                     >
                       {t}
                     </span>
