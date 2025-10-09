@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { Instagram, Facebook, Linkedin, MapPin, ExternalLink, Twitter, Mail } from "lucide-react";
-import { createElement, useCallback } from "react";
+import { Linkedin, MapPin, ExternalLink, Mail } from "lucide-react";
+import { useCallback } from "react";
 import Link from "next/link";
 import { useThemeLogo } from "@/hooks/useThemeLogo";
 
@@ -25,7 +25,7 @@ function mapHref(addr: string) {
 
 function LocationCard({ city, flag, location, email }: (typeof locations)[number]) {
   const country = countryByCity[city] ?? "Location";
-  const mail = `mail:${email}`;
+  const mail = `mailto:${email}`;
 
   return (
     <div className="group relative bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 hover:bg-white/10 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_10px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
@@ -105,7 +105,7 @@ export default function Footer() {
     { label: "Digital Marketing", href: "/services/digital-marketing" },
     { label: "Website Development", href: "/services/web-application-development" },
     { label: "Mobile Development", href: "/services/mobile-application-development" },
-    { label: "Microsoft Dynamic 365", href: "/services/microsoft-dynamic-365" },
+    { label: "Microsoft Dynamics 365", href: "/services/microsoft-dynamics-365" },
     { label: "Outsourcing", href: "/services/outsourcing" },
     { label: "Cloud Solutions", href: "/services/cloud-solutions" },
   ];
@@ -131,12 +131,12 @@ export default function Footer() {
     { label: "Cancellation Policy", href: "/legal/refund-cancellation-policy" },
   ];
 
-  const socials = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/kenroz", label: "LinkedIn" },
+  const contactDetails = [
+    { label: "Phone", value: "+91 22 5555 0101", href: "tel:+912255550101" },
+    { label: "WhatsApp", value: "+91 90000 12345", href: "https://wa.me/919000012345" },
   ];
+
+  const linkedInHref = "https://www.linkedin.com/company/kenroz";
 
   return (
     <footer className="bg-gradient-to-b from-card to-black text-white border-t border-white/10 relative z-[90]" aria-label="Site footer">
@@ -157,10 +157,14 @@ export default function Footer() {
                   priority
                 />
               </div>
-              <p className="text-white/70 text-base leading-relaxed mb-6 max-w-sm">
-                Empowering businesses with innovative technology solutions. 
-                From digital transformation to cloud services, we deliver excellence.
+              <p className="text-white/70 text-base leading-relaxed mb-4 max-w-sm">
+                Empowering enterprises with Microsoft Dynamics 365, cloud platforms, and custom software engineered for measurable outcomes.
               </p>
+              <div className="space-y-2 text-white/60 text-sm mb-6">
+                <p><span className="font-semibold text-white/80">CIN:</span> U12345TG2025PTC000001</p>
+                <p><span className="font-semibold text-white/80">GST:</span> 36ABCDE1234F1Z5</p>
+                <p className="font-medium text-white/80">We respond within 1 business day.</p>
+              </div>
               <LocationCards />
             </div>
 
@@ -243,26 +247,39 @@ export default function Footer() {
             </div>
 
             {/* Social Links - Spans 2 columns */}
-            <div className="lg:col-span-2">
-              <h4 className="text-lg font-semibold text-white mb-6 relative">
+            <div className="lg:col-span-2 space-y-4">
+              <h4 className="text-lg font-semibold text-white relative">
                 Connect
                 <div className="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-primary to-secondary"></div>
               </h4>
-              <div className="space-y-3">
-                {socials.map((social) => (
+              <dl className="space-y-3 text-sm text-white/70">
+                {contactDetails.map((detail) => (
+                  <div key={detail.label} className="flex flex-col">
+                    <dt className="text-white/80 font-semibold">{detail.label}</dt>
+                    <dd>
+                      <a
+                        href={detail.href}
+                        className="hover:text-primary transition-colors"
+                      >
+                        {detail.value}
+                      </a>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <div>
+                <span className="text-xs uppercase tracking-[0.3em] text-white/60">Follow us</span>
+                <div className="mt-3 flex items-center gap-3">
                   <a
-                    key={social.label}
-                    href={social.href}
+                    href={linkedInHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-white/70 hover:text-primary text-sm transition-all duration-200 hover:translate-x-1 group"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white hover:border-primary hover:text-primary transition-colors"
+                    aria-label="Kenroz on LinkedIn"
                   >
-                    {createElement(social.icon, { 
-                      className: "h-5 w-5 group-hover:scale-110 transition-transform" 
-                    })}
-                    <span>{social.label}</span>
+                    <Linkedin className="h-5 w-5" />
                   </a>
-                ))}
+                </div>
               </div>
             </div>
           </div>

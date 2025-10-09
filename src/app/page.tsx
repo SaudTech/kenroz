@@ -76,12 +76,14 @@ export default function HomePage() {
         <Section is="odd" id="tech">
           <Technologies />
         </Section>
-        <EngagementSection
-          title="Ready to Transform Your Business?"
-          description="Let’s explore your goals and craft the right IT solutions whether it’s ERP, Cloud, Web, Mobile, Marketing, or Outsourcing. Partner with us to drive growth with confidence."
-          button1Url="/contact-us"
-          button1Text="Contact us"
-        />
+        <Section is="odd" id="contact" className="max-w-none">
+          <EngagementSection
+            title="Ready to Transform Your Business?"
+            description="Let’s explore your goals and craft the right IT solutions whether it’s ERP, Cloud, Web, Mobile, Marketing, or Outsourcing. Partner with us to drive growth with confidence."
+            button1Url="/contact-us"
+            button1Text="Contact us"
+          />
+        </Section>
       </div>
     </>
   );

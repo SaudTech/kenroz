@@ -2,8 +2,16 @@
 
 import { useEffect } from 'react';
 
+type StructuredDataType =
+  | "organization"
+  | "service"
+  | "product"
+  | "website"
+  | "localBusiness"
+  | "faq";
+
 interface StructuredDataProps {
-  type: 'organization' | 'service' | 'product' | 'website';
+  type: StructuredDataType;
   data: Record<string, unknown>;
 }
 
@@ -87,6 +95,46 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             "query-input": "required name=search_term_string"
           },
           ...data
+        };
+        break;
+      case 'localBusiness':
+        structuredData = {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Kenroz Private Limited",
+          image: "https://kenroz.com/logo_mini.png",
+          telephone: "+91 22 5555 0101",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Western Aqua, Hitech City",
+            addressLocality: "Hyderabad",
+            addressRegion: "Telangana",
+            postalCode: "500081",
+            addressCountry: "IN",
+          },
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+              ],
+              opens: "09:00",
+              closes: "17:00",
+            },
+          ],
+          sameAs: ["https://www.linkedin.com/company/kenroz"],
+          ...data,
+        };
+        break;
+      case 'faq':
+        structuredData = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          ...data,
         };
         break;
     }
