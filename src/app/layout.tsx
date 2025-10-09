@@ -165,12 +165,12 @@ export default function RootLayout({
         <Analytics />
         <PerformanceOptimizer />
         <SpeedInsights />
-        <SiteGuard>
+        {/* <SiteGuard> */}
           <Navbar />
           <main className="mt-[88px]">{children}</main>
           <Footer />
           <ThemeCustomizer />
-        </SiteGuard>
+        {/* </SiteGuard> */}
       </body>
     </html>
   );
