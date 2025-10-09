@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import EnhancedContactForm from "@/components/contact/EnhancedContactForm";
 import StructuredData from "@/components/seo/StructuredData";
-import { Clock } from "lucide-react";
 import EngagementSection from "@/components/EngagementSection";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Paragraph from "@/components/typography/Paragraph";
@@ -193,12 +192,35 @@ export default async function ContactPage({
             name: "Kenroz",
             contactPoint: {
               "@type": "ContactPoint",
-              telephone: "+966-XX-XXX-XXXX",
+              telephone: "+91 22 5555 0101",
               contactType: "customer service",
               availableLanguage: ["English", "Arabic"],
-              areaServed: "SA",
+              areaServed: "IN",
             },
           },
+        }}
+      />
+      <StructuredData
+        type="faq"
+        data={{
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "How soon will Kenroz respond to new enquiries?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "We respond within one business day with next steps and a suggested time for your 20-minute consult.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Can Kenroz work with distributed or remote teams?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Our delivery pods collaborate across time zones with shared playbooks, weekly governance, and SLA tracking.",
+              },
+            },
+          ],
         }}
       />
 
@@ -213,71 +235,14 @@ export default async function ContactPage({
             </Paragraph>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 mt-6 items-start">
+          <div className="mt-6">
             <EnhancedContactForm
-              showContactInfo={false}
+              showContactInfo
               context={intent}
               contactType={contactType}
               interest={interest}
-              className="w-full h-full"
+              className="w-full"
             />
-
-            <div className="space-y-8">
-              <div className="rounded-2xl border border-border/60 bg-card backdrop-blur p-5 sm:p-6 shadow-sm transition-shadow hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)]">
-                <div className="flex flex-col gap-6 text-card-foreground">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                      <div className="flex items-start gap-3">
-                        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <Clock className="h-4 w-4" />
-                        </span>
-                        <div>
-                          <h3 className="font-medium leading-none">
-                            Business Hours
-                          </h3>
-                          <p className="mt-1 text-sm text-card-foreground">
-                            Mon - Fri • 9:00 AM - 5:00 PM
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-sm text-card-foreground sm:ml-auto sm:text-right">
-                        Support email:
-                        <a
-                          href="mailto:support@kenroz.com"
-                          className="ml-1 font-semibold underline decoration-border/60 underline-offset-4 hover:decoration-primary"
-                        >
-                          support@kenroz.com
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-border/50 pt-4">
-                    <h3 className="text-sm font-semibold uppercase tracking-wide text-card-foreground">
-                      Quick FAQ
-                    </h3>
-                    <div className="mt-3 space-y-2">
-                      <details className="group rounded-xl border border-border/50 bg-card/80 p-4 transition-all duration-300 hover:border-primary/50">
-                        <summary className="cursor-pointer text-sm font-medium">
-                          How soon will you respond?
-                        </summary>
-                        <p className="mt-2 text-sm text-card-foreground">
-                          We usually reply within one business day.
-                        </p>
-                      </details>
-                      <details className="group rounded-xl border border-border/50 bg-card/80 p-4 transition-all duration-300 hover:border-primary/50">
-                        <summary className="cursor-pointer text-sm font-medium">
-                          Do you work with remote teams?
-                        </summary>
-                        <p className="mt-2 text-sm text-card-foreground">
-                          Yes.
-                        </p>
-                      </details>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

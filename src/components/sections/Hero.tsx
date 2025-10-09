@@ -2,34 +2,22 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FlipWords } from "../ui/flip-words";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { ButtonLink } from "../Navbar";
-import { TypewriterEffect } from "../ui/typewriter-effect";
 import { useSectionVariants, view, hoverScale } from "@/lib/section-animations";
 
-const headlineWords = [
-  { text: "Innovate.", className: "text-white" },
-  { text: "Scale.", className: "text-white" },
-  { text: "Lead", className: "text-white" },
-  { text: "the", className: "text-white" },
-  { text: "Future.", className: "text-white" },
-];
-
-
-
-const featureHighlights = [
+const outcomes = [
   {
-    label: "Future-Ready Solutions",
-    hint: "Ready for tomorrow’s challenges",
+    label: "4-week pilot launches",
+    hint: "Ship MVPs with dedicated squads",
   },
   {
-    label: "Expert Team Support",
-    hint: "Guidance at every step",
+    label: "99.9% SLA uptime",
+    hint: "Ops reviews + runbooks on day one",
   },
   {
-    label: "Scalable & Secure",
-    hint: "Grow safely with confidence",
+    label: "40% faster Dynamics rollouts",
+    hint: "Blueprints for Finance, Sales, and Field",
   },
 ];
 
@@ -38,7 +26,7 @@ export default function Hero() {
   const { fromLeft, fromRight } = useSectionVariants();
 
   return (
-    <section className="flex flex-col items-center justify-center text-center relative overflow-hidden py-8 px-4 w-full h-[calc(100vh-64px)] md:px-8">
+    <section className="flex flex-col items-center justify-center text-center relative overflow-hidden py-16 px-4 w-full h-[calc(100vh-64px)] md:px-8">
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
@@ -53,48 +41,32 @@ export default function Hero() {
 
       {/* Centered Content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center space-y-8 w-full"
-        initial={{ opacity: 0, x: 0 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
+        className="relative z-10 flex flex-col items-center space-y-8 w-full max-w-4xl"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {/* Headline (Typewriter Animation) */}
         <motion.h1
-          className="text-white text-2xl md:text-3xl lg:text-5xl font-bold leading-tight"
+          className="text-white text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight"
           variants={fromLeft}
           initial="hidden"
           whileInView="show"
           viewport={view}
           whileHover={hoverScale}
         >
-          <TypewriterEffect words={headlineWords} className="text-white" />
+          Build, ship, and scale enterprise software—faster.
         </motion.h1>
 
-        {/* Static Subtext + Rotating Services */}
-        <motion.div
-          className="text-[#fffde7] text-lg lg:text-xl font-medium leading-relaxed max-w-3xl"
+        <motion.p
+          className="text-[#fffde7] text-lg md:text-xl leading-relaxed max-w-2xl"
           variants={fromRight}
           initial="hidden"
           whileInView="show"
           viewport={view}
           whileHover={hoverScale}
-          transition={{ delay: 0.9 }}
         >
-          <p className="mb-4">
-            Your trusted partner for smart, future-ready IT solutions.
-          </p>
-          <FlipWords
-            words={[
-              { title: "Cloud Solutions", subtitle: "Streamline Your Business Operations" },
-              { title: "Digital Marketing", subtitle: "Grow Your Audience & Revenue" },
-              { title: "Microsoft Dynamics 365", subtitle: "Transform Enterprise Efficiency" },
-              { title: "AI & Automation", subtitle: "Future-Proof Your Processes" },
-              { title: "Custom Software Development", subtitle: "Build Solutions That Scale" },
-              { title: "Cybersecurity Solutions", subtitle: "Protect & Secure Your Data" },
-            ]}
-            className="text-center"
-          />{" "}
-        </motion.div>
+          Cloud, Dynamics 365, and custom apps with SLA-backed delivery.
+        </motion.p>
 
         {/* Feature Highlights (button-style with hover explanatory text) */}
         <motion.div
@@ -103,7 +75,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.1 }}
         >
-          {featureHighlights.map((item, index) => (
+          {outcomes.map((item, index) => (
             <motion.div
               key={item.label}
               className="group hover:shadow-[0_0_26px_0_var(--primary),0_0_14px_0_rgba(0,0,0,0.08)] relative flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-[#fffde7] text-xs sm:text-sm font-medium border border-white/10  transition-all duration-300"
@@ -134,40 +106,43 @@ export default function Hero() {
 
         {/* CTA Button */}
         <motion.div
-          className="flex justify-center"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <ButtonLink href="#services">
-              Explore Our Services
+            <ButtonLink href="#contact">
+              Talk to an expert
               <ArrowRight className="w-5 h-5 ms-2" />
             </ButtonLink>
           </motion.div>
+          <ButtonLink href="/services/microsoft-dynamics-365" variant="outline">
+            Explore Dynamics 365 services
+          </ButtonLink>
         </motion.div>
       </motion.div>
 
       {/* Floating particles animation */}
       <div className="absolute inset-0 z-[2] pointer-events-none">
-        {[...Array(50)].map((_, i) => {
+        {[...Array(32)].map((_, i) => {
           const left = Math.random() * 100;
           const top = Math.random() * 100;
           return (
             <motion.div
               key={`particle-${i}`}
-              className="absolute w-1 h-1 bg-red-400 rounded-full opacity-40"
+              className="absolute w-1 h-1 bg-red-400/70 rounded-full"
               style={{ left: `${left}%`, top: `${top}%` }}
               animate={{
-                y: [-10, 10, -10],
-                x: [-5, 5, -5],
-                opacity: [0.4, 0.8, 0.4],
+                y: [-6, 6, -6],
+                x: [-3, 3, -3],
+                opacity: [0.25, 0.6, 0.25],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
                 ease: easeInOut,
-                delay: Math.random() * 2,
+                delay: Math.random() * 3,
               }}
             />
           );

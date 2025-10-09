@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Service pages
   const services = [
-    'microsoft-dynamic-365',
+    'microsoft-dynamics-365',
     'cloud-solutions',
     'web-application-development',
     'mobile-application-development',

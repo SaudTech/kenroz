@@ -9,27 +9,32 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const {
-      fullName,
-      email,
-      countryCode,
-      phone,
-      interest,
-      message,
-      contactType,
-    } = body || {};
+    const { fullName, email, company, projectType, budget, interest, contactType } =
+      body || {};
 
-    if (
-      !fullName ||
-      !email ||
-      !countryCode ||
-      !phone ||
-      !interest ||
-      !message ||
-      !contactType
-    ) {
+    if (!fullName || !email || !company || !projectType || !budget || !interest || !contactType) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
+
+    const projectTypeLabels: Record<string, string> = {
+      "dynamics-365": "Microsoft Dynamics 365",
+      cloud: "Cloud & DevOps",
+      web: "Web application",
+      mobile: "Mobile application",
+      "digital-marketing": "Digital marketing",
+      outsourcing: "Dedicated team",
+    };
+
+    const budgetLabels: Record<string, string> = {
+      "under-25k": "Under $25k",
+      "25-50k": "$25k – $50k",
+      "50-100k": "$50k – $100k",
+      "100-250k": "$100k – $250k",
+      "250k-plus": "$250k+",
+    };
+
+    const resolvedProjectType = projectTypeLabels[projectType] ?? projectType;
+    const resolvedBudget = budgetLabels[budget] ?? budget;
 
     const allowedContactTypes = new Map<
       string,
@@ -103,7 +108,7 @@ export async function POST(req: NextRequest) {
                 }
                 .info-card {
                     display: grid;
-                    grid-template-columns: 1fr;
+                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
                     gap: 16px;
                     background-color: #f8fafc;
                     border-radius: 6px;
@@ -184,12 +189,20 @@ export async function POST(req: NextRequest) {
                         <span class="value">${email}</span>
                     </div>
                     <div class="info-item">
-                        <span class="label">Phone Number</span>
-                        <span class="value">${countryCode} ${phone}</span>
-                    </div>
-                    <div class="info-item">
                         <span class="label">Contact Type</span>
                         <span class="value">${resolvedContactType}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Company</span>
+                        <span class="value">${company}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Project Type</span>
+                        <span class="value">${resolvedProjectType}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Budget Band</span>
+                        <span class="value">${resolvedBudget}</span>
                     </div>
                     <div class="info-item">
                         <span class="label">Interest in</span>
@@ -197,13 +210,6 @@ export async function POST(req: NextRequest) {
                     </div>
                 </div>
 
-                <div class="section-title">Message Details</div>
-                <div class="message-section">
-                    <div class="message-content">
-                        ${message}
-                    </div>
-                </div>
-                
                 <div class="button-container">
                     <a href="mailto:${email}" class="reply-button">Reply to ${fullName}</a>
                 </div>

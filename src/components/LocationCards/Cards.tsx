@@ -104,7 +104,7 @@ export default function Footer() {
     { label: "Digital Marketing", href: "/services/digital-marketing" },
     { label: "Website Development", href: "/services/web-application-development" },
     { label: "Mobile Development", href: "/services/mobile-application-development" },
-    { label: "Microsoft Dynamic 365", href: "/services/microsoft-dynamic-365" },
+    { label: "Microsoft Dynamics 365", href: "/services/microsoft-dynamics-365" },
     { label: "Outsourcing", href: "/services/outsourcing" },
     { label: "Cloud Solutions", href: "/services/cloud-solutions" },
   ];

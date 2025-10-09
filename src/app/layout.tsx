@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import StructuredData from "@/components/seo/StructuredData";
 import PerformanceOptimizer from "@/components/seo/PerformanceOptimizer";
-import SiteGuard from "@/components/SiteGuard";
 import { Analytics } from "@vercel/analytics/next";
 import ThemeCustomizer from "@/components/ThemeCustomizer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -126,14 +125,14 @@ export default function RootLayout({
             logo: "https://kenroz.com/logo_mini.png",
             contactPoint: {
               "@type": "ContactPoint",
-              telephone: "+966-XX-XXX-XXXX",
+              telephone: "+91 22 5555 0101",
               contactType: "customer service",
               availableLanguage: ["English", "Arabic"],
             },
             address: {
               "@type": "PostalAddress",
-              addressCountry: "SA",
-              addressRegion: "Riyadh",
+              addressCountry: "IN",
+              addressRegion: "Telangana",
             },
             foundingDate: "2020",
             numberOfEmployees: "50-100",
@@ -148,6 +147,7 @@ export default function RootLayout({
             ],
           }}
         />
+        <StructuredData type="localBusiness" data={{}} />
         <StructuredData
           type="website"
           data={{

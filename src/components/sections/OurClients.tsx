@@ -2,54 +2,35 @@
 
 import React from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import SectionHeading from "../typography/SectionHeading";
 import Paragraph from "../typography/Paragraph";
 
 interface Company {
   name: string;
   logo: string;
+  width: number;
+  height: number;
 }
 
 const companies: Company[] = [
-  { name: "Abacus", logo: "/clients/Abacus.jpg" },
+  { name: "Abacus", logo: "/clients/Abacus.jpg", width: 160, height: 64 },
   {
     name: "Pure Quality Construction",
     logo: "/clients/Pure-Quality-Construction-LLC.webp",
+    width: 180,
+    height: 64,
   },
-  { name: "Chemsol", logo: "/clients/Chemsol.png" },
-  { name: "Tamimi Group", logo: "/clients/TamimiGroup.png" },
-  { name: "Stepco", logo: "/clients/Stepco.png" },
-  { name: "NAJIM", logo: "/clients/NAJIM.png" },
-  { name: "Premier global Trading", logo: "/clients/Premier.webp" },
-  { name: "Musanadah", logo: "/clients/Musanadah.png" },
+  { name: "Chemsol", logo: "/clients/Chemsol.png", width: 160, height: 64 },
+  { name: "Tamimi Group", logo: "/clients/TamimiGroup.png", width: 180, height: 64 },
+  { name: "Stepco", logo: "/clients/Stepco.png", width: 160, height: 64 },
+  { name: "NAJIM", logo: "/clients/NAJIM.png", width: 160, height: 64 },
+  { name: "Premier Global Trading", logo: "/clients/Premier.webp", width: 170, height: 64 },
+  { name: "Musanadah", logo: "/clients/Musanadah.png", width: 180, height: 64 },
 ];
-
-// Duplicate just enough for seamless loop (2–3 times only)
-const loopCompanies = [...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies, ...companies];
 
 export default function OurClients() {
   return (
     <>
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
-        }
-
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
       <section
         className="w-full"
         id="our-clients"
@@ -62,40 +43,27 @@ export default function OurClients() {
               primaryText="leading companies"
             />
 
-            {/* Marquee wrapper */}
-            <div className="relative mt-10 sm:mt-20 overflow-hidden">
-              <div className="flex animate-marquee gap-8">
-                {loopCompanies.map((company, i) => (
-                  <div
-                    key={`${company.name}-${i}`}
-                    className="flex items-center justify-center min-w-[140px] sm:min-w-[180px] md:min-w-[200px] p-4"
-                    title={company.name}
-                  >
-                    <div
-                      className={cn(
-                        "relative h-28 w-28 sm:h-36 sm:w-40 opacity-80 hover:opacity-100 transition rounded-md shadow-lg p-2 bg-white/40 backdrop-blur-sm",
-                        company.name === "Premier global Trading" && "w-44",
-                        company.name === "Musanadah" && "w-44"
-                      )}
-                    >
-                      <Image
-                        src={company.logo}
-                        alt={`${company.name} logo`}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 sm:gap-8 items-center justify-items-center">
+              {companies.map((company) => (
+                <div
+                  key={company.name}
+                  className="flex h-20 w-full max-w-[180px] items-center justify-center rounded-md border border-white/10 bg-white/10 p-4 transition-all duration-200 hover:border-white/40"
+                >
+                  <Image
+                    src={company.logo}
+                    alt={`${company.name} logo`}
+                    width={company.width}
+                    height={company.height}
+                    className="h-full w-auto object-contain grayscale hover:grayscale-0 transition"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
-          <Paragraph className="mt-6 text-center text-sm sm:text-base">
-            We are proud to have collaborated with a diverse range of clients,
-            delivering exceptional solutions tailored to their unique needs.
-            Here&apos;s a glimpse of some of the companies we&apos;ve had the
-            privilege to work with.
+          <Paragraph className="mt-8 text-center text-sm sm:text-base text-card-foreground/80">
+            Eight partnerships across construction, trading, and services keep our delivery playbooks sharp—and every engagement starts with clear KPIs.
           </Paragraph>
         </div>
       </section>

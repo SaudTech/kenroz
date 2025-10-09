@@ -1,21 +1,28 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, AlertCircle } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { CheckCircle, AlertCircle, ExternalLink } from "lucide-react";
 import LocationSwitcher from "./LocationSwitcher";
 import { cn } from "@/lib/utils";
-import CountryCodeSelection from "../ui/CountryCodeSelection";
+
 interface FormData {
   fullName: string;
   email: string;
-  countryCode: string;
-  phone: string;
+  company: string;
+  projectType: string;
+  budget: string;
   interest: string;
-  message: string;
   context?: string;
   contactType?: string;
 }
@@ -32,6 +39,23 @@ interface EnhancedContactFormProps {
   interest?: string;
 }
 
+const projectOptions = [
+  { value: "dynamics-365", label: "Microsoft Dynamics 365" },
+  { value: "cloud", label: "Cloud & DevOps" },
+  { value: "web", label: "Web application" },
+  { value: "mobile", label: "Mobile application" },
+  { value: "digital-marketing", label: "Digital marketing" },
+  { value: "outsourcing", label: "Dedicated team" },
+];
+
+const budgetOptions = [
+  { value: "under-25k", label: "Under $25k" },
+  { value: "25-50k", label: "$25k – $50k" },
+  { value: "50-100k", label: "$50k – $100k" },
+  { value: "100-250k", label: "$100k – $250k" },
+  { value: "250k-plus", label: "$250k+" },
+];
+
 export default function EnhancedContactForm({
   className = "",
   showContactInfo = true,
@@ -42,14 +66,15 @@ export default function EnhancedContactForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+
   const initialFormState = useMemo(
     () => ({
       fullName: "",
       email: "",
-      countryCode: "",
-      phone: "",
+      company: "",
+      projectType: "",
+      budget: "",
       interest,
-      message: "",
       context,
       contactType,
     }),
@@ -67,41 +92,27 @@ export default function EnhancedContactForm({
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Full name validation
     if (!formData.fullName.trim()) {
       newErrors.fullName = "Full name is required";
-    } else if (formData.fullName.trim().length < 2) {
-      newErrors.fullName = "Name must be at least 2 characters";
     }
 
-    // Phone validation
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    } else {
-      const digitsOnlyLength = formData.phone.replace(/\D/g, "").length;
-      if (digitsOnlyLength == 10) {
-        newErrors.phone = "Please enter a 10 digit phone number";
-      }
-    }
-
-    // Country code validation
-    if (!formData.countryCode.trim()) {
-      newErrors.countryCode = "Country code is required";
-    }
-
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = "Email address is required";
+      newErrors.email = "Work email is required";
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = "Enter a valid email";
     }
 
-    // Message validation
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
+    if (!formData.company.trim()) {
+      newErrors.company = "Company is required";
+    }
+
+    if (!formData.projectType.trim()) {
+      newErrors.projectType = "Select a project type";
+    }
+
+    if (!formData.budget.trim()) {
+      newErrors.budget = "Select a budget band";
     }
 
     setErrors(newErrors);
@@ -110,7 +121,6 @@ export default function EnhancedContactForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!validateForm()) {
       return;
     }
@@ -125,10 +135,10 @@ export default function EnhancedContactForm({
         body: JSON.stringify({
           fullName: formData.fullName,
           email: formData.email,
-          countryCode: formData.countryCode,
-          phone: formData.phone,
+          company: formData.company,
+          projectType: formData.projectType,
+          budget: formData.budget,
           interest: formData.interest,
-          message: formData.message,
           contactType: formData.contactType,
         }),
       });
@@ -152,52 +162,21 @@ export default function EnhancedContactForm({
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
-
-  const handleCountryCodeChange = useCallback(
-    (countryCode: string) => {
-      setFormData((prev) => ({
-        ...prev,
-        countryCode,
-      }));
-      if (errors.countryCode) {
-        setErrors((prev) => ({
-          ...prev,
-          countryCode: "",
-        }));
-      }
-    },
-    [errors.countryCode]
-  );
-
   if (isSubmitted) {
     return (
       <div className={cn("w-full max-w-2xl mx-auto", className)}>
-        <Card className="border-0 shadow-2xl bg-card">
+        <Card className="border border-border/40 bg-card shadow-lg">
           <CardContent className="text-center py-12">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-card-foreground mb-2">
-              Message submitted!
+            <h3 className="text-2xl font-semibold text-card-foreground mb-2">
+              Thanks for reaching out!
             </h3>
-            <p className="text-card-foreground mb-6">
-              We will get back to you.
+            <p className="text-card-foreground/80 mb-6">
+              We&apos;ll reply within one business day to book your consult.
             </p>
+            <Button asChild>
+              <Link href="/">Back to home</Link>
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -205,165 +184,204 @@ export default function EnhancedContactForm({
   }
 
   return (
-    <div className={cn("w-full mx-auto h-full", className)} id="contact">
-      <div
-        className={cn(
-          "grid grid-cols-2 gap-8 max-w-7xl mx-auto h-full",
-          !showContactInfo && "grid-cols-1"
-        )}
+    <div className={cn("grid md:grid-cols-[minmax(0,1fr)_320px] gap-6", className)}>
+      <form
+        className="rounded-2xl border border-border/60 bg-card/90 backdrop-blur-sm p-6 shadow-sm"
+        onSubmit={handleSubmit}
+        id="lead-form"
       >
-        {/* Contact Form */}
-        <Card className="border border-border/60 w-full mx-auto shadow-2xl bg-card">
-          <CardContent className="space-y-6">
-            <form
-              id="contact-form"
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-              {context && (
-                <input type="hidden" name="context" value={context} />
-              )}
-              <input type="hidden" name="interest" value={formData.interest} />
+        <div className="grid gap-4">
+          <div className="grid gap-2">
+            <label htmlFor="fullName" className="text-sm font-medium text-card-foreground">
+              Full name
+            </label>
+            <Input
+              id="fullName"
+              name="fullName"
+              placeholder="Jane Doe"
+              value={formData.fullName}
+              onChange={(event) => {
+                const { value } = event.target;
+                setFormData((prev) => ({ ...prev, fullName: value }));
+                if (errors.fullName) {
+                  setErrors((prev) => ({ ...prev, fullName: "" }));
+                }
+              }}
+              aria-invalid={Boolean(errors.fullName)}
+            />
+            {errors.fullName && (
+              <p className="text-sm text-red-400 flex items-center gap-1">
+                <AlertCircle className="h-4 w-4" aria-hidden />
+                {errors.fullName}
+              </p>
+            )}
+          </div>
 
-              {/* Full Name Field */}
-              <div className="space-y-2">
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  type="text"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  placeholder="Enter your full name"
-                  className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                    errors.fullName
-                      ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                      : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                  }`}
-                />
-                {errors.fullName && (
-                  <p className="text-sm text-red-600 flex items-center gap-1">
-                    <AlertCircle className="w-4 h-4" />
-                    {errors.fullName}
-                  </p>
-                )}
-              </div>
+          <div className="grid gap-2">
+            <label htmlFor="email" className="text-sm font-medium text-card-foreground">
+              Work email
+            </label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@company.com"
+              value={formData.email}
+              onChange={(event) => {
+                const { value } = event.target;
+                setFormData((prev) => ({ ...prev, email: value }));
+                if (errors.email) {
+                  setErrors((prev) => ({ ...prev, email: "" }));
+                }
+              }}
+              aria-invalid={Boolean(errors.email)}
+            />
+            {errors.email && (
+              <p className="text-sm text-red-400 flex items-center gap-1">
+                <AlertCircle className="h-4 w-4" aria-hidden />
+                {errors.email}
+              </p>
+            )}
+          </div>
 
-              {/* Email and Phone Row */}
-              <div className="grid grid-cols-12 gap-4">
-                <div className="space-y-2 col-span-6">
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email address"
-                    className={`h-12 border-2 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                      errors.email
-                        ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                        : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                    }`}
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2 col-span-6">
-                  <div className="flex items-center">
-                    <CountryCodeSelection
-                      value={formData.countryCode}
-                      defaultCountry="+91"
-                      className="border-r-none"
-                      onChange={handleCountryCodeChange}
-                      error={!!errors.countryCode}
-                    />
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="number"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Enter phone number"
-                      removeLeftBorderRadius={true}
-                      className={`h-12 border-2 border-gray-200 focus:border-primary focus:ring-primary/20 transition-all duration-200 text-card-foreground placeholder:text-card-foreground ${
-                        errors.phone
-                          ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                          : ""
-                      }`}
-                    />
-                  </div>
-                  {errors.phone && (
-                    <p className="text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.phone}
-                    </p>
-                  )}
-                </div>
-              </div>
+          <div className="grid gap-2">
+            <label htmlFor="company" className="text-sm font-medium text-card-foreground">
+              Company
+            </label>
+            <Input
+              id="company"
+              name="company"
+              placeholder="Kenroz Pvt. Ltd."
+              value={formData.company}
+              onChange={(event) => {
+                const { value } = event.target;
+                setFormData((prev) => ({ ...prev, company: value }));
+                if (errors.company) {
+                  setErrors((prev) => ({ ...prev, company: "" }));
+                }
+              }}
+              aria-invalid={Boolean(errors.company)}
+            />
+            {errors.company && (
+              <p className="text-sm text-red-400 flex items-center gap-1">
+                <AlertCircle className="h-4 w-4" aria-hidden />
+                {errors.company}
+              </p>
+            )}
+          </div>
 
-              {/* Message Field */}
-              <div className="space-y-2">
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Additional Information (e.g., project details, timeline)"
-                  rows={5}
-                  className={`border-2 transition-all h-[123px] duration-200 resize-none text-card-foreground placeholder:text-card-foreground ${
-                    errors.message
-                      ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                      : "border-gray-200 focus:border-primary focus:ring-primary/20"
-                  }`}
-                />
-                {errors.message && (
-                  <p className="text-sm text-red-600 flex items-center gap-1">
-                    <AlertCircle className="w-4 h-4" />
-                    {errors.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Submit Error */}
-              {errors.submit && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-sm text-red-600 flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4" />
-                    {errors.submit}
-                  </p>
-                </div>
-              )}
-            </form>
-          </CardContent>
-
-          {/* Submit Button - Bottom Right */}
-          <div className="px-6">
-            <div className="pt-2">
-              <Button
-                type="submit"
-                form="contact-form"
-                className="w-full"
-                disabled={isSubmitting}
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-2">
+              <span className="text-sm font-medium text-card-foreground">Project type</span>
+              <Select
+                value={formData.projectType}
+                onValueChange={(value) => {
+                  setFormData((prev) => ({ ...prev, projectType: value }));
+                  if (errors.projectType) {
+                    setErrors((prev) => ({ ...prev, projectType: "" }));
+                  }
+                }}
               >
-                {isSubmitting ? "Sending Message..." : "Send Message"}
-              </Button>
+                <SelectTrigger aria-invalid={Boolean(errors.projectType)}>
+                  <SelectValue placeholder="Choose one" />
+                </SelectTrigger>
+                <SelectContent>
+                  {projectOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.projectType && (
+                <p className="text-sm text-red-400 flex items-center gap-1">
+                  <AlertCircle className="h-4 w-4" aria-hidden />
+                  {errors.projectType}
+                </p>
+              )}
+            </div>
+
+            <div className="grid gap-2">
+              <span className="text-sm font-medium text-card-foreground">Budget band (USD)</span>
+              <Select
+                value={formData.budget}
+                onValueChange={(value) => {
+                  setFormData((prev) => ({ ...prev, budget: value }));
+                  if (errors.budget) {
+                    setErrors((prev) => ({ ...prev, budget: "" }));
+                  }
+                }}
+              >
+                <SelectTrigger aria-invalid={Boolean(errors.budget)}>
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent>
+                  {budgetOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.budget && (
+                <p className="text-sm text-red-400 flex items-center gap-1">
+                  <AlertCircle className="h-4 w-4" aria-hidden />
+                  {errors.budget}
+                </p>
+              )}
             </div>
           </div>
-        </Card>
 
-        {/* Contact Information */}
-        {showContactInfo && (
-          <div className="bg-gradient-to-br from-secondary to-primary rounded-xl p-8 text-white">
-            <LocationSwitcher
-              title="Our Offices"
-              description="Choose your region to get in touch"
-            />
+          {errors.submit && (
+            <div className="flex items-center gap-2 rounded-lg border border-red-400/40 bg-red-500/10 p-3 text-sm text-red-200">
+              <AlertCircle className="h-4 w-4" aria-hidden />
+              {errors.submit}
+            </div>
+          )}
+
+          <Button type="submit" className="mt-2" disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Submit"}
+          </Button>
+        </div>
+      </form>
+
+      {showContactInfo && (
+        <div className="space-y-4 rounded-2xl border border-border/50 bg-card/40 p-6">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              Prefer to schedule directly?
+            </p>
+            <Button asChild variant="outline" className="mt-3 w-full">
+              <a
+                href="https://calendly.com/kenroz/20min"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Book a 20-min consult
+                <ExternalLink className="ml-2 h-4 w-4" aria-hidden />
+              </a>
+            </Button>
           </div>
-        )}
-      </div>
+
+          <div className="rounded-xl border border-border/40 bg-background/80 p-4 text-card-foreground/80">
+            <p className="text-sm font-medium text-card-foreground">What happens next?</p>
+            <ul className="mt-2 space-y-2 text-sm">
+              <li>• Discovery call with a practice lead.</li>
+              <li>• Follow-up email recapping goals and SLAs.</li>
+              <li>• Proposal within 3–5 business days.</li>
+            </ul>
+          </div>
+
+          <div className="rounded-xl border border-border/40 bg-background/80 p-4">
+            <p className="text-sm font-medium text-card-foreground">Response time</p>
+            <p className="mt-1 text-sm text-card-foreground/70">
+              We respond within one business day via email or WhatsApp.
+            </p>
+          </div>
+
+          <LocationSwitcher title="Our Offices" description="Choose your region" />
+        </div>
+      )}
     </div>
   );
 }
