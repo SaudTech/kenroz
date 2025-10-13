@@ -79,10 +79,11 @@ export default function EnhancedContactForm({
       newErrors.phone = "Phone number is required";
     } else {
       const digitsOnlyLength = formData.phone.replace(/\D/g, "").length;
-      if (digitsOnlyLength == 10) {
+      if (digitsOnlyLength !== 10) {
         newErrors.phone = "Please enter a 10 digit phone number";
       }
     }
+
 
     // Country code validation
     if (!formData.countryCode.trim()) {
